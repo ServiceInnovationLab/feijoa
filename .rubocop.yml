@@ -1,7 +1,8 @@
 ---
 # Built-in config:
 # https://github.com/bbatsov/rubocop/blob/master/config/default.yml
-require: rubocop-rails
+# commented out until codeclimate supports this
+# require: rubocop-rails
 
 # We do not typically use/need class documentation
 Documentation:
