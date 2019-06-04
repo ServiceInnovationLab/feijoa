@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class User::SessionsController < Devise::SessionsController
-  # rubocop:disable Rails/LexicallyScopedActionFilter
   skip_before_action :check_user, only: :destroy
-  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   # before_action :configure_sign_in_params, only: [:create]
 
