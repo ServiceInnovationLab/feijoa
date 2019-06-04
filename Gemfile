@@ -34,11 +34,16 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'devise', '~> 4.6.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rubocop', '0.71.0'
   gem 'rubocop-rails'
+
+  # Open emails in a browser tab instead of sending
+  gem 'letter_opener'
 end
 
 group :development do
