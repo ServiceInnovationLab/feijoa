@@ -236,7 +236,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # 
+  #
   # Lyall: Enabled because we expect to support Users, Admins, and ELSs (or some
   # kind of trusted message receiver)
   config.scoped_views = true
