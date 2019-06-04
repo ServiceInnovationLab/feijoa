@@ -1,5 +1,9 @@
 sudo: required
 language: ruby
+branches:
+  only:
+  - master
+  - dev
 cache:
   bundler: true
 before_install:
