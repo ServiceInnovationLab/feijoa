@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ServiceInnovationLab/feijoa.svg?branch=master)](https://travis-ci.org/ServiceInnovationLab/feijoa)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
