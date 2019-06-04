@@ -11,8 +11,7 @@ before_install:
 - chmod +x ./cc-test-reporter
 - export PATH=$PWD/geckodriver:$PATH
 before_script:
-- yarn install
-- ./scripts/install_phantomjs.sh
+# - yarn install
 - RAILS_ENV=test bundle exec rake db:create db:migrate
 - RAILS_ENV=test bundle exec rake assets:precompile
 script:
