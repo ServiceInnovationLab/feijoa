@@ -1,27 +1,71 @@
 [![Build Status](https://travis-ci.org/ServiceInnovationLab/feijoa.svg?branch=master)](https://travis-ci.org/ServiceInnovationLab/feijoa)
 [![AwesomeCode Status for ServiceInnovationLab/feijoa](https://awesomecode.io/projects/69ea27b0-0d2e-40b5-bb92-e1c4ad1a5b1b/status)](https://awesomecode.io/repos/ServiceInnovationLab/feijoa)
 
-# README
+# Feijoa
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
+A Rails web app to demonstrate consent management
 
-Things you may want to cover:
+## Environments
+**Environment** | **URL**  | **Git Branch**
+---    | ---                                | ---    |
+Heroku | https://feijoa-pr-5.herokuapp.com/ | master |
 
-* Ruby version
+## Project Resources
 
-* System dependencies
+**Resource** | **URL**
+---     | ---
+Backlog | https://trello.com/b/1XoN2WJT/yeah-nah-feijoa
+CI      | https://travis-ci.org/ServiceInnovationLab/feijoa
 
-* Configuration
+**Role(s)** | **Name(s)**
+---        | ---
+Team       | Yeah Nah / Feijoa
+Developers | [Brenda Wallace](https://github.com/Br3nda), [Lyall Morrison](https://github.com/lamorrison)
+Designers |
+Testers | 
+Project Manager |
+Product Owner |
 
-* Database creation
+## Comms
+Slack: LabPlus-team #feijoa
 
-* Database initialization
+## Setup
 
-* How to run the test suite
+### Development
+In the application directory:
 
-* Services (job queues, cache servers, search engines, etc.)
+Make a copy of the example environment file containing some important settings
 
-* Deployment instructions
+```
+> cp example.env .env
+```
 
-* ...
+Install bundler 1.x if required
+```
+> gem install bundler -v 1.17.3
+```
+
+Install Rails dependencies and create local databases
+```
+> bin/setup
+```
+
+Start a local server
+```
+> bundle exec rails server
+```
+
+## Testing
+
+### Rubocop
+```
+> rubocop
+```
+
+### Rspec
+```
+> bundle exec rspec
+```
+
+Test coverage is reported to `coverage/index.html`
