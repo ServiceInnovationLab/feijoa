@@ -1,0 +1,17 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ],
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "feijoa",
+  "scripts": {
+    "postdeploy": "rails db:create db:migrate db:seed"
+  },
+  "stack": "heroku-18"
+}
