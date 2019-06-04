@@ -63,8 +63,6 @@ group :test do
   gem 'capybara-screenshot' # for test debugging
   gem 'selenium-webdriver'
 
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'simplecov', require: false
