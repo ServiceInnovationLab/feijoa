@@ -1,6 +1,9 @@
 engines:
   rubocop:
     enabled: true
+    channel: "rubocop-0-71"
+    config:
+      file: .rubocop.yml
   shellcheck:
     enabled: true
   eslint:
