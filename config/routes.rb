@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   }
 
   authenticated :user do
-    root 'user#index', as: :user_root
     resources :user, only: [:index]
   end
 
@@ -18,7 +17,6 @@ Rails.application.routes.draw do
   }
 
   authenticated :admin do
-    root 'admin#index', as: :admin_root
     resources :admin, only: [:index]
   end
 
