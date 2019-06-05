@@ -2,7 +2,9 @@
 
 class User::SessionsController < Devise::SessionsController
   include PublicOnly
-  skip_before_action :redirect_authenticated_users, only: :destroy
+  # rubocop:disable Rails/LexicallyScopedActionFilter
+  skip_before_action :redirect_authenticated_users, only: [:create, :destroy]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   # before_action :configure_sign_in_params, only: [:create]
 
