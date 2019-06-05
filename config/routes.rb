@@ -4,12 +4,12 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   devise_for :users, path: 'users', controllers: {
-    sessions: 'users/sessions'
+    # we need to override the sessions controller, others can be default
+    sessions: 'user/sessions'
   }
-  # authenticated_user_root to: 'user#index'
 
   devise_for :admins, path: 'admins', controllers: {
-    sessions: 'admins/sessions'
+    # we need to override the sessions controller, others can be default
+    sessions: 'admin/sessions'
   }
-  # authenticated_admin_root to: 'admin#index'
 end
