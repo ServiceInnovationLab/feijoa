@@ -2,8 +2,8 @@
 
 Rails.application.routes.draw do
 
-  get '/user', to: 'user/home#index'
-  get '/admin', to: 'admin/home#index'
+  resources :user, only: [:index]
+  resources :admin, only: [:index]
 
   devise_for :users, path: 'users', controllers: {
     # we need to override the sessions controller, others can be default
