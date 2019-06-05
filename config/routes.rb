@@ -2,16 +2,14 @@
 
 Rails.application.routes.draw do
 
-  resources :user, only: [:index]
-  resources :admin, only: [:index]
-
   devise_for :users, path: 'users', controllers: {
     # we need to override the sessions controller, others can be default
     sessions: 'user/sessions'
   }
 
   authenticated :user do
-    root 'home#index', as: :user_root
+    root 'user#index', as: :user_root
+    resources :user, only: [:index]
   end
 
   devise_for :admins, path: 'admins', controllers: {
@@ -20,7 +18,8 @@ Rails.application.routes.draw do
   }
 
   authenticated :admin do
-    root 'home#index', as: :admin_root
+    root 'admin#index', as: :admin_root
+    resources :admin, only: [:index]
   end
 
   root to: 'home#index'
