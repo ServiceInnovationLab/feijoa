@@ -1,21 +1,7 @@
-<%
-    # You can add any key you want to `flash` but :notice and :alert are
-    # important because:
-    #
-    #     1. They have some built-in support from Rails
-    #     2. Devise communicates its messages & errors through these keys
-%>
-
-<%= cache([flash[:alert], flash[:notice]]) do %>
-  <% [:alert, :notice].each do |flash_key| %>
-    <% if flash[flash_key] %>
-      <div class="flash-message flash-message--<%= flash_key %>" data-closable>
-        <div class="flash-message__content flash-message__content--<%= flash_key %>">
-          <%= flash[flash_key] %>
-          <button class="flash-message__button flash-message__button--close flash-message__button--<%= flash_key %>" aria-label="Dismiss alert" type="button" data-close>
-          </button>
-        </div>
-      </div>
-    <% end %>
+<% [:alert, :notice].each do |flash_key| %>
+  <% if flash[flash_key] %>
+    <div class="flash-message flash-message--<%= flash_key %>">
+      <%= flash[flash_key] %>
+    </div>
   <% end %>
 <% end %>

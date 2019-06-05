@@ -4,28 +4,42 @@
   <% end %>
 
   <ul class="header__menu">
-    <li class="header__menu-item" >
-      <% if signed_in? %>
+    
+    <% if current_user.present? %>
+      <li class="header__menu-item" >
         <%= link_to(destroy_user_session_path, method: :delete, class: "header__menu-link")  do %>
-          <span class="header__menu-text">Log out</span>
-        <% end %>
-      <% else %>
-        <%= link_to(new_user_session_path, class: "header__menu-link") do %>
-          <span class="header__menu-text">Log in</span>
-        <% end %>
-      <% end %>
-    </li>
-    <% unless signed_in? %>
-      <li class="header__menu-item test-signup-menu">
-        <%= link_to(new_user_registration_path, class: "header__menu-link") do %>
-          <span class="header__menu-text">Sign up</span>
+          <span class="header__menu-text">Log out User</span>
         <% end %>
       </li>
     <% end %>
-    <li class="header__menu-item test-faq-menu">
-      <%= link_to(root_path, class: "header__menu-link") do %>
-        <span class="header__menu-text">FAQs</span>
-      <% end %>
-    </li>
+    <% if current_admin.present? %>
+      <li class="header__menu-item" >
+        <%= link_to(destroy_admin_session_path, method: :delete, class: "header__menu-link")  do %>
+          <span class="header__menu-text">Log out Admin</span>
+        <% end %>
+      </li>
+    <% end %>
+    <% unless signed_in? %>
+      <li class="header__menu-item">
+        <%= link_to(new_user_session_path, class: "header__menu-link") do %>
+          <span class="header__menu-text">Log in User</span>
+        <% end %>
+      </li>
+      <li class="header__menu-item">
+        <%= link_to(new_admin_session_path, class: "header__menu-link") do %>
+          <span class="header__menu-text">Log in Admin</span>
+        <% end %>
+      </li>
+      <li class="header__menu-item">
+        <%= link_to(new_user_registration_path, class: "header__menu-link") do %>
+          <span class="header__menu-text">Sign up User</span>
+        <% end %>
+      </li>
+      <li class="header__menu-item">
+        <%= link_to(new_admin_registration_path, class: "header__menu-link") do %>
+          <span class="header__menu-text">Sign up Admin</span>
+        <% end %>
+      </li>
+    <% end %>
   </ul>
 </header>
