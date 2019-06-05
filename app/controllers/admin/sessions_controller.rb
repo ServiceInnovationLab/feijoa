@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
-  include Accessible
-  skip_before_action :check_user, only: :destroy
+  include PublicOnly
+  skip_before_action :redirect_authenticated_users, only: [:create, :destroy]
 
   # before_action :configure_sign_in_params, only: [:create]
 

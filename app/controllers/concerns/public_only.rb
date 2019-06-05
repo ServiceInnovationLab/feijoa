@@ -5,15 +5,15 @@
 # an other appropriate action. e.g. use this to prevent logging in as
 # as User and an Admin at the same time 
 # As suggested at https://github.com/plataformatec/devise/wiki/How-to-Setup-Multiple-Devise-User-Models
-module Accessible
+module PublicOnly
   extend ActiveSupport::Concern
   included do
-    before_action :check_user
+    before_action :redirect_authenticated_users
   end
 
   protected
 
-  def check_user
+  def redirect_authenticated_users
     if current_admin
       flash.clear
       flash[:notice] = 'Already logged in as an Admin'
