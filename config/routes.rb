@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
   devise_for :users, path: 'users', controllers: {
     # we need to override the sessions controller, others can be default
     sessions: 'user/sessions'
