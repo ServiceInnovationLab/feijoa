@@ -1,0 +1,12 @@
+<% cache "footer" do %>
+  <footer class="footer">
+    <div class="footer__navigation--container">
+      <div class="footer__navigation--links">
+        <%= link_to "Contact us", root_path, class: "footer__navigation--link", target: "blank" %>
+        <div class="footer__navigation--logo-container">
+          <%= image_tag "feijoa_icon.png", class:"footer__navigation--logo", alt: "SafePlus footer logo" %>
+        </div>
+      </div>
+    </div>
+  </footer>
+<% end %>

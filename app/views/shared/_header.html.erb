@@ -1,0 +1,31 @@
+<header class="header" >
+  <%= link_to root_path do %>
+    <%= image_tag "feijoa_icon.png", class: "header__image--home" %>
+  <% end %>
+
+  <ul class="header__menu">
+    <li class="header__menu-item" >
+      <% if signed_in? %>
+        <%= link_to(destroy_user_session_path, method: :delete, class: "header__menu-link")  do %>
+          <span class="header__menu-text">Log out</span>
+        <% end %>
+      <% else %>
+        <%= link_to(new_user_session_path, class: "header__menu-link") do %>
+          <span class="header__menu-text">Log in</span>
+        <% end %>
+      <% end %>
+    </li>
+    <% unless signed_in? %>
+      <li class="header__menu-item test-signup-menu">
+        <%= link_to(new_user_registration_path, class: "header__menu-link") do %>
+          <span class="header__menu-text">Sign up</span>
+        <% end %>
+      </li>
+    <% end %>
+    <li class="header__menu-item test-faq-menu">
+      <%= link_to(root_path, class: "header__menu-link") do %>
+        <span class="header__menu-text">FAQs</span>
+      <% end %>
+    </li>
+  </ul>
+</header>

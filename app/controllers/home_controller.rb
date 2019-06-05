@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-class HomeController < ApplicationController
-  skip_before_action :check_user
+class HomeController < BaseController
   def index; end
 end
