@@ -32,19 +32,19 @@ RSpec.feature "Authentication" do
       expect(page.current_path).to eq(new_admin_session_path)
     end
 
-    # it "is redirected to user sign-in if it tries to open the user page" do
-    #   visit user_index_path
+    it "is redirected to user sign-in if it tries to open the user page" do
+      visit user_index_path
 
-    #   expect(page.status_code).to eq(200)
-    #   expect(page.current_path).to eq(new_user_session_path)
-    # end
+      expect(page.status_code).to eq(200)
+      expect(page.current_path).to eq(new_user_session_path)
+    end
 
-    # it "it can't visit the admin index" do
-    #   visit admin_index_path
+    it "is redirected to admin sign-in if it tries to open the admin page" do
+      visit admin_index_path
 
-    #   expect(page.status_code).to eq(404)
-    #   expect(page.current_path).to eq(new_admin_session_path)
-    # end
+      expect(page.status_code).to eq(200)
+      expect(page.current_path).to eq(new_admin_session_path)
+    end
   end
 
   context "A logged in User" do
