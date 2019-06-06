@@ -17,11 +17,11 @@ module PublicOnly
     if current_admin
       flash.clear
       flash[:notice] = 'Already logged in as an Admin'
-      redirect_to(admin_root_path) && return
+      redirect_to(admin_index_path) && return
     elsif current_user
       flash.clear
       flash[:notice] = 'Already logged in as a User'
-      redirect_to(user_root_path) && return
+      redirect_to(user_index_path) && return
     end
   end
 end
