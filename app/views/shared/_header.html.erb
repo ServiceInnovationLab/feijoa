@@ -1,44 +1,28 @@
-<header>
-  <%= link_to root_path do %>
-    <%= image_tag "feijoa_icon.png"%>
+<header class="navbar navbar-expand navbar-light bg-light flex-row">
+  <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= image_tag "feijoa_icon.png", class: 'rounded' %>
   <% end %>
 
-  <ul> 
+  <div class="navbar-nav-scroll">
+  <ul class="navbar-nav flex-row"> 
     <% if current_user.present? %>
-      <li>
-        <%= link_to(destroy_user_session_path, method: :delete)  do %>
-          <span>Log out User</span>
-        <% end %>
+      <li class="nav-item">
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
       </li>
     <% end %>
     <% if current_admin.present? %>
-      <li >
-        <%= link_to(destroy_admin_session_path, method: :delete)  do %>
-          <span>Log out Admin</span>
-        <% end %>
+      <li class="nav-item">
+        <%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
       </li>
     <% end %>
     <% unless signed_in? %>
-      <li>
-        <%= link_to(new_user_session_path) do %>
-          <span>Log in User</span>
-        <% end %>
+      <li class="nav-item">
+        <%= link_to 'User', new_user_session_path, class: 'nav-link' %>
       </li>
-      <li>
-        <%= link_to(new_admin_session_path) do %>
-          <span>Log in Admin</span>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to(new_user_registration_path) do %>
-          <span>Sign up User</span>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to(new_admin_registration_path) do %>
-          <span>Sign up Admin</span>
-        <% end %>
+      <li class="nav-item">
+        <%= link_to 'Admin', new_admin_session_path, class: 'nav-link' %>
       </li>
     <% end %>
   </ul>
+  </div>
 </header>
