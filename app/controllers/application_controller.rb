@@ -5,11 +5,13 @@ class ApplicationController < ActionController::Base
   #
   # This is deny-by-default, and setting it here will also cover the Devise
   # controllers which will prevent logged-in users from doing stuff like
-  # requesting password resets or loggin in as and Admin while already a User
+  # requesting password resets or logging in as an Admin while already a User
   #
   # See User::BaseController and Admin::BaseController where the appropriate
   # user models are explicitly allowed.
   include PublicOnly
+
+  protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
     return root_path if resource.blank?
