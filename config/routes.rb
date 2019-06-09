@@ -2,11 +2,11 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-      resources :users
-      resources :admin_users
+    resources :users
+    resources :admin_users
 
-      root to: "users#index"
-    end
+    root to: 'users#index'
+  end
 
   devise_for :users, path: 'user', controllers: {
     # we need to override the sessions controller, others can be default
