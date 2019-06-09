@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def model_root_path(resource)
-    return admin_index_path if resource.is_a? Admin
+    return admin_user_index_path if resource.is_a? Admin
 
     return user_index_path if resource.is_a? User
 

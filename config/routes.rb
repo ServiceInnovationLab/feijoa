@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :users
+      resources :admin_users
+
+      root to: "users#index"
+    end
+
   devise_for :users, path: 'user', controllers: {
     # we need to override the sessions controller, others can be default
     sessions: 'user/sessions'
@@ -8,12 +15,12 @@ Rails.application.routes.draw do
 
   resources :user, only: [:index]
 
-  devise_for :admins, path: 'admin', controllers: {
+  devise_for :admin_user, path: 'admin_user', controllers: {
     # we need to override the sessions controller, others can be default
-    sessions: 'admin/sessions'
+    sessions: 'admin_user/sessions'
   }
 
-  resources :admin, only: [:index]
+  resources :admin_user, only: [:index]
 
   root to: 'home#index'
 end
