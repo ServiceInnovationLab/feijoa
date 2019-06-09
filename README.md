@@ -9,7 +9,7 @@ A Rails web app to demonstrate consent management
 ## Environments
 **Environment** | **URL**  | **Git Branch**
 ---    | ---                                | ---    |
-Heroku | https://feijoa-pr-5.herokuapp.com/ | master |
+Heroku | https://feijoa.herokuapp.com/ | master |
 
 ## Project Resources
 
