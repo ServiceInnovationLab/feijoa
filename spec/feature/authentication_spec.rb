@@ -86,14 +86,14 @@ RSpec.feature 'Authentication' do
     end
 
     it 'is redirected to the user page if it tries to view the admin login page' do
-      visit new_admin_session_path
+      visit new_admin_user_session_path
 
       expect(page.status_code).to eq(200)
       expect(page.current_path).to eq(user_index_path)
     end
 
     it 'is redirected to the user page if it tries to view the admin dashboard page' do
-      visit admin_index_path
+      visit admin_user_index_path
 
       expect(page.status_code).to eq(200)
       expect(page.current_path).to eq(user_index_path)
