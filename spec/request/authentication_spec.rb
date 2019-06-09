@@ -9,7 +9,10 @@ RSpec.describe 'Sign in users', type: :request do
     let(:admin) { FactoryBot.create(:admin_user, password: password) }
 
     it 'can sign in with valid credentials' do
-      post new_admin_user_session_path, params: { 'admin_user[email]' => admin.email, 'admin_user[password]' => password }
+      post new_admin_user_session_path, params: {
+        'admin_user[email]' => admin.email,
+        'admin_user[password]' => password
+      }
 
       expect(response.status).to eq(302)
       expect(response.location).to eq("http://www.example.com#{admin_user_index_path}")
@@ -29,7 +32,10 @@ RSpec.describe 'Sign in users', type: :request do
 
       it 'is rejected' do
         expect do
-          post new_admin_user_session_path, params: { 'admin_user[email]' => admin.email, 'admin_user[password]' => password }
+          post new_admin_user_session_path, params: {
+            'admin_user[email]' => admin.email,
+            'admin_user[password]' => password
+          }
         end.to raise_error(ActionController::InvalidAuthenticityToken)
       end
     end

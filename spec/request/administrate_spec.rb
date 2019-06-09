@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'use Administrate dashboards', type: :request do
-
   context 'An Admin' do
     let(:admin) { FactoryBot.create(:admin_user) }
 
