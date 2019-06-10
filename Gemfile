@@ -58,6 +58,8 @@ group :development, :test do
   # Create fake data
   gem 'factory_bot_rails'
   gem 'faker'
+
+  gem 'percy-capybara', '~> 4.0.0'
 end
 
 group :development do
