@@ -2,7 +2,9 @@
   "name": "feijoa",
   "stack": "heroku-18",
   "addons": [
-    "heroku-postgresql"
+    "heroku-postgresql",
+    "raygun",
+    "timber-logging"
   ],
   "buildpacks": [],
   "env": {
@@ -13,6 +15,6 @@
     }
   },
   "scripts": {
-    "postdeploy": "bundle exec rake db:create db:migrate"
+    "postdeploy": "bundle exec rake db:migrate assets:precompile"
   }
 }
