@@ -18,6 +18,7 @@ RSpec.feature 'Authentication' do
       visit new_user_session_path
 
       expect(page.current_path).to eq(new_user_session_path)
+      Percy.snapshot(page, name: 'user login page')
     end
 
     it 'can view the user sign-up page' do
@@ -30,6 +31,7 @@ RSpec.feature 'Authentication' do
       visit new_admin_session_path
 
       expect(page.current_path).to eq(new_admin_session_path)
+      Percy.snapshot(page, name: 'admin login page')
     end
 
     it 'is redirected to user sign-in if it tries to open the user page' do
@@ -42,6 +44,7 @@ RSpec.feature 'Authentication' do
       visit admin_index_path
 
       expect(page.current_path).to eq(new_admin_session_path)
+      Percy.snapshot(page, name: 'admin dashboard')
     end
   end
 
@@ -75,6 +78,7 @@ RSpec.feature 'Authentication' do
       visit user_index_path
 
       expect(page.current_path).to eq(user_index_path)
+      Percy.snapshot(page, name: 'user dashboard')
     end
 
     it 'is redirected to the user page if it tries to view the admin login page' do
