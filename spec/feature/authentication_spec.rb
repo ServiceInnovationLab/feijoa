@@ -28,9 +28,9 @@ RSpec.feature 'Authentication' do
     end
 
     it 'can view the admin login page' do
-      visit new_admin_session_path
+      visit new_admin_user_session_path
 
-      expect(page.current_path).to eq(new_admin_session_path)
+      expect(page.current_path).to eq(new_admin_user_session_path)
       Percy.snapshot(page, name: 'admin login page')
     end
 
@@ -43,7 +43,7 @@ RSpec.feature 'Authentication' do
     it 'is redirected to admin sign-in if it tries to open the admin page' do
       visit admin_user_index_path
 
-      expect(page.current_path).to eq(new_admin_session_path)
+      expect(page.current_path).to eq(new_admin_user_session_path)
       Percy.snapshot(page, name: 'admin dashboard')
     end
   end
@@ -113,25 +113,25 @@ RSpec.feature 'Authentication' do
     it 'is redirected to the admin page if it tries to view the user login page' do
       visit new_user_session_path
 
-      expect(page.current_path).to eq(admin_index_path)
+      expect(page.current_path).to eq(admin_user_index_path)
     end
 
     it 'is redirected to the admin page if it tries to view the user sign-up page' do
       visit new_user_registration_path
 
-      expect(page.current_path).to eq(admin_index_path)
+      expect(page.current_path).to eq(admin_user_index_path)
     end
 
     it 'is redirected to the admin page if it tries to view the user page' do
       visit user_index_path
 
-      expect(page.current_path).to eq(admin_index_path)
+      expect(page.current_path).to eq(admin_user_index_path)
     end
 
     it 'is redirected to the admin page if it tries to view the admin login page' do
-      visit new_admin_session_path
+      visit new_admin_user_session_path
 
-      expect(page.current_path).to eq(admin_index_path)
+      expect(page.current_path).to eq(admin_user_index_path)
     end
   end
 end
