@@ -126,7 +126,7 @@ RSpec.feature 'Authentication' do
 
     it 'is redirected to the admin page if it tries to view the admin login page' do
       visit new_admin_session_path
-      
+
       expect(page.current_path).to eq(admin_index_path)
     end
   end
