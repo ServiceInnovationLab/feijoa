@@ -6,12 +6,24 @@ branches:
   - dev
 cache:
   bundler: true
+  yarn: true
+services:
+  - postgresql
+addons:
+  postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
+    - chromium-chromedriver
+    - google-chrome-stable
 before_install:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64  > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - export PATH=$PWD/geckodriver:$PATH
 before_script:
-# - yarn install
+- bundle install
+- yarn install
 - RAILS_ENV=test bundle exec rake db:create db:migrate
 - RAILS_ENV=test bundle exec rake assets:precompile
 script:
@@ -25,7 +37,7 @@ deploy:
     repo: ServiceInnovationLab/feijoa
   app:
     master: feijoa
-
+    pr-deploy: feijoa
   run:
   - bundle install
   - yarn install
@@ -33,6 +45,9 @@ deploy:
   - bundle exec rake db:migrate
   - bundle exec rake assets:precompile
   - restart
+  api_key:
+    secure: drJTRrFh+J9hYP+KpGtoioXYKVpYbOQ/GH+mHnQOTV8fz6CngI+hgY1HrdKWXtqT+T+x+s09r0jhWvVr0aAERzp6JxypF3jclXIur1NRBkK+TwfZlyyPqsQtLKsD8z9o0gNFqafSXSk7xYELNOiU61ktMRj+6xQZV7UE8zvqGmFAxrsflwB+c2nZDM7Rc13sONq5ulxDmV/z1+XEv4RXPHyrmHDx6RtsujqaqYefwhKMcxtdHkV4QAvngJjuuc+ysFerH8RkZgXV0Aldfn767+SgrKlvi7waFao2eB5iiHoRa4ON6tJxX4FDQ+0AdctRI/Sl+/3q+ZMNKiu3eVck69zcLFly6OowyT+d4Y42KUn0zMwuTufEoQnE6Qx326LqvUoc6YXFduUflK5UTovpo+HjhAkWWxKhk7Sx+VDns/YvP7efIC32SXDGi6RKmp8XsLrMoqw1uUYPlwuRaPnT1tg6NsZss09A+Lfr4M2k0/5/g5gbZde6+JKW+uP5sJMOj6NeA86p+pD3zgQ3kLHDvRyS2M4ZAPoiafonZP0BjYksGl1BtqWXhhUcqXegus8aKFcflPjbf2H3RkafWHbwQMN0qcJtKT1x3AvFrgtwfjp+NZTQLn0/pK6i47k9Ex8ElwLRczrt8j/6ENPEKAhcFEJwl5tSlpLgghYHWgdOmk8=
 env:
   global:
     - RAILS_ENV=test
+    - PGPORT=5433
