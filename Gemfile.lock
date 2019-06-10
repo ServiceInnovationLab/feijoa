@@ -302,9 +302,8 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   capybara-screenshot
-  chromedriver-helper
-  devise (~> 4.6.2)
   capybara-selenium
+  devise (~> 4.6.2)
   factory_bot_rails
   faker
   i18n-tasks (~> 0.9.29)
