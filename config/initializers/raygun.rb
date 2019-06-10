@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if ENV['RAYGUN_APIKEY'].present?
   Raygun.setup do |config|
     config.api_key = ENV['RAYGUN_APIKEY']
