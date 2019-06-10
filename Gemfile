@@ -59,12 +59,14 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'capybara-screenshot' # for test debugging
+  gem 'capybara-selenium'
   gem 'selenium-webdriver'
+
+  gem 'percy-capybara', '~> 4.0.0'
 
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'simplecov', require: false
 
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
