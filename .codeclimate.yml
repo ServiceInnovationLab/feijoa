@@ -24,7 +24,6 @@ ratings:
   paths:
   - "**.rb"
   - "**.js"
-  - "**.coffee"
   - "**.sass"
   - "**.haml"
   - Gemfile.lock
