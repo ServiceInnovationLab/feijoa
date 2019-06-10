@@ -2,7 +2,8 @@
   "name": "feijoa",
   "stack": "heroku-18",
   "addons": [
-    "heroku-postgresql"
+    "heroku-postgresql",
+    "raygun"
   ],
   "buildpacks": [],
   "env": {
