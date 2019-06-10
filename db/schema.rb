@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_10_002515) do
+ActiveRecord::Schema.define(version: 2019_06_10_012051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 2019_06_10_002515) do
     t.datetime "updated_at", null: false
     t.index ["family_name"], name: "index_birth_records_on_family_name"
     t.index ["first_and_middle_names"], name: "index_birth_records_on_first_and_middle_names"
+  end
+
+  create_table "birth_records_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "birth_record_id", null: false
+    t.index ["birth_record_id", "user_id"], name: "index_birth_records_users_on_birth_record_id_and_user_id"
+    t.index ["user_id", "birth_record_id"], name: "index_birth_records_users_on_user_id_and_birth_record_id"
   end
 
   create_table "users", force: :cascade do |t|
