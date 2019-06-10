@@ -6,6 +6,17 @@ branches:
   - dev
 cache:
   bundler: true
+  yarn: truepackage
+services:
+  - postgresql
+addons:
+  postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
+    - chromium-chromedriver
+    - google-chrome-stable
 before_install:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64  > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
