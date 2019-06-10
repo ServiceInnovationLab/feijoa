@@ -6,7 +6,7 @@ branches:
   - dev
 cache:
   bundler: true
-  yarn: truepackage
+  yarn: true
 services:
   - postgresql
 addons:
@@ -22,7 +22,8 @@ before_install:
 - chmod +x ./cc-test-reporter
 - export PATH=$PWD/geckodriver:$PATH
 before_script:
-# - yarn install
+- bundle install
+- yarn install
 - RAILS_ENV=test bundle exec rake db:create db:migrate
 - RAILS_ENV=test bundle exec rake assets:precompile
 script:
