@@ -1,5 +1,9 @@
 {
   "name": "feijoa",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@percy/agent": "^0.7.0"
+  }
 }
