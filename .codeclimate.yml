@@ -1,13 +1,5 @@
-engines:
-  rubocop:
-    enabled: true
-    channel: rubocop-0-71
-    config:
-      file: .rubocop.yml
-  shellcheck:
-    enabled: true
-  eslint:
-    enabled: true
+version: "2"
+plugins:
   brakeman:
     enabled: true
   bundler-audit:
@@ -18,16 +10,18 @@ engines:
       languages:
       - ruby
       - javascript
+  eslint:
+    enabled: true
   fixme:
     enabled: true
-ratings:
-  paths:
-  - "**.rb"
-  - "**.js"
-  - "**.sass"
-  - "**.haml"
-  - Gemfile.lock
-exclude_paths:
-- config/
-- db/
-- public/api/docs/
+  rubocop:
+    enabled: true
+    channel: "rubocop-0-71"
+    config:
+      file: .rubocop.yml
+  shellcheck:
+    enabled: true
+exclude_patterns:
+- config/**
+- db/**
+- public/api/docs/**
