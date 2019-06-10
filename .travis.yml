@@ -50,3 +50,4 @@ deploy:
 env:
   global:
     - RAILS_ENV=test
+    - PGPORT=5433
