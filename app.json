@@ -1,17 +1,18 @@
 {
+  "name": "feijoa",
+  "stack": "heroku-18",
   "addons": [
     "heroku-postgresql"
   ],
-  "buildpacks": [
-
-  ],
+  "buildpacks": [],
   "env": {
   },
   "formation": {
+    "web": {
+      "quantity": 1
+    }
   },
-  "name": "feijoa",
   "scripts": {
-    "postdeploy": "rails db:create db:migrate db:seed"
-  },
-  "stack": "heroku-18"
+    "postdeploy": "bundle exec rake db:create db:migrate"
+  }
 }
