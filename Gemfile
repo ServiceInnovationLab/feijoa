@@ -52,6 +52,10 @@ group :development, :test do
 
   # Open emails in a browser tab instead of sending
   gem 'letter_opener'
+
+  # Create fake data
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -74,8 +78,6 @@ group :test do
   gem 'capybara-screenshot' # for test debugging
   gem 'selenium-webdriver'
 
-  gem 'factory_bot_rails'
-  gem 'faker'
   gem 'simplecov', require: false
 
   # Easy installation and use of chromedriver to run system tests with Chrome
