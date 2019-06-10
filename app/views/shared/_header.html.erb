@@ -1,0 +1,28 @@
+<header class="navbar navbar-expand navbar-light bg-light flex-row">
+  <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= image_tag "feijoa_icon.png", class: 'rounded' %>
+  <% end %>
+
+  <div class="navbar-nav-scroll">
+  <ul class="navbar-nav flex-row"> 
+    <% if current_user.present? %>
+      <li class="nav-item">
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      </li>
+    <% end %>
+    <% if current_admin.present? %>
+      <li class="nav-item">
+        <%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+      </li>
+    <% end %>
+    <% unless signed_in? %>
+      <li class="nav-item">
+        <%= link_to 'User', new_user_session_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Admin', new_admin_session_path, class: 'nav-link' %>
+      </li>
+    <% end %>
+  </ul>
+  </div>
+</header>

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class HomeController < BaseController
+class AdminController < Admin::BaseController
   def index; end
 end
