@@ -25,6 +25,7 @@ deploy:
     repo: ServiceInnovationLab/feijoa
   app:
     master: feijoa
+    pr-deploy: feijoa
   run:
   - bundle install
   - yarn install
