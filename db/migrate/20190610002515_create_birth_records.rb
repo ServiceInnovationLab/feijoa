@@ -3,7 +3,7 @@ class CreateBirthRecords < ActiveRecord::Migration[5.2]
     create_table :birth_records do |t|
       t.string :first_and_middle_names,              null: false, default: ""
       t.string :family_name,                         null: false, default: ""
-      t.datetime :date_of_birth
+      t.date :date_of_birth
       t.string :place_of_birth,                      null: false, default: ""
       t.string :sex,                                  null: false, default: ""
       t.string :parent_first_and_middle_names,       null: false, default: ""
