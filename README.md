@@ -23,7 +23,7 @@ CI      | https://travis-ci.org/ServiceInnovationLab/feijoa
 Team       | Yeah Nah / Feijoa
 Developers | [Brenda Wallace](https://github.com/Br3nda), [Lyall Morrison](https://github.com/lamorrison)
 Designers |
-Testers | 
+Testers | [Merridy Marshall](https://github.com/merridy)
 Project Manager |
 Product Owner |
 
