@@ -13,7 +13,7 @@ class BirthRecordDashboard < Administrate::BaseDashboard
     id: Field::Number,
     first_and_middle_names: Field::String,
     family_name: Field::String,
-    date_of_birth: Field::DateTime,
+    date_of_birth: Field::String,
     place_of_birth: Field::String,
     sex: Field::String,
     parent_first_and_middle_names: Field::String,
