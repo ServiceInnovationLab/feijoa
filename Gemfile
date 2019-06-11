@@ -46,6 +46,12 @@ gem 'administrate'
 
 gem 'raygun4ruby'
 
+# Create fake data
+gem 'factory_bot_rails'
+gem 'faker'
+
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -54,10 +60,6 @@ group :development, :test do
 
   # Open emails in a browser tab instead of sending
   gem 'letter_opener'
-
-  # Create fake data
-  gem 'factory_bot_rails'
-  gem 'faker'
 
   gem 'percy-capybara', '~> 4.0.0'
 end
