@@ -9,7 +9,7 @@ RSpec.describe DeviseHelperService do
       subject { DeviseHelperService.model_root_path(resource) }
 
       it 'returns /user' do
-        expect(subject).to eq('/user') 
+        expect(subject).to eq('/user')
       end
     end
 
@@ -18,12 +18,12 @@ RSpec.describe DeviseHelperService do
       subject { DeviseHelperService.model_root_path(resource) }
 
       it 'returns /admin_user' do
-        expect(subject).to eq('/admin_user') 
+        expect(subject).to eq('/admin_user')
       end
     end
 
     context 'for an some unrecognised object' do
-      let(:resource) { Object.new}
+      let(:resource) { Object.new }
       subject { DeviseHelperService.model_root_path(resource) }
 
       it 'returns /' do

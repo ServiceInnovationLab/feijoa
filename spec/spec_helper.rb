@@ -4,8 +4,8 @@ require 'simplecov'
 SimpleCov.start 'rails' do
   add_filter [
     # Ignore Administrate auto-generated files
-    /\/dashboards\//,
-    /\/controllers\/admin\//,
+    %r{/dashboards/},
+    %r{/controllers/admin/}
   ]
 end
 
