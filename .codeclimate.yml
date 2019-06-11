@@ -19,6 +19,9 @@ plugins:
     channel: "rubocop-0-71"
     config:
       file: .rubocop.yml
+    checks:
+      Rubocop/Rails/HasAndBelongsToMany:
+        enabled: false
   shellcheck:
     enabled: true
 exclude_patterns:
