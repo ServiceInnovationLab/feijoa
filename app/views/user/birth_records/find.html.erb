@@ -1,0 +1,15 @@
+<%= bootstrap_form_with(url: find_user_birth_records_path,  model: @birth_record, action: :query, local: true) do |f| %>
+  <%= f.text_field :first_and_middle_names, required: true%>
+  <%= f.text_field :family_name, required: true %>
+  <%= f.text_field :place_of_birth, required: true %>
+  <%= f.date_field :date_of_birth, required: true %>
+  <%= f.submit 'Find' %>
+<% end %>
+
+<div class='container'>
+  Results:
+  <% @results&.each do |record| %>
+    <%= link_to 'add', add_user_birth_record_path(record), class: 'pill pill-secondary', method: :post %>
+    <%= render partial: 'shared/birth_records/card', object: record %>
+  <% end %>
+</div>

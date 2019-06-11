@@ -1,0 +1,9 @@
+<div class='card'>
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= link_to user_birth_record_path(card) do %>
+        <%= card.first_and_middle_names.first %> <%= card.family_name %></h5>
+      <% end %>
+    <%= render partial: 'shared/birth_records/short_details', object: card %>
+  </div>
+</div>

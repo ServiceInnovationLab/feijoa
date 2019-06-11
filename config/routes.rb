@@ -16,7 +16,16 @@ Rails.application.routes.draw do
 
   resources :user, only: [:index]
   namespace :user do
-    resources :birth_record, only: %i[index show search delete]
+    resources :birth_records, only: %i[index show] do
+      collection do
+        get :find
+        post :find, to: 'birth_records#query'
+      end
+      member do
+        post :add
+        post :remove
+      end
+    end
   end
 
   devise_for :admin_user, path: 'admin_user', controllers: {
