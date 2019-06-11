@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.feature 'Authentication' do
   let(:password) { 'thisisaverylongpasswordindeed' }
-  let(:user) { FactoryBot.create(:user, password: password) }
-  let(:admin) { FactoryBot.create(:admin_user, password: password) }
+  let(:user) { FactoryBot.create(:user, email: 'user@example.com', password: password) }
+  let(:admin) { FactoryBot.create(:admin_user, email: 'admin@example.com', password: password) }
 
   context 'A random visitor (not logged in)' do
     it 'can view the home page' do
