@@ -14,10 +14,10 @@ module PublicOnly
   protected
 
   def redirect_authenticated_users
-    if current_admin
+    if current_admin_user
       flash.clear
       flash[:alert] = 'Already logged in as an Admin'
-      redirect_to(admin_index_path) && return
+      redirect_to(admin_user_index_path) && return
     elsif current_user
       flash.clear
       flash[:alert] = 'Already logged in as a User'

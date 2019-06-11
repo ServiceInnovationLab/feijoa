@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.feature 'Authentication' do
   let(:password) { 'thisisaverylongpasswordindeed' }
-  let(:user) { FactoryBot.create(:user, password: password) }
-  let(:admin) { FactoryBot.create(:admin, password: password) }
+  let(:user) { FactoryBot.create(:user, email: 'user@example.com', password: password) }
+  let(:admin) { FactoryBot.create(:admin_user, email: 'admin@example.com', password: password) }
 
   context 'A random visitor (not logged in)' do
     it 'can view the home page' do
@@ -28,9 +28,9 @@ RSpec.feature 'Authentication' do
     end
 
     it 'can view the admin login page' do
-      visit new_admin_session_path
+      visit new_admin_user_session_path
 
-      expect(page.current_path).to eq(new_admin_session_path)
+      expect(page.current_path).to eq(new_admin_user_session_path)
       Percy.snapshot(page, name: 'admin login page')
     end
 
@@ -41,9 +41,9 @@ RSpec.feature 'Authentication' do
     end
 
     it 'is redirected to admin sign-in if it tries to open the admin page' do
-      visit admin_index_path
+      visit admin_user_index_path
 
-      expect(page.current_path).to eq(new_admin_session_path)
+      expect(page.current_path).to eq(new_admin_user_session_path)
       Percy.snapshot(page, name: 'admin dashboard')
     end
   end
@@ -82,13 +82,13 @@ RSpec.feature 'Authentication' do
     end
 
     it 'is redirected to the user page if it tries to view the admin login page' do
-      visit new_admin_session_path
+      visit new_admin_user_session_path
 
       expect(page.current_path).to eq(user_index_path)
     end
 
     it 'is redirected to the user page if it tries to view the admin dashboard page' do
-      visit admin_index_path
+      visit admin_user_index_path
 
       expect(page.current_path).to eq(user_index_path)
     end
@@ -96,9 +96,9 @@ RSpec.feature 'Authentication' do
 
   context 'A logged in Admin' do
     before(:each) do
-      visit new_admin_session_path
-      fill_in :admin_email, with: admin.email
-      fill_in :admin_password, with: password
+      visit new_admin_user_session_path
+      fill_in :admin_user_email, with: admin.email
+      fill_in :admin_user_password, with: password
       click_button 'Log in'
 
       expect(page.body).to include('Signed in successfully')
@@ -113,25 +113,25 @@ RSpec.feature 'Authentication' do
     it 'is redirected to the admin page if it tries to view the user login page' do
       visit new_user_session_path
 
-      expect(page.current_path).to eq(admin_index_path)
+      expect(page.current_path).to eq(admin_user_index_path)
     end
 
     it 'is redirected to the admin page if it tries to view the user sign-up page' do
       visit new_user_registration_path
 
-      expect(page.current_path).to eq(admin_index_path)
+      expect(page.current_path).to eq(admin_user_index_path)
     end
 
     it 'is redirected to the admin page if it tries to view the user page' do
       visit user_index_path
 
-      expect(page.current_path).to eq(admin_index_path)
+      expect(page.current_path).to eq(admin_user_index_path)
     end
 
     it 'is redirected to the admin page if it tries to view the admin login page' do
-      visit new_admin_session_path
+      visit new_admin_user_session_path
 
-      expect(page.current_path).to eq(admin_index_path)
+      expect(page.current_path).to eq(admin_user_index_path)
     end
   end
 end

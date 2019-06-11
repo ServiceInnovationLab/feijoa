@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
+class AdminUser < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :lockable, :confirmable, :omniauthable
+  # :confirmable, :lockable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :timeoutable, :trackable
-
-  has_and_belongs_to_many :birth_records
+         :trackable
 end
