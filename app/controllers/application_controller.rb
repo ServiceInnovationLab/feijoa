@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  devise_group :account, contains: [:user, :admin_user]
+
   def after_sign_in_path_for(resource)
     return root_path if resource.blank?
 

@@ -1,0 +1,5 @@
+<% if signed_in? %>
+  <span class='badge badge--account-type'>
+    <%= current_account.class.name.first %>
+  </span>
+<% end %>
