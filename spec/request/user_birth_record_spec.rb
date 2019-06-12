@@ -3,6 +3,40 @@
 require 'rails_helper'
 
 RSpec.describe 'user/BirthRecordsController', type: :request do
+  describe '#index' do
+    context 'A User' do
+      let(:user) { FactoryBot.create(:user) }
+
+      before do
+        sign_in user
+      end
+
+      context 'when a birth record is associated with the user' do
+        let(:birth_record) { FactoryBot.create(:birth_record) }
+        before do
+          user.birth_records << birth_record
+        end
+
+        it 'the view lists it' do
+          get user_birth_records_path
+
+          expect(response).to be_successful
+          expect(response.body).to include(birth_record.first_and_middle_names)
+        end
+      end
+
+      context 'when a birth records is not associated with the user' do
+        let(:birth_record) { FactoryBot.create(:birth_record) }
+
+        it 'the view does not list it' do
+          get user_birth_records_path
+
+          expect(response).to be_successful
+          expect(response.body).to_not include(birth_record.first_and_middle_names)
+        end
+      end
+    end
+  end
   describe '#show' do
     context 'A User' do
       let(:user) { FactoryBot.create(:user) }
