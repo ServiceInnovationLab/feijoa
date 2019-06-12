@@ -22,7 +22,7 @@ class BirthRecord < ApplicationRecord
 
   private
 
-  # TODO be aware that these attributes could reveal information which the user
+  # TODO: be aware that these attributes could reveal information which the user
   # didn't already supply, like parent names
   #
   # Note gender is not included here. That's a choice we made because it's not

@@ -37,9 +37,15 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
             fill_in 'birth_record_date_of_birth', with: target_record.date_of_birth
 
             fill_in 'birth_record_place_of_birth', with: target_record.place_of_birth
-            fill_in 'birth_record_parent_first_and_middle_names', with: target_record.parent_first_and_middle_names
+            fill_in(
+              'birth_record_parent_first_and_middle_names',
+              with: target_record.parent_first_and_middle_names
+            )
             fill_in 'birth_record_parent_family_name', with: target_record.parent_family_name
-            fill_in 'birth_record_other_parent_first_and_middle_names', with: target_record.other_parent_first_and_middle_names
+            fill_in(
+              'birth_record_other_parent_first_and_middle_names',
+              with: target_record.other_parent_first_and_middle_names
+            )
             fill_in 'birth_record_other_parent_family_name', with: target_record.other_parent_family_name
 
             click_on 'Find'

@@ -1,9 +1,10 @@
-# A service which wraps up the business logic of querying for birth records. 
+# frozen_string_literal: true
+
+# A service which wraps up the business logic of querying for birth records.
 #
 # All birth record queries in the application should pass through this service
 # rather than using the ActiveRecord queries directly.
 class BirthRecordService
-
   # Search for a single BirthRecord matching the supplied parameters hash
   def self.query(params)
     return [] unless all_required_keys_are_present?(params)
@@ -51,5 +52,4 @@ class BirthRecordService
   private_class_method def self.all_required_keys_are_present?(params)
     (required_keys - params.keys).empty?
   end
-
 end

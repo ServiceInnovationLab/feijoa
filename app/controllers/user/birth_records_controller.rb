@@ -21,7 +21,7 @@ class User::BirthRecordsController < User::BaseController
   # POST query
   def query
     @birth_record = BirthRecord.new(query_params)
-    
+
     # Only search on keys where a value was provided. The query service checks
     # that all required params have a value.
     supplied_params = query_params.to_h.select { |_k, v| v.present? }

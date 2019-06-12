@@ -17,7 +17,8 @@ RSpec.describe BirthRecordService do
           parent_family_name
           other_parent_first_and_middle_names
           other_parent_family_name
-        ])
+        ]
+      )
     end
   end
 
@@ -30,7 +31,8 @@ RSpec.describe BirthRecordService do
           first_and_middle_names
           family_name
           date_of_birth
-        ])
+        ]
+      )
     end
   end
 
@@ -45,7 +47,8 @@ RSpec.describe BirthRecordService do
           parent_family_name
           other_parent_first_and_middle_names
           other_parent_family_name
-        ])
+        ]
+      )
     end
   end
 
