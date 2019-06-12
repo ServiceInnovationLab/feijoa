@@ -8,8 +8,8 @@ RSpec.describe DeviseHelperService do
       let(:resource) { FactoryBot.create(:user) }
       subject { DeviseHelperService.model_root_path(resource) }
 
-      it 'returns /user' do
-        expect(subject).to eq('/user')
+      it 'returns /' do
+        expect(subject).to eq('/')
       end
     end
 
@@ -17,8 +17,8 @@ RSpec.describe DeviseHelperService do
       let(:resource) { FactoryBot.create(:admin_user) }
       subject { DeviseHelperService.model_root_path(resource) }
 
-      it 'returns /admin_user' do
-        expect(subject).to eq('/admin_user')
+      it 'returns /' do
+        expect(subject).to eq('/')
       end
     end
 

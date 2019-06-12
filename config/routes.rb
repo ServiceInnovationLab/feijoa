@@ -29,12 +29,20 @@ Rails.application.routes.draw do
     end
   end
 
+  authenticated :user do
+    root 'user/birth_records#index', as: :authenticated_user_root
+  end
+
   devise_for :admin_user, path: 'admin_user', controllers: {
     # we need to override the sessions controller, others can be default
     sessions: 'admin_user/sessions'
   }
 
   resources :admin_user, only: [:index]
+
+  authenticated :admin_user do
+    root 'admin_user#index', as: :authenticated_admin_user_root
+  end
 
   root to: 'home#index'
 end
