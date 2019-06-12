@@ -32,6 +32,9 @@ class BirthRecord < ApplicationRecord
 
   # TODO be aware that these attributes could reveal information which the user
   # didn't already supply, like parent names
+  #
+  # Note gender is not included here. That's a choice we made because it's not
+  # used in the online birth certificate application process
   def key_attributes
     [
       first_and_middle_names,
@@ -47,7 +50,7 @@ class BirthRecord < ApplicationRecord
 
   def format_date(date)
     # This matches the format expected by the default bootstrap date field
-    # widget. Will need to update tests if this changes
+    # widget. Will need to update tests if/when this changes
     date&.strftime('%d-%m-%Y')
   end
 end
