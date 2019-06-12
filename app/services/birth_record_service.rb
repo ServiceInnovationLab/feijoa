@@ -27,7 +27,7 @@ class BirthRecordService
     ]
   end
 
-  # These are the required keys from the online birth certificate application at
+  # These are the optional keys from the online birth certificate application at
   # https://certificates.services.govt.nz/certificate-order/certificate-events?type=birth-certificate
   #
   # Filtering to only the expected optional keys prevents fishing for fields
