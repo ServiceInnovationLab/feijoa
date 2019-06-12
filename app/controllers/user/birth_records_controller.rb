@@ -21,7 +21,13 @@ class User::BirthRecordsController < User::BaseController
   # POST query
   def query
     @birth_record = BirthRecord.new(query_params)
-    @results = BirthRecord.where(query_params)
+    
+    # Only search on keys where a value was provided. The query service checks
+    # that all required params have a value.
+    supplied_params = query_params.to_h.select { |_k, v| v.present? }
+
+    @results = BirthRecordService.query(supplied_params)
+
     render 'find'
   end
 
@@ -56,7 +62,11 @@ class User::BirthRecordsController < User::BaseController
         :first_and_middle_names,
         :family_name,
         :place_of_birth,
-        :date_of_birth
+        :date_of_birth,
+        :parent_first_and_middle_names,
+        :parent_family_name,
+        :other_parent_first_and_middle_names,
+        :other_parent_family_name
       )
   end
 end
