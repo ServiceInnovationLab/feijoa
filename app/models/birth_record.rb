@@ -7,14 +7,6 @@ class BirthRecord < ApplicationRecord
     format_date(self[:date_of_birth])
   end
 
-  def parent_date_of_birth
-    format_date(self[:parent_date_of_birth])
-  end
-
-  def other_parent_date_of_birth
-    format_date(self[:other_parent_date_of_birth])
-  end
-
   # A unique identifier for the record
   #
   # This is important because we understand the real birth register doesn't
