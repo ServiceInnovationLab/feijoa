@@ -56,6 +56,22 @@ Start a local server
 > bundle exec rails server
 ```
 
+### Docker
+
+This application is configured to run using Docker and docker-compose. You will need [Docker for Desktop](https://www.docker.com/products/docker-desktop) to run this locally.
+
+To set up:
+
+`docker-compose build`
+
+To run:
+
+`docker-compose up`
+
+To shut down:
+
+`docker-compose down`
+
 ## Testing
 
 ### Rubocop
