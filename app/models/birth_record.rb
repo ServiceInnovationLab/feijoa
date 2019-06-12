@@ -30,6 +30,8 @@ class BirthRecord < ApplicationRecord
 
   private
 
+  # TODO be aware that these attributes could reveal information which the user
+  # didn't already supply, like parent names
   def key_attributes
     [
       first_and_middle_names,
