@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class User::BirthRecordsController < User::BaseController
-  # GET 
+  # GET
   def index
     @birth_records = current_user.birth_records
   end
+
   # GET
   def show
     @birth_record = current_user.birth_records.find_by(params.permit(:id))
@@ -38,7 +39,6 @@ class User::BirthRecordsController < User::BaseController
   # Attempts to remove a record which is not attached or doesn't exist will be
   # silently ignored.
   def remove
-    
     begin
       current_user.birth_records.delete(params.permit(:id)[:id].to_i)
     rescue ActiveRecord::RecordNotFound

@@ -51,9 +51,9 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
         end
 
         it 'adding it again is a no-op' do
-          expect {
+          expect do
             post add_user_birth_record_path(birth_record)
-          }.to_not change{ user.birth_records.count }
+          end.to_not(change { user.birth_records.count })
         end
       end
 
@@ -61,9 +61,9 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
         let(:birth_record) { FactoryBot.create(:birth_record) }
 
         it 'it is added' do
-          expect {
+          expect do
             post add_user_birth_record_path(birth_record)
-          }.to change{user.birth_records.count}.by(1)
+          end.to(change { user.birth_records.count }.by(1))
         end
       end
     end
@@ -83,9 +83,9 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
         end
 
         it 'is removed' do
-          expect {
+          expect do
             post remove_user_birth_record_path(birth_record)
-          }.to change{ user.birth_records.count }.by(-1)
+          end.to(change { user.birth_records.count }.by(-1))
         end
       end
 
@@ -93,9 +93,9 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
         let(:birth_record) { FactoryBot.create(:birth_record) }
 
         it 'is a no-op' do
-          expect {
+          expect do
             post remove_user_birth_record_path(birth_record)
-          }.to_not change{user.birth_records.count}
+          end.to_not(change { user.birth_records.count })
         end
       end
     end

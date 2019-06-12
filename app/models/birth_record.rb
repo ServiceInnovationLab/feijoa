@@ -32,20 +32,20 @@ class BirthRecord < ApplicationRecord
 
   def key_attributes
     [
-      self.first_and_middle_names,
-      self.family_name,
-      self.date_of_birth,
-      self.place_of_birth,
-      self.parent_first_and_middle_names,
-      self.parent_family_name,
-      self.other_parent_first_and_middle_names,
-      self.other_parent_family_name,
+      first_and_middle_names,
+      family_name,
+      date_of_birth,
+      place_of_birth,
+      parent_first_and_middle_names,
+      parent_family_name,
+      other_parent_first_and_middle_names,
+      other_parent_family_name
     ]
   end
 
-  def format_date(d)
+  def format_date(date)
     # This matches the format expected by the default bootstrap date field
     # widget. Will need to update tests if this changes
-    d&.strftime('%d-%m-%Y')
+    date&.strftime('%d-%m-%Y')
   end
 end

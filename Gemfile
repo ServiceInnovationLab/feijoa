@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '~> 4.6.2'
 
 gem 'bootstrap', '~> 4.3.1'
-gem 'bootstrap_form', ">= 4.2.0"
+gem 'bootstrap_form', '>= 4.2.0'
 gem 'jquery-rails', '~> 4.3.3'
 
 # easy admin dashboard for editing data

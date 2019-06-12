@@ -8,7 +8,7 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
       let(:user) { FactoryBot.create(:user) }
 
       before do
-        login_as(user, :scope => :user)
+        login_as(user, scope: :user)
       end
 
       context 'a target record and some other records exist' do

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   namespace :admin do
     resources :users
@@ -37,3 +38,4 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 end
+# rubocop:enable Metrics/BlockLength
