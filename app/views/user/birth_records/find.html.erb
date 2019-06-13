@@ -11,13 +11,17 @@
   <%= f.text_field :other_parent_first_and_middle_names %>
   <%= f.text_field :other_parent_family_name %>
 
-  <%= f.submit 'Find' %>
+  <div class="d-flex">
+    <%= f.submit 'Find', class: 'btn btn-lg btn-primary ml-auto' %>
+  </div>
 <% end %>
 
-<div class='container'>
-  Results:
-  <% @results&.each do |record| %>
-    <%= link_to 'add', add_user_birth_record_path(record), class: 'pill pill-secondary', method: :post %>
-    <%= render partial: 'shared/birth_records/card', object: record %>
-  <% end %>
-</div>
+<% if @results.any? %>
+  <div class='container'>
+    Results:
+    <% @results&.each do |record| %>
+      <%= link_to 'add', add_user_birth_record_path(record), class: 'pill pill-secondary', method: :post %>
+      <%= render partial: 'shared/birth_records/card', object: record %>
+    <% end %>
+  </div>
+<% end %>
