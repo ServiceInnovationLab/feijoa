@@ -22,6 +22,10 @@ module PublicOnly
       flash.clear
       flash[:alert] = 'Already logged in as a User'
       redirect_to(authenticated_user_root_path) && return
+    elsif current_organisation_user
+      flash.clear
+      flash[:alert] = 'Already logged in as an Organisation'
+      redirect_to(authenticated_organisation_user_root_path) && return
     end
   end
 end

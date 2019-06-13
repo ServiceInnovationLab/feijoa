@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_10_012051) do
+ActiveRecord::Schema.define(version: 2019_06_13_023337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_012051) do
   create_table "birth_records", force: :cascade do |t|
     t.string "first_and_middle_names", default: "", null: false
     t.string "family_name", default: "", null: false
-    t.date "date_of_birth"
+    t.datetime "date_of_birth"
     t.string "place_of_birth", default: "", null: false
     t.string "sex", default: "", null: false
     t.string "parent_first_and_middle_names", default: "", null: false
@@ -53,6 +53,23 @@ ActiveRecord::Schema.define(version: 2019_06_10_012051) do
     t.bigint "birth_record_id", null: false
     t.index ["birth_record_id", "user_id"], name: "index_birth_records_users_on_birth_record_id_and_user_id"
     t.index ["user_id", "birth_record_id"], name: "index_birth_records_users_on_user_id_and_birth_record_id"
+  end
+
+  create_table "organisation_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_organisation_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_organisation_users_on_reset_password_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|

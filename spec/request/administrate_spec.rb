@@ -26,6 +26,18 @@ RSpec.describe 'use Administrate dashboards', type: :request do
     end
   end
 
+  context 'An Organisation' do
+    let(:org) { FactoryBot.create(:organisation_user) }
+
+    it 'is redirected to the AdminUser login' do
+      sign_in org
+      get admin_root_path
+
+      expect(response).to be_redirect
+      expect(response.redirect_url).to eq(new_admin_user_session_url)
+    end
+  end
+
   context 'A guest' do
     it 'is redirected to the AdminUser login' do
       get admin_root_path

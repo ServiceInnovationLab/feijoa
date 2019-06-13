@@ -22,6 +22,15 @@ RSpec.describe DeviseHelperService do
       end
     end
 
+    context 'for an OrganisationUser' do
+      let(:resource) { FactoryBot.create(:organisation_user) }
+      subject { DeviseHelperService.model_root_path(resource) }
+
+      it 'returns /' do
+        expect(subject).to eq('/')
+      end
+    end
+
     context 'for an some unrecognised object' do
       let(:resource) { Object.new }
       subject { DeviseHelperService.model_root_path(resource) }
