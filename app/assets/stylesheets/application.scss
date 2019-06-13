@@ -14,3 +14,16 @@
  @import 'bootstrap';
  @import 'rails_bootstrap_forms';
  @import 'badge';
+
+.feijoa-background {
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), image-url("feijoa.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 15em;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding-left: 1em;
+  color: #FFF;
+}

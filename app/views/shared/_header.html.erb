@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand navbar-light bg-light flex-row">
   <%= link_to root_path, class: 'navbar-brand' do %>
-    <%= image_tag "feijoa_icon.png", class: 'rounded' %>
+    <%= image_tag "feijoa_icon.png", class: 'rounded', height: 40, width: 40 %>
   <% end %>
   <ul class="navbar-nav">
     <% if current_admin_user.present? %>
@@ -10,7 +10,7 @@
     <% end %>
     <% if current_user.present? %>
       <li class="nav-item">
-        <%= link_to 'Administrate', authenticated_user_root_path %>
+        <%= link_to 'Home', authenticated_user_root_path %>
       </li>
     <% end %>
   </ul>
@@ -25,6 +25,9 @@
         <% end %>
       </li>
     <% else %>
+      <li class="nav-item">
+        <span class="nav-link disabled">Login as:</span>
+      </li>
       <li class="nav-item">
         <%= link_to 'User', new_user_session_path, class: 'nav-link' %>
       </li>
