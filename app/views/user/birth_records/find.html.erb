@@ -1,3 +1,5 @@
+<h1>Find a birth record</h1>
+
 <%= bootstrap_form_with(url: find_user_birth_records_path,  model: @birth_record, action: :query, local: true) do |f| %>
   <h3>Required fields</h3>
   <%= f.text_field :first_and_middle_names, required: true%>
