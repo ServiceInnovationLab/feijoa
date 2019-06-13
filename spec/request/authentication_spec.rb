@@ -15,7 +15,7 @@ RSpec.describe 'Sign in users', type: :request do
       }
 
       expect(response.status).to eq(302)
-      expect(response.location).to eq("http://www.example.com#{admin_user_index_path}")
+      expect(response.location).to eq(authenticated_admin_user_root_url)
     end
 
     context 'without a valid CSRF token' do
@@ -48,7 +48,7 @@ RSpec.describe 'Sign in users', type: :request do
       post new_admin_user_session_path, params: { 'user[email]' => user.email, 'user[password]' => password }
 
       expect(response.status).to eq(302)
-      expect(response.location).to eq("http://www.example.com#{user_index_path}")
+      expect(response.location).to eq(authenticated_user_root_url)
     end
 
     context 'without a valid CSRF token' do

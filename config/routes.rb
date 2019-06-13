@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   namespace :admin do
     resources :users
@@ -16,7 +17,20 @@ Rails.application.routes.draw do
 
   resources :user, only: [:index]
   namespace :user do
-    resources :birth_record, only: %i[index show search delete]
+    resources :birth_records, only: %i[index show] do
+      collection do
+        get :find
+        post :find, to: 'birth_records#query'
+      end
+      member do
+        post :add
+        post :remove
+      end
+    end
+  end
+
+  authenticated :user do
+    root 'user/birth_records#index', as: :authenticated_user_root
   end
 
   devise_for :admin_user, path: 'admin_user', controllers: {
@@ -26,5 +40,10 @@ Rails.application.routes.draw do
 
   resources :admin_user, only: [:index]
 
+  authenticated :admin_user do
+    root 'admin_user#index', as: :authenticated_admin_user_root
+  end
+
   root to: 'home#index'
 end
+# rubocop:enable Metrics/BlockLength
