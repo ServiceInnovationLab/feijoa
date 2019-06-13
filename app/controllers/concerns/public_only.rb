@@ -13,6 +13,9 @@ module PublicOnly
 
   protected
 
+  # TODO: rubocop righty complains about repetition/complexity. There's a more
+  # sweeping refactor pending which will allow a generic
+  # redirect_to(current_account.root_path) or similar.
   def redirect_authenticated_users
     if current_admin_user
       flash.clear
