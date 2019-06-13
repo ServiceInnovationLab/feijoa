@@ -62,19 +62,19 @@ RSpec.feature 'Authentication' do
       expect(page.current_path).to eq(root_path)
     end
 
-    it 'is redirected to the user index if it tries to view the user login page' do
+    it 'is redirected to the user root if it tries to view the user login page' do
       visit new_user_session_path
 
-      expect(page.current_path).to eq(user_index_path)
+      expect(page.current_path).to eq(authenticated_user_root_path)
     end
 
-    it 'is redirected to the dashboard if it tries to view the user sign-up page' do
+    it 'is redirected to the user root if it tries to view the user sign-up page' do
       visit new_user_registration_path
 
-      expect(page.current_path).to eq(user_index_path)
+      expect(page.current_path).to eq(authenticated_user_root_path)
     end
 
-    it 'can view the user user page' do
+    it 'can view the user page' do
       visit user_index_path
 
       expect(page.current_path).to eq(user_index_path)
@@ -84,13 +84,13 @@ RSpec.feature 'Authentication' do
     it 'is redirected to the user page if it tries to view the admin login page' do
       visit new_admin_user_session_path
 
-      expect(page.current_path).to eq(user_index_path)
+      expect(page.current_path).to eq(authenticated_user_root_path)
     end
 
     it 'is redirected to the user page if it tries to view the admin dashboard page' do
       visit admin_user_index_path
 
-      expect(page.current_path).to eq(user_index_path)
+      expect(page.current_path).to eq(authenticated_user_root_path)
     end
   end
 
@@ -113,25 +113,25 @@ RSpec.feature 'Authentication' do
     it 'is redirected to the admin page if it tries to view the user login page' do
       visit new_user_session_path
 
-      expect(page.current_path).to eq(admin_user_index_path)
+      expect(page.current_path).to eq(authenticated_admin_user_root_path)
     end
 
     it 'is redirected to the admin page if it tries to view the user sign-up page' do
       visit new_user_registration_path
 
-      expect(page.current_path).to eq(admin_user_index_path)
+      expect(page.current_path).to eq(authenticated_admin_user_root_path)
     end
 
     it 'is redirected to the admin page if it tries to view the user page' do
       visit user_index_path
 
-      expect(page.current_path).to eq(admin_user_index_path)
+      expect(page.current_path).to eq(authenticated_admin_user_root_path)
     end
 
     it 'is redirected to the admin page if it tries to view the admin login page' do
       visit new_admin_user_session_path
 
-      expect(page.current_path).to eq(admin_user_index_path)
+      expect(page.current_path).to eq(authenticated_admin_user_root_path)
     end
   end
 end

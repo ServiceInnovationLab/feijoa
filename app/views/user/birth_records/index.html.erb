@@ -1,0 +1,12 @@
+
+<section>
+  <h2>Associated records for <%= current_user.email %></h2>
+</section>
+<section>
+  <%= link_to 'Add more birth records', find_user_birth_records_path %>
+</section>
+
+<% @birth_records.each do |record| %>
+  <%= link_to 'remove', remove_user_birth_record_path(record), class: 'pill pill-secondary', method: :post %>
+  <%= render partial: 'shared/birth_records/card', object: record %>
+<% end %>

@@ -8,9 +8,9 @@ class DeviseHelperService
   end
 
   def self.model_root_path(resource)
-    return admin_user_index_path if resource.is_a? AdminUser
+    return authenticated_admin_user_root_path if resource.is_a? AdminUser
 
-    return user_index_path if resource.is_a? User
+    return authenticated_user_root_path if resource.is_a? User
 
     root_path
   end
