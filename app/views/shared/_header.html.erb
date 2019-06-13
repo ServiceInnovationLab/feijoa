@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand navbar-light bg-light flex-row">
   <%= link_to root_path, class: 'navbar-brand' do %>
-    <%= image_tag "feijoa_icon.png", class: 'rounded', height: 40, width: 40 %>
+    <%= image_tag "feijoa_icon.png", class: 'rounded', height: 40, width: 40, alt: 'Feijoa home' %>
   <% end %>
   <ul class="navbar-nav">
     <% if current_admin_user.present? %>
