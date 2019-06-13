@@ -28,8 +28,8 @@ before_install:
 before_script:
 - bundle install
 - yarn install
-- RAILS_ENV=test bundle exec rake db:create db:migrate
-- RAILS_ENV=test bundle exec rake assets:precompile
+- RAILS_ENV=test DATABASE_URL=postgresql://postgres@localhost:5433 bundle exec rake db:create db:migrate
+- RAILS_ENV=test DATABASE_URL=postgresql://postgres@localhost:5433 bundle exec rake assets:precompile
 - export PERCY_TARGET_BRANCH=$TRAVIS_BRANCH
 - export PERCY_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
 script:
