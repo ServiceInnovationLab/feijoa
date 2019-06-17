@@ -16,20 +16,19 @@ RSpec.describe 'user/SharesController', type: :feature do
       end
 
       context 'the user chooses to share the birth record' do
-        subject do
+        before do
           visit user_birth_records_path
           find(".user-birth-record[data-id='#{target_birth_record.id}']").click_link('share')
+          
           # wait for destination page to load
           page.has_css?('body.user__shares--new')
         end
 
         it 'renders the new share page' do
-          subject
           expect(page).to have_text('New Share')
         end
 
         it 'shows the selected birth record' do
-          subject
           expect(find_field('share_birth_record_id').value).to eq(target_birth_record.id.to_s)
         end
       end
