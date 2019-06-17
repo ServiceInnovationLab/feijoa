@@ -8,7 +8,7 @@
 
 <% @birth_records.each do |record| %>
   <div class='flex-row'>
-    <span class='d-flex-inline'><%= link_to 'share', new_user_share_path(birth_record_id: record.to_param), class: 'button' %></span>
+    <span class='d-flex-inline'><%= link_to 'share', new_user_share_path(share: {birth_record_id: record.to_param}), class: 'button' %></span>
     <span class='d-flex-inline'><%= link_to 'remove', remove_user_birth_record_path(record), class: 'button', method: :post %></span>
   </div>
   <%= render partial: 'shared/birth_records/card', object: record %>

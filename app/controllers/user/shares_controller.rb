@@ -14,11 +14,12 @@ class User::SharesController < User::BaseController
   def new
     # pre-fill any supplied params (e.g. birth_record if creating from the birth
     # record page)
-    if(params.permit(:share).keys.any?)
+    if(params.keys.include? :share)
       @share = User::Share.new(share_params)
     else
       @share = User::Share.new
     end
+    @organisations = OrganisationUser.all
   end
 
   # GET /shares/1/edit
@@ -30,7 +31,7 @@ class User::SharesController < User::BaseController
     @share = User::Share.new(share_params)
     # shares are always associated with the current user
     @share.user = current_user
-
+    
     respond_to do |format|
       if @share.save
         format.html { redirect_to @share, notice: 'Share was successfully created.' }
