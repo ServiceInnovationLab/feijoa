@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_023337) do
   create_table "birth_records", force: :cascade do |t|
     t.string "first_and_middle_names", default: "", null: false
     t.string "family_name", default: "", null: false
-    t.datetime "date_of_birth"
+    t.date "date_of_birth"
     t.string "place_of_birth", default: "", null: false
     t.string "sex", default: "", null: false
     t.string "parent_first_and_middle_names", default: "", null: false
