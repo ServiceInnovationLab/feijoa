@@ -17,18 +17,33 @@ module PublicOnly
   # sweeping refactor pending which will allow a generic
   # redirect_to(current_account.root_path) or similar.
   def redirect_authenticated_users
-    if current_admin_user
-      flash.clear
-      flash[:alert] = 'Already logged in as an Admin'
-      redirect_to(authenticated_admin_user_root_path) && return
-    elsif current_user
-      flash.clear
-      flash[:alert] = 'Already logged in as a User'
-      redirect_to(authenticated_user_root_path) && return
+    return unless logged_in?
+
+    flash.clear
+    flash[:alert] = "Already logged in as an #{user_model.to_s.downcase}"
+    redirect_to(root_path_for_user) && return
+  end
+
+  private
+
+  def root_path_for_user
+    return authenticated_user_root_path if current_user
+    return authenticated_admin_user_root_path if current_admin_user
+
+    authenticated_organisation_user_root_path if current_organisation_user
+  end
+
+  def user_model
+    if current_user
+      current_user
+    elsif current_admin_user
+      current_admin_user
     elsif current_organisation_user
-      flash.clear
-      flash[:alert] = 'Already logged in as an Organisation'
-      redirect_to(authenticated_organisation_user_root_path) && return
+      current_organisation_user
     end
+  end
+
+  def logged_in?
+    !user_model.nil?
   end
 end
