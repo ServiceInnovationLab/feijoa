@@ -1,17 +1,15 @@
-
 <section>
   <h2>Associated records for <%= current_user.email %></h2>
 </section>
-<section>
-  <%= link_to 'Add more birth records', find_user_birth_records_path %>
-</section>
-
-<% @birth_records.each do |record| %>
-  <div class="user-birth-record" data-id="<%= record.to_param %>">
-    <div class='flex-row'>
-      <span class='d-flex-inline'><%= link_to 'share', new_user_share_path(share: {birth_record_id: record.to_param}), class: 'button' %></span>
-      <span class='d-flex-inline'><%= link_to 'remove', remove_user_birth_record_path(record), class: 'button', method: :post %></span>
-    </div>
+<% if @birth_records.any? %>
+  <% @birth_records.each do |record| %>
+    <%= link_to 'remove', remove_user_birth_record_path(record), class: 'pill pill-secondary', method: :post %>
     <%= render partial: 'shared/birth_records/card', object: record %>
-  </div>
+  <% end %>
+  <section>
+    <%= link_to 'Add more birth records', find_user_birth_records_path %>
+  </section>
+<% else %>
+  <p class="text-muted font-italic">There are currently no birth records for <%= current_user.email %>.</p>
+  <%= link_to 'Add a birth record', find_user_birth_records_path, class: "btn btn-primary" %>
 <% end %>
