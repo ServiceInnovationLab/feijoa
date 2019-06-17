@@ -4,31 +4,31 @@
   <% end %>
 
   <div class="navbar-nav-scroll">
-  <ul class="navbar-nav flex-row">
-    <% if current_user.present? %>
-      <li class="nav-item">
-        <span class='d-inline-flex'>
-          <%= render partial: 'shared/account_badge' %>
-          <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-        </span>
-      </li>
-    <% end %>
-    <% if current_admin_user.present? %>
-      <li class="nav-item">
-        <span class='d-inline-flex'>
-          <%= render partial: 'shared/account_badge' %>
-          <%= link_to 'Log out', destroy_admin_user_session_path, method: :delete, class: 'nav-link' %>
-        </span>
-      </li>
-    <% end %>
-    <% unless signed_in? %>
-      <li class="nav-item">
-        <%= link_to 'User', new_user_session_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Admin', new_admin_user_session_path, class: 'nav-link' %>
-      </li>
-    <% end %>
-  </ul>
+    <ul class="navbar-nav flex-row">
+      <% if current_user.present? %>
+        <li class="nav-item">
+          <span class='d-inline-flex'>
+            <%= render partial: 'shared/account_badge' %>
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </span>
+        </li>
+      <% end %>
+      <% if current_admin_user.present? %>
+        <li class="nav-item">
+          <span class='d-inline-flex'>
+            <%= render partial: 'shared/account_badge' %>
+            <%= link_to 'Log out', destroy_admin_user_session_path, method: :delete, class: 'nav-link' %>
+          </span>
+        </li>
+      <% end %>
+      <% unless signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'User', new_user_session_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Admin', new_admin_user_session_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </header>
