@@ -75,4 +75,5 @@ RSpec.configure do |config|
 
   # Enable Devise spec helpers for tests (e.g. `sign_in user`)
   config.include Devise::Test::IntegrationHelpers
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end

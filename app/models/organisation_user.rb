@@ -6,4 +6,6 @@ class OrganisationUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :timeoutable, :trackable
+
+  has_many :user_shares, as: :recipient, dependent: :nullify
 end

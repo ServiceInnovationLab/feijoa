@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         post :remove
       end
     end
+    resources :shares
   end
 
   authenticated :user do

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Birth record:</strong>
+  <%= @share.birth_record %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @share.user %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @share.recipient %>
+</p>
+
+<%= link_to 'Edit', edit_user_share_path(@share) %> |
+<%= link_to 'Back', user_shares_path %>
