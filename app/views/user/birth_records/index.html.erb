@@ -3,6 +3,7 @@
 </section>
 <% if @birth_records.any? %>
   <% @birth_records.each do |record| %>
+    <%= link_to 'share', new_user_share_path(birth_record_id: record.to_param), class: 'pill pill-secondary' %>
     <%= link_to 'remove', remove_user_birth_record_path(record), class: 'pill pill-secondary', method: :post %>
     <%= render partial: 'shared/birth_records/card', object: record %>
   <% end %>
