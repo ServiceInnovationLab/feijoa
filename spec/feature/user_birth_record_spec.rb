@@ -24,7 +24,6 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
 
             click_on 'Find'
 
-
             expect(page).to have_selector('.card', count: 1)
             expect(page).to have_css("##{target_record.model_name.param_key}--#{target_record.primary_key_string}")
             Percy.snapshot(page, name: 'find birth record')
