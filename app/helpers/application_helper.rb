@@ -1,3 +1,11 @@
 # frozen_string_literal: true
 
-module ApplicationHelper; end
+module ApplicationHelper
+
+  def action_in_bem_format
+    # TODO doesn't handle multiple directories
+    controller = request.params["controller"].gsub(/\//, '__')
+    action = request.params["action"]
+    "#{controller}--#{action}"
+  end
+end

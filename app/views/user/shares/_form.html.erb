@@ -1,4 +1,4 @@
-<%= form_with(model: share, scope: 'share', local: true) do |form| %>
+<%= form_with(model: share, scope: 'share', local: true) do |f| %>
   <% if share.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(share.errors.count, "error") %> prohibited this share from being saved:</h2>
@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
-  <%= select(:share, :birth_record_id, options_for_select(current_user.birth_records.map{|r| [r.family_name, r.id]})) %>
+  <%= select(:share, :birth_record_id, options_for_select(
+    current_user.birth_records.map{ |r| [r.family_name, r.id] },
+    selected: share.birth_record_id)) %>
 
-  <%= select(:share, :recipient_type, [OrganisationUser.to_s]) %>
   <%= select(:share, :recipient_id, options_for_select(organisations.map{|o| [o.email, o.id]})) %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
