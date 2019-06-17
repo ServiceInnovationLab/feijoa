@@ -13,9 +13,6 @@ module PublicOnly
 
   protected
 
-  # TODO: rubocop righty complains about repetition/complexity. There's a more
-  # sweeping refactor pending which will allow a generic
-  # redirect_to(current_account.root_path) or similar.
   def redirect_authenticated_users
     return unless logged_in?
 
@@ -23,8 +20,6 @@ module PublicOnly
     flash[:alert] = "Already logged in as an #{user_model.to_s.downcase}"
     redirect_to(root_path_for_user) && return
   end
-
-  private
 
   def root_path_for_user
     return authenticated_user_root_path if current_user
