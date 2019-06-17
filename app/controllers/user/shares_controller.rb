@@ -14,7 +14,7 @@ class User::SharesController < User::BaseController
   def new
     # pre-fill any supplied params (e.g. birth_record if creating from the birth
     # record page)
-    if(params.keys.include? :share)
+    if(params.keys.include? "share")
       @share = User::Share.new(share_params)
     else
       @share = User::Share.new
@@ -31,6 +31,7 @@ class User::SharesController < User::BaseController
     @share = User::Share.new(share_params)
     # shares are always associated with the current user
     @share.user = current_user
+    @share.recipient_type = OrganisationUser.name
     
     respond_to do |format|
       if @share.save
