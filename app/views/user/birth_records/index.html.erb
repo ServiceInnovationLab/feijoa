@@ -3,9 +3,11 @@
 </section>
 <% if @birth_records.any? %>
   <% @birth_records.each do |record| %>
-    <%= link_to 'share', new_user_share_path(birth_record_id: record.to_param), class: 'pill pill-secondary' %>
-    <%= link_to 'remove', remove_user_birth_record_path(record), class: 'pill pill-secondary', method: :post %>
-    <%= render partial: 'shared/birth_records/card', object: record %>
+    <div class="user-birth-record" data-id="<%= record.to_param %>">
+      <%= link_to 'share', new_user_share_path(birth_record_id: record.to_param), class: 'pill pill-secondary' %>
+      <%= link_to 'remove', remove_user_birth_record_path(record), class: 'pill pill-secondary', method: :post %>
+      <%= render partial: 'shared/birth_records/card', object: record %>
+    </div>
   <% end %>
   <section>
     <%= link_to 'Add more birth records', find_user_birth_records_path %>
