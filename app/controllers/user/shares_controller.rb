@@ -16,9 +16,9 @@ class User::SharesController < User::BaseController
     # pre-fill any supplied params (e.g. birth_record if creating from the birth
     # record page)
     @share = if params.keys.include? 'share'
-               User::Share.new(share_params)
+               Share.new(share_params)
              else
-               User::Share.new
+               Share.new
              end
 
     @organisations = OrganisationUser.all
@@ -26,7 +26,7 @@ class User::SharesController < User::BaseController
 
   # POST /shares
   def create
-    @share = User::Share.new(share_params)
+    @share = Share.new(share_params)
     # shares are always associated with the current user
     @share.user = current_user
     # we currently only allow shares to Organisations
@@ -34,7 +34,7 @@ class User::SharesController < User::BaseController
 
     respond_to do |format|
       if @share.save
-        format.html { redirect_to @share, notice: 'Share was successfully created.' }
+        format.html { redirect_to user_share_path(@share), notice: 'Share was successfully created.' }
       else
         format.html { render :new }
       end

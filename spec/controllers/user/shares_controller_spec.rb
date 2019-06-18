@@ -5,12 +5,12 @@ require 'rails_helper'
 RSpec.describe User::SharesController, type: :controller do
   context 'A user is signed in and has an existing share' do
     let(:user) { FactoryBot.create(:user) }
-    let(:user_share) { FactoryBot.create(:user_share, user: user) }
+    let(:share) { FactoryBot.create(:share, user: user) }
     let(:invalid_attributes) { { user_id: nil } }
 
     before do
       sign_in user
-      user_share
+      share
     end
 
     describe 'GET #index' do
@@ -22,7 +22,7 @@ RSpec.describe User::SharesController, type: :controller do
 
     describe 'GET #show' do
       it 'returns a success response' do
-        get :show, params: { id: user_share.to_param }
+        get :show, params: { id: share.to_param }
         expect(response).to be_successful
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe User::SharesController, type: :controller do
       context 'with valid params' do
         let(:valid_attributes) do
           FactoryBot.build(
-            :user_share,
+            :share,
             user: user,
             recipient: FactoryBot.create(:organisation_user),
             birth_record: FactoryBot.create(:birth_record)
@@ -48,12 +48,12 @@ RSpec.describe User::SharesController, type: :controller do
         it 'creates a new Share' do
           expect do
             post :create, params: { share: valid_attributes }
-          end.to change(User::Share, :count).by(1)
+          end.to change(Share, :count).by(1)
         end
 
         it 'redirects to the created share' do
           post :create, params: { share: valid_attributes }
-          expect(response).to redirect_to(User::Share.last)
+          expect(response).to redirect_to(user_share_path(Share.last))
         end
       end
 

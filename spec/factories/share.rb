@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :user_share, class: User::Share do
+  factory :share do
     birth_record
     user
     for_organisation_user

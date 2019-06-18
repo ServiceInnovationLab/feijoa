@@ -7,5 +7,5 @@ class OrganisationUser < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :timeoutable, :trackable
 
-  has_many :user_shares, as: :recipient, dependent: :nullify
+  has_many :shares, as: :recipient, dependent: :nullify
 end

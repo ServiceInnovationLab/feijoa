@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User::Share < ApplicationRecord
+class Share < ApplicationRecord
   belongs_to :user
   belongs_to :recipient, polymorphic: true
   belongs_to :birth_record
