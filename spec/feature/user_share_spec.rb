@@ -7,7 +7,14 @@ RSpec.describe 'user/SharesController', type: :feature do
     context 'A User with an associated Birth Records' do
       let(:user) { FactoryBot.create(:user) }
       let(:birth_records) { FactoryBot.create_list(:birth_record, 3) }
-      let(:target_birth_record) { FactoryBot.create(:birth_record) }
+      let(:target_birth_record) do
+        FactoryBot.create(
+          :birth_record,
+          first_and_middle_names: 'Timmy',
+          family_name: 'Target-Person',
+          date_of_birth: '1979-01-01'
+        )
+      end
 
       before do
         login_as(user, scope: :user)
@@ -26,6 +33,7 @@ RSpec.describe 'user/SharesController', type: :feature do
 
         it 'renders the new share page' do
           expect(page).to have_text('New Share')
+          Percy.snapshot(page, name: 'share the birth record')
         end
 
         it 'shows the selected birth record' do
