@@ -1,26 +1,21 @@
 <h2>Organisation log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="d-row">
+  <div class="col-lg-6">
+    <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+      <%= f.password_field :password, autocomplete: "current-password" %>
+
+      <% if devise_mapping.rememberable? %>
+        <%= f.check_box :remember_me %>
+      <% end %>
+
+      <div class="actions mt-4">
+        <%= f.submit "Log in", class: "btn btn-primary"  %>
+      </div>
+    <% end %>
+
+    <%= render "organisation_user/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "organisation_user/shared/links" %>
+</div>
