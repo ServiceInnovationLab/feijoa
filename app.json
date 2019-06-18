@@ -3,8 +3,7 @@
   "stack": "heroku-18",
   "addons": [
     "heroku-postgresql",
-    "raygun",
-    "timber-logging"
+    "raygun"
   ],
   "buildpacks": [],
   "env": {
