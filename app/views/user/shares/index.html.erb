@@ -15,9 +15,9 @@
   <tbody>
     <% @shares.each do |share| %>
       <tr>
-        <td><%= share.birth_record %></td>
-        <td><%= share.user %></td>
-        <td><%= share.recipient %></td>
+        <td><%= share.birth_record.short_name %></td>
+        <td><%= share.user.email %></td>
+        <td><%= share.recipient.email %></td>
         <td><%= link_to 'Show', share %></td>
         <td><%= link_to 'Edit', edit_user_share_path(share) %></td>
         <td><%= link_to 'Destroy', share, method: :delete, data: { confirm: 'Are you sure?' } %></td>
