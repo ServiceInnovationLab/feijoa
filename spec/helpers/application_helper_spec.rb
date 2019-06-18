@@ -22,11 +22,11 @@ RSpec.describe ApplicationHelper, type: :helper do
         expect(helper)
           .to(receive(:params))
           .at_least(:once)
-          .and_return('controller' => 'food/desserts/nom', 'action' => 'nom-nom')
+          .and_return('controller' => 'yummy_food/desserts/nom', 'action' => 'nom_nom')
       end
 
       it 'formats the namespace as B, the controller as E, and the action as M' do
-        expect(helper.action_in_bem_format).to eq('food-desserts__nom--nom-nom')
+        expect(helper.action_in_bem_format).to eq('yummy-food-desserts__nom--nom-nom')
       end
     end
   end
