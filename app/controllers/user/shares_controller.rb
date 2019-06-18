@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class User::SharesController < User::BaseController
-  before_action :set_share, only: [:show, :edit, :update, :destroy]
+  before_action :set_share, only: %i[show edit update destroy]
 
   # GET /shares
   def index
@@ -7,24 +9,22 @@ class User::SharesController < User::BaseController
   end
 
   # GET /shares/1
-  def show
-  end
+  def show; end
 
   # GET /shares/new
   def new
     # pre-fill any supplied params (e.g. birth_record if creating from the birth
     # record page)
-    if(params.keys.include? "share")
-      @share = User::Share.new(share_params)
-    else
-      @share = User::Share.new
-    end
+    @share = if params.keys.include? 'share'
+               User::Share.new(share_params)
+             else
+               User::Share.new
+             end
     @organisations = OrganisationUser.all
   end
 
   # GET /shares/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /shares
   def create
@@ -32,7 +32,7 @@ class User::SharesController < User::BaseController
     # shares are always associated with the current user
     @share.user = current_user
     @share.recipient_type = OrganisationUser.name
-    
+
     respond_to do |format|
       if @share.save
         format.html { redirect_to @share, notice: 'Share was successfully created.' }
@@ -62,13 +62,14 @@ class User::SharesController < User::BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_share
-      @share = current_user.shares.find_by(params.permit(:id))
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def share_params
-      params.require(:share).permit(:birth_record_id, :user_id, :recipient_type, :recipient_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_share
+    @share = current_user.shares.find_by(params.permit(:id))
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def share_params
+    params.require(:share).permit(:birth_record_id, :user_id, :recipient_type, :recipient_id)
+  end
 end

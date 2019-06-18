@@ -8,12 +8,12 @@ class BirthRecord < ApplicationRecord
   end
 
   def full_name
-    # TODO anglocentric
+    # TODO: anglocentric
     "#{first_and_middle_names} #{family_name}"
   end
 
   def short_name
-    # TODO anglocentric
+    # TODO: anglocentric
     "#{first_and_middle_names.first} #{family_name}"
   end
 

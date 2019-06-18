@@ -19,7 +19,7 @@ RSpec.describe 'user/SharesController', type: :feature do
         before do
           visit user_birth_records_path
           find(".user-birth-record[data-id='#{target_birth_record.id}']").click_link('share')
-          
+
           # wait for destination page to load
           page.has_css?('body.user__shares--new')
         end
