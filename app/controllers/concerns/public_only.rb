@@ -17,7 +17,7 @@ module PublicOnly
     return unless logged_in?
 
     flash.clear
-    flash[:alert] = "Already logged in as an #{user_model.to_s.downcase}"
+    flash[:alert] = "Already logged in as an #{current_account.to_s.downcase}"
     redirect_to(root_path_for_user) && return
   end
 
@@ -28,17 +28,7 @@ module PublicOnly
     authenticated_organisation_user_root_path if current_organisation_user
   end
 
-  def user_model
-    if current_user
-      current_user
-    elsif current_admin_user
-      current_admin_user
-    elsif current_organisation_user
-      current_organisation_user
-    end
-  end
-
   def logged_in?
-    !user_model.nil?
+    !current_account.nil?
   end
 end
