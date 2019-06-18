@@ -4,14 +4,14 @@ class Share < ApplicationRecord
   belongs_to :user
   belongs_to :recipient, polymorphic: true
   belongs_to :birth_record
-  belongs_to :revoker, polymorphic: true, required: false
+  belongs_to :revoker, polymorphic: true, optional: true
 
   validates :user, presence: true
   validates :recipient, presence: true
   validates :birth_record, presence: true
 
-  scope :active, -> { where(revoked?: false) }
-  scope :revoked, -> { where(revoked?: true) }
+  scope :active, -> { where 'revoked_at IS NULL' }
+  scope :revoked, -> { where 'revoked_at IS NOT NULL' }
 
   def revoked?
     revoker.present?

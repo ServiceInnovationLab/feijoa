@@ -9,5 +9,10 @@ FactoryBot.define do
     trait :for_organisation_user do
       association :recipient, factory: :organisation_user
     end
+
+    trait :revoked do
+      association :revoker, factory: :user
+      revoked_at { Time.now.utc }
+    end
   end
 end
