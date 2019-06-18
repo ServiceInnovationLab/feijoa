@@ -37,7 +37,7 @@ RSpec.describe 'user/SharesController', type: :feature do
         end
 
         it 'shows the selected birth record' do
-          expect(find_field('share_birth_record_id').value).to eq(target_birth_record.id.to_s)
+          expect(page).to have_text(target_birth_record.full_name)
         end
       end
     end

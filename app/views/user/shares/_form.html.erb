@@ -11,21 +11,20 @@
     </div>
   <% end %>
 
-  <%= f.collection_select(
-    :birth_record_id, 
-    current_user.birth_records,
-    :id,
-    :short_name,
-    selected: share.birth_record_id) 
-  %>
+  <div>
+    Sharing birth record of <%= share.birth_record.full_name %>
+  </div>
+  
+  <div>
+    <%= f.collection_select(
+      :recipient_id, 
+      organisations,
+      :id,
+      :email)
+    %>
+  </div>
 
-  <%= f.collection_select(
-    :recipient_id, 
-    organisations,
-    :id,
-    :email)
-  %>
-
+  <%= f.hidden_field :birth_record_id, value: share.birth_record.id %>
   <div class="actions">
     <%= f.submit %>
   </div>

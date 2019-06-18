@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User::SharesController < User::BaseController
-  before_action :set_share, only: %i[show edit update destroy]
+  before_action :set_share, only: :show
 
   # GET /shares
   def index
@@ -20,17 +20,16 @@ class User::SharesController < User::BaseController
              else
                User::Share.new
              end
+
     @organisations = OrganisationUser.all
   end
-
-  # GET /shares/1/edit
-  def edit; end
 
   # POST /shares
   def create
     @share = User::Share.new(share_params)
     # shares are always associated with the current user
     @share.user = current_user
+    # we currently only allow shares to Organisations
     @share.recipient_type = OrganisationUser.name
 
     respond_to do |format|
@@ -39,25 +38,6 @@ class User::SharesController < User::BaseController
       else
         format.html { render :new }
       end
-    end
-  end
-
-  # PATCH/PUT /shares/1
-  def update
-    respond_to do |format|
-      if @share.update(share_params)
-        format.html { redirect_to @share, notice: 'Share was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
-    end
-  end
-
-  # DELETE /shares/1
-  def destroy
-    @share.destroy
-    respond_to do |format|
-      format.html { redirect_to user_shares_url, notice: 'Share was successfully destroyed.' }
     end
   end
 
@@ -70,6 +50,6 @@ class User::SharesController < User::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def share_params
-    params.require(:share).permit(:birth_record_id, :user_id, :recipient_type, :recipient_id)
+    params.require(:share).permit(:birth_record_id, :recipient_type, :recipient_id)
   end
 end
