@@ -23,6 +23,9 @@
         <% if current_user.present? %>
           <%= render partial: 'shared/logout', locals: { _logout_path: destroy_user_session_path, _account_badge_letter: 'U' } %>
         <% end %>
+        <% if current_organisation_user.present? %>
+          <%= render partial: 'shared/logout', locals: { _logout_path: destroy_organisation_user_session_path, _account_badge_letter: 'O' } %>
+        <% end %>
       </li>
     <% else %>
       <li class="nav-item">
@@ -33,6 +36,9 @@
       </li>
       <li class="nav-item">
         <%= link_to 'Admin', new_admin_user_session_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Org', new_organisation_user_session_path, class: 'nav-link' %>
       </li>
     <% end %>
   </ul>
