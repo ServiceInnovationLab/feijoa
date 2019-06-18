@@ -11,15 +11,19 @@
     </div>
   <% end %>
 
-  <%= f.select(
+  <%= f.collection_select(
     :birth_record_id, 
-    current_user.birth_records.map{ |r| [r.short_name, r.id] },
+    current_user.birth_records,
+    :id,
+    :short_name,
     selected: share.birth_record_id) 
   %>
 
-  <%= f.select(
+  <%= f.collection_select(
     :recipient_id, 
-    organisations.map{|o| [o.email, o.id]})
+    organisations,
+    :id,
+    :email)
   %>
 
   <div class="actions">
