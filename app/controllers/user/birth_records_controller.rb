@@ -27,8 +27,6 @@ class User::BirthRecordsController < User::BaseController
     supplied_params = query_params.to_h.select { |_k, v| v.present? }
 
     @results = BirthRecordService.query(supplied_params)
-
-    render 'find'
   end
 
   # POST
@@ -56,9 +54,7 @@ class User::BirthRecordsController < User::BaseController
   private
 
   def query_params
-    params
-      .require(:birth_record)
-      .permit(
+    params.permit(
         :first_and_middle_names,
         :family_name,
         :place_of_birth,
