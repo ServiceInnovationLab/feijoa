@@ -22,7 +22,7 @@
   <div class='container'>
     Results:
     <% @results&.each do |record| %>
-      <%= link_to 'add', add_user_birth_record_path(record), class: 'pill pill-secondary', method: :post %>
+      <%= link_to 'add', add_user_birth_record_path(record), class: 'nav-link', method: :post %>
       <%= render partial: 'shared/birth_records/card', object: record %>
     <% end %>
   </div>

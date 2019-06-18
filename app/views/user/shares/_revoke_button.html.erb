@@ -1,0 +1,5 @@
+<% if share.revoked? %>
+  <span class="nav-link disabled">Revoke</span>
+<% else %>
+  <%= link_to 'Revoke', revoke_user_share_path(share), method: :revoke, class: 'nav-link' %>
+<% end %>

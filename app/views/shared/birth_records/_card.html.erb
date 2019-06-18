@@ -2,9 +2,13 @@
   <div class="card-body">
     <h5 class="card-title">
       <%= link_to user_birth_record_path(card) do %>
-        <%= card.first_and_middle_names.first %> <%= card.family_name %>
+        <%= card.short_name %>
       <% end %>
     </h5>
     <%= render partial: 'shared/birth_records/short_details', object: card %>
+    <div class="navbar navbar-expand flex-row mr-auto">
+      <%= link_to 'share', new_user_share_path(share: { birth_record_id: card.to_param }), class: 'nav-link' %>
+      <%= link_to 'remove', remove_user_birth_record_path(card), class: 'nav-link', method: :post %>
+    </div>
   </div>
 </div>

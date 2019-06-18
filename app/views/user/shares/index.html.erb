@@ -16,7 +16,8 @@
         <td><%= share.birth_record.short_name %></td>
         <td><%= share.user.email %></td>
         <td><%= share.recipient.email %></td>
-        <td><%= link_to 'Show', user_share_path(share) %></td>
+        <td><%= link_to 'Show', user_share_path(share), class: 'nav-link' %></td>
+        <td><%= render partial: 'revoke_button', locals: {share: share} %></td>
       </tr>
     <% end %>
   </tbody>
