@@ -8,5 +8,5 @@ class User < ApplicationRecord
          :timeoutable, :trackable
 
   has_and_belongs_to_many :birth_records, -> { distinct }
-  has_many :shares, class_name: User::Share.name
+  has_many :shares, class_name: 'User::Share', dependent: :nullify
 end
