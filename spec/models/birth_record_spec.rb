@@ -12,7 +12,14 @@ RSpec.describe BirthRecord, type: :model do
   end
 
   context 'a valid model' do
-    subject { FactoryBot.create(:birth_record) }
+    subject do
+      FactoryBot.create(
+        :birth_record,
+        first_and_middle_names: 'Ruby Ru',
+        family_name: 'Wallace',
+        date_of_birth: '2018-01-12'
+      )
+    end
     let(:expected_format) { /\d{2}-\d{2}-\d{4}/ }
 
     it 'has a nicely formatted date of birth' do
