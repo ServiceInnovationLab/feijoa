@@ -44,6 +44,17 @@ Rails.application.routes.draw do
     root 'admin_user#index', as: :authenticated_admin_user_root
   end
 
+  devise_for :organisation_users, path: 'organisation_user', controllers: {
+    # we need to override the sessions controller, others can be default
+    sessions: 'organisation_user/sessions'
+  }
+
+  resources :organisation_user, only: [:index]
+
+  authenticated :organisation_user do
+    root 'organisation_user#index', as: :authenticated_organisation_user_root
+  end
+
   root to: 'home#index'
 end
 # rubocop:enable Metrics/BlockLength

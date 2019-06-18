@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe AdminUser, type: :model do
+RSpec.describe OrganisationUser, type: :model do
   describe 'Factory' do
-    subject { FactoryBot.create(:admin_user) }
+    subject { FactoryBot.create(:organisation_user) }
 
     it 'is valid' do
       expect(subject).to be_valid
