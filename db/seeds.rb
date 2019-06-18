@@ -12,7 +12,5 @@ FactoryBot.create_list :birth_record, 500
 
 ['brenda.wallace'].each do |person|
   email = "#{person}@dia.govt.nz"
-  unless AdminUser.find_by(email: email)
-    FactoryBot.create :admin_user, email: email
-  end
+  FactoryBot.create :admin_user, email: email unless AdminUser.find_by(email: email)
 end
