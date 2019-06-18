@@ -18,7 +18,6 @@ RSpec.describe Share, type: :model do
       expect(Share.active).to include(subject)
     end
 
-
     it 'can be revoked by a user' do
       account = FactoryBot.create(:user)
       subject.revoke(account)
