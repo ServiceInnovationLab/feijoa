@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User::SharesController < User::BaseController
-  before_action :set_share, only: :show
+  before_action :set_share, only: %i[show revoke]
 
   # GET /shares
   def index
@@ -37,6 +37,17 @@ class User::SharesController < User::BaseController
         format.html { redirect_to user_share_path(@share), notice: 'Share was successfully created.' }
       else
         format.html { render :new }
+      end
+    end
+  end
+
+  # POST /shares/1/revoke
+  def revoke
+    respond_to do |format|
+      if @share.revoke(current_user)
+        format.html { redirect_to user_share_path(@share), notice: 'Share was successfully revoked.' }
+      else
+        redirect_back(fallback_location: root_path)
       end
     end
   end

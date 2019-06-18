@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_045818) do
+ActiveRecord::Schema.define(version: 2019_06_18_213242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,8 +79,12 @@ ActiveRecord::Schema.define(version: 2019_06_13_045818) do
     t.bigint "recipient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "revoker_type"
+    t.bigint "revoker_id"
+    t.datetime "revoked_at"
     t.index ["birth_record_id"], name: "index_shares_on_birth_record_id"
     t.index ["recipient_type", "recipient_id"], name: "index_shares_on_recipient_type_and_recipient_id"
+    t.index ["revoker_type", "revoker_id"], name: "index_shares_on_revoker_type_and_revoker_id"
     t.index ["user_id"], name: "index_shares_on_user_id"
   end
 

@@ -13,4 +13,23 @@
   <%= @share.recipient.email %>
 </p>
 
-<%= link_to 'Back', user_shares_path %>
+<p>
+  <strong>Revoked by:</strong>
+  <%= @share.revoker&.email %>
+</p>
+
+<p>
+  <strong>Revoked at:</strong>
+  <%= @share.revoked_at %>
+</p>
+
+<div class="navbar navbar-expand flex-row">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <%= link_to 'Back', user_shares_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= render partial: 'revoke_button', locals: {share: @share} %>
+    </li>
+  </ul>
+</div>
