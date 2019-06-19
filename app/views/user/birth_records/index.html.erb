@@ -16,7 +16,7 @@
                 <div class="text-muted"><%= record.place_of_birth %> <%= record.date_of_birth %></div>
               </h5>
             <div class="card-body">
-              <%= render partial: 'shared/birth_records/short_details', object: record %>
+              <%= render partial: 'shared/birth_records/additional_details', object: record %>
             </div>
             <div class="card-footer">
               <%= link_to 'share', new_user_share_path(share: { birth_record_id: record.to_param }), class: 'btn' %>
