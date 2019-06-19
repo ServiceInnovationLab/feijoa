@@ -1,23 +1,10 @@
-<div class="record__birth-record--short-details">
+<div class="birth-record__short-details">
   <dl>
-    <dd class="attribute-label">place_of_birth</dd>
-    <dt id="place_of_birth"><%=short_details.place_of_birth %></dt>
-  </dl>
-  <dl>
-    <dd class="attribute-label">sex</dd>
-    <dt id="sex"><%=short_details.sex %></dt>
-  <dl>
-    <dd class="attribute-label">Parent 1</dd>
-    <dt id="parent_family_name">
-      <%=short_details.parent_family_name %>,
-      <%=short_details.parent_first_and_middle_names %>
-    </dt>
-  </dl>
-  <dl>
-    <dd class="attribute-label">Parent 2</dd>
-    <dt id="other_parent_family_name">
-      <%=short_details.other_parent_family_name %>,
-      <%=short_details.other_parent_first_and_middle_names %>
-    </dt>
+    <dt>First And Middle Names</dt>
+    <dd><%= short_details.first_and_middle_names %></dd>
+    <dt>Family Name</dt>
+    <dd><%= short_details.family_name %></dd>
+    <dt>Date of birth</dt>
+    <dt><%=short_details.date_of_birth %></dt>
   </dl>
 </div>

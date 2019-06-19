@@ -6,9 +6,9 @@
   <div class='container'>
     <h2>Results</h2>
     <% @results&.each do |record| %>
-      <div class="card">
+      <div class="card birth-record" data-id="<%= record.to_param %>">
         <div class="card-header">
-          <%= link_to 'add', add_user_birth_record_path(record), class: 'btn', method: :post %>
+          <%= link_to 'add', add_user_birth_record_path(record), class: 'btn birth-record__button', 'data-verb' => 'add', method: :post %>
         </div>
         <div class="card-body">
           <h5 class="card-title">
@@ -16,7 +16,7 @@
               <%= record.first_and_middle_names.first %> <%= record.family_name %>
             <% end %>
           </h5>
-          <%= render partial: 'shared/birth_records/short_details', object: record %>
+          <%= render partial: 'shared/birth_records/additional_details', object: record %>
         </div>
       </div>
     <% end %>
