@@ -17,7 +17,8 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
 
         context 'the required fields are filled in correctly' do
           it 'is found' do
-            visit find_user_birth_records_path
+            visit user_birth_records_path
+            click_link 'Search for Birth Record'
             fill_in 'birth_record_first_and_middle_names', with: target_record.first_and_middle_names
             fill_in 'birth_record_family_name', with: target_record.family_name
             fill_in 'birth_record_date_of_birth', with: target_record.date_of_birth
@@ -25,14 +26,14 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
             click_on 'Find'
 
             expect(page).to have_selector('.card', count: 1)
-            expect(page).to have_css("##{target_record.model_name.param_key}--#{target_record.primary_key_string}")
             Percy.snapshot(page, name: 'find birth record')
           end
         end
 
         context 'all the permitted fields are filled in correctly' do
           it 'is found' do
-            visit find_user_birth_records_path
+            visit user_birth_records_path
+            click_link 'Search for Birth Record'
             fill_in 'birth_record_first_and_middle_names', with: target_record.first_and_middle_names
             fill_in 'birth_record_family_name', with: target_record.family_name
             fill_in 'birth_record_date_of_birth', with: target_record.date_of_birth
@@ -51,14 +52,29 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
 
             click_on 'Find'
 
+            # look for exactly 1 'add' button on a card for the target birth record
+            expect(page).to have_css(
+              ".birth-record[data-id='#{target_record.to_param}'] .birth-record__button[data-verb='add']",
+              count: 1
+            )
+
+            click_link 'add'
+
             expect(page).to have_selector('.card', count: 1)
-            expect(page).to have_css("##{target_record.model_name.param_key}--#{target_record.primary_key_string}")
+            expect(page).to have_content target_record.family_name
+
+            Percy.snapshot(page, name: 'added a record')
+            accept_confirm do
+              click_link 'remove'
+            end
+            expect(page).not_to have_content target_record.family_name
           end
         end
 
         context 'no fields are filled in' do
           it 'no records are found' do
-            visit find_user_birth_records_path
+            visit user_birth_records_path
+            click_link 'Search for Birth Record'
             fill_in 'birth_record_first_and_middle_names', with: target_record.first_and_middle_names
             fill_in 'birth_record_date_of_birth', with: target_record.date_of_birth
 

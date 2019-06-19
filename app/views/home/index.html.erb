@@ -1,8 +1,13 @@
-<div class="card mt-4">
-  <div class="card-header feijoa-background">
-    <h1 class="display-4">Feijoas</h1>
+<div class="jumbotron">
+  <h1>Feijoa</h1>
+  <p class="lead">Share your feijoas, or keep them to yourself. It's up to you.</p>
+
+  <div class="signup">
+    <%= link_to('Sign up for Feijoa', new_user_registration_path, class: 'btn btn-info btn-block') %>
   </div>
-  <div class="card-body">
-    <p class="lead">This is the website for the Feijoa project.</p>
+  <hr/>
+  <div class="sigin">
+    <%= link_to('Sign in', new_user_session_path, class: 'btn btn-primary') %>
+    if you already have an account
   </div>
 </div>

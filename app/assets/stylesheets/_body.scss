@@ -1,0 +1,17 @@
+.devise__registrations--new,
+.devise__registrations--create,
+.admin-user__sessions--new,
+.organisation-user__sessions--new,
+.organisation-user__sessions--create,
+.home--index,
+.user__sessions--new,
+.user__sessions--create {
+  height: 100%;
+  background-image: image-url('feijoas.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  form {
+    background-color: $white;
+    padding: 1em;
+  }
+}
