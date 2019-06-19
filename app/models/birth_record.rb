@@ -7,6 +7,16 @@ class BirthRecord < ApplicationRecord
     format_date(self[:date_of_birth])
   end
 
+  def full_name
+    # TODO: anglocentric
+    "#{first_and_middle_names} #{family_name}"
+  end
+
+  def short_name
+    # TODO: anglocentric
+    "#{first_and_middle_names.first} #{family_name}"
+  end
+
   # A unique identifier for the record
   #
   # This is important because we understand the real birth register doesn't

@@ -27,10 +27,11 @@ Rails.application.routes.draw do
         post :remove
       end
     end
+    resources :shares, only: %i[index show new create]
   end
 
   authenticated :user do
-    root 'user/birth_records#index', as: :authenticated_user_root
+    root 'user#index', as: :authenticated_user_root
   end
 
   devise_for :admin_user, path: 'admin_user', controllers: {

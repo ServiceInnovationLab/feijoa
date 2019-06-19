@@ -1,0 +1,23 @@
+<h1>Shares</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Birth record</th>
+      <th>User</th>
+      <th>Recipient</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shares.each do |share| %>
+      <tr>
+        <td><%= share.birth_record.short_name %></td>
+        <td><%= share.user.email %></td>
+        <td><%= share.recipient.email %></td>
+        <td><%= link_to 'Show', user_share_path(share) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
