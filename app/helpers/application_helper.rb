@@ -22,4 +22,14 @@ module ApplicationHelper
 
     "#{controller}--#{action}"
   end
+
+  # Returns 'devise-controller' if the controller inherits from
+  # Devise::ApplicationController
+  #
+  # Suitable for use as a dynamically inserted CSS class, e.g:
+  #
+  # <body class="<%= devise_flag %>">
+  def devise_flag
+    'devise-controller' if controller.class < DeviseController
+  end
 end
