@@ -53,6 +53,19 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
             click_on 'Find'
 
             expect(page).to have_selector('.card', count: 1)
+
+            click_link 'add'
+
+            expect(page).to have_selector('.card', count: 1)
+            expect(page).to have_content target_record.family_name
+
+            Percy.snapshot(page, name: 'added a record')
+            accept_confirm do
+              Percy.snapshot(page, name: 'removing...')
+              click_link 'remove'
+            end
+            Percy.snapshot(page, name: 'no records')
+            expect(page).not_to have_content target_record.family_name
           end
         end
 
