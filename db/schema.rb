@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_023337) do
+ActiveRecord::Schema.define(version: 2019_06_13_045818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_023337) do
   create_table "birth_records", force: :cascade do |t|
     t.string "first_and_middle_names", default: "", null: false
     t.string "family_name", default: "", null: false
-    t.date "date_of_birth"
+    t.datetime "date_of_birth"
     t.string "place_of_birth", default: "", null: false
     t.string "sex", default: "", null: false
     t.string "parent_first_and_middle_names", default: "", null: false
@@ -70,6 +70,18 @@ ActiveRecord::Schema.define(version: 2019_06_13_023337) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_organisation_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_organisation_users_on_reset_password_token", unique: true
+  end
+
+  create_table "shares", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "birth_record_id", null: false
+    t.string "recipient_type", null: false
+    t.bigint "recipient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["birth_record_id"], name: "index_shares_on_birth_record_id"
+    t.index ["recipient_type", "recipient_id"], name: "index_shares_on_recipient_type_and_recipient_id"
+    t.index ["user_id"], name: "index_shares_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,16 @@
+<p>
+  <strong>Birth record:</strong>
+  <%= render partial: 'shared/birth_records/short_details', object: @share.birth_record %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @share.user.email %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @share.recipient.email %>
+</p>
+
+<%= link_to 'Back', user_shares_path %>

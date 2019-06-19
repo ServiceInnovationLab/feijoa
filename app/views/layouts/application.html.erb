@@ -14,7 +14,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="min-vh-100 d-flex flex-column">
+  <body class="<%= action_in_bem_format %> min-vh-100 d-flex flex-column">
     <%= render "shared/header" %>
     <%= render "shared/flash_messages" %>
     <main class="container pb-4 pt-4">
