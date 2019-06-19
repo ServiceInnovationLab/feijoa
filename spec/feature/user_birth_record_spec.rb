@@ -61,10 +61,8 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
 
             Percy.snapshot(page, name: 'added a record')
             accept_confirm do
-              Percy.snapshot(page, name: 'removing...')
               click_link 'remove'
             end
-            Percy.snapshot(page, name: 'no records')
             expect(page).not_to have_content target_record.family_name
           end
         end
