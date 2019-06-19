@@ -55,14 +55,14 @@ class User::BirthRecordsController < User::BaseController
 
   def query_params
     params.permit(
-        :first_and_middle_names,
-        :family_name,
-        :place_of_birth,
-        :date_of_birth,
-        :parent_first_and_middle_names,
-        :parent_family_name,
-        :other_parent_first_and_middle_names,
-        :other_parent_family_name
-      )
+      :first_and_middle_names,
+      :family_name,
+      :place_of_birth,
+      :date_of_birth,
+      :parent_first_and_middle_names,
+      :parent_family_name,
+      :other_parent_first_and_middle_names,
+      :other_parent_family_name
+    )
   end
 end
