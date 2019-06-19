@@ -27,8 +27,6 @@ class User::BirthRecordsController < User::BaseController
     supplied_params = query_params.to_h.select { |_k, v| v.present? }
 
     @results = BirthRecordService.query(supplied_params)
-
-    render 'find'
   end
 
   # POST
