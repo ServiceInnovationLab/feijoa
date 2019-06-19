@@ -54,9 +54,10 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
 
             # look for exactly 1 'add' button on a card for the target birth record
             expect(page).to have_css(
-              ".birth-record[data-id='#{target_record.to_param}'] .birth-record__button[data-verb='add']", 
-              count: 1)
-              
+              ".birth-record[data-id='#{target_record.to_param}'] .birth-record__button[data-verb='add']",
+              count: 1
+            )
+
             click_link 'add'
 
             expect(page).to have_selector('.card', count: 1)
@@ -69,7 +70,6 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
             end
             Percy.snapshot(page, name: 'no records')
             expect(page).not_to have_content target_record.family_name
-
           end
         end
 
