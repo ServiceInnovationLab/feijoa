@@ -104,6 +104,31 @@ RSpec.describe BirthRecordService do
           expect(result.first).to eq(target_record)
         end
       end
+
+      context 'a query matching the required params, but in the wrong case' do
+        # downcase the params where case insensitive search is supported
+        let(:params) do
+          target_record
+            .attributes
+            .slice(*described_class.required_keys)
+            .map do |k, v|
+              if described_class
+                 .case_insensitive_keys
+                 .include?(k)
+                [k, v.downcase]
+              else
+                [k, v]
+              end
+            end
+            .to_h
+        end
+
+        it 'finds the target' do
+          result = described_class.query(params)
+          expect(result.length).to be(1)
+          expect(result.first).to eq(target_record)
+        end
+      end
     end
   end
 end
