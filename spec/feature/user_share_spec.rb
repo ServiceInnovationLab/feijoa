@@ -32,7 +32,7 @@ RSpec.describe 'user/SharesController', type: :feature do
         end
 
         it 'renders the new share page' do
-          expect(page).to have_text('New Share')
+          expect(page).to have_text('Share a document')
           Percy.snapshot(page, name: 'share the birth record')
         end
 
