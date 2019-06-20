@@ -65,7 +65,7 @@ RSpec.describe BirthRecordService do
           parent_first_and_middle_names: 'Daniel',
           parent_family_name: 'Chuck',
           other_parent_first_and_middle_names: 'Tameka',
-          other_parent_family_name: 'Senger',
+          other_parent_family_name: 'Senger'
         )
       end
       let(:birth_records) { FactoryBot.create_list(:birth_record, 10) }
