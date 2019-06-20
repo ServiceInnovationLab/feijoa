@@ -128,6 +128,13 @@ RSpec.describe BirthRecordService do
           expect(result.length).to be(1)
           expect(result.first).to eq(target_record)
         end
+
+        context 'we override the default case insensitive fields list to force exact matches' do
+          it 'doesn\'t find the target' do
+            result = described_class.query(params, case_insensitive_keys: [])
+            expect(result).to be_empty
+          end
+        end
       end
     end
   end
