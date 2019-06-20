@@ -6,7 +6,7 @@
 # rather than using the ActiveRecord queries directly.
 class BirthRecordService
   # Search for a single BirthRecord matching the supplied parameters hash
-  def self.query(params, case_insensitive_keys = self.case_insensitive_keys)
+  def self.query(params, case_insensitive_keys: self.case_insensitive_keys)
     return [] unless all_required_keys_are_present?(params)
 
     # make sure we only search on permitted params
