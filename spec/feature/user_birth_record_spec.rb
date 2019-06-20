@@ -47,23 +47,21 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
           it 'is found' do
             visit user_birth_records_path
             click_link 'Search for Birth Record'
-            fill_in 'birth_record_first_and_middle_names', with: target_record.first_and_middle_names
-            fill_in 'birth_record_family_name', with: target_record.family_name
-            fill_in 'birth_record_date_of_birth', with: target_record.date_of_birth
+            fill_in 'birth_record_first_and_middle_names', with: 'Timmy'
+            fill_in 'birth_record_family_name', with: 'Target-Person'
+            fill_in 'birth_record_date_of_birth', with: '01/01/1979'
 
-            fill_in 'birth_record_place_of_birth', with: target_record.place_of_birth
-            fill_in(
-              'birth_record_parent_first_and_middle_names',
-              with: target_record.parent_first_and_middle_names
-            )
-            fill_in 'birth_record_parent_family_name', with: target_record.parent_family_name
-            fill_in(
-              'birth_record_other_parent_first_and_middle_names',
-              with: target_record.other_parent_first_and_middle_names
-            )
-            fill_in 'birth_record_other_parent_family_name', with: target_record.other_parent_family_name
+            fill_in 'birth_record_place_of_birth', with: 'Wellington'
+            fill_in 'birth_record_parent_first_and_middle_names', with: 'Daniel'
+            fill_in 'birth_record_parent_family_name', with: 'Chuck'
+            fill_in 'birth_record_other_parent_first_and_middle_names', with: 'Tameka'
+            fill_in 'birth_record_other_parent_family_name', with: 'Senger'
 
             click_on 'Find'
+
+            expect(page).to have_content 'Target-Person, Timmy'
+            expect(page).to have_content 'Senger, Tameka'
+            expect(page).to have_content 'Chuck, Daniel'
 
             # look for exactly 1 'add' button on a card for the target birth record
             expect(page).to have_css(
