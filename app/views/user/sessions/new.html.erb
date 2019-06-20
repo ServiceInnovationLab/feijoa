@@ -1,8 +1,7 @@
-<h2>User log in</h2>
-
 <div class="d-row">
   <div class="col-lg-6">
     <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <h2>Log in as a user</h2>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
       <%= f.password_field :password, autocomplete: "current-password" %>
@@ -14,8 +13,10 @@
       <div class="actions mt-4">
         <%= f.submit "Log in", class: "btn btn-primary" %>
       </div>
+      <div class="mt-4">
+        <%= render "user/shared/links" %>
+      </div>
     <% end %>
 
-    <%= render "user/shared/links" %>
   </div>
 </div>
