@@ -12,7 +12,7 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
       end
 
       context 'a target record and some other records exist' do
-        let(:target_record) do
+        let!(:target_record) do
           FactoryBot.create(
             :birth_record,
             first_and_middle_names: 'Timmy',
