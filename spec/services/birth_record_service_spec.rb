@@ -55,7 +55,7 @@ RSpec.describe BirthRecordService do
   # These are the keys where we want to allow case-insensitive searching. This
   # test is to double-check you've thought about it before changing them.
   describe '#CASE_INSENSITIVE_KEYS' do
-    it 'is like the online birth record ordering service' do
+    it 'is like we decided' do
       expect(described_class::CASE_INSENSITIVE_KEYS).to match_array(
         %w[
           first_and_middle_names
