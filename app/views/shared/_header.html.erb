@@ -11,7 +11,18 @@
     <% end %>
     <% if current_user.present? %>
       <li class="nav-item">
-        <%= link_to 'Home', authenticated_user_root_path %>
+        <%= link_to 'Home', authenticated_user_root_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'My shares', user_shares_path, class: 'nav-link' %>
+      </li>
+    <% end %>
+    <% if current_organisation_user.present? %>
+      <li class="nav-item">
+        <%= link_to 'Home', authenticated_organisation_user_root_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Shared with me', organisation_user_shares_path, class: 'nav-link' %>
       </li>
     <% end %>
   </ul>

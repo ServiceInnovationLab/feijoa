@@ -20,7 +20,7 @@
             </div>
             <div class="card-footer">
               <%= link_to 'share', new_user_share_path(share: { birth_record_id: record.to_param }), class: 'btn' %>
-              <%= link_to 'remove', remove_user_birth_record_path(record), class: 'btn btn-secondary', data: { confirm: 'Are you sure? This will the record from your documents'}, method: :post %>
+              <%= link_to 'remove', remove_user_birth_record_path(record), class: 'btn btn-danger', data: { confirm: 'Are you sure? This will the record from your documents'}, method: :post %>
             </div>
           </div>
         </div>

@@ -1,8 +1,7 @@
 <h1>Shared documents</h1>
-<p class="lead">Documents you have shared.</p>
+<p class="lead">Documents shared with you.</p>
 <% if @shares.blank? %>
-  <p>You haven't yet shared any documents.</p>
-  <%= link_to "Go back to your documents", user_birth_records_path %>
+  <p>No documents have been shared with you.</p>
 <% else %>
   <table class="table">
     <thead>
@@ -20,7 +19,7 @@
           <td><%= share.birth_record.short_name %></td>
           <td><%= share.user.email %></td>
           <td><%= share.recipient.email %></td>
-          <td><%= link_to 'Show', user_share_path(share) %></td>
+          <td><%= link_to 'Show', organisation_user_share_path(share) %></td>
         </tr>
       <% end %>
     </tbody>
