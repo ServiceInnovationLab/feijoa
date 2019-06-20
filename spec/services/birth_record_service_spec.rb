@@ -129,7 +129,7 @@ RSpec.describe BirthRecordService do
           {
             'first_and_middle_names' => target_record.first_and_middle_names.downcase,
             'family_name' => target_record.family_name.downcase,
-            'date_of_birth' => Date.parse(target_record.date_of_birth)
+            'date_of_birth' => target_record.date_of_birth
           }
         end
 
