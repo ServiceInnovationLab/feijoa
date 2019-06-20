@@ -32,7 +32,7 @@ class BirthRecordService
 
   # Keys (already included in #required_keys or #optional_keys) which should be
   # case-insensitive for database queries
-  CASE_INSENSITIVE_KEYS
+  CASE_INSENSITIVE_KEYS =
     %w[
       first_and_middle_names
       family_name
