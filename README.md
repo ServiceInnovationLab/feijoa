@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/ServiceInnovationLab/feijoa.svg?branch=master)](https://travis-ci.org/ServiceInnovationLab/feijoa)
-[![AwesomeCode Status for ServiceInnovationLab/feijoa](https://awesomecode.io/projects/69ea27b0-0d2e-40b5-bb92-e1c4ad1a5b1b/status)](https://awesomecode.io/repos/ServiceInnovationLab/feijoa)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8f2b6efc2000ad726fd2/maintainability)](https://codeclimate.com/github/ServiceInnovationLab/feijoa/maintainability)
 
 # Feijoa
 

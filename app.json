@@ -4,7 +4,7 @@
   "addons": [
     "heroku-postgresql",
     "raygun",
-    "timber-logging"
+    "sendgrid"
   ],
   "buildpacks": [],
   "env": {

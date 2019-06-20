@@ -7,5 +7,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :timeoutable, :trackable
 
-  has_and_belongs_to_many :birth_records
+  has_and_belongs_to_many :birth_records, -> { distinct }
+  has_many :shares, dependent: :nullify
 end

@@ -1,0 +1,23 @@
+<div class="modal fade" id="modalBirthRecordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Enter Birth Record Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalBirthRecordForm">
+    Search for Birth Record
+  </a>
+</div>
+

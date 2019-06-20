@@ -1,34 +1,46 @@
 <header class="navbar navbar-expand navbar-light bg-light flex-row">
   <%= link_to root_path, class: 'navbar-brand' do %>
-    <%= image_tag "feijoa_icon.png", class: 'rounded' %>
+    <%= image_tag "feijoa_icon.png", class: 'rounded', height: 40, width: 40, alt: 'Feijoa home' %>
+    Feijoa
   <% end %>
-
-  <div class="navbar-nav-scroll">
-  <ul class="navbar-nav flex-row"> 
-    <% if current_user.present? %>
-      <li class="nav-item">
-        <span class='d-inline-flex'>
-          <%= render partial: 'shared/account_badge' %>
-          <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-        </span>
-      </li>
-    <% end %>
+  <ul class="navbar-nav">
     <% if current_admin_user.present? %>
       <li class="nav-item">
-        <span class='d-inline-flex'>
-          <%= render partial: 'shared/account_badge' %>
-          <%= link_to 'Log out', destroy_admin_user_session_path, method: :delete, class: 'nav-link' %>
-        </span>
+        <%= link_to 'Administrate', authenticated_admin_user_root_path %>
       </li>
     <% end %>
-    <% unless signed_in? %>
+    <% if current_user.present? %>
+      <li class="nav-item">
+        <%= link_to 'Home', authenticated_user_root_path %>
+      </li>
+    <% end %>
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <% if signed_in? %>
+      <li class="nav-item mr-auto">
+        <% if current_admin_user.present? %>
+          <%= render partial: 'shared/logout', locals: { _logout_path: destroy_admin_user_session_path, _account_badge_letter: 'A' } %>
+        <% end %>
+        <% if current_user.present? %>
+          <%= render partial: 'shared/logout', locals: { _logout_path: destroy_user_session_path, _account_badge_letter: 'U' } %>
+        <% end %>
+        <% if current_organisation_user.present? %>
+          <%= render partial: 'shared/logout', locals: { _logout_path: destroy_organisation_user_session_path, _account_badge_letter: 'O' } %>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <span class="nav-link disabled">Login as:</span>
+      </li>
       <li class="nav-item">
         <%= link_to 'User', new_user_session_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
         <%= link_to 'Admin', new_admin_user_session_path, class: 'nav-link' %>
       </li>
+      <li class="nav-item">
+        <%= link_to 'Org', new_organisation_user_session_path, class: 'nav-link' %>
+      </li>
     <% end %>
   </ul>
-  </div>
 </header>

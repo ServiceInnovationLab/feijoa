@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BirthRecord, type: :model do
+RSpec.describe AdminUser, type: :model do
   describe 'Factory' do
     subject { FactoryBot.create(:admin_user) }
 

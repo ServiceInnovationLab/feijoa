@@ -1,0 +1,2 @@
+<%= render partial: 'shared/birth_records/short_details', object: @birth_record %>
+<%= link_to 'share', new_user_share_path(share: { birth_record_id: @birth_record.to_param }), class: 'pill pill-secondary' %>

@@ -11,5 +11,36 @@
  * It is generally better to create a new file per style scope.
  */
 
- @import 'bootstrap';
- @import 'badge';
+@import 'variables';
+@import 'material';
+@import 'rails_bootstrap_forms';
+@import 'badge';
+
+@import 'body';
+
+.index-cards {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  .card {
+    width: 300px;
+    margin: 1em;
+  }
+}
+
+
+.card-row {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 25px;
+  grid-row-gap: 5px;
+}
+
+@include media-breakpoint-down(sm) {
+  .index-cards {
+    .card {
+      width: 100%;
+      margin: 0.5em;
+    }
+  }
+}
