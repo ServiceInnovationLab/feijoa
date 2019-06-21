@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class User::RegistrationsController < Devise::RegistrationsController
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   after_action :create_family_birth_records, only: :create
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   private
 
