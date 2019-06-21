@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class BirthRecord < ApplicationRecord
-  has_and_belongs_to_many :users
+  audited
+  has_associated_audits
+
+  has_many :birth_records_users, dependent: :destroy
+  has_many :users, -> { distinct}, through: :birth_records_users
 
   def date_of_birth
     format_date(self[:date_of_birth])
