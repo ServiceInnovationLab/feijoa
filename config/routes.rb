@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   devise_for :users, path: 'user', controllers: {
     # we need to override the sessions controller, others can be default
-    sessions: 'user/sessions'
+    sessions: 'user/sessions',
+
+    # we want to override the registrations controller so we can create some demo
+    # data for new users to easily find
+    registrations: 'user/registrations'
   }
 
   resources :user, only: [:index]

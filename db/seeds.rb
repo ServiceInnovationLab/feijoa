@@ -9,6 +9,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 FactoryBot.create_list :birth_record, 500
+FactoryBot.create_list :organisation_user, 3
 
 ['brenda.wallace', 'ross.patel'].each do |person|
   email = "#{person}@dia.govt.nz"
