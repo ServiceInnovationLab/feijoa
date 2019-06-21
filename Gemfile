@@ -54,7 +54,7 @@ gem 'factory_bot_rails'
 gem 'faker'
 
 # Log access to database records
-gem "audited", "~> 4.7"
+gem 'audited', '~> 4.7'
 
 group :production do
   gem 'sendgrid-ruby'

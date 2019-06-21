@@ -10,4 +10,8 @@ RSpec.describe BirthRecordsUser, type: :model do
       expect(subject).to be_valid
     end
   end
+
+  describe 'auditing' do
+    it { should be_audited.associated_with(:birth_record) }
+  end
 end

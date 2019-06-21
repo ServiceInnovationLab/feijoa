@@ -11,6 +11,6 @@ class User < ApplicationRecord
          :timeoutable, :trackable
 
   has_many :birth_records_users, dependent: :destroy
-  has_many :birth_records, -> { distinct}, through: :birth_records_users
+  has_many :birth_records, -> { distinct }, through: :birth_records_users
   has_many :shares, dependent: :nullify
 end

@@ -26,4 +26,8 @@ RSpec.describe BirthRecord, type: :model do
       expect(subject.date_of_birth).to match(expected_format)
     end
   end
+
+  context 'auditing' do
+    it { should have_associated_audits }
+  end
 end
