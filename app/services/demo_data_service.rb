@@ -28,14 +28,16 @@ class DemoDataService
       :birth_record,
       first_and_middle_names: 'Tama',
       family_name: family_name,
-      date_of_birth: DEFAULT_CHILD_BIRTHDAY
+      date_of_birth: DEFAULT_CHILD_BIRTHDAY,
+      sex: 'Male'
     )
 
     FactoryBot.create(
       :birth_record,
       first_and_middle_names: 'Hine',
       family_name: family_name,
-      date_of_birth: DEFAULT_CHILD_BIRTHDAY
+      date_of_birth: DEFAULT_CHILD_BIRTHDAY,
+      sex: 'Female'
     )
   end
 end
