@@ -35,7 +35,7 @@ class User::SharesController < User::BaseController
     @share.recipient_type = OrganisationUser.name
     respond_to do |format|
       if @share.save
-        format.html { redirect_to user_birth_record_path(@share.birth_record), notice: 'Share was successfully created.' }
+        format.html { redirect_to user_birth_record_path(@share.birth_record) }
       else
         format.html { render :new }
       end
