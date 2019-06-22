@@ -1,14 +1,16 @@
 <div class="card birth-record" data-id="<%= record.to_param %>">
-    <div class="card-header">
-      <h4 class="card-title">BIRTH RECORD</h4>
-    </div>
-    <div class="card-body">
-      <h5>
-        <strong><%= record.family_name %></strong>,
-        <%= record.first_and_middle_names %>
-        <div class="text-muted"><%= record.place_of_birth %> <%= record.date_of_birth %></div>
-      </h5>
-      <% if full %>
+  <div class="card-header">
+    <h4 class="card-title">BIRTH RECORD</h4>
+  </div>
+  <div class="card-body">
+    <h5>
+      <strong><%= record.family_name %></strong>,
+      <%= record.first_and_middle_names %>
+      <div class="text-muted">
+        <%= record.place_of_birth %> <%= record.date_of_birth %>
+      </div>
+    </h5>
+    <% if full %>
       <dl>
         <dd class="attribute-label">Sex</dd>
         <dt id="sex"><%=record.sex %></dt>
@@ -35,18 +37,18 @@
           <li class="list-group-item d-flex justify-content-between ">
               <%= share.recipient.email %>
               <span class="share-buttons">
-                <%= link_to new_user_share_path(share), method: :delete, class: 'btn' do %>
+                <%= link_to user_share_path(share),
+                  method: :delete, class: 'btn text-danger' do %>
                   revoke
                 <% end %>
               </span>
           </li>
         <% end %>
       </ul>
-      <% end %>
-    </div>
-    <div class="card-footer">
-      <%= link_to 'share', new_user_share_path(share: { birth_record_id: record.to_param }), class: 'btn' %>
-      <%= link_to 'remove', remove_user_birth_record_path(record), class: 'btn btn-danger', data: { confirm: 'Are you sure? This will the record from your documents'}, method: :post %>
-    </div>
+    <% end %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'share', new_user_share_path(share: { birth_record_id: record.to_param }), class: 'btn' %>
+    <%= link_to 'remove', remove_user_birth_record_path(record), class: 'btn btn-danger', data: { confirm: 'Are you sure? This will the record from your documents'}, method: :post %>
   </div>
 </div>
