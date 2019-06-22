@@ -54,7 +54,7 @@ gem 'factory_bot_rails'
 gem 'faker'
 
 # locale based flash notices for controllers
-gem "responders"
+gem 'responders'
 
 group :production do
   gem 'sendgrid-ruby'
