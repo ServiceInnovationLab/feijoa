@@ -27,7 +27,7 @@ Rails.application.routes.draw do
         post :remove
       end
     end
-    resources :shares, only: %i[index show new create]
+    resources :shares
   end
 
   authenticated :user do
