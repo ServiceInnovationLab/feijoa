@@ -28,6 +28,10 @@
   }
 }
 
+a:hover {
+  text-decoration: none;
+  background-color: $beige;
+}
 
 .card-row {
   display: grid;
