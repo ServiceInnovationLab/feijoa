@@ -26,4 +26,20 @@ RSpec.describe BirthRecord, type: :model do
       expect(subject.date_of_birth).to match(expected_format)
     end
   end
+
+  describe 'has many shares' do
+    let(:birth_record) { FactoryBot.create :birth_record }
+    let(:user) { FactoryBot.create :user }
+    let(:recipient) { FactoryBot.create :organisation_user }
+    it "don't make duplicate shares" do
+      FactoryBot.create :share, birth_record: birth_record,
+                                user: user, recipient: recipient
+      expect(birth_record.shares.size).to eq 1
+
+      expect do
+        FactoryBot.create :share, birth_record: birth_record,
+                                  user: user, recipient: recipient
+      end.to raise_error ActiveRecord::RecordInvalid
+    end
+  end
 end
