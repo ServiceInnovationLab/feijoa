@@ -3,6 +3,7 @@
 class User::SharesController < User::BaseController
   respond_to :html, :json
   before_action :set_share, only: :show
+  responders :flash
 
   # GET /shares
   def index
@@ -32,7 +33,6 @@ class User::SharesController < User::BaseController
     @share.user = current_user
     # we currently only allow shares to Organisations
     @share.recipient_type = OrganisationUser.name
-
     respond_to do |format|
       if @share.save
         format.html { redirect_to user_birth_record_path(@share.birth_record), notice: 'Share was successfully created.' }
