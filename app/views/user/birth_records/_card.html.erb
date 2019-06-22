@@ -11,40 +11,32 @@
       </div>
     </h5>
     <% if full %>
-      <dl>
-        <dd class="attribute-label">Sex</dd>
-        <dt id="sex"><%=record.sex %></dt>
-      </dl>
-      <dl>
-        <dd class="attribute-label">Parent 1</dd>
-        <dt id="parent_family_name">
-          <%=record.parent_family_name %>,
-          <%=record.parent_first_and_middle_names %>
-        </dt>
-      </dl>
-      <dl>
-        <dd class="attribute-label">Parent 2</dd>
-        <dt id="other_parent_family_name">
-          <%=record.other_parent_family_name %>,
-          <%=record.other_parent_first_and_middle_names %>
-        </dt>
-      </dl>
+      <p>
+      <strong>Sex</strong>
+      <%=record.sex %>.
+        <strong>Parent 1</strong>
+        <%=record.parent_family_name %>,
+        <%=record.parent_first_and_middle_names %>.
 
-      <h2 class="card-title">Shared with</h2>
-
-      <ul class="list-group list-group-flush">
-        <%- @birth_record.shares.each do |share| %>
-          <li class="list-group-item d-flex justify-content-between ">
-              <%= share.recipient.email %>
-              <span class="share-buttons">
-                <%= link_to user_share_path(share),
-                  method: :delete, class: 'btn text-danger' do %>
-                  revoke
-                <% end %>
-              </span>
-          </li>
-        <% end %>
-      </ul>
+        <strong>Parent 2</strong>
+        <%=record.other_parent_family_name %>,
+        <%=record.other_parent_first_and_middle_names %>.
+      </p>
+      <% if @birth_record.shares.size.positive? %>
+        <h4>Shared with</h4>
+        <ul class="list-group list-group-flush">
+          <%- @birth_record.shares.each do |share| %>
+            <li class="list-group-item d-flex justify-content-between ">
+                <%= share.recipient.email %>
+                <span class="share-buttons">
+                  <%= link_to 'revoke', user_share_path(share),
+                    method: :delete, class: 'btn text-danger',
+                    data: { confirm: 'Are you sure?' }%>
+                </span>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     <% end %>
   </div>
   <div class="card-footer">
