@@ -43,6 +43,12 @@ class BirthRecordService
       other_parent_family_name
     ].freeze
 
+  def self.add(user:, birth_record:)
+    Audited.audit_class.as_user(user) do
+      user.birth_records << birth_record
+    end
+  end
+
   # Search for a single BirthRecord matching the supplied parameters hash
   def self.query(params, case_insensitive_keys: CASE_INSENSITIVE_KEYS)
     return [] unless all_required_keys_are_present?(params)
