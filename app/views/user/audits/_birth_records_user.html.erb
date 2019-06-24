@@ -2,9 +2,15 @@
   <div class="card-body">
     <h5 class="card-title">
       <% if birth_records_user.action == 'create'%>
-        <strong>Add</strong> Birth Record For <strong><%= birth_records_user.associated.full_name %></strong> To Your Documents
+        <strong>Add</strong> birth record ror <strong><%= birth_records_user.associated.full_name %></strong>
+        <div class="text-muted">
+           to your documents
+        </div>
       <% else %>
-        <strong>Remove</strong> Birth Record For <strong><%= birth_records_user.associated.full_name %></strong> From Your Documents
+        <strong>Remove</strong> birth record For <strong><%= birth_records_user.associated.full_name %></strong>
+        <div class="text-muted">
+          From Your Documents
+        </div>
       <% end%>
     </h5>
     <div>Created at: <%= birth_records_user.created_at %></div>

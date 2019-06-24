@@ -2,9 +2,15 @@
   <div class="card-body">
     <h5 class="card-title">
       <% if share.action == 'create'%>
-        <strong>Share</strong> birth record of <strong><%= share.associated.full_name %></strong> with <strong><%= share.auditable.recipient.email %></strong>
+        <strong>Share</strong> birth record of <strong><%= share.associated.full_name %></strong> 
+        <div class="text-muted">
+          with <strong><%= share.auditable.recipient.email %></strong>
+        </div>
       <% else %>
-        <strong>Revoke</strong>sharing of birth record of <strong><%= share.associated.full_name %></strong> with <strong><%= share.auditable.recipient.email %></strong>
+        <strong>Revoke</strong>sharing of birth record of <strong><%= share.associated.full_name %></strong> 
+        <div class="text-muted">
+          with <strong><%= share.auditable.recipient.email %></strong>
+        </div>
       <% end%>
     </h5>
     <div>Created at: <%= share.created_at %></div>

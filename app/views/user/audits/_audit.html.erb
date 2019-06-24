@@ -1,11 +1,7 @@
 <div class="card audit" data-id="<%= audit.id %>">
   <div class="card-body">
     <h5 class="card-title">
-      <% if audit.action == 'create'%>
-        <strong>audit</strong> birth record of <strong><%= audit.associated.full_name %></strong> with <strong><%= audit.auditable.recipient.email %></strong>
-      <% else %>
-        <strong>Revoke</strong>sharing of birth record of <strong><%= audit.associated.full_name %></strong> with <strong><%= audit.auditable.recipient.email %></strong>
-      <% end%>
+      <%= audit.action %> <%= audit.auditable_type %>
     </h5>
     <div>Created at: <%= audit.created_at %></div>
     <div>Action by: <%= audit.user&.email %></div>
