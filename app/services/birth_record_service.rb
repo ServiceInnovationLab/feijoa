@@ -49,6 +49,17 @@ class BirthRecordService
     end
   end
 
+  def self.remove(user:, birth_record_id:)
+    Audited.audit_class.as_user(user) do
+      begin
+        # TODO: this should be implemented as a soft delete for record keeping reasons
+        user.birth_records.delete(birth_record_id)
+      rescue ActiveRecord::RecordNotFound
+        return false
+      end
+    end
+  end
+
   # Search for a single BirthRecord matching the supplied parameters hash
   def self.query(params, case_insensitive_keys: CASE_INSENSITIVE_KEYS)
     return [] unless all_required_keys_are_present?(params)

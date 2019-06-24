@@ -12,16 +12,8 @@ class User::BirthRecordsController < User::BaseController
     raise ActiveRecord::RecordNotFound unless @birth_record
   end
 
-  # GET find
-  def find
-    @birth_record = BirthRecord.new
-    @results = []
-  end
-
   # POST query
   def query
-    @birth_record = BirthRecord.new(query_params)
-
     # Only search on keys where a value was provided. The query service checks
     # that all required params have a value.
     supplied_params = query_params.to_h.select { |_k, v| v.present? }
@@ -34,7 +26,11 @@ class User::BirthRecordsController < User::BaseController
   # Attempts to add a record which is already attached will be ignored (by
   # 'distinct' modifier on User.birth_records).
   def add
-    current_user.birth_records << BirthRecord.find(params.permit(:id)[:id].to_i)
+    BirthRecordService.add(
+      user: current_user,
+      birth_record: BirthRecord.find_by(params.permit(:id))
+    )
+
     redirect_to user_birth_records_path
   end
 
@@ -43,10 +39,10 @@ class User::BirthRecordsController < User::BaseController
   # Attempts to remove a record which is not attached or doesn't exist will be
   # silently ignored.
   def remove
-    begin
-      current_user.birth_records.delete(params.permit(:id)[:id].to_i)
-    rescue ActiveRecord::RecordNotFound
-    end
+    BirthRecordService.remove(
+      user: current_user,
+      birth_record_id: params.permit(:id)[:id].to_i
+    )
 
     redirect_to user_birth_records_path
   end
