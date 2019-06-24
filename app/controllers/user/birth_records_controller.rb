@@ -8,8 +8,8 @@ class User::BirthRecordsController < User::BaseController
 
   # GET
   def show
-    @birth_record = current_user.birth_records.find_by(params.permit(:id))
-    raise ActiveRecord::RecordNotFound unless @birth_record
+    @birth_record = current_user.birth_records.find_by!(params.permit(:id))
+    @shares = @birth_record.shares.where(user: current_user)
   end
 
   # POST query
