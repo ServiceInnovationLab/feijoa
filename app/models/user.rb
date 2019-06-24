@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :birth_records, -> { distinct }, through: :birth_records_users
   has_many :shares, dependent: :nullify
 
-  # Get the audits for this user 
+  # Get the audits for this user
   #
   # BirthRecordsUser (the join table), Share, and View (TODO not implemented
   # yet, requires the 'view shared birth records' feature) audits are all

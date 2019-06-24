@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Audit < Audited::Audit
-  CUSTOM_RENDERING_TYPES = %w[share birth_records_user]
+  CUSTOM_RENDERING_TYPES = %w[share birth_records_user].freeze
 
   # Override the default partial path generator so we can render appropriate
   # different partials for each kind of audit
@@ -18,7 +18,7 @@ class Audit < Audited::Audit
   def to_partial_path
     return "audits/#{auditable_type.underscore}" if custom_rendering?
 
-    "audits/audit"
+    'audits/audit'
   end
 
   private
