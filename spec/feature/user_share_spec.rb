@@ -51,16 +51,16 @@ RSpec.describe 'user/SharesController', type: :feature do
       click_link 'share'
       select 'rangi@example.com', from: 'Recipient'
       click_button 'Share birth record'
+      Percy.snapshot(page, name: 'Shared birth record')
     end
     it { expect(page).to have_text 'Share was successfully created.' }
     it { expect(page).to have_text 'Shared with' }
     it { expect(page).to have_text 'rangi@example.com' }
     it { expect(page).to have_link 'revoke' }
+
     describe 'Revoke consent' do
       before do
-        accept_confirm do
-          click_link 'revoke'
-        end
+        accept_confirm { click_link 'revoke' }
       end
       it { expect(page).to have_text 'Share was successfully destroyed.' }
       it { expect(page).not_to have_text 'Shared with' }
