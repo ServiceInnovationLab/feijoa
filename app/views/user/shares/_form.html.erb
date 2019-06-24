@@ -14,18 +14,18 @@
   <div>
     Sharing birth record of <%= share.birth_record.full_name %>
   </div>
-  
+
   <div>
     <%= f.collection_select(
-      :recipient_id, 
+      :recipient_id,
       organisations,
       :id,
-      :email)
+      :email, include_blank: true)
     %>
   </div>
 
   <%= f.hidden_field :birth_record_id, value: share.birth_record.id %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Share birth record' %>
   </div>
 <% end %>

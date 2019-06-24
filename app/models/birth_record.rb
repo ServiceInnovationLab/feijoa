@@ -2,6 +2,7 @@
 
 class BirthRecord < ApplicationRecord
   has_and_belongs_to_many :users
+  has_many :shares, dependent: :destroy
 
   def date_of_birth
     format_date(self[:date_of_birth])
