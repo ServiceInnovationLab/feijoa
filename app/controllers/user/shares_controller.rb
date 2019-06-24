@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class User::SharesController < User::BaseController
+  respond_to :html, :json
   before_action :set_share, only: :show
+  responders :flash
 
   # GET /shares
   def index
@@ -31,14 +33,17 @@ class User::SharesController < User::BaseController
     @share.user = current_user
     # we currently only allow shares to Organisations
     @share.recipient_type = OrganisationUser.name
-
-    respond_to do |format|
-      if @share.save
-        format.html { redirect_to user_share_path(@share), notice: 'Share was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @share.save
+      respond_with(@share, location: user_birth_record_path(@share.birth_record))
+    else
+      respond_with(@share)
     end
+  end
+
+  def destroy
+    @share = Share.find_by!(id: params[:id], user_id: current_user.id)
+    @share.destroy
+    respond_with(@share, location: user_birth_record_path(@share.birth_record))
   end
 
   private
