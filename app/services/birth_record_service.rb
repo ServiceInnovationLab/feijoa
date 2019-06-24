@@ -60,6 +60,18 @@ class BirthRecordService
     end
   end
 
+  def self.share(user:, birth_record:, recipient:)
+    Audited.audit_class.as_user(user) do
+      Share.create!(user: user, birth_record: birth_record, recipient: recipient)
+    end
+  end
+
+  def self.revoke(user:, share:)
+    Audited.audit_class.as_user(user) do
+      share.revoke(revoked_by: user)
+    end
+  end
+
   # Search for a single BirthRecord matching the supplied parameters hash
   def self.query(params, case_insensitive_keys: CASE_INSENSITIVE_KEYS)
     return [] unless all_required_keys_are_present?(params)

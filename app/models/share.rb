@@ -14,4 +14,8 @@ class Share < ApplicationRecord
   validates :birth_record_id,
             uniqueness: { scope: %i[recipient_id user_id recipient_type],
                           message: 'has already been shared with this entity' }
+
+  def revoke(revoked_by:)
+    #TODO in another branch already?
+  end
 end
