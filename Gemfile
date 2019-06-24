@@ -56,6 +56,9 @@ gem 'faker'
 # Log access to database records
 gem 'audited', '~> 4.7'
 
+# locale based flash notices for controllers
+gem 'responders'
+
 group :production do
   gem 'sendgrid-ruby'
 end

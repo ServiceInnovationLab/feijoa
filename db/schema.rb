@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2019_06_20_043243) do
     t.bigint "recipient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["birth_record_id", "user_id", "recipient_id", "recipient_type"], name: "index_unique_shares", unique: true
     t.index ["birth_record_id"], name: "index_shares_on_birth_record_id"
     t.index ["recipient_type", "recipient_id"], name: "index_shares_on_recipient_type_and_recipient_id"
     t.index ["user_id"], name: "index_shares_on_user_id"

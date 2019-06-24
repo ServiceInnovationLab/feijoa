@@ -53,6 +53,10 @@ Rails.application.routes.draw do
 
   resources :organisation_user, only: [:index]
 
+  namespace :organisation_user do
+    resources :shares, only: %i[index show]
+  end
+
   authenticated :organisation_user do
     root 'organisation_user#index', as: :authenticated_organisation_user_root
   end
