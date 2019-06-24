@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       end
     end
     resources :shares, only: %i[index show new create]
+    resources :audits, only: :index
   end
 
   authenticated :user do

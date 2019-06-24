@@ -1,0 +1,16 @@
+<div class="card audit" data-id="<%= birth_records_user.id %>">
+  <div class="card-body">
+    <h5 class="card-title">
+      <% if birth_records_user.action == 'create'%>
+        <strong>Add</strong> Birth Record For <strong><%= birth_records_user.associated.full_name %></strong> To Your Documents
+      <% else %>
+        <strong>Remove</strong> Birth Record For <strong><%= birth_records_user.associated.full_name %></strong> From Your Documents
+      <% end%>
+    </h5>
+    <div>Created at: <%= birth_records_user.created_at %></div>
+    <div>Action by: <%= birth_records_user.user&.email %></div>
+    <div>Action type: <%= birth_records_user.auditable_type %></div>
+    <div>Action: <%= birth_records_user.action %></div>
+    <div>Comment: <%= birth_records_user.comment %></div>
+  </div>
+</div>
