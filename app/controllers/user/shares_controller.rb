@@ -33,8 +33,11 @@ class User::SharesController < User::BaseController
     @share.user = current_user
     # we currently only allow shares to Organisations
     @share.recipient_type = OrganisationUser.name
-    @share.save
-    respond_with(@share, location: user_birth_record_path(@share.birth_record))
+    if @share.save
+      respond_with(@share, location: user_birth_record_path(@share.birth_record))
+    else
+      respond_with(@share)
+    end
   end
 
   def destroy
