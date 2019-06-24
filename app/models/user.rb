@@ -19,7 +19,7 @@ class User < ApplicationRecord
   # to get the associated audits for their birth records.
   def audits
     birth_records
-      .map(&:own_and_associated_audits)
+      .map(&:associated_audits)
       .flatten
   end
 end

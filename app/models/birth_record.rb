@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class BirthRecord < ApplicationRecord
-  audited
   has_associated_audits
 
   has_many :birth_records_users, dependent: :destroy
