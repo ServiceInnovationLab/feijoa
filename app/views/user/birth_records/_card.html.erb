@@ -22,10 +22,10 @@
         <%=record.other_parent_family_name %>,
         <%=record.other_parent_first_and_middle_names %>.
       </p>
-      <% if @birth_record.shares.size.positive? %>
+      <% if @shares.size.positive? %>
         <h4>Shared with</h4>
         <ul class="list-group list-group-flush">
-          <%- @birth_record.shares.each do |share| %>
+          <%- @shares.each do |share| %>
             <li class="list-group-item d-flex justify-content-between ">
                 <%= share.recipient.email %>
                 <span class="share-buttons">
