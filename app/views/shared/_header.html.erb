@@ -6,7 +6,10 @@
   <ul class="navbar-nav">
     <% if current_admin_user.present? %>
       <li class="nav-item">
-        <%= link_to 'Administrate', authenticated_admin_user_root_path %>
+        <%= link_to 'Home', authenticated_admin_user_root_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Data', admin_root_path %>
       </li>
     <% end %>
     <% if current_user.present? %>
