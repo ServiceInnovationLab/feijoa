@@ -21,5 +21,6 @@ class User < ApplicationRecord
     birth_records
       .map(&:associated_audits)
       .flatten
+      .select { |a| a.user_id == id && a.user_type == self.class.name }
   end
 end
