@@ -62,7 +62,7 @@ RSpec.describe 'user/SharesController', type: :feature do
       before do
         accept_confirm { click_link 'revoke' }
       end
-      it { expect(page).to have_text 'Share was successfully destroyed.' }
+      it { expect(page).to have_text 'Share was successfully revoked.' }
       it { expect(page).not_to have_text 'Shared with' }
       it { expect(page).not_to have_text 'rangi@example.com' }
       it { expect(page).not_to have_link 'revoke' }

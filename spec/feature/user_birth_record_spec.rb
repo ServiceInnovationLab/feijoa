@@ -46,7 +46,7 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
         end
 
         context 'all the permitted fields are filled in correctly' do
-          it 'is found' do
+          it 'is found and can be added and removed' do
             visit user_birth_records_path
             click_link 'Search for Birth Record'
             fill_in 'birth_record_first_and_middle_names', with: 'Timmy'

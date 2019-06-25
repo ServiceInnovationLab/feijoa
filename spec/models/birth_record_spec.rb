@@ -30,7 +30,7 @@ RSpec.describe BirthRecord, type: :model do
   context 'auditing' do
     it { should have_associated_audits }
   end
-  
+
   describe 'has many shares' do
     let(:birth_record) { FactoryBot.create :birth_record }
     let(:user) { FactoryBot.create :user }
