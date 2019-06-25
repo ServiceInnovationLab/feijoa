@@ -34,7 +34,11 @@ RSpec.describe AuditedOperationsService do
     describe '#share_birth_record_with_recipient' do
       it 'fails' do
         expect do
-          described_class.share_birth_record_with_recipient(user: user, birth_record: birth_record, recipient: organisation_user)
+          described_class.share_birth_record_with_recipient(
+            user: user,
+            birth_record: birth_record,
+            recipient: organisation_user
+          )
         end.to raise_error(ArgumentError)
       end
     end

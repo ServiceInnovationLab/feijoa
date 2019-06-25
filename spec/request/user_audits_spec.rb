@@ -21,7 +21,8 @@ RSpec.describe 'user/AuditsController', type: :request do
           get user_audits_path
 
           expect(response).to be_successful
-          expect(response.body).to include("<strong>Add</strong> birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
+          expect(response.body)
+            .to include("<strong>Add</strong> birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
         end
 
         context 'and they share it' do
@@ -39,7 +40,8 @@ RSpec.describe 'user/AuditsController', type: :request do
             get user_audits_path
 
             expect(response).to be_successful
-            expect(response.body).to include("<strong>Share</strong> birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
+            expect(response.body)
+              .to include("<strong>Share</strong> birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
           end
 
           context 'then they revoke the share' do
@@ -51,7 +53,10 @@ RSpec.describe 'user/AuditsController', type: :request do
               get user_audits_path
 
               expect(response).to be_successful
-              expect(response.body).to include("<strong>Revoke</strong> sharing of birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
+              expect(response.body)
+                .to include(
+                  "Revoke</strong> sharing of birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}"
+                )
             end
           end
         end
@@ -65,7 +70,8 @@ RSpec.describe 'user/AuditsController', type: :request do
             get user_audits_path
 
             expect(response).to be_successful
-            expect(response.body).to include("<strong>Remove</strong> birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
+            expect(response.body)
+              .to include("<strong>Remove</strong> birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
           end
         end
       end
