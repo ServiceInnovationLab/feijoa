@@ -3,7 +3,7 @@
 class BirthRecordsUser < ApplicationRecord
   include Discard::Model
 
-  audited associated_with: :birth_record
+  audited associated_with: :user, comment_required: true
 
   belongs_to :user
   belongs_to :birth_record

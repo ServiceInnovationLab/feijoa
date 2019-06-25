@@ -28,12 +28,16 @@ class User::SharesController < User::BaseController
 
   # POST /shares
   def create
-    @share = Share.new(share_params)
-    # shares are always associated with the current user
-    @share.user = current_user
-    # we currently only allow shares to Organisations
-    @share.recipient_type = OrganisationUser.name
-    if @share.save
+    birth_record = current_user.birth_records.find(share_params['birth_record_id'])
+    recipient = OrganisationUser.find(share_params[:recipient_id])
+
+    @share = AuditedOperationsService.share_birth_record_with_recipient(
+      user: current_user,
+      birth_record: birth_record,
+      recipient: recipient
+    )
+
+    if @share.valid?
       respond_with(@share, location: user_birth_record_path(@share.birth_record))
     else
       respond_with(@share)
