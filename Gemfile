@@ -59,6 +59,9 @@ gem 'audited', '~> 4.7'
 # locale based flash notices for controllers
 gem 'responders'
 
+# Soft delete support
+gem 'discard', '~> 1.0'
+
 group :production do
   gem 'sendgrid-ruby'
 end
