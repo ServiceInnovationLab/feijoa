@@ -4,7 +4,7 @@ class Share < ApplicationRecord
   include Discard::Model
   self.discard_column = :revoked_at
 
-  audited associated_with: :birth_record
+  audited associated_with: :user, comment_required: true
 
   belongs_to :birth_record
   belongs_to :user
@@ -16,9 +16,7 @@ class Share < ApplicationRecord
   validates :recipient, presence: true
   validates :birth_record, presence: true
 
-  validates :birth_record_id,
-            uniqueness: { scope: %i[recipient_id user_id recipient_type],
-                          message: 'has already been shared with this entity' }
+  validate :not_currently_shared, on: :create
 
   # Revoke this share, so the recipient can no longer view the shared birth
   # record
@@ -32,5 +30,19 @@ class Share < ApplicationRecord
       revoked_by: revoked_by,
       revoked_at: Time.now.utc
     )
+  end
+
+  def revoked?
+    revoked_by.present?
+  end
+
+  private
+
+  # True if the user doesn't have any active (not soft deleted) shares of this
+  # birth record with this recipient
+  def not_currently_shared
+    if Share.where(recipient: recipient, user: user, birth_record: birth_record).kept.any?
+      errors.add(:recipient, 'is currently shared with this entity')
+    end
   end
 end
