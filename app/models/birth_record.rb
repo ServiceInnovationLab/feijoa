@@ -5,7 +5,7 @@ class BirthRecord < ApplicationRecord
 
   has_many :birth_records_users, dependent: :nullify
   has_many :users, -> { distinct }, through: :birth_records_users
-  has_many :shares, -> { merge(Share.kept) }, dependent: :nullify
+  has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :birth_records
 
   def date_of_birth
     format_date(self[:date_of_birth])

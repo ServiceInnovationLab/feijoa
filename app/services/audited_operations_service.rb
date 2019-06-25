@@ -20,7 +20,6 @@ class AuditedOperationsService
           .birth_records_users
           .find_by!(birth_record_id: birth_record_id)
           .discard
-
       rescue ActiveRecord::RecordNotFound
         return false
       end
