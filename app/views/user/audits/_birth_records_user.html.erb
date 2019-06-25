@@ -1,22 +1,25 @@
-<div class="card audit" data-id="<%= birth_records_user.id %>">
+<% # Normalise auto-assigned variable %>
+<% audit ||= birth_records_user %>
+
+<div class="card audit" data-id="<%= audit.id %>">
   <div class="card-body">
     <h5 class="card-title">
-      <% if birth_records_user.action == 'create'%>
-        <strong>Add</strong> birth record of <strong><%= birth_records_user.associated.full_name %></strong>
+      <% if audit.action == 'create'%>
+        <strong>Add</strong> birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
         <div class="text-muted">
            to your documents
         </div>
       <% else %>
-        <strong>Remove</strong> birth record of <strong><%= birth_records_user.associated.full_name %></strong>
+        <strong>Remove</strong> birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
         <div class="text-muted">
           From Your Documents
         </div>
       <% end%>
     </h5>
-    <div>Created at: <%= birth_records_user.created_at %></div>
-    <div>Action by: <%= birth_records_user.user&.email %></div>
-    <div>Action type: <%= birth_records_user.auditable_type %></div>
-    <div>Action: <%= birth_records_user.action %></div>
-    <div>Comment: <%= birth_records_user.comment %></div>
+    <div>Created at: <%= audit.created_at %></div>
+    <div>Action by: <%= audit.user&.email %></div>
+    <div>Action type: <%= audit.auditable_type %></div>
+    <div>Action: <%= audit.action %></div>
+    <div>Comment: <%= audit.comment %></div>
   </div>
 </div>

@@ -1,22 +1,25 @@
-<div class="card audit" data-id="<%= share.id %>">
+<% # Normalise auto-assigned variable %>
+<% audit ||= share %>
+
+<div class="card audit" data-id="<%= audit.id %>">
   <div class="card-body">
     <h5 class="card-title">
-      <% if share.action == 'create'%>
-        <strong>Share</strong> birth record of <strong><%= share.associated.full_name %></strong>
+      <% if audit.action == 'create'%>
+        <strong>Share</strong> birth record of <strong><%= audit.associated.full_name %></strong>
         <div class="text-muted">
-          with <strong><%= share.auditable.recipient.email %></strong>
+          with <strong><%= audit.auditable.recipient.email %></strong>
         </div>
       <% else %>
-        <strong>Revoke</strong> sharing of birth record of <strong><%= share.associated.full_name %></strong>
+        <strong>Revoke</strong> sharing of birth record of <strong><%= audit.associated.full_name %></strong>
         <div class="text-muted">
-          with <strong><%= share.auditable.recipient.email %></strong>
+          with <strong><%= audit.auditable.recipient.email %></strong>
         </div>
       <% end%>
     </h5>
-    <div>Created at: <%= share.created_at %></div>
-    <div>Action by: <%= share.user&.email %></div>
-    <div>Action type: <%= share.auditable_type %></div>
-    <div>Action: <%= share.action %></div>
-    <div>Comment: <%= share.comment %></div>
+    <div>Created at: <%= audit.created_at %></div>
+    <div>Action by: <%= audit.user&.email %></div>
+    <div>Action type: <%= audit.auditable_type %></div>
+    <div>Action: <%= audit.action %></div>
+    <div>Comment: <%= audit.comment %></div>
   </div>
 </div>
