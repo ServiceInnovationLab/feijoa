@@ -43,35 +43,6 @@ class BirthRecordService
       other_parent_family_name
     ].freeze
 
-  def self.add(user:, birth_record:)
-    Audited.audit_class.as_user(user) do
-      user.birth_records << birth_record
-    end
-  end
-
-  def self.remove(user:, birth_record_id:)
-    Audited.audit_class.as_user(user) do
-      begin
-        # TODO: this should be implemented as a soft delete for record keeping reasons
-        user.birth_records.delete(birth_record_id)
-      rescue ActiveRecord::RecordNotFound
-        return false
-      end
-    end
-  end
-
-  def self.share(user:, birth_record:, recipient:)
-    Audited.audit_class.as_user(user) do
-      Share.create!(user: user, birth_record: birth_record, recipient: recipient)
-    end
-  end
-
-  def self.revoke(user:, share:)
-    Audited.audit_class.as_user(user) do
-      share.revoke(revoked_by: user)
-    end
-  end
-
   # Search for a single BirthRecord matching the supplied parameters hash
   def self.query(params, case_insensitive_keys: CASE_INSENSITIVE_KEYS)
     return [] unless all_required_keys_are_present?(params)
