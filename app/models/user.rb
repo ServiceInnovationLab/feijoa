@@ -7,9 +7,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :timeoutable, :trackable
 
-  has_many :birth_records_users, dependent: :destroy
-  has_many :birth_records, -> { distinct }, through: :birth_records_users
-  has_many :shares, dependent: :nullify
+  has_many :birth_records_users, dependent: :nullify
+  has_many :birth_records, -> { distinct.merge(BirthRecordsUser.kept) }, through: :birth_records_users
+  has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :user
 
   # Get the audits for this user
   #
@@ -18,9 +18,6 @@ class User < ApplicationRecord
   # associated with a BirthRecord so the easiest way to gat a user's audits is
   # to get the associated audits for their birth records.
   def audits
-    birth_records
-      .map(&:associated_audits)
-      .flatten
-      .select { |a| a.user_id == id && a.user_type == self.class.name }
+    Audit.where(user: self)
   end
 end

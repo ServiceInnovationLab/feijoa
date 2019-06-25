@@ -2,12 +2,12 @@
 
 class User::SharesController < User::BaseController
   respond_to :html, :json
-  before_action :set_share, only: :show
+  before_action :set_share, only: %i[show revoke]
   responders :flash
 
   # GET /shares
   def index
-    @shares = current_user.shares
+    @shares = user_shares
   end
 
   # GET /shares/1
@@ -40,21 +40,28 @@ class User::SharesController < User::BaseController
     end
   end
 
-  def destroy
-    @share = Share.find_by!(id: params[:id], user_id: current_user.id)
-    @share.destroy
+  def revoke
+    @share.revoke(revoked_by: current_account)
     respond_with(@share, location: user_birth_record_path(@share.birth_record))
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  # Set the share, if it exists and is available to the current user
   def set_share
-    @share = current_user.shares.find_by(params.permit(:id))
+    @share = user_shares.find_by(params.permit(:id))
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def share_params
     params.require(:share).permit(:birth_record_id, :recipient_type, :recipient_id)
+  end
+
+  # The shares visible to the current user
+  #
+  # This is not as obvious as current_user.shares because shares are
+  # soft-deleted with the 'discard' gem when they are revoked
+  def user_shares
+    current_user.shares.kept
   end
 end
