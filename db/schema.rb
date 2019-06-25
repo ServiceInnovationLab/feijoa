@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_22_024649) do
+ActiveRecord::Schema.define(version: 2019_06_24_224717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,9 @@ ActiveRecord::Schema.define(version: 2019_06_22_024649) do
   create_table "birth_records_users", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "birth_record_id", null: false
+    t.datetime "discarded_at"
     t.index ["birth_record_id", "user_id"], name: "index_birth_records_users_on_birth_record_id_and_user_id"
+    t.index ["discarded_at"], name: "index_birth_records_users_on_discarded_at"
     t.index ["user_id", "birth_record_id"], name: "index_birth_records_users_on_user_id_and_birth_record_id"
   end
 
@@ -101,9 +103,14 @@ ActiveRecord::Schema.define(version: 2019_06_22_024649) do
     t.bigint "recipient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "revoked_by_type"
+    t.bigint "revoked_by_id"
+    t.datetime "revoked_at"
     t.index ["birth_record_id", "user_id", "recipient_id", "recipient_type"], name: "index_unique_shares", unique: true
     t.index ["birth_record_id"], name: "index_shares_on_birth_record_id"
     t.index ["recipient_type", "recipient_id"], name: "index_shares_on_recipient_type_and_recipient_id"
+    t.index ["revoked_at"], name: "index_shares_on_revoked_at"
+    t.index ["revoked_by_type", "revoked_by_id"], name: "index_shares_on_revoked_by_type_and_revoked_by_id"
     t.index ["user_id"], name: "index_shares_on_user_id"
   end
 
