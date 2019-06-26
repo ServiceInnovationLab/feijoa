@@ -8,4 +8,8 @@ class Share < ApplicationRecord
   validates :user, presence: true
   validates :recipient, presence: true
   validates :birth_record, presence: true
+
+  validates :birth_record_id,
+            uniqueness: { scope: %i[recipient_id user_id recipient_type],
+                          message: 'has already been shared with this entity' }
 end

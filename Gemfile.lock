@@ -368,6 +368,7 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rails-controller-testing
   raygun4ruby
+  responders
   rspec-rails (~> 3.8)
   rubocop (= 0.71.0)
   rubocop-rails

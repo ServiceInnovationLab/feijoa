@@ -27,7 +27,7 @@ Rails.application.routes.draw do
         post :remove
       end
     end
-    resources :shares, only: %i[index show new create]
+    resources :shares
   end
 
   authenticated :user do
@@ -51,6 +51,10 @@ Rails.application.routes.draw do
   }
 
   resources :organisation_user, only: [:index]
+
+  namespace :organisation_user do
+    resources :shares, only: %i[index show]
+  end
 
   authenticated :organisation_user do
     root 'organisation_user#index', as: :authenticated_organisation_user_root

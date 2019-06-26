@@ -1,18 +1,18 @@
 <h1>Shared document</h1>
-<p class="lead">You have shared this with <%= @share.recipient.email %>.</p>
+<p class="lead"><%= @share.user.email %> has shared this with you.</p>
 <p>
   <strong>Birth record:</strong>
   <%= render partial: 'shared/birth_records/short_details', object: @share.birth_record %>
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>Shared by:</strong>
   <%= @share.user.email %>
 </p>
 
 <p>
   <strong>Recipient:</strong>
-  <%= @share.recipient.display_name %>
+  <%= @share.recipient.email %>
 </p>
 
 <%= link_to 'Back', user_shares_path %>

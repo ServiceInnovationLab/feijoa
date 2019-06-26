@@ -20,12 +20,13 @@
       :recipient_id,
       organisations,
       :id,
-      :display_name)
+      :display_name,
+      include_blank: true)
     %>
   </div>
 
   <%= f.hidden_field :birth_record_id, value: share.birth_record.id %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Share birth record' %>
   </div>
 <% end %>
