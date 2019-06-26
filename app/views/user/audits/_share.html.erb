@@ -14,7 +14,7 @@
         <div class="text-muted">
           with <strong><%= audit.auditable.recipient.email %></strong>
         </div>
-      <% else %>
+      <% elsif audit.comment == AuditedOperationsService::VIEW_SHARED_BIRTH_RECORD %>
         <strong>View</strong> birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
         <div class="text-muted">
           by <strong><%= audit.auditable.recipient.email %></strong>
