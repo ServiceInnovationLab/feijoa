@@ -10,6 +10,6 @@ class OrganisationUser < ApplicationRecord
   has_many :shares, as: :recipient, dependent: :nullify
 
   def display_name
-    "#{name} (#{email})" || email
+    name.present? ? "#{name} (#{email})" : email
   end
 end
