@@ -1,0 +1,17 @@
+<ul class="navbar-nav border border-primary mx-1">
+  <span class='badge badge--account-type'>
+    <%= 'O' %>
+  </span>
+  <% if current_organisation_user.present? %>
+    <li class="nav-item">
+      <%= link_to 'Shared with me', organisation_user_shares_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= render partial: 'shared/logout', locals: { _logout_path: destroy_organisation_user_session_path } %>
+    </li>
+  <% else %>
+    <li class="nav-item">
+      <%= link_to 'Sign in', new_organisation_user_session_path, class: 'btn btn-outline-success' %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,20 @@
+<ul class="navbar-nav border border-primary mx-1">
+  <span class='badge badge--account-type'>
+    <%= 'U' %>
+  </span>
+  <% if current_user.present? %>
+    <li class="nav-item">
+      <%= link_to 'My Documents', user_birth_records_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Shares', user_shares_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= render partial: 'shared/logout', locals: { _logout_path: destroy_user_session_path } %>
+    </li>
+  <% else %>
+    <li class="nav-item">
+      <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-outline-success' %>
+    </li>
+  <% end %>
+</ul>
