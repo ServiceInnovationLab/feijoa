@@ -13,10 +13,11 @@ class User < ApplicationRecord
 
   # Get the audits for this user
   #
-  # BirthRecordsUser (the join table), Share, and View (TODO not implemented
-  # yet, requires the 'view shared birth records' feature) audits are all
-  # associated with a BirthRecord so the easiest way to gat a user's audits is
-  # to get the associated audits for their birth records.
+  # These are audits where the user is the one who took action. Notably this
+  # doesn't include audits where an organisation views a birth record shared by
+  # this use (because the organisation takes the action). Those audits can be
+  # retrieved separately with `user.shares.map(&:audits).flatten` - see
+  # User::AuditsController#index for an implementation
   def audits
     Audit.where(user: self)
   end
