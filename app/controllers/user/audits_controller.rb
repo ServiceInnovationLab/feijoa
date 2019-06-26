@@ -3,7 +3,10 @@
 class User::AuditsController < User::BaseController
   # GET
   def index
-    @audits = current_user.audits + shares_audits
+    # create distinct list of
+    # - the audits of this user's actions
+    # - the actions anyone has taken on this user's shares
+    @audits = current_user.audits | shares_audits
   end
 
   private
