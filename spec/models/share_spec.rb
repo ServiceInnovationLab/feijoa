@@ -13,12 +13,12 @@ RSpec.describe Share, type: :model do
   end
 
   describe 'auditing' do
-    it { should be_audited.associated_with(:birth_record) }
+    it { should be_audited.associated_with(:user) }
   end
 
   describe '#revoke' do
     it 'sets revoked_by and revoked_at' do
-      subject.revoke(revoked_by: user)
+      AuditedOperationsService.revoke_share(share: subject, user: user)
 
       subject.reload
 

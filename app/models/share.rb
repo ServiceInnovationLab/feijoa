@@ -18,20 +18,6 @@ class Share < ApplicationRecord
 
   validate :not_currently_shared, on: :create
 
-  # Revoke this share, so the recipient can no longer view the shared birth
-  # record
-  #
-  # This records who revoked the share (usually the user who initiated it, but
-  # it could be voluntarily given up by the recipient for example), and does a
-  # soft-delete (using the 'discard' gem) which saves a timestamp into the
-  # revoked_at column
-  def revoke(revoked_by:)
-    update!(
-      revoked_by: revoked_by,
-      revoked_at: Time.now.utc
-    )
-  end
-
   def revoked?
     revoked_by.present?
   end

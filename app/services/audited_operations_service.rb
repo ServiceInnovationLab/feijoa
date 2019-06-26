@@ -22,7 +22,7 @@ class AuditedOperationsService
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
     Audited.audit_class.as_user(user) do
-      user.birth_records_users << BirthRecordsUsers.create!(
+      user.birth_records_users << BirthRecordsUser.create!(
         user: user,
         birth_record: birth_record,
         audit_comment: ADD_BIRTH_RECORD_TO_USER
@@ -65,10 +65,11 @@ class AuditedOperationsService
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
     Audited.audit_class.as_user(user) do
-      share.revoke(
-        revoked_by: user,
-        audit_comment: REVOKE_SHARE
-      )
+      share.update!(
+      revoked_by: user,
+      revoked_at: Time.now.utc,
+      audit_comment: REVOKE_SHARE
+    )
     end
   end
 

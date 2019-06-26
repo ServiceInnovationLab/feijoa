@@ -15,8 +15,10 @@ RSpec.describe 'user/SharesController', type: :feature do
     )
   end
   before do
-    user.birth_records << birth_records
-    user.birth_records << target_birth_record
+    birth_records.each do |birth_record|
+      AuditedOperationsService.add_birth_record_to_user(birth_record: birth_record, user: user)
+    end
+    AuditedOperationsService.add_birth_record_to_user(birth_record: target_birth_record, user: user)
   end
 
   describe 'share a birth record' do

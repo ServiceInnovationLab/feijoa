@@ -36,13 +36,20 @@ RSpec.describe User::SharesController, type: :controller do
 
     describe 'POST #create' do
       context 'with valid params' do
+        let(:birth_record) { FactoryBot.create(:birth_record) }
+        let!(:birth_records_user) {
+          FactoryBot.create(:birth_records_user, birth_record: birth_record, user: user)
+        }
         let(:valid_attributes) do
-          FactoryBot.build(
-            :share,
-            user: user,
-            recipient: FactoryBot.create(:organisation_user),
-            birth_record: FactoryBot.create(:birth_record)
-          ).attributes
+          FactoryBot
+            .build(
+              :share,
+              user: user,
+              recipient: FactoryBot.create(:organisation_user),
+              birth_record: birth_record
+            )
+            .attributes
+            .transform_keys! { |k| k.to_s }
         end
 
         it 'creates a new Share' do
@@ -58,9 +65,10 @@ RSpec.describe User::SharesController, type: :controller do
       end
 
       context 'with invalid params' do
-        it "returns a success response (i.e. to display the 'new' template)" do
-          post :create, params: { share: invalid_attributes }
-          expect(response).to be_successful
+        it "raises an error" do
+          expect {
+            post :create, params: { share: invalid_attributes }
+          }.to raise_error(ActionController::ParameterMissing)
         end
       end
     end

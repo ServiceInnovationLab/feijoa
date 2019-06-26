@@ -28,8 +28,10 @@ class User::SharesController < User::BaseController
 
   # POST /shares
   def create
-    birth_record = current_user.birth_records.find(share_params['birth_record_id'])
-    recipient = OrganisationUser.find(share_params[:recipient_id])
+    require_valid_params
+
+    birth_record = current_user.birth_records.find(share_params['birth_record_id'].to_i)
+    recipient = OrganisationUser.find(share_params['recipient_id'].to_i)
 
     @share = AuditedOperationsService.share_birth_record_with_recipient(
       user: current_user,
@@ -45,7 +47,7 @@ class User::SharesController < User::BaseController
   end
 
   def revoke
-    @share.revoke(revoked_by: current_account)
+    AuditedOperationsService.revoke_share(share: @share, user: current_account)
     respond_with(@share, location: user_birth_record_path(@share.birth_record))
   end
 
@@ -56,9 +58,19 @@ class User::SharesController < User::BaseController
     @share = user_shares.find_by(params.permit(:id))
   end
 
+  # Require the params which will allow a valid model to be created
+  #
+  # The return value isn't useful, but this will raise an error if parameters
+  # are missing
+  def require_valid_params
+    params
+      .require(:share)
+      .require([:birth_record_id, :recipient_id])
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def share_params
-    params.require(:share).permit(:birth_record_id, :recipient_type, :recipient_id)
+    params.require(:share).permit(:birth_record_id, :recipient_id)
   end
 
   # The shares visible to the current user

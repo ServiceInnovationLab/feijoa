@@ -12,6 +12,6 @@ RSpec.describe BirthRecordsUser, type: :model do
   end
 
   describe 'auditing' do
-    it { should be_audited.associated_with(:birth_record) }
+    it { should be_audited.associated_with(:user) }
   end
 end
