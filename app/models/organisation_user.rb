@@ -8,4 +8,8 @@ class OrganisationUser < ApplicationRecord
          :timeoutable, :trackable
 
   has_many :shares, as: :recipient, dependent: :nullify
+
+  def display_name
+    "#{name} (#{email})" || email
+  end
 end

@@ -14,13 +14,13 @@
   <div>
     Sharing birth record of <%= share.birth_record.full_name %>
   </div>
-  
+
   <div>
     <%= f.collection_select(
-      :recipient_id, 
+      :recipient_id,
       organisations,
       :id,
-      :email)
+      :display_name)
     %>
   </div>
 
