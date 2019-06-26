@@ -3,6 +3,10 @@
 
 This partial renders flash messages on every page.
 
+The value is treated as raw string content, and will not be escaped
+before rendering. It could include html or javascript content which
+will be rendered faithfully.
+
 ## Relevant Helpers:
 
 - `flash`:
@@ -14,7 +18,7 @@ This partial renders flash messages on every page.
 <% if flash.any? %>
   <div class="flashes">
     <% flash.each do |key, value| -%>
-      <div class="flash flash-<%= key %>"><%= value.html_safe %></div>
+      <div class="flash flash-<%= key %>"><%= raw value %></div>
     <% end -%>
   </div>
 <% end %>
