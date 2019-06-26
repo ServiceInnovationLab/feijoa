@@ -37,9 +37,9 @@ RSpec.describe User::SharesController, type: :controller do
     describe 'POST #create' do
       context 'with valid params' do
         let(:birth_record) { FactoryBot.create(:birth_record) }
-        let!(:birth_records_user) {
+        let!(:birth_records_user) do
           FactoryBot.create(:birth_records_user, birth_record: birth_record, user: user)
-        }
+        end
         let(:valid_attributes) do
           FactoryBot
             .build(
@@ -49,7 +49,6 @@ RSpec.describe User::SharesController, type: :controller do
               birth_record: birth_record
             )
             .attributes
-            .transform_keys! { |k| k.to_s }
         end
 
         it 'creates a new Share' do
@@ -65,10 +64,10 @@ RSpec.describe User::SharesController, type: :controller do
       end
 
       context 'with invalid params' do
-        it "raises an error" do
-          expect {
+        it 'raises an error' do
+          expect do
             post :create, params: { share: invalid_attributes }
-          }.to raise_error(ActionController::ParameterMissing)
+          end.to raise_error(ActionController::ParameterMissing)
         end
       end
     end

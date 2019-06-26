@@ -66,10 +66,10 @@ class AuditedOperationsService
 
     Audited.audit_class.as_user(user) do
       share.update!(
-      revoked_by: user,
-      revoked_at: Time.now.utc,
-      audit_comment: REVOKE_SHARE
-    )
+        revoked_by: user,
+        revoked_at: Time.now.utc,
+        audit_comment: REVOKE_SHARE
+      )
     end
   end
 
