@@ -1,9 +1,5 @@
 sudo: required
 language: ruby
-branches:
-  only:
-  - master
-  - dev
 cache:
   bundler: true
   yarn: true
@@ -43,7 +39,7 @@ deploy:
     repo: ServiceInnovationLab/feijoa
   app:
     master: feijoa
-    pr-deploy: feijoa
+    staging: feijoa-staging
   run:
   - bundle install
   - yarn install
