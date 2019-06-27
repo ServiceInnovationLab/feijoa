@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :admin_users
+    resources :organisation_users
     resources :birth_records
+    resources :shares
 
-    root to: 'users#index'
+    root to: 'birth_records#index'
   end
 
   devise_for :users, path: 'user', controllers: {
