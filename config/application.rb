@@ -23,5 +23,10 @@ module Feijoa
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # This setting toggles whether site users can log in with different account
+    # types at the same time, for example as an admin_user and a normal user,
+    # and access any pages allowed by their active accounts.
+    config.allow_multiple_logins = false
   end
 end
