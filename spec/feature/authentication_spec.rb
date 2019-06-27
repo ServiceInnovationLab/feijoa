@@ -36,13 +36,13 @@ RSpec.feature 'Authentication' do
     end
 
     it 'is redirected to user sign-in if it tries to open the user page' do
-      visit user_index_path
+      visit user_root_path
 
       expect(page.current_path).to eq(new_user_session_path)
     end
 
     it 'is redirected to admin sign-in if it tries to open the admin page' do
-      visit admin_user_index_path
+      visit admin_user_root_path
 
       expect(page.current_path).to eq(new_admin_user_session_path)
       Percy.snapshot(page, name: 'admin dashboard')
@@ -75,11 +75,11 @@ RSpec.feature 'Authentication' do
       expect(page.current_path).to eq(user_root_path)
     end
 
-    it 'can view the user page' do
-      visit user_index_path
+    it 'can view the user root page' do
+      visit user_root_path
 
-      expect(page.current_path).to eq(user_index_path)
-      Percy.snapshot(page, name: 'user dashboard')
+      expect(page.current_path).to eq(user_root_path)
+      Percy.snapshot(page, name: 'user default page')
     end
 
     it 'can view the admin sign in page' do
@@ -89,7 +89,7 @@ RSpec.feature 'Authentication' do
     end
 
     it 'is redirected to the admin sign in page if it tries to view the admin dashboard page' do
-      visit admin_user_index_path
+      visit admin_user_root_path
 
       expect(page.current_path).to eq(new_admin_user_session_path)
     end
@@ -124,7 +124,7 @@ RSpec.feature 'Authentication' do
     end
 
     it 'is redirected to the user sign in page if it tries to view the user page' do
-      visit user_index_path
+      visit user_root_path
 
       expect(page.current_path).to eq(new_user_session_path)
     end
@@ -133,6 +133,13 @@ RSpec.feature 'Authentication' do
       visit new_admin_user_session_path
 
       expect(page.current_path).to eq(admin_user_root_path)
+    end
+
+    it 'can view the admin_user root page' do
+      visit admin_user_root_path
+
+      expect(page.current_path).to eq(admin_user_root_path)
+      Percy.snapshot(page, name: 'admin_user default page')
     end
   end
   context 'A logged in Organisation' do
@@ -164,7 +171,7 @@ RSpec.feature 'Authentication' do
     end
 
     it 'is redirected to the user sign in page if it tries to view the user page' do
-      visit user_index_path
+      visit user_root_path
 
       expect(page.current_path).to eq(new_user_session_path)
     end
@@ -173,6 +180,13 @@ RSpec.feature 'Authentication' do
       visit new_admin_user_session_path
 
       expect(page.current_path).to eq(new_admin_user_session_path)
+    end
+
+    it 'can view the organisation_user root page' do
+      visit organisation_user_root_path
+
+      expect(page.current_path).to eq(organisation_user_root_path)
+      Percy.snapshot(page, name: 'organisation_user default page')
     end
   end
 end
