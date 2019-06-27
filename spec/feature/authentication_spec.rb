@@ -83,7 +83,6 @@ RSpec.feature 'Authentication' do
     end
 
     context 'when multiple logins are allowed' do
-
       before do
         expect(Rails.configuration)
           .to(receive(:allow_multiple_logins))
@@ -105,7 +104,6 @@ RSpec.feature 'Authentication' do
     end
 
     context 'when multiple logins are forbidden' do
-
       before do
         expect(Rails.configuration)
           .to(receive(:allow_multiple_logins))
@@ -150,7 +148,6 @@ RSpec.feature 'Authentication' do
     end
 
     context 'when multiple logins are allowed' do
-
       before do
         expect(Rails.configuration)
           .to(receive(:allow_multiple_logins))
@@ -178,7 +175,6 @@ RSpec.feature 'Authentication' do
     end
 
     context 'when multiple logins are forbidden' do
-
       before do
         expect(Rails.configuration)
           .to(receive(:allow_multiple_logins))
@@ -229,7 +225,6 @@ RSpec.feature 'Authentication' do
     end
 
     context 'when multiple logins are allowed' do
-
       before do
         expect(Rails.configuration)
           .to(receive(:allow_multiple_logins))
@@ -263,7 +258,6 @@ RSpec.feature 'Authentication' do
     end
 
     context 'when multiple logins are forbidden' do
-
       before do
         expect(Rails.configuration)
           .to(receive(:allow_multiple_logins))
