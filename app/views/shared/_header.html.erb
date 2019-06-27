@@ -4,8 +4,8 @@
     Feijoa
   <% end %>
   <div class="navbar-nav ml-auto">
-    <%= render 'user/nav'%>
-    <%= render 'organisation_user/nav'%>
-    <%= render 'admin_user/nav' %>
+    <%= render 'user/nav' if show_login_ui_for?(User) %>
+    <%= render 'organisation_user/nav' if show_login_ui_for?(OrganisationUser) %>
+    <%= render 'admin_user/nav' if show_login_ui_for?(AdminUser) %>
   </div>
 </header>
