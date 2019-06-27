@@ -6,20 +6,7 @@ RSpec.describe 'user/SharesController', type: :feature do
   let(:user) { FactoryBot.create(:user) }
   let(:birth_records) { FactoryBot.create_list(:birth_record, 3) }
   let!(:target_org) { FactoryBot.create :organisation_user, email: 'rangi@example.com' }
-  let(:target_birth_record) do
-    FactoryBot.create(
-      :birth_record,
-      first_and_middle_names: 'Timmy',
-      family_name: 'Target-Person',
-      date_of_birth: '1979-01-01',
-      place_of_birth: 'Wellington',
-      sex: 'X',
-      parent_first_and_middle_names: 'Daniel',
-      parent_family_name: 'Chuck',
-      other_parent_first_and_middle_names: 'Tameka',
-      other_parent_family_name: 'Senger'
-    )
-  end
+  let(:target_birth_record) { FactoryBot.create(:birth_record, :static_values) }
   before do
     user.birth_records << birth_records
     user.birth_records << target_birth_record

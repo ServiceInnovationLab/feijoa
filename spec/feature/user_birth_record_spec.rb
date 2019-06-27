@@ -13,18 +13,7 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
 
       context 'a target record and some other records exist' do
         let!(:target_record) do
-          FactoryBot.create(
-            :birth_record,
-            first_and_middle_names: 'Timmy',
-            family_name: 'Target-Person',
-            date_of_birth: '1979-01-01',
-            place_of_birth: 'Wellington',
-            sex: 'X',
-            parent_first_and_middle_names: 'Daniel',
-            parent_family_name: 'Chuck',
-            other_parent_first_and_middle_names: 'Tameka',
-            other_parent_family_name: 'Senger'
-          )
+          FactoryBot.create(:birth_record, :static_values)
         end
         let(:birth_records) { FactoryBot.create_list(:birth_record, 10) }
 
