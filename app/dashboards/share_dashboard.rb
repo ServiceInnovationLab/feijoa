@@ -1,4 +1,6 @@
-require "administrate/base_dashboard"
+# frozen_string_literal: true
+
+require 'administrate/base_dashboard'
 
 class ShareDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -17,7 +19,7 @@ class ShareDashboard < Administrate::BaseDashboard
     revoked_by_type: Field::String,
     revoked_by_id: Field::Number,
     revoked_at: Field::DateTime,
-    last_accessed_at: Field::DateTime,
+    last_accessed_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,39 +27,39 @@ class ShareDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :user,
-    :recipient,
-    :birth_record,
-    :id,
+  COLLECTION_ATTRIBUTES = %i[
+    user
+    recipient
+    birth_record
+    id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :user,
-    :recipient,
-    :birth_record,
-    :id,
-    :created_at,
-    :updated_at,
-    :revoked_by_type,
-    :revoked_by_id,
-    :revoked_at,
-    :last_accessed_at,
+  SHOW_PAGE_ATTRIBUTES = %i[
+    user
+    recipient
+    birth_record
+    id
+    created_at
+    updated_at
+    revoked_by_type
+    revoked_by_id
+    revoked_at
+    last_accessed_at
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :user,
-    :recipient,
-    :birth_record,
-    :revoked_by_type,
-    :revoked_by_id,
-    :revoked_at,
-    :last_accessed_at,
+  FORM_ATTRIBUTES = %i[
+    user
+    recipient
+    birth_record
+    revoked_by_type
+    revoked_by_id
+    revoked_at
+    last_accessed_at
   ].freeze
 
   # Overwrite this method to customize how shares are displayed
