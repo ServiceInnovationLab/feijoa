@@ -11,7 +11,13 @@ RSpec.describe 'user/SharesController', type: :feature do
       :birth_record,
       first_and_middle_names: 'Timmy',
       family_name: 'Target-Person',
-      date_of_birth: '1979-01-01'
+      date_of_birth: '1979-01-01',
+      place_of_birth: 'Wellington',
+      sex: 'X',
+      parent_first_and_middle_names: 'Daniel',
+      parent_family_name: 'Chuck',
+      other_parent_first_and_middle_names: 'Tameka',
+      other_parent_family_name: 'Senger'
     )
   end
   before do
@@ -51,9 +57,12 @@ RSpec.describe 'user/SharesController', type: :feature do
       click_link 'share'
       select 'rangi@example.com', from: 'Recipient'
       click_button 'Share birth record'
-      Percy.snapshot(page, name: 'Shared birth record')
     end
-    it { expect(page).to have_text 'Share was successfully created.' }
+
+    it 'shows that the record was shared' do
+      Percy.snapshot(page, name: 'Shared birth record')
+      expect(page).to have_text 'Share was successfully created.'
+    end
     it { expect(page).to have_text 'Shared with' }
     it { expect(page).to have_text 'rangi@example.com' }
     it { expect(page).to have_link 'revoke' }
