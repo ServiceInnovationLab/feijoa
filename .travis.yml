@@ -43,7 +43,7 @@ deploy:
     repo: ServiceInnovationLab/feijoa
   app:
     master: feijoa
-    pr-deploy: feijoa
+    staging: feijoa-staging
   run:
   - bundle install
   - yarn install
