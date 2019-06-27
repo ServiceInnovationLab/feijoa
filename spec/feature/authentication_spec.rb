@@ -8,7 +8,7 @@ RSpec.feature 'Authentication' do
   let(:admin) { FactoryBot.create(:admin_user, email: 'admin@example.com', password: password) }
   let(:org) { FactoryBot.create(:organisation_user, email: 'org@example.com') }
 
-  context 'A random visitor (not logged in)' do
+  context 'A visitor (not logged in)' do
     it 'can view the home page' do
       visit root_path
 
@@ -82,16 +82,48 @@ RSpec.feature 'Authentication' do
       Percy.snapshot(page, name: 'user default page')
     end
 
-    it 'can view the admin sign in page' do
-      visit new_admin_user_session_path
+    context 'when multiple logins are allowed' do
 
-      expect(page.current_path).to eq(new_admin_user_session_path)
+      before do
+        expect(Rails.configuration)
+          .to(receive(:allow_multiple_logins))
+          .at_least(:once)
+          .and_return(true)
+      end
+
+      it 'can view the admin sign in page' do
+        visit new_admin_user_session_path
+
+        expect(page.current_path).to eq(new_admin_user_session_path)
+      end
+
+      it 'is redirected to the admin sign in page if it tries to view the admin dashboard page' do
+        visit admin_user_root_path
+
+        expect(page.current_path).to eq(new_admin_user_session_path)
+      end
     end
 
-    it 'is redirected to the admin sign in page if it tries to view the admin dashboard page' do
-      visit admin_user_root_path
+    context 'when multiple logins are forbidden' do
 
-      expect(page.current_path).to eq(new_admin_user_session_path)
+      before do
+        expect(Rails.configuration)
+          .to(receive(:allow_multiple_logins))
+          .at_least(:once)
+          .and_return(false)
+      end
+
+      it 'can view the admin sign in page' do
+        visit new_admin_user_session_path
+
+        expect(page.current_path).to eq(root_path)
+      end
+
+      it 'is redirected to the admin sign in page if it tries to view the admin dashboard page' do
+        visit admin_user_root_path
+
+        expect(page.current_path).to eq(root_path)
+      end
     end
   end
 
@@ -111,28 +143,66 @@ RSpec.feature 'Authentication' do
       expect(page.current_path).to eq(root_path)
     end
 
-    it 'can view the user login page' do
-      visit new_user_session_path
-
-      expect(page.current_path).to eq(new_user_session_path)
-    end
-
-    it 'can view the user sign-up page' do
-      visit new_user_registration_path
-
-      expect(page.current_path).to eq(new_user_registration_path)
-    end
-
-    it 'is redirected to the user sign in page if it tries to view the user page' do
-      visit user_root_path
-
-      expect(page.current_path).to eq(new_user_session_path)
-    end
-
     it 'is redirected to the admin page if it tries to view the admin login page' do
       visit new_admin_user_session_path
 
       expect(page.current_path).to eq(admin_user_root_path)
+    end
+
+    context 'when multiple logins are allowed' do
+
+      before do
+        expect(Rails.configuration)
+          .to(receive(:allow_multiple_logins))
+          .at_least(:once)
+          .and_return(true)
+      end
+
+      it 'can view the user login page' do
+        visit new_user_session_path
+
+        expect(page.current_path).to eq(new_user_session_path)
+      end
+
+      it 'can view the user sign-up page' do
+        visit new_user_registration_path
+
+        expect(page.current_path).to eq(new_user_registration_path)
+      end
+
+      it 'is redirected to the user sign in page if it tries to view the user page' do
+        visit user_root_path
+
+        expect(page.current_path).to eq(new_user_session_path)
+      end
+    end
+
+    context 'when multiple logins are forbidden' do
+
+      before do
+        expect(Rails.configuration)
+          .to(receive(:allow_multiple_logins))
+          .at_least(:once)
+          .and_return(false)
+      end
+
+      it 'cannot view the user login page' do
+        visit new_user_session_path
+
+        expect(page.current_path).to eq(root_path)
+      end
+
+      it 'cannot view the user sign-up page' do
+        visit new_user_registration_path
+
+        expect(page.current_path).to eq(root_path)
+      end
+
+      it 'is redirected to the root page if it tries to view the user page' do
+        visit user_root_path
+
+        expect(page.current_path).to eq(root_path)
+      end
     end
 
     it 'can view the admin_user root page' do
@@ -142,7 +212,7 @@ RSpec.feature 'Authentication' do
       Percy.snapshot(page, name: 'admin_user default page')
     end
   end
-  context 'A logged in Organisation' do
+  context 'A logged in OrganisationUser' do
     before(:each) do
       visit new_organisation_user_session_path
       fill_in :organisation_user_email, with: org.email
@@ -158,28 +228,72 @@ RSpec.feature 'Authentication' do
       expect(page.current_path).to eq(root_path)
     end
 
-    it 'can view the user login page' do
-      visit new_user_session_path
+    context 'when multiple logins are allowed' do
 
-      expect(page.current_path).to eq(new_user_session_path)
+      before do
+        expect(Rails.configuration)
+          .to(receive(:allow_multiple_logins))
+          .at_least(:once)
+          .and_return(true)
+      end
+
+      it 'can view the user login page' do
+        visit new_user_session_path
+
+        expect(page.current_path).to eq(new_user_session_path)
+      end
+
+      it 'can view the user sign-up page' do
+        visit new_user_registration_path
+
+        expect(page.current_path).to eq(new_user_registration_path)
+      end
+
+      it 'is redirected to the user sign in page if it tries to view the user page' do
+        visit user_root_path
+
+        expect(page.current_path).to eq(new_user_session_path)
+      end
+
+      it 'is redirected to the admin sign in page if it tries to view the admin login page' do
+        visit new_admin_user_session_path
+
+        expect(page.current_path).to eq(new_admin_user_session_path)
+      end
     end
 
-    it 'can view the user sign-up page' do
-      visit new_user_registration_path
+    context 'when multiple logins are forbidden' do
 
-      expect(page.current_path).to eq(new_user_registration_path)
-    end
+      before do
+        expect(Rails.configuration)
+          .to(receive(:allow_multiple_logins))
+          .at_least(:once)
+          .and_return(false)
+      end
 
-    it 'is redirected to the user sign in page if it tries to view the user page' do
-      visit user_root_path
+      it 'cannot view the user login page' do
+        visit new_user_session_path
 
-      expect(page.current_path).to eq(new_user_session_path)
-    end
+        expect(page.current_path).to eq(root_path)
+      end
 
-    it 'is redirected to the admin sign in page if it tries to view the admin login page' do
-      visit new_admin_user_session_path
+      it 'cannot view the user sign-up page' do
+        visit new_user_registration_path
 
-      expect(page.current_path).to eq(new_admin_user_session_path)
+        expect(page.current_path).to eq(root_path)
+      end
+
+      it 'is redirected to the root path if it tries to view the user page' do
+        visit user_root_path
+
+        expect(page.current_path).to eq(root_path)
+      end
+
+      it 'is redirected to the root pathif it tries to view the admin login page' do
+        visit new_admin_user_session_path
+
+        expect(page.current_path).to eq(root_path)
+      end
     end
 
     it 'can view the organisation_user root page' do
