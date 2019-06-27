@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, path: 'user', controllers: {
-    # we need to override the sessions controller, others can be default
-    sessions: 'user/sessions'
+    # we need to override the sessions and registrations controller, others can be default
+    sessions: 'user/sessions',
+    registrations: 'user/registrations'
   }
 
   resources :user, only: [:index]
@@ -35,8 +36,9 @@ Rails.application.routes.draw do
   end
 
   devise_for :admin_user, path: 'admin_user', controllers: {
-    # we need to override the sessions controller, others can be default
-    sessions: 'admin_user/sessions'
+    # we need to override the sessions and registrations controller, others can be default
+    sessions: 'admin_user/sessions',
+    registrations: 'admin_user/registrations'
   }
 
   resources :admin_user, only: [:index]
@@ -46,8 +48,9 @@ Rails.application.routes.draw do
   end
 
   devise_for :organisation_users, path: 'organisation_user', controllers: {
-    # we need to override the sessions controller, others can be default
-    sessions: 'organisation_user/sessions'
+    # we need to override the sessions and registrations controller, others can be default
+    sessions: 'organisation_user/sessions',
+    registrations: 'organisation_user/registrations'
   }
 
   resources :organisation_user, only: [:index]

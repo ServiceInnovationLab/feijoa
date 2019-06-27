@@ -82,16 +82,16 @@ RSpec.feature 'Authentication' do
       Percy.snapshot(page, name: 'user dashboard')
     end
 
-    it 'is redirected to the user page if it tries to view the admin login page' do
+    it 'can view the admin sign in page' do
       visit new_admin_user_session_path
 
-      expect(page.current_path).to eq(authenticated_user_root_path)
+      expect(page.current_path).to eq(new_admin_user_session_path)
     end
 
-    it 'is redirected to the user page if it tries to view the admin dashboard page' do
+    it 'is redirected to the admin sign in page if it tries to view the admin dashboard page' do
       visit admin_user_index_path
 
-      expect(page.current_path).to eq(authenticated_user_root_path)
+      expect(page.current_path).to eq(new_admin_user_session_path)
     end
   end
 
@@ -111,22 +111,22 @@ RSpec.feature 'Authentication' do
       expect(page.current_path).to eq(root_path)
     end
 
-    it 'is redirected to the admin page if it tries to view the user login page' do
+    it 'can view the user login page' do
       visit new_user_session_path
 
-      expect(page.current_path).to eq(authenticated_admin_user_root_path)
+      expect(page.current_path).to eq(new_user_session_path)
     end
 
-    it 'is redirected to the admin page if it tries to view the user sign-up page' do
+    it 'can view the user sign-up page' do
       visit new_user_registration_path
 
-      expect(page.current_path).to eq(authenticated_admin_user_root_path)
+      expect(page.current_path).to eq(new_user_registration_path)
     end
 
-    it 'is redirected to the admin page if it tries to view the user page' do
+    it 'is redirected to the user sign in page if it tries to view the user page' do
       visit user_index_path
 
-      expect(page.current_path).to eq(authenticated_admin_user_root_path)
+      expect(page.current_path).to eq(new_user_session_path)
     end
 
     it 'is redirected to the admin page if it tries to view the admin login page' do
@@ -151,28 +151,28 @@ RSpec.feature 'Authentication' do
       expect(page.current_path).to eq(root_path)
     end
 
-    it 'is redirected to the org page if it tries to view the user login page' do
+    it 'can view the user login page' do
       visit new_user_session_path
 
-      expect(page.current_path).to eq(authenticated_organisation_user_root_path)
+      expect(page.current_path).to eq(new_user_session_path)
     end
 
-    it 'is redirected to the org page if it tries to view the user sign-up page' do
+    it 'can view the user sign-up page' do
       visit new_user_registration_path
 
-      expect(page.current_path).to eq(authenticated_organisation_user_root_path)
+      expect(page.current_path).to eq(new_user_registration_path)
     end
 
-    it 'is redirected to the org page if it tries to view the user page' do
+    it 'is redirected to the user sign in page if it tries to view the user page' do
       visit user_index_path
 
-      expect(page.current_path).to eq(authenticated_organisation_user_root_path)
+      expect(page.current_path).to eq(new_user_session_path)
     end
 
-    it 'is redirected to the org page if it tries to view the admin login page' do
+    it 'is redirected to the admin sign in page if it tries to view the admin login page' do
       visit new_admin_user_session_path
 
-      expect(page.current_path).to eq(authenticated_organisation_user_root_path)
+      expect(page.current_path).to eq(new_admin_user_session_path)
     end
   end
 end

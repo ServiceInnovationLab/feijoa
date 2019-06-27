@@ -45,7 +45,7 @@ RSpec.describe 'Sign in users', type: :request do
     let(:user) { FactoryBot.create(:user, password: password) }
 
     it 'can sign in with valid credentials' do
-      post new_admin_user_session_path, params: { 'user[email]' => user.email, 'user[password]' => password }
+      post new_user_session_path, params: { 'user[email]' => user.email, 'user[password]' => password }
 
       expect(response.status).to eq(302)
       expect(response.location).to eq(authenticated_user_root_url)
