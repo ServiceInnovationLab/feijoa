@@ -83,3 +83,16 @@ The _Administrate_ dashboards are available at `/admin/` for `admin_user`s.
 The gem is hard coded to use the `/admin/` route which created a conflict with the controllers for the `admin` account type. We resolved this by renaming the `admin` account type to `admin_user` so all those routes are `/admin_user/*`.
 
 Dashboards must be explicitly generated for new models. There is a generator, `rails generate administrate:dashboard Foo`, or see the project documentation for further details. Be aware that the auto-generated dashboards will expose the (encrypted) passwords for users unless you remove those fields from the generated views manually.
+
+You will also need to add new dashboards to `routes.rb`, which will also allow them to appear in the auto-generated navigation. For example:
+```
+namespace :admin do
+  resources :users
+  resources :admin_users
+  resources :organisation_users
+  resources :birth_records
+  resources :shares
+
+  root to: 'birth_records#index'
+end
+```
