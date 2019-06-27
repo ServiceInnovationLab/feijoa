@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   }
 
   resources :user, only: [:index]
+  # Devise will automatically redirect to user_root_path after user login
+  get 'user', to: 'user#index', as: :user_root
+
   namespace :user do
     resources :birth_records, only: %i[index show] do
       collection do
@@ -31,10 +34,6 @@ Rails.application.routes.draw do
     resources :shares
   end
 
-  authenticated :user do
-    root 'user/birth_records#index', as: :authenticated_user_root
-  end
-
   devise_for :admin_user, path: 'admin_user', controllers: {
     # we need to override the sessions and registrations controller, others can be default
     sessions: 'admin_user/sessions',
@@ -42,10 +41,8 @@ Rails.application.routes.draw do
   }
 
   resources :admin_user, only: [:index]
-
-  authenticated :admin_user do
-    root 'admin_user#index', as: :authenticated_admin_user_root
-  end
+  # Devise will automatically redirect to admin_user_root_path after admin_user login
+  get 'admin_user', to: 'admin_user#index', as: :admin_user_root
 
   devise_for :organisation_users, path: 'organisation_user', controllers: {
     # we need to override the sessions and registrations controller, others can be default
@@ -54,13 +51,11 @@ Rails.application.routes.draw do
   }
 
   resources :organisation_user, only: [:index]
+  # Devise will automatically redirect to organisation_user_root_path after organisation_user login
+  get 'organisation_user', to: 'organisation_user#index', as: :organisation_user_root
 
   namespace :organisation_user do
     resources :shares, only: %i[index show]
-  end
-
-  authenticated :organisation_user do
-    root 'organisation_user#index', as: :authenticated_organisation_user_root
   end
 
   root to: 'home#index'
