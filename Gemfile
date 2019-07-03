@@ -53,8 +53,14 @@ gem 'raygun4ruby'
 gem 'factory_bot_rails'
 gem 'faker'
 
+# Log access to database records
+gem 'audited', '~> 4.7'
+
 # locale based flash notices for controllers
 gem 'responders'
+
+# Soft delete support
+gem 'discard', '~> 1.0'
 
 group :production do
   gem 'sendgrid-ruby'

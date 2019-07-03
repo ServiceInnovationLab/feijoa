@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class BirthRecord < ApplicationRecord
-  has_and_belongs_to_many :users
-  has_many :shares, dependent: :destroy
+  has_associated_audits
+
+  has_many :birth_records_users, dependent: :nullify
+  has_many :users, -> { distinct }, through: :birth_records_users
+  has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :birth_record
 
   def date_of_birth
     format_date(self[:date_of_birth])

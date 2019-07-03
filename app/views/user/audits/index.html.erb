@@ -1,0 +1,12 @@
+<section>
+  <h2>Here are the activity records for your Feijoa account</h2>
+  <p>This shows when you have searched for and shared documents, and also when your documents have been viewed by people you shared them with.</p>
+
+  <% if @audits.any? %>
+    <div class="index-cards">
+      <%= render @audits.sort_by(&:created_at).reverse! %>
+    </div>
+  <% else %>
+    <p class="text-muted font-italic">There are currently no events recorded for <%= current_user.email %>.</p>
+  <% end %>
+</section>

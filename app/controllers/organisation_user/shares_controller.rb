@@ -9,7 +9,12 @@ class OrganisationUser::SharesController < OrganisationUser::BaseController
   end
 
   # GET /shares/1
-  def show; end
+  def show
+    @official_birth_record = AuditedOperationsService.access_shared_birth_record(
+      logged_identity: current_account,
+      share: @share
+    )
+  end
 
   private
 

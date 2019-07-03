@@ -1,6 +1,11 @@
+require 'application_responder'
+
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  self.responder = ApplicationResponder
+  respond_to :html
+
   # By default authenticated users can't access controller actions.
   #
   # This is deny-by-default, and setting it here will also cover the Devise
