@@ -2,7 +2,7 @@
 
 require 'administrate/base_dashboard'
 
-class UserDashboard < Administrate::BaseDashboard
+class OrganisationUserDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -10,10 +10,9 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    birth_records: Field::HasMany,
+    shares: Field::HasMany,
     id: Field::Number,
     email: Field::String,
-    reset_password_token: Field::String,
     reset_password_sent_at: Field::DateTime,
     remember_created_at: Field::DateTime,
     sign_in_count: Field::Number,
@@ -32,7 +31,7 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    birth_records
+    shares
     id
     email
   ].freeze
@@ -40,10 +39,9 @@ class UserDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    birth_records
+    shares
     id
     email
-    reset_password_token
     reset_password_sent_at
     remember_created_at
     sign_in_count
@@ -59,9 +57,8 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    birth_records
+    shares
     email
-    reset_password_token
     reset_password_sent_at
     remember_created_at
     sign_in_count
@@ -72,10 +69,10 @@ class UserDashboard < Administrate::BaseDashboard
     password
   ].freeze
 
-  # Overwrite this method to customize how users are displayed
+  # Overwrite this method to customize how organisation users are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
+  # def display_resource(organisation_user)
+  #   "OrganisationUser ##{organisation_user.id}"
   # end
 end
