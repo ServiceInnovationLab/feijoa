@@ -27,6 +27,6 @@ module Feijoa
     # This setting toggles whether site users can log in with different account
     # types at the same time, for example as an admin_user and a normal user,
     # and access any pages allowed by their active accounts.
-    config.allow_multiple_logins = true
+    config.allow_multiple_logins = ENV.fetch('ALLOW_MULTIPLE_LOGINS', false).to_s.downcase == 'true'
   end
 end

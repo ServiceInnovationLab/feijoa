@@ -35,3 +35,6 @@
 
 # Ignore VS Code local files
 /.vscode
+
+# Ignore .env which sets local environment variables in dev/test
+/.env

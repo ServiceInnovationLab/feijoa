@@ -70,6 +70,9 @@ group :development, :test do
   gem 'letter_opener'
 
   gem 'percy-capybara', '~> 4.0.0'
+
+  # Load ENV from .env
+  gem 'dotenv-rails', '~>2.7.4'
 end
 
 group :development do
