@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :admin_users
+    resources :organisation_users
     resources :birth_records
+    resources :shares
 
-    root to: 'users#index'
+    root to: 'birth_records#index'
   end
 
   devise_for :users, path: 'user', controllers: {
@@ -27,7 +29,12 @@ Rails.application.routes.draw do
         post :remove
       end
     end
-    resources :shares
+    resources :shares, only: %i[index show new create] do
+      member do
+        post :revoke
+      end
+    end
+    resources :audits, only: :index
   end
 
   authenticated :user do

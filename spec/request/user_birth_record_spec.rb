@@ -14,7 +14,7 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
       context 'when a birth record is associated with the user' do
         let(:birth_record) { FactoryBot.create(:birth_record) }
         before do
-          user.birth_records << birth_record
+          AuditedOperationsService.add_birth_record_to_user(birth_record: birth_record, user: user)
         end
 
         it 'the view lists it' do
@@ -48,7 +48,7 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
       context 'when a birth record is associated with the user' do
         let(:birth_record) { FactoryBot.create(:birth_record) }
         before do
-          user.birth_records << birth_record
+          AuditedOperationsService.add_birth_record_to_user(birth_record: birth_record, user: user)
         end
 
         it 'they can view it' do
@@ -81,7 +81,7 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
       context 'when a birth record is associated with the user' do
         let(:birth_record) { FactoryBot.create(:birth_record) }
         before do
-          user.birth_records << birth_record
+          AuditedOperationsService.add_birth_record_to_user(birth_record: birth_record, user: user)
         end
 
         it 'adding it again is a no-op' do
@@ -113,7 +113,7 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
       context 'when a birth record is associated with the user' do
         let(:birth_record) { FactoryBot.create(:birth_record) }
         before do
-          user.birth_records << birth_record
+          AuditedOperationsService.add_birth_record_to_user(birth_record: birth_record, user: user)
         end
 
         it 'is removed' do

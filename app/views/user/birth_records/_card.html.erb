@@ -29,8 +29,8 @@
             <li class="list-group-item d-flex justify-content-between ">
                 <%= share.recipient.email %>
                 <span class="share-buttons">
-                  <%= link_to 'revoke', user_share_path(share),
-                    method: :delete, class: 'btn text-danger',
+                  <%= link_to 'revoke', revoke_user_share_path(share),
+                    method: :post, class: 'btn text-danger',
                     data: { confirm: 'Are you sure?' }%>
                 </span>
             </li>

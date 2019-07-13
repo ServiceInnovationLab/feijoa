@@ -21,7 +21,8 @@ class AdminUserDashboard < Administrate::BaseDashboard
     current_sign_in_ip: Field::String.with_options(searchable: false),
     last_sign_in_ip: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
+    updated_at: Field::DateTime,
+    password: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -32,7 +33,6 @@ class AdminUserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     email
-    reset_password_token
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -65,6 +65,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
     last_sign_in_at
     current_sign_in_ip
     last_sign_in_ip
+    password
   ].freeze
 
   # Overwrite this method to customize how admin users are displayed

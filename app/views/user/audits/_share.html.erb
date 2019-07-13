@@ -1,0 +1,30 @@
+<% # Normalise auto-assigned variable %>
+<% audit ||= share %>
+
+<div class="card audit" data-id="<%= audit.id %>">
+  <div class="card-body">
+    <h5 class="card-title">
+      <% if audit.comment == AuditedOperationsService::SHARE_BIRTH_RECORD%>
+        <strong>Share</strong> birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
+        <div class="text-muted">
+          with <strong><%= audit.auditable.recipient.email %></strong>
+        </div>
+      <% elsif audit.comment == AuditedOperationsService::REVOKE_SHARE %>
+        <strong>Revoke</strong> sharing of birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
+        <div class="text-muted">
+          with <strong><%= audit.auditable.recipient.email %></strong>
+        </div>
+      <% elsif audit.comment == AuditedOperationsService::VIEW_SHARED_BIRTH_RECORD %>
+        <strong>View</strong> birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
+        <div class="text-muted">
+          by <strong><%= audit.auditable.recipient.email %></strong>
+        </div>
+      <% end%>
+    </h5>
+    <div>Created at: <%= audit.created_at %></div>
+    <div>Action by: <%= audit.user&.email %></div>
+    <div>Action type: <%= audit.auditable_type %></div>
+    <div>Action: <%= audit.action %></div>
+    <div>Comment: <%= audit.comment %></div>
+  </div>
+</div>
