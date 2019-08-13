@@ -11,6 +11,20 @@ class User < ApplicationRecord
   has_many :birth_records, -> { distinct.merge(BirthRecordsUser.kept) }, through: :birth_records_users
   has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :user
 
+  has_many :organisation_members, dependent: :destroy
+  has_many :organisations, through: :organisation_members
+
+  # Janitor = Global admin
+  JANITOR_ROLE = 'janitor'
+
+  def janitor?
+    global_role == JANITOR_ROLE
+  end
+
+  def admin_for?(organisation)
+    organisation_members&.find(organisation: organisation, role: OrganisationMember::ADMIN_USER).present?
+  end
+
   # Get the audits for this user
   #
   # These are audits where the user is the one who took action. Notably this
