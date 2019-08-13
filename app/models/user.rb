@@ -11,11 +11,19 @@ class User < ApplicationRecord
   has_many :birth_records, -> { distinct.merge(BirthRecordsUser.kept) }, through: :birth_records_users
   has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :user
 
-  has_many :organisations_users
+  has_many :organisations_users, dependent: :destroy
   has_many :organisations, through: :organisations_users
 
   # Janitor = Global admin
-  JANITOR_ROLE = 'janitor'.freeze
+  JANITOR_ROLE = 'janitor'
+
+  def janitor?
+    global_role == JANITOR_ROLE
+  end
+
+  def admin_for?(organisation)
+    organisations_users&.find(organisation: organisation, role: OrganisationsUser::ADMIN_USER).present?
+  end
 
   # Get the audits for this user
   #

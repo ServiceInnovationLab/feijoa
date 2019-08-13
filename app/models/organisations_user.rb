@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 class OrganisationsUser < ApplicationRecord
   belongs_to :organisation
   belongs_to :user
 
-  ADMIN_ROLE = 'admin'.freeze
-  STAFF_ROLE = 'staff'.freeze
+  ADMIN_ROLE = 'admin'
+  STAFF_ROLE = 'staff'
 
-  ROLES = [ADMIN_ROLE, STAFF_ROLE]
+  ROLES = [ADMIN_ROLE, STAFF_ROLE].freeze
 
-  def is_admin?
+  def admin?
     role == ADMIN_ROLE
   end
 
-  def is_staff?
+  def staff?
     role == STAFF_ROLE
   end
 end
