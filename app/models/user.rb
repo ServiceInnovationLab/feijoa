@@ -14,7 +14,8 @@ class User < ApplicationRecord
   has_many :organisations_users
   has_many :organisations, through: :organisations_users
 
-  ADMIN_ROLE = 'admin'.freeze
+  # Janitor = Global admin
+  JANITOR_ROLE = 'janitor'.freeze
 
   # Get the audits for this user
   #
