@@ -62,6 +62,9 @@ gem 'responders'
 # Soft delete support
 gem 'discard', '~> 1.0'
 
+# Authorization
+gem 'pundit'
+
 group :production do
   gem 'sendgrid-ruby'
 end
