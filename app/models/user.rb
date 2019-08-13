@@ -16,18 +16,6 @@ class User < ApplicationRecord
 
   ADMIN_ROLE = 'admin'.freeze
 
-  def organisation_roles
-    organisations_users.map { |ou| Role.new(scope: ou.organisation, role_name: ou.role) }
-  end
-
-  def global_roles
-    global_role == 'admin' ? [Role.new(scope: 'global', role_name: 'admin')] : []
-  end
-
-  def combined_roles
-    organisation_roles + global_roles
-  end
-
   # Get the audits for this user
   #
   # These are audits where the user is the one who took action. Notably this
