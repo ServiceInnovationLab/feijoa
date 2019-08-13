@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# DEPRECATED
 class OrganisationUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :confirmable, :omniauthable
