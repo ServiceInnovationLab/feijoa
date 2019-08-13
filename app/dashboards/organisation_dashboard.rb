@@ -16,7 +16,7 @@ class OrganisationDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -28,7 +28,7 @@ class OrganisationDashboard < Administrate::BaseDashboard
     :shares,
     :organisation_members,
     :users,
-    :id,
+    :id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -40,14 +40,14 @@ class OrganisationDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :created_at,
-    :updated_at,
+    :updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :name,
+    :name
   ].freeze
 
   # Overwrite this method to customize how organisations are displayed

@@ -13,7 +13,7 @@ class OrganisationMemberDashboard < Administrate::BaseDashboard
     organisation: Field::BelongsTo,
     user: Field::BelongsTo,
     id: Field::Number,
-    role: Field::String,
+    role: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,7 +25,7 @@ class OrganisationMemberDashboard < Administrate::BaseDashboard
     :organisation,
     :user,
     :id,
-    :role,
+    :role
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -34,7 +34,7 @@ class OrganisationMemberDashboard < Administrate::BaseDashboard
     :organisation,
     :user,
     :id,
-    :role,
+    :role
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -43,7 +43,7 @@ class OrganisationMemberDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :organisation,
     :user,
-    :role,
+    :role
   ].freeze
 
   # Overwrite this method to customize how organisation members are displayed
