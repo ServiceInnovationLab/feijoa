@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrganisationsUser < ApplicationRecord
+class OrganisationMember < ApplicationRecord
   belongs_to :organisation
   belongs_to :user
 

@@ -1,13 +1,13 @@
 class Organisation < ApplicationRecord
   has_many :shares, as: :recipient
-  has_many :organisations_users
-  has_many :users, through: :organisations_users
+  has_many :organisation_members, dependent: :destroy
+  has_many :users, through: :organisation_members
 
   def add_admin(user)
-    organisations_users.create(user: user, role: OrganisationsUser::ADMIN_ROLE)
+    organisation_members.create(user: user, role: OrganisationMember::ADMIN_ROLE)
   end
 
   def add_staff(user)
-    organisations_users.create(user: user, role: OrganisationsUser::ADMIN_ROLE)
+    organisation_members.create(user: user, role: OrganisationMember::ADMIN_ROLE)
   end
 end
