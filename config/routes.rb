@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :organisation_users
     resources :birth_records
     resources :shares
+    resources :organisations
 
     root to: 'birth_records#index'
   end

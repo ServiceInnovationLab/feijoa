@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_051256) do
+ActiveRecord::Schema.define(version: 2019_08_13_024409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(version: 2019_06_25_051256) do
     t.index ["user_id", "birth_record_id"], name: "index_birth_records_users_on_user_id_and_birth_record_id"
   end
 
+  create_table "organisation_members", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "organisation_id", null: false
+    t.string "role"
+    t.index ["organisation_id"], name: "index_organisation_members_on_organisation_id"
+    t.index ["user_id"], name: "index_organisation_members_on_user_id"
+  end
+
   create_table "organisation_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -94,6 +102,12 @@ ActiveRecord::Schema.define(version: 2019_06_25_051256) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_organisation_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_organisation_users_on_reset_password_token", unique: true
+  end
+
+  create_table "organisations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "shares", force: :cascade do |t|
@@ -127,8 +141,11 @@ ActiveRecord::Schema.define(version: 2019_06_25_051256) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "global_role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "organisation_members", "organisations"
+  add_foreign_key "organisation_members", "users"
 end
