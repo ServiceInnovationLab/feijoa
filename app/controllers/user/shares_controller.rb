@@ -23,7 +23,7 @@ class User::SharesController < User::BaseController
                Share.new
              end
 
-    @organisations = Organisation.all
+    @organisations = Organisation.all.order(:name)
   end
 
   # POST /shares
