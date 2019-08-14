@@ -5,6 +5,14 @@ cache:
   yarn: true
 services:
   - postgresql
+
+# Note: we will build pull requests, and these branches
+# This stops travis running two jobs on every pull requests
+branches:
+  only:
+  - master
+  - staging
+
 addons:
   postgresql: "10"
   apt:
