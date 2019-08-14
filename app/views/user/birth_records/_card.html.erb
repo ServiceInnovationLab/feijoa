@@ -27,7 +27,7 @@
         <ul class="list-group list-group-flush">
           <%- @shares.each do |share| %>
             <li class="list-group-item d-flex justify-content-between ">
-                <%= link_to share.recipient.name, user_organisation_path(share.recipient) %>
+                <%= share.recipient.name %>
                 <span class="share-buttons">
                   <%= link_to 'revoke', revoke_user_share_path(share),
                     method: :post, class: 'btn text-danger',
