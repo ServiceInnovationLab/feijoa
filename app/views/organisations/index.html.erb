@@ -1,0 +1,23 @@
+<div>
+  <h1>LIST OF ORGANISATIONS</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Contact No.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @organisations.each do |organisation| %>
+        <tr>
+          <td><%= organisation.name %></td>
+          <td><%= organisation.address %></td>
+          <td><%= organisation.email %></td>
+          <td><%= organisation.contactNo %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

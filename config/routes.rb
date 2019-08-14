@@ -68,6 +68,8 @@ Rails.application.routes.draw do
     root 'organisation_user#index', as: :authenticated_organisation_user_root
   end
 
+  resources :organisations
+
   root to: 'home#index'
 end
 # rubocop:enable Metrics/BlockLength
