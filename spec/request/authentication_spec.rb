@@ -70,5 +70,4 @@ RSpec.describe 'Sign in users', type: :request do
       end
     end
   end
-
 end
