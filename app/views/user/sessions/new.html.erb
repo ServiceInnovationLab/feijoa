@@ -1,7 +1,7 @@
 <div class="d-row">
   <div class="col-lg-6">
     <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <h2>Log in as a user</h2>
+      <h2>Log in</h2>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
       <%= f.password_field :password, autocomplete: "current-password" %>

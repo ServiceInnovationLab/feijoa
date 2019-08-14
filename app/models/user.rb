@@ -22,7 +22,11 @@ class User < ApplicationRecord
   end
 
   def admin_for?(organisation)
-    organisation_members&.find(organisation: organisation, role: OrganisationMember::ADMIN_USER).present?
+    organisation_members&.where(organisation: organisation, role: OrganisationMember::ADMIN_USER).present?
+  end
+
+  def member_of?(organisation)
+    organisation_members&.where(organisation: organisation).present?
   end
 
   # Get the audits for this user

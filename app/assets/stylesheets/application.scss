@@ -15,6 +15,7 @@
 @import 'material';
 @import 'rails_bootstrap_forms';
 @import 'badge';
+@import 'material_icons';
 
 @import 'body';
 
@@ -27,11 +28,11 @@
     margin: 1em;
   }
 }
-
-a:hover {
-  text-decoration: none;
-  background-color: $beige;
-}
+// 
+// a:hover {
+//   text-decoration: none;
+//   background-color: $beige;
+// }
 
 .card-row {
   display: grid;
@@ -47,4 +48,8 @@ a:hover {
       margin: 0.5em;
     }
   }
+}
+
+.navbar-skinny {
+  min-height: 1.5em;
 }

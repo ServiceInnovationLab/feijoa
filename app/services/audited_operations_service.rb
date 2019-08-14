@@ -77,10 +77,12 @@ class AuditedOperationsService
     raise ArgumentError, 'share cannot be nil' if share.nil?
     raise ArgumentError, 'logged_identity cannot be nil' if logged_identity.nil?
     raise ShareRevokedError if share.revoked?
-    raise UnauthorisedAccessRequestError if logged_identity != share.recipient
+
+    # Authorization is happening with Pundit
+    # raise UnauthorisedAccessRequestError unless Pundit::SharePolicy.new(logged_identity, share).show?
 
     # update last_accessed_at, which will generate an audit record
-    Audited.audit_class.as_user(share.recipient) do
+    Audited.audit_class.as_user(logged_identity) do
       share.update!(
         last_accessed_at: Time.now.utc,
         audit_comment: VIEW_SHARED_BIRTH_RECORD

@@ -2,15 +2,17 @@
 
 require 'rails_helper'
 
-RSpec.describe OrganisationUser::SharesController, type: :controller do
-  context 'An organisation user is signed in and has an existing share' do
+RSpec.describe OrganisationMember::SharesController, type: :controller do
+  context 'An organisation member is signed in and has an existing share' do
     let(:user) { FactoryBot.create(:user) }
-    let(:organisation_user) { FactoryBot.create(:organisation_user) }
-    let(:share) { FactoryBot.create(:share, user: user, recipient: organisation_user) }
+    let(:organisation) { FactoryBot.create(:organisation) }
+    let(:share) { FactoryBot.create(:share, user: FactoryBot.create(:user), recipient: organisation) }
     let(:invalid_attributes) { { user_id: nil } }
 
     before do
-      sign_in organisation_user
+      organisation.add_staff(user)
+      user.reload
+      sign_in user
       share
     end
 
