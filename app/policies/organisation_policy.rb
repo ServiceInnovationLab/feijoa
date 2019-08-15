@@ -27,4 +27,12 @@ class OrganisationPolicy
   def destroy?
     user.janitor?
   end
+
+  def dashboard?
+    act_as?
+  end
+
+  def act_as?
+    user.member_of?(organisation)
+  end
 end

@@ -34,7 +34,7 @@ RSpec.describe BirthRecord, type: :model do
   describe 'has many shares' do
     let(:birth_record) { FactoryBot.create :birth_record }
     let(:user) { FactoryBot.create :user }
-    let(:recipient) { FactoryBot.create :organisation_user }
+    let(:recipient) { FactoryBot.create :organisation }
     it "don't make duplicate shares" do
       FactoryBot.create :share, birth_record: birth_record,
                                 user: user, recipient: recipient

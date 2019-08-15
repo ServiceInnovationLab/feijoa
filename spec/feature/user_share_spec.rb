@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'user/SharesController', type: :feature do
   let(:user) { FactoryBot.create(:user) }
   let(:birth_records) { FactoryBot.create_list(:birth_record, 3) }
-  let!(:target_org) { FactoryBot.create :organisation_user, email: 'rangi@example.com' }
+  let!(:target_org) { FactoryBot.create :organisation, name: 'Plunket' }
   let(:target_birth_record) do
     FactoryBot.create(
       :birth_record,
@@ -51,13 +51,13 @@ RSpec.describe 'user/SharesController', type: :feature do
       login_as(user, scope: :user)
       visit user_birth_record_path(target_birth_record)
       click_link 'share'
-      select 'rangi@example.com', from: 'Recipient'
+      select 'Plunket', from: 'Recipient'
       click_button 'Share birth record'
       Percy.snapshot(page, name: 'Shared birth record')
     end
     it { expect(page).to have_text 'Share was successfully created.' }
     it { expect(page).to have_text 'Shared with' }
-    it { expect(page).to have_text 'rangi@example.com' }
+    it { expect(page).to have_text 'Plunket' }
     it { expect(page).to have_link 'revoke' }
 
     describe 'Revoke consent' do
@@ -66,7 +66,7 @@ RSpec.describe 'user/SharesController', type: :feature do
       end
       it { expect(page).to have_text 'Share was successfully revoked.' }
       it { expect(page).not_to have_text 'Shared with' }
-      it { expect(page).not_to have_text 'rangi@example.com' }
+      it { expect(page).not_to have_text 'Plunket' }
       it { expect(page).not_to have_link 'revoke' }
     end
   end

@@ -1,0 +1,26 @@
+<%= content_for :subhead do %>
+  <%= render partial: "organisation_member/shared/subhead" %>
+<% end %>
+<h1><%= @organisation.name %></h1>
+<section class="c-dashboard-links">
+  <div class="row">
+    <div class="col-4">
+      <%= link_to organisation_member_shares_path(@organisation) do %>
+        <div class="c-dashboard-links__link card">
+          <div class="card-body">
+              Documents shared with <%=@organisation.name %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <%= link_to '#' do %>
+        <div class="c-dashboard-links__link card">
+          <div class="card-body">
+              Request a document to be shared with <%=@organisation.name %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

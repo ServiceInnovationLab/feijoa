@@ -45,7 +45,7 @@ RSpec.describe User::SharesController, type: :controller do
             .build(
               :share,
               user: user,
-              recipient: FactoryBot.create(:organisation_user),
+              recipient: FactoryBot.create(:organisation),
               birth_record: birth_record
             )
             .attributes
