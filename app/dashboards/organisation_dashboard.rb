@@ -15,6 +15,9 @@ class OrganisationDashboard < Administrate::BaseDashboard
     name: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    address: Field::String,
+    email: Field::String,
+    contact_number: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -46,6 +49,9 @@ class OrganisationDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :name,
+    :address,
+    :email,
+    :contact_number,
   ].freeze
 
   # Overwrite this method to customize how organisations are displayed

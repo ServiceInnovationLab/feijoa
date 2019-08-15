@@ -68,7 +68,7 @@ Rails.application.routes.draw do
     root 'organisation_user#index', as: :authenticated_organisation_user_root
   end
 
-  resources :organisations
+  resources :organisations, only: [:index]
 
   root to: 'home#index'
 end

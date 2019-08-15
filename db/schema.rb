@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_000839) do
     t.datetime "updated_at", null: false
     t.string "address"
     t.string "email"
-    t.string "contactNo"
+    t.string "contact_number"
   end
 
   create_table "shares", force: :cascade do |t|
