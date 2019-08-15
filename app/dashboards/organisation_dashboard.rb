@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "administrate/base_dashboard"
 
 class OrganisationDashboard < Administrate::BaseDashboard
@@ -29,7 +31,7 @@ class OrganisationDashboard < Administrate::BaseDashboard
     :shares,
     :organisation_members,
     :users,
-    :id,
+    :id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -41,7 +43,7 @@ class OrganisationDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :created_at,
-    :updated_at,
+    :updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
