@@ -18,6 +18,7 @@ RSpec.feature 'Authentication' do
       visit new_user_session_path
 
       expect(page.current_path).to eq(new_user_session_path)
+      sleep(0.5) # to allow the image to load for Percy snapshot
       Percy.snapshot(page, name: 'user login page')
     end
 
@@ -44,6 +45,7 @@ RSpec.feature 'Authentication' do
       visit admin_user_index_path
 
       expect(page.current_path).to eq(new_admin_user_session_path)
+      sleep(0.5) # to allow the image to load for Percy snapshot
       Percy.snapshot(page, name: 'admin dashboard')
     end
   end
