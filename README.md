@@ -91,10 +91,11 @@ You will also need to add new dashboards to `routes.rb`, which will also allow t
 namespace :admin do
   resources :users
   resources :admin_users
-  resources :organisation_users
   resources :birth_records
   resources :shares
-
+  resources :organisations
+  resources :organisation_members
+  
   root to: 'birth_records#index'
 end
 ```

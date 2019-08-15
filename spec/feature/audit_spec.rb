@@ -5,8 +5,13 @@ require 'rails_helper'
 RSpec.feature 'Auditing' do
   let(:user) { FactoryBot.create(:user, email: 'user@example.com') }
   let(:admin) { FactoryBot.create(:admin_user, email: 'admin@example.com') }
-  let(:organisation_user) { FactoryBot.create(:organisation_user, email: 'org@example.com') }
+  let(:organisation) { FactoryBot.create(:organisation, name: 'Example Org') }
   let(:birth_records) { FactoryBot.create_list(:birth_record, 10) }
+  let(:organisation_member) do
+    u = FactoryBot.create(:user)
+    FactoryBot.create(:organisation_member, organisation: organisation, user: u)
+    u.reload
+  end
 
   context 'a user' do
     before do
@@ -52,25 +57,25 @@ RSpec.feature 'Auditing' do
         context 'they share a birth record with an organisation' do
           before do
             click_on 'share'
-            select organisation_user.email
+            select organisation.name
             click_on 'Share birth record'
           end
 
           it 'shows a "shared..." audit message' do
             visit user_audits_path
             expect(page).to have_text("Share birth record of #{target_record.full_name}")
-            expect(page).to have_text("with #{organisation_user.email}")
+            expect(page).to have_text("with #{organisation.name}")
           end
 
           context 'the organisation views the share' do
             before do
               sign_out user
-              sign_in organisation_user
-              visit organisation_user_shares_path
+              sign_in organisation_member
+              visit organisation_member_shares_path(organisation)
 
               click_on 'Show'
 
-              sign_out organisation_user
+              sign_out organisation_member
               sign_in user
             end
 
@@ -90,7 +95,7 @@ RSpec.feature 'Auditing' do
             it 'shows a "revoked..." audit message' do
               visit user_audits_path
               expect(page).to have_text("Revoke sharing of birth record of #{target_record.full_name}")
-              expect(page).to have_text("with #{organisation_user.email}")
+              expect(page).to have_text("with #{organisation.name}")
             end
           end
         end

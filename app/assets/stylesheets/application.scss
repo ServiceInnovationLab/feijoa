@@ -16,6 +16,7 @@
 @import 'rails_bootstrap_forms';
 @import 'badge';
 @import 'organisations';
+@import 'material_icons';
 
 @import 'body';
 
@@ -27,11 +28,6 @@
     width: 300px;
     margin: 1em;
   }
-}
-
-a:hover {
-  text-decoration: none;
-  background-color: $beige;
 }
 
 .card-row {
@@ -53,4 +49,8 @@ a:hover {
 .table .thead-light th {
   color: $black;
   font-weight: bold;
+}
+
+.navbar-skinny {
+  min-height: 1.5em;
 }

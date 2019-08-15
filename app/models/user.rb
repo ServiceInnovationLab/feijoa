@@ -21,8 +21,18 @@ class User < ApplicationRecord
     global_role == JANITOR_ROLE
   end
 
+  def role_for(organisation)
+    return nil unless member_of?(organisation)
+
+    organisation_members.find(organisation: organisation).role
+  end
+
   def admin_for?(organisation)
-    organisation_members&.find(organisation: organisation, role: OrganisationMember::ADMIN_USER).present?
+    role_for(organisation) == OrganisationMember::ADMIN_USER
+  end
+
+  def member_of?(organisation)
+    organisations.include? organisation
   end
 
   # Get the audits for this user
