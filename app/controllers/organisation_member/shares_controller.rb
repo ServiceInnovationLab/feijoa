@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class OrganisationUser::SharesController < OrganisationUser::BaseController
+class OrganisationMember::SharesController < OrganisationMember::BaseController
   before_action :set_share, only: :show
 
   # GET /shares
   def index
-    @shares = current_organisation_user.shares
+    @shares = @organisation.shares
   end
 
   # GET /shares/1
@@ -20,6 +20,6 @@ class OrganisationUser::SharesController < OrganisationUser::BaseController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_share
-    @share = current_organisation_user.shares.find_by(params.permit(:id))
+    @share = @organisation.shares.find_by(params.permit(:id))
   end
 end

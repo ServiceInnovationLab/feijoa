@@ -23,7 +23,7 @@ class User::SharesController < User::BaseController
                Share.new
              end
 
-    @organisations = OrganisationUser.all
+    @organisations = Organisation.all.order(:name)
   end
 
   # POST /shares
@@ -31,7 +31,7 @@ class User::SharesController < User::BaseController
     require_valid_params
 
     birth_record = current_user.birth_records.find(share_params['birth_record_id'].to_i)
-    recipient = OrganisationUser.find(share_params['recipient_id'].to_i)
+    recipient = Organisation.find(share_params['recipient_id'].to_i)
 
     @share = AuditedOperationsService.share_birth_record_with_recipient(
       user: current_user,

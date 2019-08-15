@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class OrganisationMemberDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -21,29 +21,29 @@ class OrganisationMemberDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :organisation,
-    :user,
-    :id,
-    :role
+  COLLECTION_ATTRIBUTES = %i[
+    organisation
+    user
+    id
+    role
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :organisation,
-    :user,
-    :id,
-    :role
+  SHOW_PAGE_ATTRIBUTES = %i[
+    organisation
+    user
+    id
+    role
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :organisation,
-    :user,
-    :role
+  FORM_ATTRIBUTES = %i[
+    organisation
+    user
+    role
   ].freeze
 
   # Overwrite this method to customize how organisation members are displayed

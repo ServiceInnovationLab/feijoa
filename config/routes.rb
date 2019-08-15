@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :admin_users
-    resources :organisation_users
     resources :birth_records
     resources :shares
     resources :organisations
+    resources :organisation_members
 
     root to: 'birth_records#index'
   end
@@ -36,10 +36,16 @@ Rails.application.routes.draw do
       end
     end
     resources :audits, only: :index
+    resources :organisations, except: %i[new create]
+  end
+
+  scope 'organisation_member/:organisation_id', as: 'organisation_member' do
+    get 'dashboard', controller: 'organisation_member/dashboard', action: 'index'
+    resources :shares, only: %i[index show], controller: 'organisation_member/shares'
   end
 
   authenticated :user do
-    root 'user/birth_records#index', as: :authenticated_user_root
+    root 'user/dashboard#index', as: :authenticated_user_root
   end
 
   devise_for :admin_user, path: 'admin_user', controllers: {
@@ -51,21 +57,6 @@ Rails.application.routes.draw do
 
   authenticated :admin_user do
     root 'admin_user#index', as: :authenticated_admin_user_root
-  end
-
-  devise_for :organisation_users, path: 'organisation_user', controllers: {
-    # we need to override the sessions controller, others can be default
-    sessions: 'organisation_user/sessions'
-  }
-
-  resources :organisation_user, only: [:index]
-
-  namespace :organisation_user do
-    resources :shares, only: %i[index show]
-  end
-
-  authenticated :organisation_user do
-    root 'organisation_user#index', as: :authenticated_organisation_user_root
   end
 
   root to: 'home#index'
