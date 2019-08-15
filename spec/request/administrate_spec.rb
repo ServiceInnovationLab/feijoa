@@ -24,11 +24,6 @@ RSpec.describe 'use Administrate dashboards', type: :request do
     include_examples 'admin page redirects'
   end
 
-  context 'logged in as a organisation_user' do
-    before { sign_in FactoryBot.create(:organisation_user) }
-    include_examples 'admin page redirects'
-  end
-
   context 'A guest' do
     include_examples 'admin page redirects'
   end

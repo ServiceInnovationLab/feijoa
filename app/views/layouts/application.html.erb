@@ -16,6 +16,7 @@
 
   <body class="<%= action_in_bem_format %> <%= devise_flag %> min-vh-100 d-flex flex-column">
     <%= render "shared/header" %>
+    <%= yield :subhead %>
     <%= render "shared/flash_messages" %>
     <main class="container pb-4 pt-4">
       <%= yield %>

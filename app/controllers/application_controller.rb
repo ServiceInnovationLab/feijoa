@@ -3,6 +3,7 @@ require 'application_responder'
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pundit
   self.responder = ApplicationResponder
   respond_to :html
 
@@ -18,5 +19,5 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  devise_group :account, contains: %i[user admin_user organisation_user]
+  devise_group :account, contains: %i[user admin_user]
 end

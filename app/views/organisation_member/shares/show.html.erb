@@ -1,3 +1,6 @@
+<%= content_for :subhead do %>
+  <%= render partial: "organisation_member/shared/subhead" %>
+<% end %>
 <h1>Shared document</h1>
 <p class="lead"><%= @share.user.email %> has shared this with you.</p>
 <p>
@@ -12,7 +15,7 @@
 
 <p>
   <strong>Recipient:</strong>
-  <%= @share.recipient.email %>
+  <%= @share.recipient.name %>
 </p>
 
-<%= link_to 'Back', user_shares_path %>
+<%= link_to 'Back', organisation_member_shares_path %>
