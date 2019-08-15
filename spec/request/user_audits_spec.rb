@@ -26,13 +26,13 @@ RSpec.describe 'user/AuditsController', type: :request do
         end
 
         context 'and they share it' do
-          let(:organisation_user) { FactoryBot.create(:organisation_user) }
+          let(:organisation) { FactoryBot.create(:organisation) }
 
           before do
             AuditedOperationsService.share_birth_record_with_recipient(
               user: user,
               birth_record: birth_record,
-              recipient: organisation_user
+              recipient: organisation
             )
           end
 

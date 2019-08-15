@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe AuditedOperationsService do
   let(:birth_record) { FactoryBot.create(:birth_record) }
-  let(:organisation_user) { FactoryBot.create(:organisation_user) }
+  let(:organisation) { FactoryBot.create(:organisation) }
 
   # The details of this share are unimportant, it doesn't even have to belong to
   # the user who tries to revoke it. This service only ensures that the
@@ -37,7 +37,7 @@ RSpec.describe AuditedOperationsService do
           described_class.share_birth_record_with_recipient(
             user: user,
             birth_record: birth_record,
-            recipient: organisation_user
+            recipient: organisation
           )
         end.to raise_error(ArgumentError)
       end
@@ -81,7 +81,7 @@ RSpec.describe AuditedOperationsService do
           described_class.share_birth_record_with_recipient(
             user: user,
             birth_record: birth_record,
-            recipient: organisation_user
+            recipient: organisation
           )
         end.to change { user.audits.count }.by(1)
       end
