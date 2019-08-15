@@ -95,6 +95,7 @@ namespace :admin do
   resources :shares
   resources :organisations
   resources :organisation_members
+  
   root to: 'birth_records#index'
 end
 ```
