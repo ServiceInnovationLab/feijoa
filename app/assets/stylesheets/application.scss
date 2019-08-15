@@ -50,6 +50,7 @@ a:hover {
   }
 }
 
-table, thead, th, td, tr {
-  border: 2px solid black;
+.table .thead-light td, .table .thead-light th {
+  color: #000000;
+  font-weight: bold;
 }
