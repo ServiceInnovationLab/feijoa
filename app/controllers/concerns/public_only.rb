@@ -26,8 +26,6 @@ module PublicOnly
 
     return "admin #{current_admin_user.email}" if current_admin_user
 
-    return "organisation #{current_organisation_user.email}" if current_organisation_user
-
     "a #{current_account.model_name.human.downcase}"
   end
 end
