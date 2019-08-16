@@ -30,14 +30,7 @@ class User::SharesController < User::BaseController
   def create
     require_valid_params
 
-    birth_record = current_user.birth_records.find(share_params['birth_record_id'].to_i)
-    recipient = Organisation.find(share_params['recipient_id'].to_i)
-
-    @share = AuditedOperationsService.share_birth_record_with_recipient(
-      user: current_user,
-      birth_record: birth_record,
-      recipient: recipient
-    )
+    @share = create_share_with_auditing
 
     if @share.valid?
       respond_with(@share, location: user_birth_record_path(@share.birth_record))
@@ -52,6 +45,14 @@ class User::SharesController < User::BaseController
   end
 
   private
+
+  def create_share_with_auditing
+    AuditedOperationsService.share_birth_record_with_recipient(
+      user: current_user,
+      birth_record: current_user.birth_records.find_by(id: share_params['birth_record_id']),
+      recipient: Organisation.find_by(id: share_params['recipient_id'])
+    )
+  end
 
   # Set the share, if it exists and is available to the current user
   def set_share
