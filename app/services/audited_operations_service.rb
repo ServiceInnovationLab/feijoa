@@ -86,7 +86,7 @@ class AuditedOperationsService
       )
     end
 
-    # TODO: in a real system this would be a call to the DIA birth register API.
+    # In a real system this would be a call to the DIA birth register API.
     # We are faking this so the record is already available.
 
     # logged_identity would be recorded in the BDM register access logs
