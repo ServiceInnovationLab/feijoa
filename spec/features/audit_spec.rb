@@ -13,11 +13,7 @@ RSpec.feature 'Auditing' do
     u.reload
   end
 
-  context 'a user' do
-    before do
-      sign_in user
-    end
-
+  include_context 'signed in' do
     context 'finds a birth record' do
       let(:target_record) { birth_records.sample }
 
