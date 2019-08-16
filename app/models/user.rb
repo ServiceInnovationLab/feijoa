@@ -3,9 +3,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :confirmable, :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :timeoutable, :trackable
+         :timeoutable, :trackable, :invitable
 
   has_many :birth_records_users, dependent: :nullify
   has_many :birth_records, -> { distinct.merge(BirthRecordsUser.kept) }, through: :birth_records_users
@@ -13,6 +13,15 @@ class User < ApplicationRecord
 
   has_many :organisation_members, dependent: :destroy
   has_many :organisations, through: :organisation_members
+
+  has_many :requests, inverse_of: :requestee, foreign_key: 'requestee_id'
+
+  def self.find_or_invite(email)
+    user = find_by(email: email)
+    return user if user.present?
+
+    invite!(email: email)
+  end
 
   # Janitor = Global admin
   JANITOR_ROLE = 'janitor'

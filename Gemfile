@@ -36,7 +36,12 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Authentication
 gem 'devise', '~> 4.6.2'
+gem 'devise_invitable', '~> 2.0.0'
+
+# Authorization
+gem 'pundit'
 
 # CSS framework
 gem 'bootstrap', '~> 4.3.1'
@@ -62,9 +67,6 @@ gem 'responders'
 
 # Soft delete support
 gem 'discard', '~> 1.0'
-
-# Authorization
-gem 'pundit'
 
 # State machines
 gem 'state_machines'
