@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_231913) do
+ActiveRecord::Schema.define(version: 2019_08_15_021105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,18 @@ ActiveRecord::Schema.define(version: 2019_08_14_231913) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.bigint "requester_id"
+    t.bigint "requestee_id"
+    t.bigint "share_id"
+    t.string "document_type"
+    t.string "state"
+    t.text "note"
+    t.index ["requestee_id"], name: "index_requests_on_requestee_id"
+    t.index ["requester_id"], name: "index_requests_on_requester_id"
+    t.index ["share_id"], name: "index_requests_on_share_id"
+  end
+
   create_table "shares", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "birth_record_id", null: false
@@ -148,4 +160,6 @@ ActiveRecord::Schema.define(version: 2019_08_14_231913) do
 
   add_foreign_key "organisation_members", "organisations"
   add_foreign_key "organisation_members", "users"
+  add_foreign_key "requests", "organisations", column: "requester_id"
+  add_foreign_key "requests", "users", column: "requestee_id"
 end

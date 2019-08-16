@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Request < ApplicationRecord
+  belongs_to :requester, class_name: 'Organisation'
+  belongs_to :requestee, class_name: 'User'
 
-  state_machine :initial => :initiated do
+  state_machine initial: :initiated do
     event :view do
       transition :initiated => :received
     end
@@ -19,6 +21,5 @@ class Request < ApplicationRecord
       transition :responded => :cancelled
     end
   end
-
 
 end

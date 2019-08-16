@@ -66,6 +66,10 @@ gem 'discard', '~> 1.0'
 # Authorization
 gem 'pundit'
 
+# State machines
+gem 'state_machines'
+gem 'state_machines-activerecord'
+
 group :production do
   gem 'sendgrid-ruby'
 end
