@@ -191,7 +191,7 @@ GEM
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
-    percy-capybara (4.0.1)
+    percy-capybara (4.0.2)
     pg (1.1.4)
     popper_js (1.14.5)
     public_suffix (3.1.0)
