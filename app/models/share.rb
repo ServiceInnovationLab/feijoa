@@ -27,8 +27,8 @@ class Share < ApplicationRecord
   # True if the user doesn't have any active (not soft deleted) shares of this
   # birth record with this recipient
   def not_currently_shared
-    if Share.where(recipient: recipient, user: user, birth_record: birth_record).kept.any?
-      errors.add(:recipient, 'is currently shared with this entity')
-    end
+    return false unless Share.where(recipient: recipient, user: user, birth_record: birth_record).kept.any?
+
+    errors.add(:recipient, 'is currently shared with this entity')
   end
 end
