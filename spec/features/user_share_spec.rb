@@ -8,7 +8,7 @@ RSpec.describe 'user/SharesController', type: :feature do
   let!(:target_org) { FactoryBot.create :organisation, name: 'Plunket' }
   let(:target_birth_record) do
     FactoryBot.create(
-      :birth_record,
+      :birth_record, :static_details,
       first_and_middle_names: 'Timmy',
       family_name: 'Target-Person',
       date_of_birth: '1979-01-01'
