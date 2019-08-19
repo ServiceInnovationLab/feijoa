@@ -12,10 +12,10 @@
  */
 
 @import 'variables';
-@import 'material';
+@import 'bootstrap';
 @import 'rails_bootstrap_forms';
 @import 'badge';
-@import 'material_icons';
+@import 'bootstrap_overrides';
 
 @import 'body';
 
@@ -47,4 +47,9 @@
 
 .navbar-skinny {
   min-height: 1.5em;
+}
+
+.add-doc {
+  width: 3em;
+  display: inline-block;
 }
