@@ -15,7 +15,7 @@ RSpec.describe 'user/SharesController', type: :feature do
     )
   end
   before do
-    travel_to Time.local('2019-01-01') # So Percy visual diffs show the same time
+    travel_to Time.zone.local('2019-01-01') # So Percy visual diffs show the same time
     birth_records.each do |birth_record|
       AuditedOperationsService.add_birth_record_to_user(birth_record: birth_record, user: user)
     end
