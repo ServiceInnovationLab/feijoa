@@ -34,3 +34,8 @@ h1, h2, h5 {
     justify-content: space-around;
   }
 }
+@include media-breakpoint-down(sm) {
+  .navbar {
+    font-size: 0.8em;
+  }
+}
