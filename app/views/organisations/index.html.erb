@@ -1,0 +1,24 @@
+<div>
+  <h1>Organisations</h1>
+  <table class="table table-hover">
+    <caption>List of organisations</caption>
+    <thead class="thead-light font-weight-bold">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Contact No.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @organisations.each do |organisation| %>
+        <tr>
+          <td><%= organisation.name %></td>
+          <td><%= organisation.address %></td>
+          <td><%= organisation.email %></td>
+          <td><%= organisation.contact_number %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

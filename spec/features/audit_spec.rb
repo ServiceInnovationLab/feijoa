@@ -5,19 +5,15 @@ require 'rails_helper'
 RSpec.feature 'Auditing' do
   let(:user) { FactoryBot.create(:user, email: 'user@example.com') }
   let(:admin) { FactoryBot.create(:admin_user, email: 'admin@example.com') }
-  let(:organisation) { FactoryBot.create(:organisation, name: 'Example Org') }
-  let(:birth_records) { FactoryBot.create_list(:birth_record, 10) }
-  let(:organisation_member) do
+  let!(:organisation) { FactoryBot.create(:organisation, name: 'Example Org') }
+  let!(:birth_records) { FactoryBot.create_list(:birth_record, 10) }
+  let!(:organisation_member) do
     u = FactoryBot.create(:user)
     FactoryBot.create(:organisation_member, organisation: organisation, user: u)
     u.reload
   end
 
-  context 'a user' do
-    before do
-      sign_in user
-    end
-
+  include_context 'signed in' do
     context 'finds a birth record' do
       let(:target_record) { birth_records.sample }
 
@@ -43,7 +39,7 @@ RSpec.feature 'Auditing' do
 
         context 'they remove the birth record' do
           before do
-            page.accept_alert 'Are you sure? This will the record from your documents' do
+            page.accept_alert 'Are you sure? This will remove the record from your documents' do
               click_on 'remove'
             end
           end
@@ -71,10 +67,11 @@ RSpec.feature 'Auditing' do
             before do
               sign_out user
               sign_in organisation_member
+
               visit organisation_member_shares_path(organisation)
 
               click_on 'Show'
-
+              sleep(0.5) # to wait for audit to go through...
               sign_out organisation_member
               sign_in user
             end
