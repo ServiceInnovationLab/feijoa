@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :organisation_members, dependent: :destroy
   has_many :organisations, through: :organisation_members
 
-  has_many :requests, inverse_of: :requestee, foreign_key: 'requestee_id'
+  has_many :requests, inverse_of: :requestee, foreign_key: 'requestee_id', dependent: :destroy
 
   def self.find_or_invite(email)
     user = find_by(email: email)

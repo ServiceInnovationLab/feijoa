@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Audit < Audited::Audit
-  scope :viewing_birth_record, ->() { where(comment: AuditedOperationsService::VIEW_SHARED_BIRTH_RECORD) }
-  scope :sharing_birth_record, ->() { where(comment: AuditedOperationsService::SHARE_BIRTH_RECORD) }
+  scope :viewing_birth_record, -> { where(comment: AuditedOperationsService::VIEW_SHARED_BIRTH_RECORD) }
+  scope :sharing_birth_record, -> { where(comment: AuditedOperationsService::SHARE_BIRTH_RECORD) }
   CUSTOM_RENDERING_TYPES = %w[share birth_records_user].freeze
 
   # Override the default partial path generator so we can render appropriate
