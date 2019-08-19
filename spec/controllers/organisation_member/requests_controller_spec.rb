@@ -31,9 +31,9 @@ RSpec.describe OrganisationMember::RequestsController do
     end
     it "does not allow a user to see requests that don't belong to that organisation" do
       another_request = FactoryBot.create(:request)
-      expect {
+      expect do
         get :show, params: { organisation_id: organisation.id, id: another_request.id }
-      }.to raise_error(ActiveRecord::RecordNotFound)
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
