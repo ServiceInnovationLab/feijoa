@@ -12,6 +12,7 @@ RSpec.describe 'organisations page', type: :feature do
   end
 
   it 'displays a table of organisations' do
+    expect(page).to have_css('.table.table-hover')
     expect(page).to have_text('Name')
     expect(page).to have_text('Address')
     expect(page).to have_text('Email')
