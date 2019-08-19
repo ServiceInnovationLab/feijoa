@@ -1,13 +1,21 @@
-<div class="jumbotron">
-  <h1>Feijoa</h1>
-  <p class="lead">Share your feijoas, or keep them to yourself. It's up to you.</p>
-
-  <div class="signup">
-    <%= link_to('Sign up for Feijoa', new_user_registration_path, class: 'btn btn-info btn-block') %>
+<div class="row">
+  <div class="col">
+    <h1 class="font-weight-bold">Nau mai ki Feijoa</h1>
+    <h1>Welcome to Feijoa</h1>
+    <p class="lead">Allowing you to share your personal government-administered information through consent-based sharing with other users, organisations and businesses.</p>
   </div>
-  <hr/>
-  <div class="sigin">
-    <%= link_to('Sign in', new_user_session_path, class: 'btn btn-primary') %>
-    if you already have an account
+  <div class="col">
+    <div class="jumbotron">
+      <h1>Feijoa</h1>
+
+      <div class="signup">
+        <%= link_to('Sign up for Feijoa', new_user_registration_path, class: 'btn btn-info btn-block') %>
+      </div>
+      <hr/>
+      <div class="sigin">
+        <%= link_to('Sign in', new_user_session_path, class: 'btn btn-primary') %>
+        if you already have an account
+      </div>
+    </div>
   </div>
 </div>

@@ -1,28 +1,23 @@
 <section>
-  <h2>Here are your documents</h2>
-  <p>Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity.</strong></p>
+  <h2>Your documents dashboard</h2>
+  <p>This is where your documents are stored. Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity</strong> but are a legal representation of the data of your ID which is held within the New Zealand government.</p>
   <%= render 'modal_form' %>
-
   <% if @birth_records.any? %>
     <div class="index-cards">
-
       <% @birth_records.each do |record| %>
-        <div class="card birth-record" data-id="<%= record.to_param %>">
-          <%= link_to user_birth_record_path(record) do %>
-            <div class="card-header">
-              <h4 class="card-title">BIRTH RECORD</h4>
-            </div>
+        <div class="card card--with-fancy-footer birth-record" data-id="<%= record.to_param %>">
             <div class="card-body">
-              <h5>
-                <strong><%= record.family_name %></strong>,
+              <h5 class="card-title">Birth record</h5>
+              <p>
+                <%= record.family_name %>,
                 <%= record.first_and_middle_names %>
-                <div class="text-muted"><%= record.place_of_birth %> <%= record.date_of_birth %></div>
-              </h5>
+              </p>
             </div>
-          <% end %>
           <div class="card-footer">
-            <%= link_to 'share', new_user_share_path(share: { birth_record_id: record.to_param }), class: 'btn' %>
-            <%= link_to 'remove', remove_user_birth_record_path(record), class: 'btn btn-danger', data: { confirm: 'Are you sure? This will remove the record from your documents'}, method: :post %>
+            <div class="card-footer__inner d-flex justify-content-around">
+              <%= link_to 'View', user_birth_record_path(record), class: 'btn btn-secondary' %>
+              <%= link_to 'Share', new_user_share_path(share: { birth_record_id: record.to_param }), class: 'btn btn-primary' %>
+            </div>
           </div>
         </div>
       <% end %>
