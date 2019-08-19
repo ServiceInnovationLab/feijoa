@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
+  resources :organisations, only: [:index]
+  
   namespace :admin do
     resources :users
     resources :admin_users
@@ -59,8 +61,8 @@ Rails.application.routes.draw do
     root 'admin_user#index', as: :authenticated_admin_user_root
   end
 
-  resources :organisations, only: [:index]
-
-  root to: 'home#index'
+  devise_scope :user do
+    root to: 'user/sessions#new'
+  end
 end
 # rubocop:enable Metrics/BlockLength

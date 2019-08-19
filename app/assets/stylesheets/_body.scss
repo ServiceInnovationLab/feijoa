@@ -10,11 +10,13 @@ body, html {
 .home--index,
 .user__sessions--new,
 .user__sessions--create {
-  background-image: image-url('feijoas.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: $grey;
   form {
     background-color: $white;
     padding: 1em;
   }
+}
+
+.user__birth-records--show {
+  background-image: linear-gradient(to bottom, $grey 0%, $grey 47%, #ffffff 47%, #ffffff 100%);
 }

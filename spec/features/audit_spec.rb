@@ -29,7 +29,7 @@ RSpec.feature 'Auditing' do
 
       context 'they add the birth record to their documents' do
         before do
-          click_on 'add'
+          click_on 'Add'
         end
 
         it 'shows an "added..." audit message' do
@@ -39,8 +39,9 @@ RSpec.feature 'Auditing' do
 
         context 'they remove the birth record' do
           before do
+            click_on 'View'
             page.accept_alert 'Are you sure? This will remove the record from your documents' do
-              click_on 'remove'
+              click_on 'Remove'
             end
           end
 
@@ -52,7 +53,7 @@ RSpec.feature 'Auditing' do
 
         context 'they share a birth record with an organisation' do
           before do
-            click_on 'share'
+            click_on 'Share'
             select organisation.name
             click_on 'Share birth record'
           end
@@ -85,7 +86,7 @@ RSpec.feature 'Auditing' do
           context 'they revoke the share' do
             before do
               page.accept_alert 'Are you sure?' do
-                click_on 'revoke'
+                click_on 'Revoke'
               end
             end
 
