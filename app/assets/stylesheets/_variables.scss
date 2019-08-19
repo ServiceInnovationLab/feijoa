@@ -1,35 +1,33 @@
+// Colours
 $beige: #f3f1ee;
 $brown: #413f3b;
-
-$green: #5f8e43;
+$black: #000000;
+$green: #427B72;
 $blue: #2f4365;
 $red: #ff4d43;
-$orange: #ffa500;
+$orange: #F28A5A;
 $yellow: #b2935c;
 $white: #ffffff;
+$navy: #2D3142;
 
-$primary: (
-  color: $green,
-  dark:  darken($green, 20%),
-  light: lighten($green, 20%)
-);
-$secondary: (
-  color: $blue,
-  dark:  darken($blue, 20%),
-  light: lighten($blue, 20%)
-);
-$success: (
-  color: $green,
-  dark:  darken($green, 20%),
-  light: lighten($green, 20%)
-);
-$danger: (
-  color: $red,
-  dark:  darken($red, 20%),
-  light: lighten($red, 20%)
-);
-$dark: (
-  color: $brown,
-  dark:  darken($brown, 20%),
-  light: lighten($brown, 20%)
-);
+$grey: #D1D1D1;
+
+$primary: $green;
+$secondary: $orange;
+$danger: $navy;
+$warning: $orange;
+
+// Bootstrap variable overrides
+$btn-border-radius: 2em;
+$btn-font-weight: bold;
+$btn-padding-x: 1.5em;
+
+$theme-color-interval: 0%;
+$alert-border-radius: 0;
+
+$font-family-sans-serif:  'Open Sans', 'Helvetica Neue', Helvetica, arial, sans-serif;
+
+$card-border-color: transparent;
+$card-bg: #f7f7f7;
+$card-cap-bg: #f7f7f7;
+$card-border-radius: 1em;

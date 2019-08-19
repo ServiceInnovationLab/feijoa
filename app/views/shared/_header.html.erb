@@ -1,8 +1,8 @@
-<header class="navbar navbar-expand navbar-light bg-light flex-row">
+<header class="navbar navbar-expand navbar-dark bg-dark flex-row">
   <div class="container">
-    <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= link_to root_path, class: 'navbar-brand d-flex align-items-center' do %>
       <%= image_tag "feijoa_icon.png", class: 'rounded', height: 40, width: 40, alt: 'Feijoa home' %>
-      Feijoa
+      <span class="text-white font-weight-bold ml-2">Feijoa</span>
     <% end %>
     <ul class="navbar-nav">
       <% if current_admin_user.present? %>
@@ -45,9 +45,6 @@
           <%= link_to 'My Documents', user_birth_records_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'My Shares', user_shares_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
           <%= link_to 'History', user_audits_path, class: 'nav-link' %>
         </li>
       <% end %>
@@ -56,10 +53,10 @@
       <% if signed_in? %>
         <li class="nav-item mr-auto">
           <% if current_admin_user.present? %>
-            <%= render partial: 'shared/logout', locals: { _logout_path: destroy_admin_user_session_path, _account_badge_letter: 'A' } %>
+            <%= render partial: 'shared/logout', locals: { _logout_path: destroy_admin_user_session_path } %>
           <% end %>
           <% if current_user.present? %>
-            <%= render partial: 'shared/logout', locals: { _logout_path: destroy_user_session_path, _account_badge_letter: 'U' } %>
+            <%= render partial: 'shared/logout', locals: { _logout_path: destroy_user_session_path } %>
           <% end %>
         </li>
       <% else %>

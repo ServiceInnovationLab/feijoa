@@ -47,8 +47,6 @@ gem 'pundit'
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form', '>= 4.2.0'
 gem 'jquery-rails'
-gem 'material-sass', '4.1.1'
-gem 'material_icons'
 
 # easy admin dashboard for editing data
 gem 'administrate'

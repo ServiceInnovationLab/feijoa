@@ -108,6 +108,9 @@ ActiveRecord::Schema.define(version: 2019_08_16_005148) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.string "email"
+    t.string "contact_number"
   end
 
   create_table "requests", force: :cascade do |t|

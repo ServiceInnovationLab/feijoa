@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Organisation < ApplicationRecord
-  has_many :shares, as: :recipient
+  has_many :shares, as: :recipient, dependent: :destroy
   has_many :organisation_members, dependent: :destroy
   has_many :users, through: :organisation_members
 
