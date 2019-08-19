@@ -33,11 +33,11 @@ class User < ApplicationRecord
   def role_for(organisation)
     return nil unless member_of?(organisation)
 
-    organisation_members.find(organisation: organisation).role
+    organisation_members.find_by(organisation: organisation).role
   end
 
   def admin_for?(organisation)
-    role_for(organisation) == OrganisationMember::ADMIN_USER
+    role_for(organisation) == OrganisationMember::ADMIN_ROLE
   end
 
   def member_of?(organisation)
