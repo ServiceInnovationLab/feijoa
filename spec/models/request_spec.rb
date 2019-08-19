@@ -12,6 +12,14 @@ RSpec.describe Request, type: :model do
   end
 
   describe 'Request#unresolved' do
-    it 'includes initiated and received requests but not cancelled, declined or responded ones'
+    it 'includes initiated and received requests but not cancelled, declined or responded ones' do
+      FactoryBot.create(:request, state: :cancelled)
+      FactoryBot.create(:request, state: :declined)
+      FactoryBot.create(:request, state: :responded)
+      initiated_request = FactoryBot.create(:request, state: :initiated)
+      received_request = FactoryBot.create(:request, state: :received)
+
+      expect(Request.unresolved).to contain_exactly(initiated_request, received_request)
+    end
   end
 end
