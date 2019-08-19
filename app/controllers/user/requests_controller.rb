@@ -11,12 +11,14 @@ class User::RequestsController < User::BaseController
   end
 
   # GET /requests/1
-  def show; end
+  def show
+    authorize @request, :show?
+  end
 
   private
 
   # Set the request, if it exists and is available to the current user
   def set_request
-    @request = user_requests.find_by(params.permit(:id))
+    @request = current_user.requests.find(params[:id])
   end
 end

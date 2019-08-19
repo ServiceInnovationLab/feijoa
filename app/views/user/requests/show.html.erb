@@ -1,4 +1,8 @@
-<h1>Request for a document to be shared with <%= @organisation.name %></h1>
+<div class="mb-4">
+  <%= link_to "← Back", user_requests_path, class: 'text-dark' %>
+</div>
+
+<h1>Request for a document to be shared with <%= @request.requester.name %></h1>
 
 <dt>Requester</dt>
 <dd>
