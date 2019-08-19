@@ -2,10 +2,10 @@
 
 class Request < ApplicationRecord
   belongs_to :requester, class_name: 'Organisation',
-                         inverse_of: :request, foreign_key: 'requester_id',
+                         inverse_of: :requests, foreign_key: 'requester_id',
                          dependent: :destroy
   belongs_to :requestee, class_name: 'User',
-                         inverse_of: :request, foreign_key: 'requestee_id',
+                         inverse_of: :requests, foreign_key: 'requestee_id',
                          dependent: :destroy
 
   validates :requester, presence: true
