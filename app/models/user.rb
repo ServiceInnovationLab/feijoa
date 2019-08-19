@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def admin_for?(organisation)
-    role_for(organisation) == OrganisationMember::ADMIN_USER
+    role_for(organisation) == OrganisationMember::ADMIN_ROLE
   end
 
   def member_of?(organisation)
