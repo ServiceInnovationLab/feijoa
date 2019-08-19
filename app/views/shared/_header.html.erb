@@ -1,8 +1,8 @@
-<header class="navbar navbar-expand navbar-light bg-light flex-row">
+<header class="navbar navbar-expand navbar-dark bg-dark flex-row">
   <div class="container">
-    <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= link_to root_path, class: 'navbar-brand d-flex align-items-center' do %>
       <%= image_tag "feijoa_icon.png", class: 'rounded', height: 40, width: 40, alt: 'Feijoa home' %>
-      Feijoa
+      <span class="text-white font-weight-bold ml-2">Feijoa</span>
     <% end %>
     <ul class="navbar-nav">
       <% if current_admin_user.present? %>

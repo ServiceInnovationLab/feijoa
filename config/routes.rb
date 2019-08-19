@@ -59,6 +59,8 @@ Rails.application.routes.draw do
     root 'admin_user#index', as: :authenticated_admin_user_root
   end
 
-  root to: 'home#index'
+  devise_scope :user do
+    root to: 'user/sessions#new'
+  end
 end
 # rubocop:enable Metrics/BlockLength
