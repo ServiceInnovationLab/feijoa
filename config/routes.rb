@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
+  resources :organisations, only: [:index]
+  
   namespace :admin do
     resources :users
     resources :admin_users
