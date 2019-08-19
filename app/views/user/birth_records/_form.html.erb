@@ -1,17 +1,22 @@
 <%= bootstrap_form_with(url: find_user_birth_records_path, scope: 'birth_record', action: :query, local: true) do |f| %>
-  <h3>Required fields</h3>
-  <%= f.text_field :first_and_middle_names, required: true%>
-  <%= f.text_field :family_name, required: true %>
-  <%= f.text_field :date_of_birth, required: true %>
-  <hr />
-  <h3>Optional fields</h3>
-  <%= f.text_field :place_of_birth %>
-  <%= f.text_field :parent_first_and_middle_names %>
-  <%= f.text_field :parent_family_name %>
-  <%= f.text_field :other_parent_first_and_middle_names %>
-  <%= f.text_field :other_parent_family_name %>
+  <section>
+    <h5>Required fields</h5>
+    <%= f.text_field :first_and_middle_names, required: true%>
+    <%= f.text_field :family_name, required: true %>
+    <%= f.text_field :date_of_birth, required: true %>
+  </section>
+  <section>
+    <h5>Optional fields</h5>
+    <%= f.text_field :place_of_birth %>
+    <%= f.text_field :parent_first_and_middle_names %>
+    <%= f.text_field :parent_family_name %>
+    <%= f.text_field :other_parent_first_and_middle_names %>
+    <%= f.text_field :other_parent_family_name %>
+  </section>
 
-  <div class="d-flex">
-    <%= f.submit 'Find', class: 'btn btn-lg btn-primary ml-auto' %>
+  <div class="row mb-4 mt-4 justify-content-center">
+    <div class="col-lg-6">
+      <%= f.submit 'Find', class: 'btn btn-block btn-primary ml-auto' %>
+    </div>
   </div>
 <% end %>

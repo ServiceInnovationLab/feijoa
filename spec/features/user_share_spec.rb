@@ -28,7 +28,7 @@ RSpec.describe 'user/SharesController', type: :feature do
       context 'the user chooses to share the birth record' do
         before do
           visit user_birth_records_path
-          find(".birth-record[data-id='#{target_birth_record.id}']").click_link('share')
+          find(".birth-record[data-id='#{target_birth_record.id}']").click_link('Share')
 
           # wait for destination page to load
           page.has_css?('body.user__shares--new')
@@ -50,7 +50,7 @@ RSpec.describe 'user/SharesController', type: :feature do
     before do
       login_as(user, scope: :user)
       visit user_birth_record_path(target_birth_record)
-      click_link 'share'
+      click_link 'Share'
       select 'Plunket', from: 'Recipient'
       click_button 'Share birth record'
       Percy.snapshot(page, name: 'Shared birth record')
@@ -58,16 +58,16 @@ RSpec.describe 'user/SharesController', type: :feature do
     it { expect(page).to have_text 'Share was successfully created.' }
     it { expect(page).to have_text 'Shared with' }
     it { expect(page).to have_text 'Plunket' }
-    it { expect(page).to have_link 'revoke' }
+    it { expect(page).to have_link 'Revoke' }
 
     describe 'Revoke consent' do
       before do
-        accept_confirm { click_link 'revoke' }
+        accept_confirm { click_link 'Revoke' }
       end
       it { expect(page).to have_text 'Share was successfully revoked.' }
       it { expect(page).not_to have_text 'Shared with' }
       it { expect(page).not_to have_text 'Plunket' }
-      it { expect(page).not_to have_link 'revoke' }
+      it { expect(page).not_to have_link 'Revoke' }
     end
   end
 end
