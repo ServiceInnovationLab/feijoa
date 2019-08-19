@@ -19,7 +19,7 @@ class OrganisationDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     address: Field::String,
     email: Field::String,
-    contact_number: Field::String,
+    contact_number: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -53,7 +53,7 @@ class OrganisationDashboard < Administrate::BaseDashboard
     :name,
     :address,
     :email,
-    :contact_number,
+    :contact_number
   ].freeze
 
   # Overwrite this method to customize how organisations are displayed
