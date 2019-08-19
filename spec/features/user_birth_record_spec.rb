@@ -73,7 +73,7 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
               count: 1
             )
 
-            click_link 'add'
+            click_link 'Add'
 
             expect(page).to have_selector('.card', count: 1)
             expect(page).to have_content target_record.family_name
