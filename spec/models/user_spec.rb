@@ -48,4 +48,16 @@ RSpec.describe User, type: :model do
       it { expect(user.role_for(organisation)).to eq('member') }
     end
   end
+
+  describe 'User#find_or_invite' do
+    context 'when passed an email associated with a user' do
+      it 'returns that user'
+    end
+    context 'when passed an email address not associated with a user' do
+      it 'invites that email address and returns the new User object'
+    end
+    context "when passed something that isn't an email address" do
+      it 'throws an error'
+    end
+  end
 end
