@@ -3,7 +3,7 @@
 # rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   resources :organisations, only: [:index]
-  
+
   namespace :admin do
     resources :users
     resources :admin_users
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    root 'user/dashboard#index', as: :authenticated_user_root
+    root 'user/birth_records#index', as: :authenticated_user_root
   end
 
   devise_for :admin_user, path: 'admin_user', controllers: {

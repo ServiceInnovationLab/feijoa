@@ -7,6 +7,8 @@ class Request < ApplicationRecord
   validates :requester, presence: true
   validates :requestee, presence: true
 
+  scope :unresolved, -> { with_state(:initiated, :received) }
+
   state_machine initial: :initiated do
     event :view do
       transition :initiated => :received

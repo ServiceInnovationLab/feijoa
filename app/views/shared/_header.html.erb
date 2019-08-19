@@ -45,6 +45,14 @@
           <%= link_to 'My Documents', user_birth_records_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
+          <%= link_to user_requests_path, class: 'nav-link' do %>
+            Requests
+            <% if current_user.requests.unresolved.any? %>
+              <span class="badge badge-secondary"><%= current_user.requests.unresolved.count %></span>
+            <% end %>
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= link_to 'History', user_audits_path, class: 'nav-link' %>
         </li>
       <% end %>
