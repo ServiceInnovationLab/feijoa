@@ -73,7 +73,7 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
               count: 1
             )
 
-            click_link 'add'
+            click_link 'Add'
 
             expect(page).to have_selector('.card', count: 1)
             expect(page).to have_content target_record.family_name
@@ -89,7 +89,7 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
         context 'no fields are filled in' do
           it 'no records are found' do
             visit user_birth_records_path
-            click_link 'Search for Birth Record'
+            find('#add-record').click
             fill_in 'birth_record_first_and_middle_names', with: target_record.first_and_middle_names
             fill_in 'birth_record_date_of_birth', with: target_record.date_of_birth
 

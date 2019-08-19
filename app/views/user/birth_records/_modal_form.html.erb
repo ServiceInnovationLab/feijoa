@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Enter Birth Record Details</h4>
+        <h4 class="modal-title w-100">Enter birth record details</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -15,9 +15,7 @@
   </div>
 </div>
 
-<div class="text-center">
-  <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalBirthRecordForm">
-    Search for Birth Record
-  </a>
-</div>
-
+<h3>Add a document</h3>
+<a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="add-doc">
+  <%= image_tag("plus.svg", alt: 'Add a new document') %>
+</a>
