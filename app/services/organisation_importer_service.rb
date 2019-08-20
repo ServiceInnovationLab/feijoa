@@ -29,7 +29,10 @@ class OrganisationImporterService
   private
 
   def save_org(record)
-    org = Organisation.find_or_initialize_by(data_source_key: record[@fields[:key]], data_source_name: @data_source_name)
+    org = Organisation.find_or_initialize_by(
+      data_source_key: record[@fields[:key]],
+      data_source_name: @data_source_name
+    )
     org.name = record[@fields[:name]]
     org.email = record[@fields[:email]]
     org.address = record[@fields[:address]]
