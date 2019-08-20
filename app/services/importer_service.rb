@@ -5,7 +5,7 @@ class ImporterService
     @data_set_id = data_set_id
     @fields = fields
     @per_page = 500
-    @total_records = fetch_total_records_count.to_i
+    @total_records = fetch_total_records_count
   end
 
   def import!
@@ -44,7 +44,7 @@ class ImporterService
   def fetch_total_records_count
     conn.get(data_url(
                "SELECT count(*) from \"#{@data_set_id}\""
-             )).body.fetch('result').fetch('records')[0].fetch('count')
+             )).body.fetch('result').fetch('records')[0].fetch('count').to_i
   end
 
   def data_url(query)
