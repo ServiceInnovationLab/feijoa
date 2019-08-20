@@ -24,4 +24,16 @@ namespace :import do
                                               'address': 'Add1_Line1',
                                               'contact_number': 'Telephone' }).import!
   end
+
+  desc 'Import kura kaupapa maori from data.govt.nz'
+  # usage: rake import:schools
+  task tkkm: :environment do
+    OrganisationImporterService.new(dataset_id: 'a476fde6-b0bb-43d8-8e60-c9d8d594b385',
+                                    data_source_name: 'tkkm',
+                                    fields: { 'key': 'School Number',
+                                              'name': 'School Name',
+                                              'email': 'Email^',
+                                              'address': 'Postal Address 1',
+                                              'contact_number': 'Telephone' }).import!
+  end
 end
