@@ -8,14 +8,16 @@ RSpec.describe ImporterService do
     let(:count_response_body) { { 'result' => { 'records' => [{ 'count' => '99' }] } } }
     let(:query_response_body) { { 'result' => { 'records' => [record] } } }
 
-    let(:record) { { 'Name' => 'Super Kewl Kindy', 'Telephone' => '321', 'Address' => 'main road', 'Email' => 'me@example.com' } }
+    let(:record) do
+      { 'Name' => 'Super Kewl Kindy', 'Telephone' => '321', 'Address' => 'main road', 'Email' => 'me@example.com' }
+    end
     before(:each) do
       response = double('response')
       allow(response).to receive(:body).and_return(count_response_body)
       allow(Faraday).to receive(:new).and_return(double(Faraday, get: response))
     end
     subject { ImporterService.new(data_set_id, fields: { name: 'Name' }) }
-    it { expect(subject.send(:data_url, 'SELECT * FROM blah')).to eq('/api/3/action/datastore_search_sql?sql=SELECT * FROM blah') }
+    it { expect(subject.send(:data_url, 'HELLO')).to eq('/api/3/action/datastore_search_sql?sql=HELLO') }
     it { expect(subject.send(:fetch_total_records_count)).to eq 99 }
     it { expect { subject.send(:save_org, record) }.to change(Organisation, :count).by(1) }
 
