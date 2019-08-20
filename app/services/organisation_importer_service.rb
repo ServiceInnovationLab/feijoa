@@ -2,7 +2,7 @@
 
 DATA_GOVT_NZ = 'https://catalogue.data.govt.nz'
 
-class ImporterService
+class OrganisationImporterService
   def initialize(data_set_id, fields: {})
     @data_set_id = data_set_id
     @fields = { name: 'Name', email: 'Email', contact_number: 'Telephone', address: 'Address' }.merge(fields)
