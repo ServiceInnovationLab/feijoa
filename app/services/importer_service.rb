@@ -3,7 +3,7 @@
 class ImporterService
   def initialize(data_set_id, fields: {})
     @data_set_id = data_set_id
-    @fields = fields
+    @fields = { name: 'Name', email: 'Email', contact_number: 'Telephone', address: 'Address' }.merge(fields)
     @per_page = 500
     @total_records = fetch_total_records_count
   end
@@ -25,7 +25,6 @@ class ImporterService
   private
 
   def save_org(record)
-    puts record[@fields[:name]]
     org = Organisation.find_or_create_by!(name: record[@fields[:name]])
     org.update!(
       email: record[@fields[:email]],
