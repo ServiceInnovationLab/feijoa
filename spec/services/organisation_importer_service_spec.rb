@@ -9,7 +9,8 @@ RSpec.describe OrganisationImporterService do
     let(:query_response_body) { { 'result' => { 'records' => [record] } } }
 
     let(:record) do
-      { 'Name' => 'Super Kewl Kindy', 'Telephone' => '321', 'Address' => 'main road', 'Email' => 'me@example.com' }
+      { 'Name' => 'Super Kewl Kindy', 'Telephone' => '321',
+        'Address' => 'main road', 'Email' => 'me@example.com', 'key' => '99' }
     end
     before(:each) do
       response = double('response')
@@ -34,6 +35,8 @@ RSpec.describe OrganisationImporterService do
         expect(Organisation.last.email).to eq 'me@example.com'
         expect(Organisation.last.address).to eq 'main road'
         expect(Organisation.last.contact_number).to eq '321'
+        expect(Organisation.last.data_source_name).to eq 'ece'
+        expect(Organisation.last.data_source_key).to eq '99'
       end
     end
   end

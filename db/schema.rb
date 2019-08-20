@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2019_08_20_085902) do
     t.string "email"
     t.string "contact_number"
     t.string "data_source_name"
-    t.integer "data_source_id"
-    t.index ["data_source_id", "data_source_name"], name: "index_organisations_on_data_source_id_and_data_source_name", unique: true
+    t.string "data_source_key"
+    t.index ["data_source_key", "data_source_name"], name: "index_organisations_on_data_source_key_and_data_source_name", unique: true
   end
 
   create_table "requests", force: :cascade do |t|
