@@ -5,6 +5,8 @@ class Organisation < ApplicationRecord
   has_many :organisation_members, dependent: :destroy
   has_many :users, through: :organisation_members
 
+  validates :name, presence: true
+
   def add_admin(user)
     organisation_members.create(user: user, role: OrganisationMember::ADMIN_ROLE)
   end
