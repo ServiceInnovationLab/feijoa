@@ -36,4 +36,10 @@ RSpec.describe OrganisationMember::RequestsController do
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+  describe 'GET new' do
+    it 'creates a request with the organisation as the requester' do
+      get :new, params: { organisation_id: organisation.id }
+      expect(assigns(:request).requester).to eq(organisation)
+    end
+  end
 end
