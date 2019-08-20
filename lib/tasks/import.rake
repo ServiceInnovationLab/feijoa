@@ -8,9 +8,7 @@ namespace :import do
                                     data_source_name: 'ece',
                                     fields: { 'key': 'ECE_Id',
                                               'name': 'Org_Name',
-                                              'email': 'Email',
-                                              'address': 'Add1_Line1',
-                                              'contact_number': 'Telephone' }).import!
+                                              'address': 'Add1_Line1'}).import!
   end
 
   desc 'Import schools from data.govt.nz'
@@ -20,9 +18,7 @@ namespace :import do
                                     data_source_name: 'schools',
                                     fields: { 'key': 'School_Id',
                                               'name': 'Org_Name',
-                                              'email': 'Email',
-                                              'address': 'Add1_Line1',
-                                              'contact_number': 'Telephone' }).import!
+                                              'address': 'Add1_Line1'}).import!
   end
 
   desc 'Import kura kaupapa maori from data.govt.nz'
@@ -33,7 +29,6 @@ namespace :import do
                                     fields: { 'key': 'School Number',
                                               'name': 'School Name',
                                               'email': 'Email^',
-                                              'address': 'Postal Address 1',
-                                              'contact_number': 'Telephone' }).import!
+                                              'address': 'Postal Address 1'}).import!
   end
 end
