@@ -13,6 +13,7 @@ class User::RequestsController < User::BaseController
   # GET /requests/1
   def show
     authorize @request, :show?
+    @request.view
   end
 
   private
