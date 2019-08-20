@@ -1,23 +1,21 @@
 # frozen_string_literal: true
 
 class ImporterService
-  def import_ece
-    page = 0
-    per_page = 500
-    total_records = fetch_total_records_count.to_i
-    offset = 0
+  def initialize(data_set_id, fields: {})
+    @data_set_id = data_set_id
+    @fields = fields
+    @per_page = 500
+    @total_records = fetch_total_records_count.to_i
+  end
 
-    while offset < total_records
+  def import!
+    offset = 0
+    page = 0
+    while offset < @total_records
       ActiveRecord::Base.transaction do
-        offset = page * per_page
-        fetch_records(per_page, offset).each do |record|
-          puts record['Org_Name']
-          org = Organisation.find_or_create_by!(name: record['Org_name'])
-          org.update!(
-            email: record['Email'],
-            address: "#{record['Add1_Line1']} #{record['Add1_Suburb']} #{record['Add1_City']}",
-            contact_number: record['Telephone']
-          )
+        offset = page * @per_page
+        fetch_records(@per_page, offset).each do |record|
+          save_org(record)
         end
         page += 1
       end
@@ -26,21 +24,27 @@ class ImporterService
 
   private
 
+  def save_org(record)
+    puts record[@fields[:name]]
+    org = Organisation.find_or_create_by!(name: record[@fields[:name]])
+    org.update!(
+      email: record[@fields[:email]],
+      address: record[@fields[:address]],
+      contact_number: record[@fields[:contact_number]]
+    )
+  end
+
   def fetch_records(limit, offset)
     data = conn.get(data_url(
-                      "SELECT * from \"#{data_set_id}\" ORDER BY \"_id\" DESC LIMIT #{limit} OFFSET #{offset}"
+                      "SELECT * from \"#{@data_set_id}\" ORDER BY \"_id\" DESC LIMIT #{limit} OFFSET #{offset}"
                     )).body
     data.fetch('result', {}).fetch('records', {})
   end
 
   def fetch_total_records_count
     conn.get(data_url(
-               "SELECT count(*) from \"#{data_set_id}\""
+               "SELECT count(*) from \"#{@data_set_id}\""
              )).body.fetch('result').fetch('records')[0].fetch('count')
-  end
-
-  def data_set_id
-    '26f44973-b06d-479d-b697-8d7943c97c57'
   end
 
   def data_url(query)
