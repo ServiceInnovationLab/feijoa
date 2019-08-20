@@ -1,0 +1,6 @@
+<%= content_for :subhead do %>
+  <%= render partial: "organisation_member/shared/subhead" %>
+<% end %>
+
+<h1>New document request</h1>
+<%= render partial: 'form', locals: { request: @request } %>

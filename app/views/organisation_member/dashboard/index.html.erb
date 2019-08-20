@@ -14,10 +14,10 @@
       <% end %>
     </div>
     <div class="col-4">
-      <%= link_to '#' do %>
+      <%= link_to organisation_member_requests_path(@organisation) do %>
         <div class="c-dashboard-links__link card">
           <div class="card-body">
-              Request a document to be shared with <%=@organisation.name %>
+              Requests for documents to be shared with <%=@organisation.name %>
           </div>
         </div>
       <% end %>
