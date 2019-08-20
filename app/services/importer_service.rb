@@ -28,7 +28,7 @@ class ImporterService
 
   def fetch_records(limit, offset)
     data = conn.get(data_url(
-                      "SELECT * from \"#{data_set_id}\" ORDER BY \"ECE_Id\" LIMIT #{limit} OFFSET #{offset}"
+                      "SELECT * from \"#{data_set_id}\" ORDER BY \"_id\" DESC LIMIT #{limit} OFFSET #{offset}"
                     )).body
     data.fetch('result', {}).fetch('records', {})
   end
