@@ -17,7 +17,8 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
                            note: request_params[:note],
                            requester: @organisation,
                            requestee: User.find_or_invite(request_params[:requestee_email]))
-    if @request.save
+    if valid_params? && @request.valid?
+      @request.save
       redirect_to organisation_member_request_path(@organisation, @request)
     else
       render :new
@@ -33,6 +34,13 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
   # Use callbacks to share common setup or constraints between actions.
   def set_request
     @request = @organisation.requests.find(params[:id])
+  end
+
+  def valid_params?
+    return true if request_params[:requestee_email].present?
+
+    flash.now[:alert] = "Please provide an email address to send this request to."
+    false
   end
 
   def request_params

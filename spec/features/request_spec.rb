@@ -16,12 +16,9 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
       fill_in 'note', with: 'A note'
     end
 
-    # This test will fail because it's not doing what we expect it to do
-    context 'when an email address is not provided' do
-      xit 'shows an error' do
-        click_button 'Save'
-        expect(page).to have_content('Could not be saved')
-      end
+    it 'requires email address' do
+      email_field = find_field("Requestee email")
+      expect(email_field[:required]).to eq("true")
     end
 
     context 'when an email address is provided' do
