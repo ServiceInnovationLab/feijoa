@@ -8,7 +8,7 @@ RSpec.describe ImporterService do
     let(:count_response_body) { { 'result' => { 'records' => [{ 'count' => '99' }] } } }
     let(:query_response_body) { { 'result' => { 'records' => [record] } } }
 
-    let(:record) { { 'Name' => 'Super Kewl Kindy' } }
+    let(:record) { { 'Name' => 'Super Kewl Kindy', 'Telephone' => '321', 'Address' => 'main road', 'Email' => 'me@example.com' } }
     before(:each) do
       response = double('response')
       allow(response).to receive(:body).and_return(count_response_body)
@@ -30,6 +30,9 @@ RSpec.describe ImporterService do
       it "saves with correct name" do
         subject.import!
         expect(Organisation.last.name).to eq 'Super Kewl Kindy'
+        expect(Organisation.last.email).to eq 'me@example.com'
+        expect(Organisation.last.address).to eq 'main road'
+        expect(Organisation.last.contact_number).to eq '321'
       end
     end
   end
