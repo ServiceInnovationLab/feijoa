@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_231913) do
+ActiveRecord::Schema.define(version: 2019_08_16_005148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,20 @@ ActiveRecord::Schema.define(version: 2019_08_14_231913) do
     t.string "contact_number"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.bigint "requester_id", null: false
+    t.bigint "requestee_id", null: false
+    t.bigint "share_id"
+    t.string "document_type"
+    t.string "state"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requestee_id"], name: "index_requests_on_requestee_id"
+    t.index ["requester_id"], name: "index_requests_on_requester_id"
+    t.index ["share_id"], name: "index_requests_on_share_id"
+  end
+
   create_table "shares", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "birth_record_id", null: false
@@ -145,10 +159,24 @@ ActiveRecord::Schema.define(version: 2019_08_14_231913) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "global_role"
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.bigint "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invitations_count"], name: "index_users_on_invitations_count"
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "organisation_members", "organisations"
   add_foreign_key "organisation_members", "users"
+  add_foreign_key "requests", "organisations", column: "requester_id"
+  add_foreign_key "requests", "users", column: "requestee_id"
 end

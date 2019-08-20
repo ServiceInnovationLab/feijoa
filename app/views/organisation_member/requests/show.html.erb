@@ -1,0 +1,25 @@
+<%= content_for :subhead do %>
+  <%= render partial: "organisation_member/shared/subhead" %>
+<% end %>
+<h1>Request for a document to be shared with <%= @organisation.name %></h1>
+
+<dt>Requester</dt>
+<dd>
+  <%= @request.requester.name %>
+</dd>
+<dt>Requestee</dt>
+<dd>
+  <%= @request.requestee.email %>
+</dd>
+<dt>Note</dt>
+<dd>
+  <%= @request.note %>
+</dd>
+<dt>State</dt>
+<dd>
+  <%= @request.state %>
+</dd>
+<dt>Document type</dt>
+<dd>
+  <%= @request.document_type %>
+</dd>
