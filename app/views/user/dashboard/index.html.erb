@@ -21,19 +21,10 @@
   <h2>Share</h2>
   <div class="row">
     <div class="col-4">
-      <%= link_to '#' do %>
+      <%= link_to user_requests_path do %>
         <div class="c-dashboard-links__link card">
           <div class="card-body">
-            Requested shares
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-4">
-      <%= link_to user_shares_path do %>
-        <div class="c-dashboard-links__link card">
-          <div class="card-body">
-            My shares
+            Requests <span class="badge badge-secondary"><%= current_user.requests.unresolved.count %></span>
           </div>
         </div>
       <% end %>

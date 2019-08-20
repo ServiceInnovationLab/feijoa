@@ -1,0 +1,26 @@
+<div class="mb-4">
+  <%= link_to "← Back", user_requests_path, class: 'text-dark' %>
+</div>
+
+<h1>Request for a document to be shared with <%= @request.requester.name %></h1>
+
+<dt>Requester</dt>
+<dd>
+  <%= @request.requester.name %>
+</dd>
+<dt>Requestee</dt>
+<dd>
+  <%= @request.requestee.email %>
+</dd>
+<dt>Note</dt>
+<dd>
+  <%= @request.note %>
+</dd>
+<dt>State</dt>
+<dd>
+  <%= @request.state %>
+</dd>
+<dt>Document type</dt>
+<dd>
+  <%= @request.document_type %>
+</dd>

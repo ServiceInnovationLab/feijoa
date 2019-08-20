@@ -4,6 +4,7 @@ class Organisation < ApplicationRecord
   has_many :shares, as: :recipient, dependent: :destroy
   has_many :organisation_members, dependent: :destroy
   has_many :users, through: :organisation_members
+  has_many :requests, inverse_of: 'requester', foreign_key: 'requester_id', dependent: :destroy
 
   validates :name, presence: true
 
