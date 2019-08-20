@@ -39,7 +39,7 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
   def valid_params?
     return true if request_params[:requestee_email].present?
 
-    flash.now[:alert] = "Please provide an email address to send this request to."
+    flash.now[:alert] = 'Please provide an email address to send this request to.'
     false
   end
 

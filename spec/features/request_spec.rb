@@ -17,8 +17,8 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
     end
 
     it 'requires email address' do
-      email_field = find_field("Requestee email")
-      expect(email_field[:required]).to eq("true")
+      email_field = find_field('Requestee email')
+      expect(email_field[:required]).to eq('true')
     end
 
     context 'when an email address is provided' do
