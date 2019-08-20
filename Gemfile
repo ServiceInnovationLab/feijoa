@@ -64,6 +64,9 @@ gem 'discard', '~> 1.0'
 # Authorization
 gem 'pundit'
 
+gem 'faraday'
+gem 'faraday_middleware'
+
 group :production do
   gem 'sendgrid-ruby'
 end
