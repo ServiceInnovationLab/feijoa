@@ -51,13 +51,21 @@ RSpec.describe User, type: :model do
 
   describe 'User#find_or_invite' do
     context 'when passed an email associated with a user' do
-      it 'returns that user'
+      let(:user) { FactoryBot.create(:user) }
+      it 'returns that user' do
+        expect(User.find_or_invite(user.email)).to eq(user)
+      end
+      it 'does not invite that user' do
+        expect { User.find_or_invite(user.email) }.not_to change(ActionMailer::Base.deliveries, :count)
+      end
     end
     context 'when passed an email address not associated with a user' do
-      it 'invites that email address and returns the new User object'
-    end
-    context "when passed something that isn't an email address" do
-      it 'throws an error'
+      it 'invites that email address' do
+        expect { User.find_or_invite(Faker::Internet.email) }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
+      it 'returns the new User object' do
+        expect(User.find_or_invite(Faker::Internet.email)).to be_a(User)
+      end
     end
   end
 end
