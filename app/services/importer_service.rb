@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+DATA_GOVT_NZ = 'https://catalogue.data.govt.nz'
+
 class ImporterService
   def initialize(data_set_id, fields: {})
     @data_set_id = data_set_id
@@ -50,12 +52,8 @@ class ImporterService
     "/api/3/action/datastore_search_sql?sql=#{query}"
   end
 
-  def data_govt_nz
-    'https://catalogue.data.govt.nz'
-  end
-
   def conn
-    Faraday.new data_govt_nz do |conn|
+    Faraday.new DATA_GOVT_NZ do |conn|
       conn.response :json, content_type: /\bjson$/
       conn.adapter Faraday.default_adapter
     end

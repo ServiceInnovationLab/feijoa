@@ -17,7 +17,6 @@ RSpec.describe ImporterService do
     subject { ImporterService.new(data_set_id, fields: { name: 'Name' }) }
     it { expect(subject.send(:data_url, 'SELECT * FROM blah')).to eq('/api/3/action/datastore_search_sql?sql=SELECT * FROM blah') }
     it { expect(subject.send(:fetch_total_records_count)).to eq 99 }
-    it { expect(subject.send(:data_govt_nz)).to eq 'https://catalogue.data.govt.nz' }
     it { expect { subject.send(:save_org, record) }.to change(Organisation, :count).by(1) }
 
     describe 'retrieving and saving records' do
