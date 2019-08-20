@@ -27,7 +27,7 @@ RSpec.describe ImporterService do
         allow(Faraday).to receive(:new).and_return(double(Faraday, get: response))
       end
       it { expect { subject.import! }.to change(Organisation, :count).by(1) }
-      it "saves with correct name" do
+      it 'saves with correct name' do
         subject.import!
         expect(Organisation.last.name).to eq 'Super Kewl Kindy'
         expect(Organisation.last.email).to eq 'me@example.com'
