@@ -11,4 +11,15 @@ namespace :import do
                                               'address': 'Add1_Line1',
                                               'contact_number': 'Telephone' }).import!
   end
+
+  desc 'Import schools from data.govt.nz'
+  # usage: rake import:schools
+  task schools: :environment do
+    OrganisationImporterService.new('bdfe0e4c-1554-4701-a8fe-ba1c8e0cc2ce', 'school',
+                                    fields: { 'key': 'School_Id',
+                                              'name': 'Org_Name',
+                                              'email': 'Email',
+                                              'address': 'Add1_Line1',
+                                              'contact_number': 'Telephone' }).import!
+  end
 end
