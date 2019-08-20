@@ -3,8 +3,8 @@
 DATA_GOVT_NZ = 'https://catalogue.data.govt.nz'
 
 class OrganisationImporterService
-  def initialize(data_set_id, data_source_name, fields: {})
-    @data_set_id = data_set_id
+  def initialize(dataset_id:, data_source_name:, fields: {})
+    @dataset_id = dataset_id
     @data_source_name = data_source_name
     @fields = { name: 'Name', email: 'Email', contact_number: 'Telephone',
                 address: 'Address', key: 'key' }.merge(fields)
@@ -42,14 +42,14 @@ class OrganisationImporterService
 
   def fetch_records(limit, offset)
     data = conn.get(data_url(
-                      "SELECT * from \"#{@data_set_id}\" ORDER BY \"_id\" DESC LIMIT #{limit} OFFSET #{offset}"
+                      "SELECT * from \"#{@dataset_id}\" ORDER BY \"_id\" DESC LIMIT #{limit} OFFSET #{offset}"
                     )).body
     data.fetch('result', {}).fetch('records', {})
   end
 
   def fetch_total_records_count
     conn.get(data_url(
-               "SELECT count(*) from \"#{@data_set_id}\""
+               "SELECT count(*) from \"#{@dataset_id}\""
              )).body.fetch('result').fetch('records')[0].fetch('count').to_i
   end
 

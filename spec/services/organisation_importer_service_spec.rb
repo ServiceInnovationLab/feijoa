@@ -17,7 +17,11 @@ RSpec.describe OrganisationImporterService do
       allow(response).to receive(:body).and_return(count_response_body)
       allow(Faraday).to receive(:new).and_return(double(Faraday, get: response))
     end
-    subject { OrganisationImporterService.new(data_set_id, 'jelly', fields: { name: 'Name' }) }
+    subject do
+      OrganisationImporterService.new(dataset_id: data_set_id,
+                                      data_source_name: 'jelly',
+                                      fields: { name: 'Name' })
+    end
     it { expect(subject.send(:data_url, 'HELLO')).to eq('/api/3/action/datastore_search_sql?sql=HELLO') }
     it { expect(subject.send(:fetch_total_records_count)).to eq 99 }
     it { expect { subject.send(:save_org, record) }.to change(Organisation, :count).by(1) }
