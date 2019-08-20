@@ -6,17 +6,17 @@ class ImporterService
   def initialize(data_set_id, fields: {})
     @data_set_id = data_set_id
     @fields = { name: 'Name', email: 'Email', contact_number: 'Telephone', address: 'Address' }.merge(fields)
-    @per_page = 500
-    @total_records = fetch_total_records_count
   end
 
   def import!
+    per_page = 500
+    total_records = fetch_total_records_count
     offset = 0
     page = 0
-    while offset < @total_records
+    while offset < total_records
       ActiveRecord::Base.transaction do
-        offset = page * @per_page
-        fetch_records(@per_page, offset).each do |record|
+        offset = page * per_page
+        fetch_records(per_page, offset).each do |record|
           save_org(record)
         end
         page += 1
