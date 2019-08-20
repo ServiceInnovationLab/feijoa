@@ -3,19 +3,21 @@
 class ImporterService
   def import_ece
     page = 0
-    per_page = 100
+    per_page = 500
     total_records = fetch_total_records_count.to_i
     offset = 0
 
     while offset < total_records
       ActiveRecord::Base.transaction do
         offset = page * per_page
-        records = fetch_records(per_page, offset)
-        # puts data_url
-        records.each do |record|
+        fetch_records(per_page, offset).each do |record|
           puts record['Org_Name']
-          Organisation.find_or_create_by!(name: record['Org_name'])
-          # TODO: invite the first user here
+          org = Organisation.find_or_create_by!(name: record['Org_name'])
+          org.update!(
+            email: record['Email'],
+            address: "#{record['Add1_Line1']} #{record['Add1_Suburb']} #{record['Add1_City']}",
+            contact_number: record['Telephone']
+          )
         end
         page += 1
       end
