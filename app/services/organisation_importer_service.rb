@@ -3,8 +3,9 @@
 DATA_GOVT_NZ = 'https://catalogue.data.govt.nz'
 
 class OrganisationImporterService
-  def initialize(data_set_id, fields: {})
+  def initialize(data_set_id, data_source_name, fields: {})
     @data_set_id = data_set_id
+    data_source_name = data_source_name
     @fields = { name: 'Name', email: 'Email', contact_number: 'Telephone', address: 'Address' }.merge(fields)
   end
 
@@ -27,12 +28,12 @@ class OrganisationImporterService
   private
 
   def save_org(record)
-    org = Organisation.find_or_create_by!(name: record[@fields[:name]])
-    org.update!(
-      email: record[@fields[:email]],
-      address: record[@fields[:address]],
-      contact_number: record[@fields[:contact_number]]
-    )
+    org = Organisation.find_or_initialize_by(data_source_id: record['_id'], data_source_name: @data_source_name)
+    org.name = record[@fields[:name]]
+    org.email = record[@fields[:email]]
+    org.address = record[@fields[:address]]
+    org.contact_number = record[@fields[:contact_number]]
+    org.save!
   end
 
   def fetch_records(limit, offset)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_16_005148) do
+ActiveRecord::Schema.define(version: 2019_08_20_085902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,9 @@ ActiveRecord::Schema.define(version: 2019_08_16_005148) do
     t.string "address"
     t.string "email"
     t.string "contact_number"
+    t.string "data_source_name"
+    t.integer "data_source_id"
+    t.index ["data_source_id", "data_source_name"], name: "index_organisations_on_data_source_id_and_data_source_name", unique: true
   end
 
   create_table "requests", force: :cascade do |t|
