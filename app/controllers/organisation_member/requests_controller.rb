@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class OrganisationMember::RequestsController < OrganisationMember::BaseController
+  respond_to :html
   before_action :set_request, only: :show
 
   # GET /requests
@@ -21,7 +22,7 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
       @request.save
       redirect_to organisation_member_request_path(@organisation, @request)
     else
-      render :new
+      respond_with @request
     end
   end
 
@@ -37,6 +38,7 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
   end
 
   def valid_params?
+    puts 'hello'
     return true if request_params[:requestee_email].present?
 
     flash.now[:alert] = 'Please provide an email address to send this request to.'

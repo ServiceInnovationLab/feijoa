@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User::RequestsController < User::BaseController
-  respond_to :html, :json
+  respond_to :html
   before_action :set_request, only: %i[show decline]
   responders :flash
 
