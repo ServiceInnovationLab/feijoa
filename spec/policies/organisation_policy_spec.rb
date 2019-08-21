@@ -5,23 +5,20 @@ require 'rails_helper'
 describe OrganisationPolicy do
   subject { OrganisationPolicy.new(user, organisation) }
 
+  let(:organisation) { FactoryBot.create(:organisation) }
+
   shared_examples 'not an organisation member' do
-    it { is_expected.not_to permit(:show)    }
-    it { is_expected.not_to permit(:create)  }
-    it { is_expected.not_to permit(:new)     }
-    it { is_expected.not_to permit(:update)  }
-    it { is_expected.not_to permit(:edit)    }
-    it { is_expected.not_to permit(:destroy) }
+    it { is_expected.to forbid_action(:show) }
+    it { is_expected.to forbid_action(:create) }
+    it { is_expected.to forbid_action(:update) }
+    it { is_expected.to forbid_action(:destroy) }
   end
 
   shared_examples 'an organisation member' do
-    let(:organisations) { FactoryBot.create(:organisations, organisation_ids: 1) }
-    it { is_expected.to permit(:show)    }
-    it { is_expected.to permit(:create)  }
-    it { is_expected.to permit(:new)     }
-    it { is_expected.to permit(:update)  }
-    it { is_expected.to permit(:edit)    }
-    it { is_expected.to permit(:destroy) }
+    it { is_expected.to permit_action(:show) }
+    it { is_expected.to permit_action(:create) }
+    it { is_expected.to permit_action(:update) }
+    it { is_expected.to permit_action(:destroy) }
   end
 
   context 'for a user with no organisation' do
@@ -31,15 +28,15 @@ describe OrganisationPolicy do
   end
 
   context 'for a user with different organisation' do
-    let(:user) { FactoryBot.create(:user, organisation_ids: 2) }
+    let(:user) { FactoryBot.create(:user) }
 
     include_examples 'not an organisation member'
   end
 
   context 'for a user with same organisation' do
-    let(:user) { FactoryBot.create(:user, organisation_ids: 1) }
+    let(:user) { FactoryBot.create(:user) }
+    let(:organisation) { FactoryBot.create(:organisation) }
 
     include_examples 'an organisation member'
   end
-
 end

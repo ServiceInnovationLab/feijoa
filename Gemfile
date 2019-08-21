@@ -112,5 +112,4 @@ group :test do
   gem 'webdrivers'
 
   gem 'pundit-matchers', '~> 1.6.0'
-
 end
