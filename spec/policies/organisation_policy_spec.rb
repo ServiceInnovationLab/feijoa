@@ -5,6 +5,7 @@ require 'rails_helper'
 describe OrganisationPolicy do
   subject { OrganisationPolicy.new(user, organisation) }
 
+  let(:user) { FactoryBot.create(:user) }
   let(:organisation) { FactoryBot.create(:organisation) }
 
   shared_examples 'not an organisation member' do
@@ -23,19 +24,21 @@ describe OrganisationPolicy do
 
   context 'for a user with no organisation' do
     let(:user) { FactoryBot.create(:user) }
-
+    let(:organisation) { FactoryBot.create(:organisation) }
     include_examples 'not an organisation member'
   end
 
   context 'for a user with different organisation' do
-    let(:user) { FactoryBot.create(:user) }
-
+    let(:organisation_member) { FactoryBot.create(:organisation_member) }
+    let(:other_organisation) { FactoryBot.organisation_member.organisation }
+    let(:user) { FactoryBot.organisation_member.user }
     include_examples 'not an organisation member'
   end
 
   context 'for a user with same organisation' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:organisation) { FactoryBot.create(:organisation) }
+    let(:organisation_member) { FactoryBot.create(:organisation_member) }
+    let(:organisation) { FactoryBot.organisation_member.organisation }
+    let(:user) { FactoryBot.organisation_member.user }
 
     include_examples 'an organisation member'
   end
