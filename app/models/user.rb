@@ -44,6 +44,10 @@ class User < ApplicationRecord
     organisations.include? organisation
   end
 
+  def documents
+    birth_records
+  end
+
   # Get the audits for this user
   #
   # These are audits where the user is the one who took action. Notably this

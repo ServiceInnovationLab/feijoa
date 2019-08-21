@@ -1,0 +1,13 @@
+<div class="card card--with-fancy-footer birth-record" data-id="<%= document.to_param %>">
+    <div class="card-body">
+      <h5 class="card-title"><%= t("documents.types.#{document.class}") %></h5>
+      <p><%= document.heading %></p>
+    </div>
+  <div class="card-footer">
+    <div class="card-footer__inner d-flex justify-content-around">
+      <% actions.each do |action| %>
+        <%= link_to action[:title], action[:link], class: "btn btn-#{action[:button_class]}" %>
+      <% end %>
+    </div>
+  </div>
+</div>

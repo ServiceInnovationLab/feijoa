@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    Request from <%= request.requester.name %> for <%= request.document_type %>
+  </div>
+  <div class="card-body">
+    <blockquote>
+      <%= request.note %>
+    </blockquote>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Decline request', decline_user_request_path(request), class: 'btn btn-danger' %>
+  </div>
+</div>

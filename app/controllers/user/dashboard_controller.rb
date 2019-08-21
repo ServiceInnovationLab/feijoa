@@ -5,5 +5,6 @@ class User::DashboardController < User::BaseController
   def index
     @organisations = current_user.organisations
     @requests = current_user.requests.unresolved
+    @documents = current_user.documents
   end
 end

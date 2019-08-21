@@ -2,7 +2,7 @@
 
 class User::RequestsController < User::BaseController
   respond_to :html, :json
-  before_action :set_request, only: %i[show]
+  before_action :set_request, only: %i[show decline]
   responders :flash
 
   # GET /requests
@@ -14,6 +14,13 @@ class User::RequestsController < User::BaseController
   def show
     authorize @request, :show?
     @request.view
+  end
+
+  # POST /requests/1/decline
+  def decline
+    authorize @request, :update?
+    @request.decline
+    render :show
   end
 
   private

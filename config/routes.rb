@@ -37,7 +37,12 @@ Rails.application.routes.draw do
         post :revoke
       end
     end
-    resources :requests, only: %i[index show]
+    resources :requests, only: %i[index show] do
+      member do
+        post :decline
+        post :respond
+      end
+    end
     resources :audits, only: :index
     resources :organisations, except: %i[new create]
   end
@@ -45,7 +50,11 @@ Rails.application.routes.draw do
   scope 'organisation_member/:organisation_id', as: 'organisation_member' do
     get 'dashboard', controller: 'organisation_member/dashboard', action: 'index'
     resources :shares, only: %i[index show], controller: 'organisation_member/shares'
-    resources :requests, only: %i[index show new create], controller: 'organisation_member/requests'
+    resources :requests, only: %i[index show new create], controller: 'organisation_member/requests' do
+      member do
+        post :cancel
+      end
+    end
   end
 
   authenticated :user do
