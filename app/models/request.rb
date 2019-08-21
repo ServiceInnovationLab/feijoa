@@ -21,6 +21,7 @@ class Request < ApplicationRecord
       transition received: :responded
     end
     event :decline do
+      transition initiated: :declined
       transition received: :declined
       transition responded: :declined
     end

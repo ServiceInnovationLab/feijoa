@@ -8,7 +8,7 @@
     </blockquote>
   </div>
   <div class="card-footer">
-    <%= form_with(url: decline_user_request_path(request), method: "post") do %>
+    <%= form_with(url: decline_user_request_path(request), method: "post", local: true) do %>
       <%= submit_tag("Decline request", class: 'btn btn-danger') %>
     <% end %>
   </div>
