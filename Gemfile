@@ -70,6 +70,9 @@ gem 'discard', '~> 1.0'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 
+gem 'faraday'
+gem 'faraday_middleware'
+
 group :production do
   gem 'sendgrid-ruby'
 end
