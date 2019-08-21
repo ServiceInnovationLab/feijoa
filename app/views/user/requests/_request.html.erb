@@ -8,6 +8,8 @@
     </blockquote>
   </div>
   <div class="card-footer">
-    <%= link_to 'Decline request', decline_user_request_path(request), class: 'btn btn-danger' %>
+    <%= form_with(url: decline_user_request_path(request), method: "post") do %>
+      <%= submit_tag("Decline request", class: 'btn btn-danger') %>
+    <% end %>
   </div>
 </div>
