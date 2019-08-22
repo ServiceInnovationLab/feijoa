@@ -27,13 +27,10 @@ class User::RequestsController < User::BaseController
   # POST /requests/1/respond
   def respond
     authorize @request, :respond?
-    document = current_user.documents(type: response_params[:document_type])
-                           .find_by(id: response_params[:document_id])
-    share = create_share(document)
+    document = find_document
+    share = find_or_create_share(document)
 
-    if share.save
-      @request.update_attributes(share_id: share.id)
-      @request.respond
+    if share && @request.respond_with_share(share)
       flash.now[:notice] = 'You have shared this document.'
     else
       flash.now[:alert] = 'There was a problem sharing this document. Please try again.'
@@ -52,7 +49,12 @@ class User::RequestsController < User::BaseController
     params.permit(:document_id, :document_type)
   end
 
-  def create_share(document)
+  def find_document
+    current_user.documents(type: response_params[:document_type])
+                .find_by(id: response_params[:document_id])
+  end
+
+  def find_or_create_share(document)
     existing_share = Share.find_by(user: current_user, recipient: @request.requester, birth_record: document)
     return existing_share if existing_share.present?
 
