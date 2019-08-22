@@ -44,8 +44,11 @@ class User < ApplicationRecord
     organisations.include? organisation
   end
 
-  def documents
-    birth_records
+  def documents(type: BirthRecord::DOCUMENT_TYPE)
+    return birth_records if type.to_s == BirthRecord::DOCUMENT_TYPE
+
+    # one day there will be other types of documents, but for the moment...
+    []
   end
 
   # Get the audits for this user

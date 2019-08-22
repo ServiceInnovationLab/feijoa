@@ -2,6 +2,10 @@
   <%= render partial: "organisation_member/shared/subhead" %>
 <% end %>
 
+<div class="mb-4">
+  <%= link_to "← Back", organisation_member_dashboard_path(@organisation), class: 'text-dark' %>
+</div>
+
 <h1>New document request</h1>
 <div class="row">
   <div class="col-sm-8">
@@ -18,13 +22,15 @@
         </div>
       <% end %>
 
-      <%= f.select :document_type, Request::DOCUMENT_TYPES.map { |t| [t("documents.types.#{t}"), t] }, include_blank: true %>
+      <%= f.select :document_type,
+                   Request::DOCUMENT_TYPES.map { |t| [t("documents.types.#{t}"), t] },
+                   include_blank: true,
+                   required: true %>
+      <%= f.text_field :requestee_email,
+                       required: true,
+                       label: 'Recipient',
+                       help: 'The email address of the person you want a document from' %>
       <%= f.text_area :note %>
-      <% if @request.requestee %>
-        <%= f.text_field :requestee_email, required: true, value: @request.requestee.email %>
-      <% else %>
-        <%= f.text_field :requestee_email, required: true %>
-      <% end %>
 
       <%= f.submit %>
     <% end %>

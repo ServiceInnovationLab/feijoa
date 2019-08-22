@@ -1,29 +1,31 @@
 <%= content_for :subhead do %>
   <%= render partial: "organisation_member/shared/subhead" %>
 <% end %>
-<h1><%= @organisation.name %></h1>
-<section class="c-dashboard-links">
+<h1><%= @organisation.name %>'s documents dashboard</h1>
+<p class="lead">This is where your documents are stored. This is where you can request documents, view them, or remove your access to them.</p>
+
+<section  class="mt-4">
+  <h3>Request a document</h3>
   <div class="row">
-    <div class="col-4">
-      <%= link_to organisation_member_shares_path(@organisation) do %>
-        <div class="c-dashboard-links__link card">
-          <div class="card-body">
-              Documents shared with <%=@organisation.name %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-4">
-      <%= link_to organisation_member_requests_path(@organisation) do %>
-        <div class="c-dashboard-links__link card">
-          <div class="card-body">
-              Requests for documents to be shared with <%=@organisation.name %>
-          </div>
-        </div>
-      <% end %>
-      <%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
-        <%= image_tag("plus.svg", alt: 'Add a new request') %>
-      <% end %>
-    </div>
+    <% @requests.each do |request| %>
+      <div class="col-sm-4 mb-4">
+        <%= render partial: 'organisation_member/requests/request', locals: { request: request } %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
+    <%= image_tag("plus.svg", alt: 'Add a new request') %>
+  <% end %>
+</section>
+<section class="shares mt-4">
+  <h3>Received documents</h3>
+  <div class="row">
+    <% @shares.each do |share| %>
+      <div class="col-sm-4 mb-4">
+        <%= render partial: 'shared/documents/preview', locals: { document: share.birth_record, shared_by: share.user.email, actions: [
+          { title: 'View', link: organisation_member_share_path(@organisation, share), button_class: 'secondary' }
+          ]} %>
+      </div>
+    <% end %>
   </div>
 </section>
