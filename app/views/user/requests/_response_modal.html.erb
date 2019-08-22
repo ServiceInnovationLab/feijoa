@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body mx-3">
         <section class="request-details">
-          <%= request.requester.name %> has requested a <%= t("document.type.#{request.document_type}") %> from you.
+          <%= request.requester.name %> has requested a <%= t("document.types.#{request.document_type}") %> from you.
           <blockquote class="blockquote"><%= request.note %></blockquote>
         </section>
         <section>
@@ -27,7 +27,9 @@
                 ] } %>
               </div>
             <% end %>
+            <hr>
           <% end %>
+          <%= link_to "Find #{t("documents.types.#{request.document_type}").downcase}", user_birth_records_path, class: 'btn btn-secondary' %>
         </section>
       </div>
     </div>

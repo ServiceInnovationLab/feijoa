@@ -1,50 +1,8 @@
 <h1>Document requests</h1>
 <div class="row mb-4">
   <% @requests.order(updated_at: :desc).each do |request| %>
-  <div class="col-4 mb-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">
-          <%= link_to user_request_path(request) do %>
-            Request from <%= request.requester.name %>
-          <% end %>
-        </h3>
-        <p class="card-subtitle">
-          Initiated <%= time_ago_in_words(request.created_at) %> ago
-        </p>
-      </div>
-      <div class="card-body">
-        <dl>
-          <dt>Requester</dt>
-          <dd>
-            <%= request.requester.name %>
-          </dd>
-          <dt>Requestee</dt>
-          <dd>
-            <%= request.requestee.email %>
-          </dd>
-          <dt>Note</dt>
-          <dd>
-            <%= request.note %>
-          </dd>
-          <dt>State</dt>
-          <dd>
-            <%= request.state %>
-          </dd>
-          <dt>Document type</dt>
-          <dd>
-            <%= t("documents.types.#{request.document_type}") %>
-          </dd>
-        </dl>
-        <% if request.share.present? %>
-          <%= render partial: 'shared/documents/preview', locals: { document: request.share.birth_record , actions: [
-            link: user_birth_record_path(request.share.birth_record),
-            button_class: 'secondary',
-            title: 'View'
-          ]} %>
-        <% end %>
-      </div>
-    </div>
+  <div class="col-sm-6 mb-4">
+    <%= render partial: 'request', locals: { request: request } %>
   </div>
   <% end %>
 </div>

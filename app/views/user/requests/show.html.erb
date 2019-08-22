@@ -32,15 +32,17 @@
     title: 'View'
   ]} %>
 <% end %>
-<% if @request.can_decline? %>
-  <%= form_with(url: decline_user_request_path(@request), method: "post", local: true) do %>
-    <%= submit_tag("Decline", class: 'btn btn-danger') %>
+<div class="d-flex justify-content-end">
+  <% if @request.can_decline? %>
+    <%= form_with(url: decline_user_request_path(@request), method: "post", local: true) do %>
+      <%= submit_tag("Decline", class: 'btn btn-danger', data: { confirm: 'Are you sure you want to decline this request?' }) %>
+    <% end %>
   <% end %>
-<% end %>
-<% if @request.can_respond? %>
-  <a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="btn btn-primary">
-    Respond
-  </a>
-  <%= render partial: 'user/requests/response_modal', locals: { request: @request } %>
-<% end %>
+  <% if @request.can_respond? %>
+    <a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="btn btn-primary">
+      Respond
+    </a>
+    <%= render partial: 'user/requests/response_modal', locals: { request: @request } %>
+  <% end %>
+  </div>
 </div>
