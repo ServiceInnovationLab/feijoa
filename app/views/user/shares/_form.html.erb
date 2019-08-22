@@ -1,4 +1,4 @@
-<%= bootstrap_form_tag(url: user_shares_path, layout: :horizontal, scope: 'share', local: true,) do |f| %>
+<%= bootstrap_form_with(url: user_shares_path, layout: :horizontal, scope: 'share', local: true,) do |f| %>
 <h5>Type name of organisation</h5>
   <div>
     Sharing birth record of <%= record.full_name %>

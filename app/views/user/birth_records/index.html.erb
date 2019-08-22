@@ -9,7 +9,6 @@
           document: record,
         actions: [
             { title: 'View', button_class: 'secondary', link: user_birth_record_path(record) },
-            { title: 'Share', button_class: 'primary', link: new_user_share_path(share: { birth_record_id: record.to_param }) }
           ]
         } %>
       <% end %>
