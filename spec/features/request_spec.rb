@@ -7,7 +7,10 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
   let!(:organisation) { FactoryBot.create(:organisation, name: 'Example Org') }
   let!(:organisation_member) { FactoryBot.create(:organisation_member, organisation: organisation, user: user) }
 
-  before { login_as(user, scope: :user) }
+  before do
+    travel_to Time.zone.local('2019-01-01') # So Percy visual diffs show the same time
+    login_as(user, scope: :user)
+  end
 
   context 'when a user is acting on behalf of an organisation' do
     before do
@@ -26,6 +29,7 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
         fill_in 'Requestee email', with: 'user@example.com'
         click_button 'Create Request'
         expect(page).to have_content('Request for a document to be shared with Example Org')
+        Percy.snapshot(page, name: 'organisation request show')
       end
     end
 
@@ -65,6 +69,7 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
     end
     it "shows details of the request on the recipient's request page" do
       visit user_requests_path
+      Percy.snapshot(page, name: 'user request index')
       expect(page).to have_content('Example Org')
       expect(page).to have_content('A note')
       expect(page).to have_content('Birth record')
@@ -74,6 +79,7 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
       visit user_requests_path
       click_link 'View'
       expect(page).to have_content('received')
+      Percy.snapshot(page, name: 'user request show')
     end
   end
 end
