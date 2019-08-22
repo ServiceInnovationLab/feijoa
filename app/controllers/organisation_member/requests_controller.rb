@@ -32,7 +32,7 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
 
   # POST /cancel
   def cancel
-    authorize @request, :update?
+    authorize @request, :cancel?
     @request.cancel
     flash.now[:notice] = 'You have cancelled this request.'
     render :show

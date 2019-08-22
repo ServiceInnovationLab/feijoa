@@ -23,3 +23,8 @@
 <dd>
   <%= t("documents.types.#{@request.document_type}") %>
 </dd>
+<% if @request.can_cancel? %>
+  <%= form_with(url: cancel_organisation_member_request_path(@organisation, @request), method: "post", local: true) do %>
+    <%= submit_tag("Cancel", class: 'btn btn-danger') %>
+  <% end %>
+<% end %>

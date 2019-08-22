@@ -18,7 +18,7 @@ class User::RequestsController < User::BaseController
 
   # POST /requests/1/decline
   def decline
-    authorize @request, :update?
+    authorize @request, :decline?
     @request.decline
     flash.now[:notice] = 'You have declined this request.'
     render :show

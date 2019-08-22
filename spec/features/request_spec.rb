@@ -28,6 +28,20 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
         expect(page).to have_content('Request for a document to be shared with Example Org')
       end
     end
+
+    context 'cancelling the request' do
+      before do
+        fill_in 'Requestee email', with: 'user@example.com'
+        click_button 'Create Request'
+        click_button 'Cancel'
+      end
+      it 'shows that the request has been cancelled' do
+        expect(page).to have_content('cancelled')
+      end
+      it 'no longer has a cancel button' do
+        expect(page).not_to have_button('Cancel')
+      end
+    end
   end
 
   context 'when the recipient has an existing account' do
