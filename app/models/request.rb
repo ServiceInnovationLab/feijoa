@@ -7,6 +7,7 @@ class Request < ApplicationRecord
   belongs_to :requestee, class_name: 'User',
                          inverse_of: :requests, foreign_key: 'requestee_id',
                          dependent: :destroy
+  belongs_to :share, optional: true
 
   validates :requester, presence: true
   validates :requestee, presence: true
@@ -24,17 +25,22 @@ class Request < ApplicationRecord
       transition initiated: :received
     end
     event :respond do
-      transition received: :responded
+      transition initiated: :resolved
+      transition received: :resolved
     end
     event :decline do
       transition initiated: :declined
       transition received: :declined
-      transition responded: :declined
     end
     event :cancel do
       transition initiated: :cancelled
       transition received: :cancelled
-      transition responded: :cancelled
     end
+  end
+
+  def respond_with_share(share)
+    return false unless can_respond? && update(share: share)
+
+    respond
   end
 end
