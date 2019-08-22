@@ -14,15 +14,16 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
   end
 
   def create
+    requestee = User.find_or_invite(request_params[:requestee_email])
     @request = Request.new(document_type: request_params[:document_type],
                            note: request_params[:note],
                            requester: @organisation,
-                           requestee: User.find_or_invite(request_params[:requestee_email]))
-    if valid_params? && @request.valid?
-      @request.save
+                           requestee: requestee)
+    if @request.save
       redirect_to organisation_member_request_path(@organisation, @request)
     else
-      respond_with @request
+      flash.now[:notice] = 'Successfully created request.'
+      render :new
     end
   end
 
@@ -37,14 +38,7 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
     @request = @organisation.requests.find(params[:id])
   end
 
-  def valid_params?
-    return true if request_params[:requestee_email].present?
-
-    flash.now[:alert] = 'Please provide an email address to send this request to.'
-    false
-  end
-
   def request_params
-    params.permit(:document_type, :requestee_email, :note)
+    params.require(:request).permit(:document_type, :requestee_email, :note)
   end
 end

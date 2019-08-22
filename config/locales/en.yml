@@ -33,4 +33,4 @@ en:
   hello: "Hello world"
   documents:
     types:
-      BirthRecord: "Birth record"
+      birth_record: "Birth record"

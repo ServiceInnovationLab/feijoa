@@ -40,7 +40,7 @@ RSpec.describe User::RequestsController do
     end
     it 'checks permissions' do
       other_request = FactoryBot.create(:request)
-      expect{ post(:decline, params: { id: other_request.id }) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { post(:decline, params: { id: other_request.id }) }.to raise_error(ActiveRecord::RecordNotFound)
     end
     it 'renders the request show page' do
       expect(subject).to render_template('show')

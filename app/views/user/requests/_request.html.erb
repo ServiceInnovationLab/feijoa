@@ -1,11 +1,13 @@
 <div class="card">
   <div class="card-header">
-    Request from <%= request.requester.name %> for <%= request.document_type %>
+    <h3>Request for <%= t("documents.document_type.#{request.document_type}") %></h3>
   </div>
   <div class="card-body">
-    <blockquote>
+    <strong>From <%= request.requester.name %>:</strong>
+    <blockquote class="blockquote ">
       <%= request.note %>
     </blockquote>
+    <hr>
   </div>
   <div class="card-footer">
     <%= form_with(url: decline_user_request_path(request), method: "post", local: true) do %>

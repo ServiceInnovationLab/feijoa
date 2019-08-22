@@ -11,10 +11,6 @@ class BirthRecord < ApplicationRecord
     format_date(self[:date_of_birth])
   end
 
-  def heading
-    "#{family_name}, #{first_and_middle_names}"
-  end
-
   def full_name
     # TODO: anglocentric
     "#{first_and_middle_names} #{family_name}"
@@ -36,6 +32,15 @@ class BirthRecord < ApplicationRecord
   # as possible if we have the opportunity.
   def primary_key_string
     key_attributes.join(' ').parameterize
+  end
+
+  # To abstract into a document class when there are multiple types of document
+  def heading
+    "#{family_name}, #{first_and_middle_names}"
+  end
+
+  def document_type
+    'birth_record'
   end
 
   private
