@@ -11,6 +11,12 @@ class Request < ApplicationRecord
   validates :requester, presence: true
   validates :requestee, presence: true
 
+  delegate :email, to: :requestee, prefix: true, allow_nil: true
+
+  DOCUMENT_TYPES = [BirthRecord::DOCUMENT_TYPE].freeze
+  validates :document_type, inclusion: { in: DOCUMENT_TYPES }
+  validates_associated :requestee
+
   scope :unresolved, -> { with_state(:initiated, :received) }
 
   state_machine initial: :initiated do
@@ -21,6 +27,7 @@ class Request < ApplicationRecord
       transition received: :responded
     end
     event :decline do
+      transition initiated: :declined
       transition received: :declined
       transition responded: :declined
     end

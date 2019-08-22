@@ -4,38 +4,9 @@
 <h1>Document requests</h1>
 <div class="row mb-4">
   <% @requests.each do |request| %>
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header">
-        <h3>Request to <%= request.requestee&.email %></h3>
-        <p>Initiated <%= time_ago_in_words(request.created_at) %> ago</p>
-      </div>
-      <div class="card-body">
-        <dl>
-          <dt>Requester</dt>
-          <dd>
-            <%= request.requester&.name %>
-          </dd>
-          <dt>Requestee</dt>
-          <dd>
-            <%= request.requestee&.email %>
-          </dd>
-          <dt>Note</dt>
-          <dd>
-            <%= request.note %>
-          </dd>
-          <dt>State</dt>
-          <dd>
-            <%= request.state %>
-          </dd>
-          <dt>Document type</dt>
-          <dd>
-            <%= request.document_type %>
-          </dd>
-        </dl>
-      </div>
+    <div class="col-4 mb-4">
+      <%= render partial: 'request', locals: { request: request } %>
     </div>
-  </div>
   <% end %>
 </div>
 

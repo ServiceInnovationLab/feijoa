@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Request for <%= t("documents.document_type.#{request.document_type}") %></h3>
+    <dd><%= time_ago_in_words(request.created_at) %></dd>
+  </div>
+  <div class="card-body">
+    <strong>To <%= request.requestee.email %>:</strong>
+    <blockquote class="blockquote ">
+      <%= request.note %>
+    </blockquote>
+    <hr>
+    <dl>
+      <dt>State</dt>
+      <dd><%= request.state %></dd>
+    </dl>
+  </div>
+  <div class="card-footer">
+    <% if request.can_cancel? %>
+      <%= form_with(url: cancel_organisation_member_request_path(@organisation, request), method: "post", local: true) do %>
+        <%= submit_tag("Cancel", class: 'btn btn-danger') %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
