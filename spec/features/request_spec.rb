@@ -72,7 +72,7 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
 
     it 'marks the request as received when the recipient views it' do
       visit user_requests_path
-      click_link 'Request from Example Org'
+      click_link 'View'
       expect(page).to have_content('received')
     end
   end
