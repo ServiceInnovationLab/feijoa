@@ -14,11 +14,10 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
   end
 
   def create
-    requestee = User.find_or_invite(request_params[:requestee_email])
     @request = Request.new(document_type: request_params[:document_type],
                            note: request_params[:note],
                            requester: @organisation,
-                           requestee: requestee)
+                           requestee: User.find_or_invite(request_params[:requestee_email]))
     if @request.save
       redirect_to organisation_member_request_path(@organisation, @request)
     else
