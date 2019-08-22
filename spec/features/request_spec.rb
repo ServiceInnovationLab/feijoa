@@ -20,13 +20,13 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
     end
 
     it 'requires email address' do
-      email_field = find_field('Requestee email')
+      email_field = find_field('Recipient')
       expect(email_field[:required]).to eq('true')
     end
 
     context 'when an email address is provided' do
       it 'saves the current organisation as the requester' do
-        fill_in 'Requestee email', with: 'user@example.com'
+        fill_in 'Recipient', with: 'user@example.com'
         click_button 'Create Request'
         expect(page).to have_content('Request for a document to be shared with Example Org')
         Percy.snapshot(page, name: 'organisation request show')
@@ -35,7 +35,7 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
 
     context 'cancelling the request' do
       before do
-        fill_in 'Requestee email', with: 'user@example.com'
+        fill_in 'Recipient', with: 'user@example.com'
         click_button 'Create Request'
         click_button 'Cancel'
       end
@@ -56,7 +56,7 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
       visit new_organisation_member_request_path(organisation_id: organisation.id)
       fill_in 'Note', with: 'A note'
       select 'Birth record', from: 'Document type'
-      fill_in 'Requestee email', with: recipient.email
+      fill_in 'Recipient', with: recipient.email
       click_button 'Create Request'
       expect(page).to have_content('Request for a document to be shared with Example Org')
       click_link 'Log out'
