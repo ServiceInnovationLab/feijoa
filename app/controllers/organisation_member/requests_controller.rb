@@ -30,6 +30,14 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
     authorize @request, :show?
   end
 
+  # POST /cancel
+  def cancel
+    authorize @request, :update?
+    @request.cancel
+    flash.now[:notice] = 'You have cancelled this request.'
+    render :show
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
