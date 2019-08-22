@@ -2,7 +2,7 @@
 
 class OrganisationMember::RequestsController < OrganisationMember::BaseController
   respond_to :html
-  before_action :set_request, only: :show
+  before_action :set_request, only: %i[show cancel]
 
   # GET /requests
   def index
