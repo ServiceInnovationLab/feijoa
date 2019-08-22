@@ -21,6 +21,9 @@
           </div>
         </div>
       <% end %>
+      <%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
+        <%= image_tag("plus.svg", alt: 'Add a new request') %>
+      <% end %>
     </div>
   </div>
 </section>

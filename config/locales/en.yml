@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  documents:
+    types:
+      birth_record: "Birth record"

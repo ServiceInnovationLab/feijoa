@@ -7,6 +7,8 @@ class BirthRecord < ApplicationRecord
   has_many :users, -> { distinct }, through: :birth_records_users
   has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :birth_record
 
+  DOCUMENT_TYPE = 'birth_record'
+
   def date_of_birth
     format_date(self[:date_of_birth])
   end
@@ -32,6 +34,15 @@ class BirthRecord < ApplicationRecord
   # as possible if we have the opportunity.
   def primary_key_string
     key_attributes.join(' ').parameterize
+  end
+
+  # To abstract into a document class when there are multiple types of document
+  def heading
+    "#{family_name}, #{first_and_middle_names}"
+  end
+
+  def document_type
+    DOCUMENT_TYPE
   end
 
   private
