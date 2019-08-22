@@ -37,6 +37,11 @@
         <dd>
           <%= t("documents.types.#{@request.document_type}") %>
         </dd>
+
+        <dt>Initiated</dt>
+        <dd><%= time_ago_in_words(@request.created_at) %> ago</dd>
+        <dt>Updated</dt>
+        <dd><%= time_ago_in_words(@request.updated_at) %> ago</dd>
       </div>
       <div class="col-sm-6">
         <% if @request.share.present? %>
