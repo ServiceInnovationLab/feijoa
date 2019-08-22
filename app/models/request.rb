@@ -39,7 +39,7 @@ class Request < ApplicationRecord
   end
 
   def respond_with_share(share)
-    return false unless can_respond && update(share: share)
+    return false unless can_respond? && update(share: share)
 
     respond
   end

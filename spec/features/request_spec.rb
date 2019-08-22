@@ -81,5 +81,33 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
       expect(page).to have_content('received')
       Percy.snapshot(page, name: 'user request show')
     end
+
+    context 'the user responding to the request' do
+      let(:birth_record) { FactoryBot.create(:birth_record, :static_details) }
+      before do
+        FactoryBot.create(:birth_records_user, user: recipient, birth_record: birth_record)
+        recipient.reload
+      end
+      it 'marks the request as received when the recipient views it' do
+        visit user_requests_path
+        click_link 'View'
+        expect(page).to have_content('received')
+        Percy.snapshot(page, name: 'user request show')
+      end
+      it 'brings up documents matching the requested document type' do
+        visit user_requests_path
+        click_link 'Respond'
+        expect(page).to have_content(birth_record.heading)
+        Percy.snapshot(page, name: 'user request respond')
+      end
+      it 'brings up documents matching the requested document type' do
+        visit user_requests_path
+        click_link 'Respond'
+        click_button 'Share'
+        expect(page).to have_content(birth_record.heading)
+        expect(page).to have_content('resolved')
+        Percy.snapshot(page, name: 'user request show with response')
+      end
+    end
   end
 end
