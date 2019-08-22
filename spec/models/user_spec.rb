@@ -68,4 +68,21 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe 'user#documents' do
+    let(:user) { FactoryBot.create(:user) }
+    let(:birth_record) { FactoryBot.create(:birth_record) }
+    before do
+      FactoryBot.create(:birth_records_user, birth_record: birth_record, user: user)
+    end
+    it 'returns birth records by default' do
+      expect(user.documents).to eq([birth_record])
+    end
+    it 'returns birth records when passed birth_record as a document type' do
+      expect(user.documents(type: 'birth_record')).to eq([birth_record])
+    end
+    it 'returns an empty array when passed any other document type' do
+      expect(user.documents(type: 'passport')).to eq([])
+    end
+  end
 end

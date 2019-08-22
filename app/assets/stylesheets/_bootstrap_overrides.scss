@@ -34,6 +34,12 @@ h1, h2, h5 {
     justify-content: space-around;
   }
 }
+
+.card--request {
+  background-color: mix($grey, #FFF, 50);
+  color: mix(#000, #FFF, 70);
+}
+
 @include media-breakpoint-down(sm) {
   .navbar {
     font-size: 0.8em;
@@ -42,4 +48,19 @@ h1, h2, h5 {
 
 label.required:after {
   content:" *";
+}
+
+.badge {
+  &--cancelled, &--declined {
+    @extend .badge-danger;
+  }
+  &--initiated {
+    @extend .badge-primary;
+  }
+  &--received {
+    @extend .badge-info;
+  }
+  &--resolved {
+    @extend .badge-success;
+  }
 }

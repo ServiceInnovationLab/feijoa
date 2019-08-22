@@ -1,21 +1,28 @@
 <%= content_for :subhead do %>
   <%= render partial: "organisation_member/shared/subhead" %>
 <% end %>
-<h1>Shared document</h1>
-<p class="lead"><%= @share.user.email %> has shared this with you.</p>
-<p>
-  <strong>Birth record:</strong>
-  <%= render partial: 'shared/birth_records/short_details', object: @official_birth_record %>
-</p>
 
-<p>
-  <strong>Shared by:</strong>
-  <%= @share.user.email %>
-</p>
+<div class="mb-4">
+  <%= link_to "← Back", organisation_member_dashboard_path(@organisation), class: 'text-dark' %>
+</div>
 
-<p>
-  <strong>Recipient:</strong>
-  <%= @share.recipient.name %>
-</p>
+<div class="card mb-4 p-4 birth-record" data-id="<%= @birth_record.to_param %>">
+  <div class="card-body">
+    <h1 class="card-title">Shared document</h1>
+    <p class="lead"><%= @share.user.email %> has shared this with you.</p>
+    <p>
+      <strong>Birth record:</strong>
+      <%= render partial: 'shared/birth_records/short_details', object: @official_birth_record %>
+    </p>
 
-<%= link_to 'Back', organisation_member_shares_path %>
+    <p>
+      <strong>Shared by:</strong>
+      <%= @share.user.email %>
+    </p>
+
+    <p>
+      <strong>Recipient:</strong>
+      <%= @share.recipient.name %>
+    </p>
+  </div>
+</div>
