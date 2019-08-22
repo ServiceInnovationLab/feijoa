@@ -39,3 +39,7 @@ h1, h2, h5 {
     font-size: 0.8em;
   }
 }
+
+label.required:after {
+  content:" *";
+}

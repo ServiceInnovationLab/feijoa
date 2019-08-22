@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class User::RequestsController < User::BaseController
-  respond_to :html, :json
-  before_action :set_request, only: %i[show]
+  respond_to :html
+  before_action :set_request, only: %i[show decline]
   responders :flash
 
   # GET /requests
@@ -13,6 +13,15 @@ class User::RequestsController < User::BaseController
   # GET /requests/1
   def show
     authorize @request, :show?
+    @request.view
+  end
+
+  # POST /requests/1/decline
+  def decline
+    authorize @request, :decline?
+    @request.decline
+    flash.now[:notice] = 'You have declined this request.'
+    render :show
   end
 
   private

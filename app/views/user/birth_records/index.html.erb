@@ -5,21 +5,13 @@
   <% if @birth_records.any? %>
     <div class="index-cards">
       <% @birth_records.each do |record| %>
-        <div class="card card--with-fancy-footer birth-record" data-id="<%= record.to_param %>">
-            <div class="card-body">
-              <h5 class="card-title">Birth record</h5>
-              <p>
-                <%= record.family_name %>,
-                <%= record.first_and_middle_names %>
-              </p>
-            </div>
-          <div class="card-footer">
-            <div class="card-footer__inner d-flex justify-content-around">
-              <%= link_to 'View', user_birth_record_path(record), class: 'btn btn-secondary' %>
-              <%= link_to 'Share', new_user_share_path(share: { birth_record_id: record.to_param }), class: 'btn btn-primary' %>
-            </div>
-          </div>
-        </div>
+        <%= render partial: 'shared/documents/preview', locals: {
+          document: record,
+          actions: [
+            { title: 'View', button_class: 'secondary', link: user_birth_record_path(record) },
+            { title: 'Share', button_class: 'primary', link: new_user_share_path(share: { birth_record_id: record.to_param }) }
+          ]
+        } %>
       <% end %>
     </div>
   <% else %>

@@ -3,4 +3,30 @@
 <% end %>
 
 <h1>New document request</h1>
-<%= render partial: 'form', locals: { request: @request } %>
+<div class="row">
+  <div class="col-sm-8">
+    <%= bootstrap_form_for(@request, url: organisation_member_requests_path(@organisation), local: true) do |f| %>
+      <% if @request.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @request.errors.count %> <%= "error".pluralize(@request.errors.count) %> prohibited this request from being saved:</h2>
+
+          <ul>
+          <% @request.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.select :document_type, Request::DOCUMENT_TYPES.map { |t| [t("documents.types.#{t}"), t] }, include_blank: true %>
+      <%= f.text_area :note %>
+      <% if @request.requestee %>
+        <%= f.text_field :requestee_email, required: true, value: @request.requestee.email %>
+      <% else %>
+        <%= f.text_field :requestee_email, required: true %>
+      <% end %>
+
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
