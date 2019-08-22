@@ -12,6 +12,14 @@ class RequestPolicy
     user == request.requestee || user.member_of?(request.requester)
   end
 
+  def decline?
+    user == request.requestee
+  end
+
+  def cancel?
+    user.member_of?(request.requester)
+  end
+
   def update?
     user == request.requestee || user.admin_for?(request.requester)
   end

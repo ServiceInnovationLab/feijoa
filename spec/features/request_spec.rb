@@ -12,8 +12,8 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
   context 'when a user is acting on behalf of an organisation' do
     before do
       visit new_organisation_member_request_path(organisation_id: organisation.id)
-      fill_in 'document_type', with: 'Birth Certificate'
-      fill_in 'note', with: 'A note'
+      fill_in 'Note', with: 'A note'
+      select 'Birth record', from: 'Document type'
     end
 
     it 'requires email address' do
@@ -23,9 +23,23 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
 
     context 'when an email address is provided' do
       it 'saves the current organisation as the requester' do
-        fill_in 'requestee_email', with: 'user@example.com'
-        click_button 'Save'
+        fill_in 'Requestee email', with: 'user@example.com'
+        click_button 'Create Request'
         expect(page).to have_content('Request for a document to be shared with Example Org')
+      end
+    end
+
+    context 'cancelling the request' do
+      before do
+        fill_in 'Requestee email', with: 'user@example.com'
+        click_button 'Create Request'
+        click_button 'Cancel'
+      end
+      it 'shows that the request has been cancelled' do
+        expect(page).to have_content('cancelled')
+      end
+      it 'no longer has a cancel button' do
+        expect(page).not_to have_button('Cancel')
       end
     end
   end
@@ -36,10 +50,10 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
 
     before do
       visit new_organisation_member_request_path(organisation_id: organisation.id)
-      fill_in 'document_type', with: 'Birth Certificate'
-      fill_in 'note', with: 'A note'
-      fill_in 'requestee_email', with: recipient.email
-      click_button 'Save'
+      fill_in 'Note', with: 'A note'
+      select 'Birth record', from: 'Document type'
+      fill_in 'Requestee email', with: recipient.email
+      click_button 'Create Request'
       expect(page).to have_content('Request for a document to be shared with Example Org')
       click_link 'Log out'
       login_as(recipient, scope: :user)
@@ -53,7 +67,13 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
       visit user_requests_path
       expect(page).to have_content('Example Org')
       expect(page).to have_content('A note')
-      expect(page).to have_content('Birth Certificate')
+      expect(page).to have_content('Birth record')
+    end
+
+    it 'marks the request as received when the recipient views it' do
+      visit user_requests_path
+      click_link 'Request from Example Org'
+      expect(page).to have_content('received')
     end
   end
 end

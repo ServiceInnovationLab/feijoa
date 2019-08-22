@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class OrganisationMember::RequestsController < OrganisationMember::BaseController
-  before_action :set_request, only: :show
+  respond_to :html
+  before_action :set_request, only: %i[show cancel]
 
   # GET /requests
   def index
@@ -17,16 +18,24 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
                            note: request_params[:note],
                            requester: @organisation,
                            requestee: User.find_or_invite(request_params[:requestee_email]))
-    if valid_params? && @request.valid?
-      @request.save
+    if @request.save
       redirect_to organisation_member_request_path(@organisation, @request)
     else
+      flash.now[:notice] = 'Successfully created request.'
       render :new
     end
   end
 
   def show
     authorize @request, :show?
+  end
+
+  # POST /cancel
+  def cancel
+    authorize @request, :cancel?
+    @request.cancel
+    flash.now[:notice] = 'You have cancelled this request.'
+    render :show
   end
 
   private
@@ -36,14 +45,7 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
     @request = @organisation.requests.find(params[:id])
   end
 
-  def valid_params?
-    return true if request_params[:requestee_email].present?
-
-    flash.now[:alert] = 'Please provide an email address to send this request to.'
-    false
-  end
-
   def request_params
-    params.permit(:document_type, :requestee_email, :note)
+    params.require(:request).permit(:document_type, :requestee_email, :note)
   end
 end
