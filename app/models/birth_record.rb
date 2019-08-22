@@ -7,6 +7,8 @@ class BirthRecord < ApplicationRecord
   has_many :users, -> { distinct }, through: :birth_records_users
   has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :birth_record
 
+  DOCUMENT_TYPE = 'birth_record'
+
   def date_of_birth
     format_date(self[:date_of_birth])
   end
@@ -40,7 +42,7 @@ class BirthRecord < ApplicationRecord
   end
 
   def document_type
-    'birth_record'
+    DOCUMENT_TYPE
   end
 
   private

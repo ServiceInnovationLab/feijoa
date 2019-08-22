@@ -11,7 +11,9 @@ class Request < ApplicationRecord
   validates :requester, presence: true
   validates :requestee, presence: true
 
-  DOCUMENT_TYPES = %w[birth_record].freeze
+  delegate :email, to: :requestee, prefix: true, allow_nil: true
+
+  DOCUMENT_TYPES = [BirthRecord::DOCUMENT_TYPE].freeze
   validates :document_type, inclusion: { in: DOCUMENT_TYPES }
   validates_associated :requestee
 
@@ -34,9 +36,5 @@ class Request < ApplicationRecord
       transition received: :cancelled
       transition responded: :cancelled
     end
-  end
-
-  def requestee_email
-    requestee&.email
   end
 end

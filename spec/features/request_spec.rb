@@ -55,5 +55,11 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
       expect(page).to have_content('A note')
       expect(page).to have_content('Birth record')
     end
+
+    it 'marks the request as received when the recipient views it' do
+      visit user_requests_path
+      click_link 'Request from Example Org'
+      expect(page).to have_content('received')
+    end
   end
 end
