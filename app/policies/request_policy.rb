@@ -16,6 +16,10 @@ class RequestPolicy
     user == request.requestee
   end
 
+  def respond?
+    user == request.requestee
+  end
+
   def cancel?
     user.member_of?(request.requester)
   end

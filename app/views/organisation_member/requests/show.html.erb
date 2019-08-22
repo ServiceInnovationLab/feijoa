@@ -1,6 +1,11 @@
 <%= content_for :subhead do %>
   <%= render partial: "organisation_member/shared/subhead" %>
 <% end %>
+
+<div class="mb-4">
+  <%= link_to "← Back", organisation_member_dashboard_path(@organisation), class: 'text-dark' %>
+</div>
+
 <h1>Request for a document to be shared with <%= @organisation.name %></h1>
 
 <dt>Requester</dt>
@@ -23,6 +28,14 @@
 <dd>
   <%= t("documents.types.#{@request.document_type}") %>
 </dd>
+<% if @request.share.present? %>
+  <dt>Shared document</dt>
+  <%= render partial: 'shared/documents/preview', locals: { document: @request.share.birth_record , actions: [
+    link: organisation_member_share_path(@organisation, @request.share),
+    button_class: 'secondary',
+    title: 'View'
+  ]} %>
+<% end %>
 <% if @request.can_cancel? %>
   <%= form_with(url: cancel_organisation_member_request_path(@organisation, @request), method: "post", local: true) do %>
     <%= submit_tag("Cancel", class: 'btn btn-danger') %>

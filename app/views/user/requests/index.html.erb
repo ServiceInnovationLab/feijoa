@@ -1,7 +1,7 @@
 <h1>Document requests</h1>
 <div class="row mb-4">
-  <% @requests.each do |request| %>
-  <div class="col-4">
+  <% @requests.order(updated_at: :desc).each do |request| %>
+  <div class="col-4 mb-4">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">
@@ -33,9 +33,16 @@
           </dd>
           <dt>Document type</dt>
           <dd>
-            <%= t("documents.types.#{request.document_type}") %>            
+            <%= t("documents.types.#{request.document_type}") %>
           </dd>
         </dl>
+        <% if request.share.present? %>
+          <%= render partial: 'shared/documents/preview', locals: { document: request.share.birth_record , actions: [
+            link: user_birth_record_path(request.share.birth_record),
+            button_class: 'secondary',
+            title: 'View'
+          ]} %>
+        <% end %>
       </div>
     </div>
   </div>
