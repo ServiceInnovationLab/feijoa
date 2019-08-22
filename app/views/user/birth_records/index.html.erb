@@ -16,7 +16,7 @@
           <div class="card-footer">
             <div class="card-footer__inner d-flex justify-content-around">
               <%= link_to 'View', user_birth_record_path(record), class: 'btn btn-secondary' %>
-              <%= link_to 'Share', new_user_share_path(share: { birth_record_id: record.to_param }), class: 'btn btn-primary' %>
+              <%= render 'user/shares/modal_form', record: record, button_classes: 'btn btn-primary' %>
             </div>
           </div>
         </div>

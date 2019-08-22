@@ -12,6 +12,10 @@ class OrganisationPolicy
     true
   end
 
+  def autocomplete?
+    true
+  end
+
   def create?
     user.janitor?
   end

@@ -28,7 +28,7 @@
   </div>
   <div class="row justify-content-center mb-4 mt-4">
     <div class="col-sm-6">
-      <%= link_to 'Share', new_user_share_path(share: { birth_record_id: @birth_record.to_param }), class: 'btn btn-primary btn-block' %>
+      <%= render 'user/shares/modal_form', record: @birth_record, button_classes: 'btn btn-primary btn-block' %>
     </div>
   </div>
 </div>
