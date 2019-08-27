@@ -6,7 +6,9 @@
     "raygun",
     "sendgrid"
   ],
-  "buildpacks": [],
+  "buildpacks": [
+    "bonsai",
+  ],
   "env": {
   },
   "formation": {
