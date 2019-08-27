@@ -37,18 +37,18 @@ Slack: LabPlus-team #feijoa
 ### Development
 In the application directory:
 
-Make a copy of the example environment file containing some important settings
+**1. Make a copy of the example environment file containing some important settings**
 
 ```
 > cp example.env .env
 ```
 
-Install bundler 1.x if required
+**2. Install Rails dependencies and create local databases**
 ```
-> gem install bundler -v 1.17.3
+> bin/setup
 ```
 
-[Install and run Elastic search](https://www.elastic.co/downloads/elasticsearch).
+**3. [Install and run Elastic search](https://www.elastic.co/downloads/elasticsearch).**
 By default this is expected to run on localhost:9200 - if you have ElasticSearch running on a different port, you can change `ELASTICSEARCH_URL` in your `.env` file.
 
 On Ubuntu you can use the same script as Travis CI:
@@ -62,12 +62,7 @@ brew install elasticsearch
 brew services start elasticsearch
 ```
 
-Install Rails dependencies and create local databases
-```
-> bin/setup
-```
-
-Start a local server
+**4. Start a local server**
 ```
 > bundle exec rails server
 ```
