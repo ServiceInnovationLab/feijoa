@@ -1,5 +1,4 @@
 
-
 $( document ).ready(function() {
   var organisations = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -9,12 +8,12 @@ $( document ).ready(function() {
       wildcard: '%QUERY'
     }
   });
-  $('#query').typeahead(null, {
+  $('#org-query').typeahead(null, {
     displayKey: 'name',
     source: organisations
   });
 
-  $('#query').bind('typeahead:select', function(ev, organisation) {
+  $('#org-query').bind('typeahead:select', function(ev, organisation) {
     $('#recipient_id').val(organisation.id);
     $('#org-name').text(organisation.name);
     $('#org-email').text(organisation.email);

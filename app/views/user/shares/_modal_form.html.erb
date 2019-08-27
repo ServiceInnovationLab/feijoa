@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalSharesForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="modalSharesForm-<%= record.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -15,6 +15,6 @@
   </div>
 </div>
 
-<a href="#" id="share-record" data-toggle="modal" data-target="#modalSharesForm" class="<%= button_classes %>">
+<a href="#" id="share-record-<%= record.id %>" data-toggle="modal" data-target="#modalSharesForm-<%= record.id %>" class="<%= classes %>">
   Share
 </a>

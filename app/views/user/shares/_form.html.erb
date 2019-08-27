@@ -6,7 +6,7 @@
   <%= f.hidden_field :birth_record_id, value: record.id %>
   <%= f.hidden_field :recipient_id, id: 'recipient_id', value: nil %>
   <div >
-    <%= f.text_field :organisation, id: "query", label_as_placeholder: true, label: 'Organisation' %>
+    <%= f.text_field :organisation, id: "org-query", label_as_placeholder: true, label: 'Organisation' %>
   </div>
   <p>
     <div class="col-12" id="org-name">  </div>
@@ -14,6 +14,6 @@
     <div class="col-12" id="org-address">  </div>
   </p>
   <div>
-    <%= f.submit :share %>
+    <%= f.submit 'Share', id: 'share-button' %>
   </div>
 <% end %>

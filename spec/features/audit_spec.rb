@@ -52,10 +52,13 @@ RSpec.feature 'Auditing' do
         end
 
         context 'they share a birth record with an organisation' do
+          let!(:organisation) { FactoryBot.create :organisation, name: 'Mangakino Kohanga Reo' }
           before do
             click_on 'Share'
-            select organisation.name
-            click_on 'Share birth record'
+            page.execute_script("$('#org-query').val('Mangakino');")
+            # Can't get javascript to run, so fill in hidden field
+            page.execute_script("document.getElementById('recipient_id').value = '#{organisation.id}'")
+            click_on id: 'share-button'
           end
 
           it 'shows a "shared..." audit message' do

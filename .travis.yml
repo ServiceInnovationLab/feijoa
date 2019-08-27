@@ -34,7 +34,8 @@ before_script:
 - bundle install
 - yarn install
 - RAILS_ENV=test bundle exec rake db:create db:migrate
-- bundle exec rake assets:precompile
+- bundle exec rails assets:precompile
+- bundle exec rails search:index
 - export PERCY_TARGET_BRANCH=$TRAVIS_BRANCH
 - export PERCY_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
 script:

@@ -9,15 +9,14 @@
   <div class="card-footer">
     <div class="card-footer__inner d-flex justify-content-around">
       <% actions.each do |action| %>
-        <% if action[:form] %>
+        <% if action.is_a? String %>
+          <%= action %>
+        <% elsif action[:form] %>
           <%= form_with(url: action[:link], method: action[:method] || "post", local: action[:local] || "true") do %>
             <%= submit_tag(action[:title], class: "btn btn-#{action[:button_class]}") %>
           <% end %>
-        <% else %>
-          <%= link_to action[:title], action[:link], class: "btn btn-#{action[:button_class]}" %>
         <% end %>
       <% end %>
-      <%= render 'user/shares/modal_form', record: document, button_classes: 'btn btn-primary' %>
     </div>
   </div>
 </div>
