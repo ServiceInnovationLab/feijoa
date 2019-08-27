@@ -48,9 +48,18 @@ Install bundler 1.x if required
 > gem install bundler -v 1.17.3
 ```
 
-[Install Elastic search](https://www.elastic.co/downloads/elasticsearch) On ubuntu you can use the same script as travis-ci
+[Install and run Elastic search](https://www.elastic.co/downloads/elasticsearch).
+By default this is expected to run on localhost:9200 - if you have ElasticSearch running on a different port, you can change `ELASTICSEARCH_URL` in your `.env` file.
+
+On Ubuntu you can use the same script as Travis CI:
 ```
 ELASTIC_SEARCH_VERSION="6.2.3" ./bin/install_elasticsearch.sh
+```
+
+On Mac you may want to use Homebrew:
+```
+brew install elasticsearch
+brew services start elasticsearch
 ```
 
 Install Rails dependencies and create local databases
