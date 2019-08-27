@@ -48,6 +48,11 @@ Install bundler 1.x if required
 > gem install bundler -v 1.17.3
 ```
 
+[Install Elastic search](https://www.elastic.co/downloads/elasticsearch) On ubuntu you can use the same script as travis-ci
+```
+ELASTIC_SEARCH_VERSION="6.2.3" ./bin/install_elasticsearch.sh
+```
+
 Install Rails dependencies and create local databases
 ```
 > bin/setup
