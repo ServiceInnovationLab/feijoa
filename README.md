@@ -62,10 +62,23 @@ brew install elasticsearch
 brew services start elasticsearch
 ```
 
+You will also need to build a search index.
+`bundle exec rake search:index`
+
 **4. Start a local server**
 ```
 > bundle exec rails server
 ```
+
+## Local data
+
+You can import organisations 
+
+`bundle exec rake import:schools`
+`bundle exec rake import:tkkm`
+
+You will need to build an ElasticSearch index for the new organisations:
+`bundle exec rake search:index`
 
 ## Testing
 
