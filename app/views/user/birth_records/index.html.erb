@@ -7,10 +7,12 @@
       <% @birth_records.each do |record| %>
         <%= render partial: 'shared/documents/preview', locals: {
           document: record,
-        actions: [
-            { title: 'View', button_class: 'secondary', link: user_birth_record_path(record) },
-          ]
-        } %>
+          actions: [
+            link_to('View', user_birth_record_path(record), class: 'btn btn-secondary'),
+            render('user/shares/modal_form', record: record, classes: 'btn btn-primary')
+            ]
+          }
+        %>
       <% end %>
     </div>
   <% else %>

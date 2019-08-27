@@ -22,9 +22,12 @@
   <div class="row">
     <% @shares.each do |share| %>
       <div class="col-sm-4 mb-4">
-        <%= render partial: 'shared/documents/preview', locals: { document: share.birth_record, shared_by: share.user.email, actions: [
-          { title: 'View', link: organisation_member_share_path(@organisation, share), button_class: 'secondary' }
-          ]} %>
+        <%= render partial: 'shared/documents/preview', locals: { document: share.birth_record,
+          shared_by: share.user.email,
+          actions: [
+            link_to('View', organisation_member_share_path(@organisation, share), class: 'btn btn-secondary')
+          ]}
+        %>
       </div>
     <% end %>
   </div>

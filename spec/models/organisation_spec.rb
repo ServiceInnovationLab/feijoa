@@ -7,9 +7,10 @@ RSpec.describe Organisation, type: :model do
     let!(:org) { FactoryBot.create :organisation, name: 'Mangakino Kohanga Reo' }
     before { Organisation.reindex(async: false) }
     it { expect(Organisation.all).to eq [org] }
-    it { expect(Organisation.search('m').first).to eq org }
     it { expect(Organisation.search('Mangakino').first).to eq org }
+    it { expect(Organisation.search('mangakino').first).to eq org }
     it { expect(Organisation.search('Mangkino').first).to eq org }
+    it { expect(Organisation.search('mang', match: :word_start).first).to eq org }
   end
 
   describe 'when a record already exist with same data source key and name' do

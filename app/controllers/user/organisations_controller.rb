@@ -11,8 +11,8 @@ class User::OrganisationsController < User::BaseController
     render json: Organisation.search(params[:query],
                                      fields: [:name],
                                      match: :word_start,
-                                     limit: 10,
                                      load: true,
-                                     misspellings: { below: 10, edit_distance: 2 })
+                                     misspellings: { below: 10, edit_distance: 4 },
+                                     track: { user_id: current_user.id })
   end
 end
