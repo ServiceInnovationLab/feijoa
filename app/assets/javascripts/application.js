@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require activestorage
-//= require turbolinks
 //= require popper
 //= require bootstrap
+//= require twitter/typeahead.min
 //= require_tree .

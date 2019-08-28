@@ -12,10 +12,11 @@
  */
 
 @import 'variables';
-@import 'material';
+@import 'bootstrap';
 @import 'rails_bootstrap_forms';
-@import 'badge';
+@import 'bootstrap_overrides';
 
+@import 'autocomplete';
 @import 'body';
 
 .index-cards {
@@ -26,11 +27,6 @@
     width: 300px;
     margin: 1em;
   }
-}
-
-a:hover {
-  text-decoration: none;
-  background-color: $beige;
 }
 
 .card-row {
@@ -47,4 +43,13 @@ a:hover {
       margin: 0.5em;
     }
   }
+}
+
+.navbar-skinny {
+  min-height: 1.5em;
+}
+
+.add-doc {
+  width: 3em;
+  display: inline-block;
 }

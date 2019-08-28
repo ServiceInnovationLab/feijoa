@@ -1,0 +1,8 @@
+<h1>Document requests</h1>
+<div class="row mb-4">
+  <% @requests.order(updated_at: :desc).each do |request| %>
+  <div class="col-sm-6 mb-4">
+    <%= render partial: 'request', locals: { request: request } %>
+  </div>
+  <% end %>
+</div>

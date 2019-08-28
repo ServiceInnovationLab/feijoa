@@ -2,11 +2,16 @@
   "name": "feijoa",
   "stack": "heroku-18",
   "addons": [
+    {
+      "plan": "bonsai",
+      "as": "ELASTICSEARCH"
+    },
     "heroku-postgresql",
     "raygun",
     "sendgrid"
   ],
-  "buildpacks": [],
+  "buildpacks": [
+  ],
   "env": {
   },
   "formation": {
@@ -15,6 +20,6 @@
     }
   },
   "scripts": {
-    "postdeploy": "bundle exec rake db:migrate db:seed assets:precompile"
+    "postdeploy": "bundle exec rake db:migrate db:seed assets:precompile searchkick:reindex:all"
   }
 }

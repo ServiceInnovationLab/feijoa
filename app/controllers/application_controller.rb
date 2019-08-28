@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
+require 'application_responder'
+
 class ApplicationController < ActionController::Base
+  include Pundit
+  self.responder = ApplicationResponder
+  respond_to :html, :json
+
   # By default authenticated users can't access controller actions.
   #
   # This is deny-by-default, and setting it here will also cover the Devise
@@ -13,5 +19,5 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  devise_group :account, contains: %i[user admin_user organisation_user]
+  devise_group :account, contains: %i[user admin_user]
 end

@@ -2,12 +2,17 @@
 
 # rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
+  resources :organisations, only: [:index]
+
   namespace :admin do
     resources :users
     resources :admin_users
     resources :birth_records
+    resources :shares
+    resources :organisations
+    resources :organisation_members
 
-    root to: 'users#index'
+    root to: 'birth_records#index'
   end
 
   devise_for :users, path: 'user', controllers: {
@@ -27,11 +32,35 @@ Rails.application.routes.draw do
         post :remove
       end
     end
-    resources :shares
+    resources :shares, only: %i[index show new create] do
+      member do
+        post :revoke
+      end
+    end
+    resources :requests, only: %i[index show] do
+      member do
+        post :decline
+        post :respond
+      end
+    end
+    resources :audits, only: :index
+    resources :organisations, except: %i[new create] do
+      collection { get 'autocomplete' }
+    end
+  end
+
+  scope 'organisation_member/:organisation_id', as: 'organisation_member' do
+    get 'dashboard', controller: 'organisation_member/dashboard', action: 'index'
+    resources :shares, only: %i[index show], controller: 'organisation_member/shares'
+    resources :requests, only: %i[index show new create], controller: 'organisation_member/requests' do
+      member do
+        post :cancel
+      end
+    end
   end
 
   authenticated :user do
-    root 'user/birth_records#index', as: :authenticated_user_root
+    root 'user/dashboard#index', as: :authenticated_user_root
   end
 
   devise_for :admin_user, path: 'admin_user', controllers: {
@@ -45,21 +74,8 @@ Rails.application.routes.draw do
     root 'admin_user#index', as: :authenticated_admin_user_root
   end
 
-  devise_for :organisation_users, path: 'organisation_user', controllers: {
-    # we need to override the sessions controller, others can be default
-    sessions: 'organisation_user/sessions'
-  }
-
-  resources :organisation_user, only: [:index]
-
-  namespace :organisation_user do
-    resources :shares, only: %i[index show]
+  devise_scope :user do
+    root to: 'user/sessions#new'
   end
-
-  authenticated :organisation_user do
-    root 'organisation_user#index', as: :authenticated_organisation_user_root
-  end
-
-  root to: 'home#index'
 end
 # rubocop:enable Metrics/BlockLength

@@ -1,0 +1,34 @@
+<%= content_for :subhead do %>
+  <%= render partial: "organisation_member/shared/subhead" %>
+<% end %>
+<h1><%= @organisation.name %>'s documents dashboard</h1>
+<p class="lead">This is where your documents are stored. This is where you can request documents, view them, or remove your access to them.</p>
+
+<section  class="mt-4">
+  <h3>Request a document</h3>
+  <div class="row">
+    <% @requests.each do |request| %>
+      <div class="col-sm-4 mb-4">
+        <%= render partial: 'organisation_member/requests/request', locals: { request: request } %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
+    <%= image_tag("plus.svg", alt: 'Add a new request') %>
+  <% end %>
+</section>
+<section class="shares mt-4">
+  <h3>Received documents</h3>
+  <div class="row">
+    <% @shares.each do |share| %>
+      <div class="col-sm-4 mb-4">
+        <%= render partial: 'shared/documents/preview', locals: { document: share.birth_record,
+          shared_by: share.user.email,
+          actions: [
+            link_to('View', organisation_member_share_path(@organisation, share), class: 'btn btn-secondary')
+          ]}
+        %>
+      </div>
+    <% end %>
+  </div>
+</section>

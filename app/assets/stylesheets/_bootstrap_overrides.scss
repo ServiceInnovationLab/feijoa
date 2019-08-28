@@ -1,0 +1,66 @@
+@each $color, $value in $theme-colors {
+  .alert-#{$color} {
+    @include alert-variant($value, $value, color-yiq($value));
+  }
+}
+
+h1, h2, h5 {
+  font-weight: bold;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.card {
+  @extend .shadow;
+}
+
+.card--with-fancy-footer {
+  background-color: $grey;
+  .card-body {
+    padding-bottom: 2em;
+  }
+  .card-footer {
+    position: relative;
+    padding-bottom: 2em;
+  }
+  .card-footer__inner {
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.card--request {
+  background-color: mix($grey, #FFF, 50);
+  color: mix(#000, #FFF, 70);
+}
+
+@include media-breakpoint-down(sm) {
+  .navbar {
+    font-size: 0.8em;
+  }
+}
+
+label.required:after {
+  content:" *";
+}
+
+.badge {
+  &--cancelled, &--declined {
+    @extend .badge-danger;
+  }
+  &--initiated {
+    @extend .badge-primary;
+  }
+  &--received {
+    @extend .badge-info;
+  }
+  &--resolved {
+    @extend .badge-success;
+  }
+}

@@ -1,22 +1,27 @@
-<div class="d-row">
-  <div class="col-lg-6">
+<div class="row mt-4 pt-4">
+  <div class="col pr-4">
+    <h1 class="font-weight-bold">Nau mai ki Feijoa</h1>
+    <h1>Welcome to Feijoa</h1>
+    <p class="lead mt-4">Allowing you to share your personal government-administered information through consent-based sharing with other users, organisations and businesses.</p>
+  </div>
+  <div class="col pl-4">
     <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <h2>Log in as a user</h2>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="p-4">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
-      <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.password_field :password, autocomplete: "current-password" %>
 
-      <% if devise_mapping.rememberable? %>
-        <%= f.check_box :remember_me %>
-      <% end %>
+        <% if devise_mapping.rememberable? %>
+          <%= f.check_box :remember_me %>
+        <% end %>
 
-      <div class="actions mt-4">
-        <%= f.submit "Log in", class: "btn btn-primary" %>
-      </div>
-      <div class="mt-4">
-        <%= render "user/shared/links" %>
+        <div class="actions mt-4">
+          <%= f.submit "Log in", class: "btn btn-primary btn-block" %>
+        </div>
+        <div class="mt-4">
+          <%= render "user/shared/links" %>
+        </div>
       </div>
     <% end %>
-
   </div>
 </div>

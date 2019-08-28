@@ -1,0 +1,43 @@
+<% if @requests.any? %>
+  <h2>New share requests</h2>
+  <% @requests.each do |request| %>
+    <div class="mb-4">
+      <%= render partial: 'user/requests/request', locals: { request: request } %>
+    </div>
+  <% end %>
+<% end %>
+<% if @organisations.any? %>
+  <h2>Organisations</h2>
+  <section class="c-dashboard-organisations">
+    <div class="row">
+      <% @organisations.each do |organisation| %>
+        <div class="col-4">
+          <%= link_to organisation_member_dashboard_path(organisation) do %>
+            <div class="c-dashboard-organisations__org card">
+              <div class="card-body">
+                <%= organisation.name %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+  <hr>
+<% end %>
+<% if @documents.any? %>
+  <section>
+    <h2>Your documents</h2>
+    <div class="index-cards">
+      <% @documents.each do |record| %>
+        <%= render partial: 'shared/documents/preview', locals: {
+          document: record,
+          actions: [
+            link_to('View', user_birth_record_path(record), class: 'btn btn-secondary'),
+            render('user/shares/modal_form', record: record, classes: 'btn btn-primary')
+          ]
+        } %>
+      <% end %>
+    </div>
+  </section>
+<% end %>

@@ -4,10 +4,11 @@ FactoryBot.define do
   factory :share do
     birth_record
     user
-    for_organisation_user
+    audit_comment { AuditedOperationsService::SHARE_BIRTH_RECORD }
+    for_organisation
 
-    trait :for_organisation_user do
-      association :recipient, factory: :organisation_user
+    trait :for_organisation do
+      association :recipient, factory: :organisation
     end
   end
 end

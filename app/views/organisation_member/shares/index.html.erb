@@ -1,0 +1,30 @@
+<%= content_for :subhead do %>
+  <%= render partial: "organisation_member/shared/subhead" %>
+<% end %>
+<h1>Shared documents</h1>
+<p class="lead">Documents shared with <%= @organisation.name %>.</p>
+<% if @shares.blank? %>
+  <p>No documents have been shared with <%= @organisation.name %>.</p>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Birth record</th>
+        <th>User</th>
+        <th>Recipient</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @shares.each do |share| %>
+        <tr>
+          <td><%= share.birth_record.short_name %></td>
+          <td><%= share.user.email %></td>
+          <td><%= share.recipient.name %></td>
+          <td><%= link_to 'Show', organisation_member_share_path(@organisation, share) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

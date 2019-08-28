@@ -1,0 +1,22 @@
+<div class="card card--with-fancy-footer birth-record" data-id="<%= document.to_param %>">
+    <div class="card-body">
+      <h5 class="card-title"><%= t("documents.types.#{document.document_type}") %></h5>
+      <p><%= document.heading %></p>
+      <% if local_assigns[:shared_by] %>
+        <p>Shared by <%= shared_by %></p>
+      <% end %>
+    </div>
+  <div class="card-footer">
+    <div class="card-footer__inner d-flex justify-content-around">
+      <% actions.each do |action| %>
+        <% if action.is_a? String %>
+          <%= action %>
+        <% elsif action[:form] %>
+          <%= form_with(url: action[:link], method: action[:method] || "post", local: action[:local] || "true") do %>
+            <%= submit_tag(action[:title], class: "btn btn-#{action[:button_class]}") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

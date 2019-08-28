@@ -1,14 +1,19 @@
 sudo: required
 language: ruby
-branches:
-  only:
-  - master
-  - dev
 cache:
   bundler: true
   yarn: true
 services:
   - postgresql
+  - elasticsearch
+
+# Note: we will build pull requests, and these branches
+# This stops travis running two jobs on every pull requests
+branches:
+  only:
+  - master
+  - staging
+
 addons:
   postgresql: "10"
   apt:
@@ -20,8 +25,8 @@ addons:
 env:
   global:
     - RAILS_ENV=test
-    - PGPORT=5433
 before_install:
+- ELASTIC_SEARCH_VERSION="6.2.3" ./bin/install_elasticsearch.sh
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64  > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - export PATH=$PWD/geckodriver:$PATH
@@ -29,7 +34,8 @@ before_script:
 - bundle install
 - yarn install
 - RAILS_ENV=test bundle exec rake db:create db:migrate
-- bundle exec rake assets:precompile
+- bundle exec rails assets:precompile
+- bundle exec rails search:index
 - export PERCY_TARGET_BRANCH=$TRAVIS_BRANCH
 - export PERCY_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
 script:
@@ -43,7 +49,7 @@ deploy:
     repo: ServiceInnovationLab/feijoa
   app:
     master: feijoa
-    pr-deploy: feijoa
+    staging: feijoa-staging
   run:
   - bundle install
   - yarn install

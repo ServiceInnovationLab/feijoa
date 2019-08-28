@@ -1,31 +1,19 @@
-<%= bootstrap_form_with(url: user_shares_path, model: share, scope: 'share', local: true) do |f| %>
-  <% if share.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(share.errors.count, "error") %> prohibited this share from being saved:</h2>
-
-      <ul>
-      <% share.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= bootstrap_form_with(url: user_shares_path, layout: :horizontal, scope: 'share', local: true,) do |f| %>
+<h5>Type name of organisation</h5>
   <div>
-    Sharing birth record of <%= share.birth_record.full_name %>
+    Sharing birth record of <%= record.full_name %>
   </div>
-
+  <%= f.hidden_field :birth_record_id, value: record.id %>
+  <%= f.hidden_field :recipient_id, id: 'recipient_id', value: nil %>
+  <div >
+    <%= f.text_field :organisation, id: "org-query", label_as_placeholder: true, label: 'Organisation' %>
+  </div>
+  <p>
+    <div class="col-12" id="org-name">  </div>
+    <div class="col-12" id="org-email">  </div>
+    <div class="col-12" id="org-address">  </div>
+  </p>
   <div>
-    <%= f.collection_select(
-      :recipient_id,
-      organisations,
-      :id,
-      :email, include_blank: true)
-    %>
-  </div>
-
-  <%= f.hidden_field :birth_record_id, value: share.birth_record.id %>
-  <div class="actions">
-    <%= f.submit 'Share birth record' %>
+    <%= f.submit 'Share', id: 'share-button' %>
   </div>
 <% end %>

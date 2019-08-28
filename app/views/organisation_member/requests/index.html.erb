@@ -1,0 +1,13 @@
+<%= content_for :subhead do %>
+  <%= render partial: "organisation_member/shared/subhead" %>
+<% end %>
+<h1>Document requests</h1>
+<div class="row mb-4">
+  <% @requests.each do |request| %>
+    <div class="col-4 mb-4">
+      <%= render partial: 'request', locals: { request: request } %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "New request", new_organisation_member_request_path(@organisation), class: "btn btn-primary" %>

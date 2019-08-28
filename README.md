@@ -9,7 +9,9 @@ A Rails web app to demonstrate consent management
 ## Environments
 **Environment** | **URL**  | **Git Branch**
 ---    | ---                                | ---    |
-Heroku | https://feijoa.herokuapp.com/ | master |
+production | https://feijoa.herokuapp.com/ | master |
+staging | https://feijoa-staging.herokuapp.com/ | staging |
+
 
 ## Project Resources
 
@@ -21,11 +23,11 @@ CI      | https://travis-ci.org/ServiceInnovationLab/feijoa
 **Role(s)** | **Name(s)**
 ---        | ---
 Team       | Yeah Nah / Feijoa
-Developers | [Brenda Wallace](https://github.com/Br3nda), [Lyall Morrison](https://github.com/lamorrison)
-Designers |
-Testers | [Merridy Marshall](https://github.com/merridy)
-Project Manager |
-Product Owner |
+Developers | [@br3nda](https://github.com/Br3nda), [@lamorrison](https://github.com/lamorrison) [@mermop](@mermop)(https://github.com/mermop) [@JacOng17](https://github.com/JacOng17]
+Designers | [@rosspatel01](https://github.com/rosspatel01)
+Testers | 
+Scrum Master | [@merridy](https://github.com/merridy)
+Product Owner | [@workbygrant](https://github.com/workbygrant]
 
 ## Comms
 Slack: LabPlus-team #feijoa
@@ -35,26 +37,53 @@ Slack: LabPlus-team #feijoa
 ### Development
 In the application directory:
 
-Make a copy of the example environment file containing some important settings
+**1. Make a copy of the example environment file containing some important settings**
 
 ```
 > cp example.env .env
 ```
 
-Install bundler 1.x if required
-```
-> gem install bundler -v 1.17.3
-```
-
-Install Rails dependencies and create local databases
+**2. Install Rails dependencies and create local databases**
 ```
 > bin/setup
 ```
 
-Start a local server
+**3. [Install and run Elastic search](https://www.elastic.co/downloads/elasticsearch).**
+By default this is expected to run on localhost:9200 - if you have ElasticSearch running on a different port, you can change `ELASTICSEARCH_URL` in your `.env` file.
+
+On Ubuntu you can use the same script as Travis CI:
+```
+ELASTIC_SEARCH_VERSION="6.2.3" ./bin/install_elasticsearch.sh
+```
+
+On Mac you may want to use Homebrew:
+```
+brew install elasticsearch
+brew services start elasticsearch
+```
+
+**4. Create a search index in Elastic Search**
+```
+bundle exec rake search:index
+```
+
+**5. Start a local server**
 ```
 > bundle exec rails server
 ```
+
+## Local data
+
+You can import organisations
+
+```
+bundle exec rake import:ece
+bundle exec rake import:schools
+bundle exec rake import:tkkm
+```
+
+You will need to build an ElasticSearch index for the new organisations:
+`bundle exec rake search:index`
 
 ## Testing
 
@@ -69,3 +98,31 @@ Start a local server
 ```
 
 Test coverage is reported to `coverage/index.html`
+
+## Gems
+
+### [Administrate](https://github.com/thoughtbot/administrate)
+ > Administrate is a library for Rails apps that automatically generates admin
+ > dashboards. Administrate's admin dashboards give non-technical users clean
+ > interfaces that allow them to create, edit, search, and delete records for
+ > any model in the application.
+
+The _Administrate_ dashboards are available at `/admin/` for `admin_user`s.
+
+The gem is hard coded to use the `/admin/` route which created a conflict with the controllers for the `admin` account type. We resolved this by renaming the `admin` account type to `admin_user` so all those routes are `/admin_user/*`.
+
+Dashboards must be explicitly generated for new models. There is a generator, `rails generate administrate:dashboard Foo`, or see the project documentation for further details. Be aware that the auto-generated dashboards will expose the (encrypted) passwords for users unless you remove those fields from the generated views manually.
+
+You will also need to add new dashboards to `routes.rb`, which will also allow them to appear in the auto-generated navigation. For example:
+```
+namespace :admin do
+  resources :users
+  resources :admin_users
+  resources :birth_records
+  resources :shares
+  resources :organisations
+  resources :organisation_members
+
+  root to: 'birth_records#index'
+end
+```
