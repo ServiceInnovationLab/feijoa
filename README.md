@@ -74,9 +74,11 @@ You will also need to build a search index.
 
 You can import organisations 
 
-`bundle exec rake import:ece`
-`bundle exec rake import:schools`
-`bundle exec rake import:tkkm`
+```
+bundle exec rake import:ece
+bundle exec rake import:schools
+bundle exec rake import:tkkm
+```
 
 You will need to build an ElasticSearch index for the new organisations:
 `bundle exec rake search:index`
