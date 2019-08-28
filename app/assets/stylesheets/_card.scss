@@ -1,0 +1,31 @@
+.card {
+  @extend .shadow;
+}
+
+.card--with-fancy-footer {
+  background-color: $grey;
+  .card-body {
+    padding-bottom: 2em;
+  }
+  .card-footer {
+    position: relative;
+    padding-bottom: 2em;
+  }
+  .card-footer__inner {
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.card--request {
+  background-color: mix($grey, #FFF, 50);
+  color: mix(#000, #FFF, 70);
+}
+
+.card--revoked {
+  border: 1px solid $red;
+}
