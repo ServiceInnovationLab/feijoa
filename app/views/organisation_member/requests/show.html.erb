@@ -1,0 +1,59 @@
+<%= content_for :subhead do %>
+  <%= render partial: "organisation_member/shared/subhead" %>
+<% end %>
+
+<div class="mb-4">
+  <%= link_to "← Back", organisation_member_dashboard_path(@organisation), class: 'text-dark' %>
+</div>
+<div class="card mb-4 p-4 birth-record" data-id="<%= @birth_record.to_param %>">
+  <div class="card-body">
+    <div class="d-flex justify-content-between mb-4">
+      <h1 class="card-title">Request for a document to be shared with <%= @organisation.name %></h1>
+      <% if @request.can_cancel? %>
+        <%= form_with(url: cancel_organisation_member_request_path(@organisation, @request), method: "post", local: true) do %>
+          <%= submit_tag("Cancel", class: 'btn btn-danger') %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <dt>Requester</dt>
+        <dd>
+          <%= @request.requester.name %>
+        </dd>
+        <dt>Requestee</dt>
+        <dd>
+          <%= @request.requestee.email %>
+        </dd>
+        <dt>Note</dt>
+        <dd>
+          <%= @request.note %>
+        </dd>
+        <dt>State</dt>
+        <dd>
+          <%= @request.state %>
+        </dd>
+        <dt>Document type</dt>
+        <dd>
+          <%= t("documents.types.#{@request.document_type}") %>
+        </dd>
+
+        <dt>Initiated</dt>
+        <dd><%= time_ago_in_words(@request.created_at) %> ago</dd>
+        <dt>Updated</dt>
+        <dd><%= time_ago_in_words(@request.updated_at) %> ago</dd>
+      </div>
+      <div class="col-sm-6">
+        <% if @request.share.present? %>
+          <dt>Shared document</dt>
+          <%= render partial: 'shared/documents/preview', locals: {
+            document: @request.share.birth_record, actions: [
+              link_to('View', organisation_member_share_path(@organisation, @request.share), class: 'btn btn-secondary'),
+              ]
+            }
+          %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

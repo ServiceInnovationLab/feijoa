@@ -1,0 +1,38 @@
+<%= content_for :subhead do %>
+  <%= render partial: "organisation_member/shared/subhead" %>
+<% end %>
+
+<div class="mb-4">
+  <%= link_to "← Back", organisation_member_dashboard_path(@organisation), class: 'text-dark' %>
+</div>
+
+<h1>New document request</h1>
+<div class="row">
+  <div class="col-sm-8">
+    <%= bootstrap_form_for(@request, url: organisation_member_requests_path(@organisation), local: true) do |f| %>
+      <% if @request.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @request.errors.count %> <%= "error".pluralize(@request.errors.count) %> prohibited this request from being saved:</h2>
+
+          <ul>
+          <% @request.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.select :document_type,
+                   Request::DOCUMENT_TYPES.map { |t| [t("documents.types.#{t}"), t] },
+                   include_blank: true,
+                   required: true %>
+      <%= f.text_field :requestee_email,
+                       required: true,
+                       label: 'Recipient',
+                       help: 'The email address of the person you want a document from' %>
+      <%= f.text_area :note %>
+
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

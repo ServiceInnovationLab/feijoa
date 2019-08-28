@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :lockable, :confirmable, :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :timeoutable, :trackable
+         :timeoutable, :trackable, :invitable
 
   has_many :birth_records_users, dependent: :nullify
   has_many :birth_records, -> { distinct.merge(BirthRecordsUser.kept) }, through: :birth_records_users
@@ -13,6 +13,15 @@ class User < ApplicationRecord
 
   has_many :organisation_members, dependent: :destroy
   has_many :organisations, through: :organisation_members
+
+  has_many :requests, inverse_of: :requestee, foreign_key: 'requestee_id', dependent: :destroy
+
+  def self.find_or_invite(email)
+    user = find_by(email: email)
+    return user if user.present?
+
+    invite!(email: email)
+  end
 
   # Janitor = Global admin
   JANITOR_ROLE = 'janitor'
@@ -33,6 +42,13 @@ class User < ApplicationRecord
 
   def member_of?(organisation)
     organisations.include? organisation
+  end
+
+  def documents(type: BirthRecord::DOCUMENT_TYPE)
+    return birth_records if type.to_s == BirthRecord::DOCUMENT_TYPE
+
+    # one day there will be other types of documents, but for the moment...
+    []
   end
 
   # Get the audits for this user

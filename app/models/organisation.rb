@@ -4,6 +4,12 @@ class Organisation < ApplicationRecord
   has_many :shares, as: :recipient, dependent: :destroy
   has_many :organisation_members, dependent: :destroy
   has_many :users, through: :organisation_members
+  has_many :requests, inverse_of: 'requester', foreign_key: 'requester_id', dependent: :destroy
+
+  validates :name, presence: true
+  validates :data_source_key, uniqueness: { scope: :data_source_name }, allow_nil: true
+
+  searchkick word_start: %i[name], case_sensitive: false
 
   def add_admin(user)
     organisation_members.create(user: user, role: OrganisationMember::ADMIN_ROLE)

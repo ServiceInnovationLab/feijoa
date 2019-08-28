@@ -32,19 +32,15 @@ RSpec.describe 'user/SharesController', type: :feature do
       context 'the user chooses to share the birth record' do
         before do
           visit user_birth_records_path
-          find(".birth-record[data-id='#{target_birth_record.id}']").click_link('Share')
+          click_link "share-record-#{target_birth_record.id}"
 
           # wait for destination page to load
           page.has_css?('body.user__shares--new')
         end
 
-        it 'renders the new share page' do
-          expect(page).to have_text('Share a document')
-          Percy.snapshot(page, name: 'share the birth record')
-        end
-
         it 'shows the selected birth record' do
           expect(page).to have_text(target_birth_record.full_name)
+          Percy.snapshot(page, name: 'share the birth record')
         end
       end
     end
@@ -55,11 +51,13 @@ RSpec.describe 'user/SharesController', type: :feature do
       login_as(user, scope: :user)
       visit user_birth_record_path(target_birth_record)
       click_link 'Share'
-      select 'Plunket', from: 'Recipient'
-      click_button 'Share birth record'
+      page.execute_script("document.getElementById('recipient_id').value = '#{target_org.id}'")
+      click_button id: 'share-button'
+    end
+    it 'creates a share' do
+      expect(page).to have_text 'Share was successfully created.'
       Percy.snapshot(page, name: 'Shared birth record')
     end
-    it { expect(page).to have_text 'Share was successfully created.' }
     it { expect(page).to have_text 'Shared with' }
     it { expect(page).to have_text 'Plunket' }
     it { expect(page).to have_link 'Revoke' }

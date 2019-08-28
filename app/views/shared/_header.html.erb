@@ -19,7 +19,7 @@
               Your organisations
             </a>
             <div class="dropdown-menu" aria-labelledby="userDropdown">
-              <% current_user.organisations.each do |organisation| %>
+              <% current_user&.organisations.each do |organisation| %>
                 <%= link_to organisation.name, organisation_member_dashboard_path(organisation), class: 'dropdown-item' %>
               <% end %>
             </div>
@@ -31,6 +31,7 @@
           <div class="dropdown-menu" aria-labelledby="userDropdown">
             <%= link_to 'My Documents', user_birth_records_path, class: 'dropdown-item' %>
             <%= link_to 'My Shares', user_shares_path, class: 'dropdown-item' %>
+            <%= link_to 'Requests', user_requests_path, class: 'dropdown-item' %>
             <%= link_to 'History', user_audits_path, class: 'dropdown-item' %>
           </div>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -45,6 +46,14 @@
           <%= link_to 'My Documents', user_birth_records_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
+          <%= link_to user_requests_path, class: 'nav-link' do %>
+            Requests
+            <% if current_user&.requests&.unresolved.present? %>
+              <span class="badge badge-secondary"><%= current_user.requests.unresolved.count %></span>
+            <% end %>
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= link_to 'History', user_audits_path, class: 'nav-link' %>
         </li>
       <% end %>
@@ -55,7 +64,7 @@
           <% if current_admin_user.present? %>
             <%= render partial: 'shared/logout', locals: { _logout_path: destroy_admin_user_session_path } %>
           <% end %>
-          <% if current_user.present? %>
+          <% if current_user&.present? %>
             <%= render partial: 'shared/logout', locals: { _logout_path: destroy_user_session_path } %>
           <% end %>
         </li>

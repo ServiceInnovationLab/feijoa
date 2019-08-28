@@ -18,25 +18,21 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'searchkick'
+gem 'twitter-typeahead-rails' # auto complete
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Authentication
 gem 'devise', '~> 4.6.2'
+gem 'devise_invitable', '~> 2.0.0'
+
+# Authorization
+gem 'pundit'
 
 # CSS framework
 gem 'bootstrap', '~> 4.3.1'
@@ -61,8 +57,12 @@ gem 'responders'
 # Soft delete support
 gem 'discard', '~> 1.0'
 
-# Authorization
-gem 'pundit'
+# State machines
+gem 'state_machines'
+gem 'state_machines-activerecord'
+
+gem 'faraday'
+gem 'faraday_middleware'
 
 group :production do
   gem 'sendgrid-ruby'

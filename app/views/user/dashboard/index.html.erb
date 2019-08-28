@@ -1,3 +1,11 @@
+<% if @requests.any? %>
+  <h2>New share requests</h2>
+  <% @requests.each do |request| %>
+    <div class="mb-4">
+      <%= render partial: 'user/requests/request', locals: { request: request } %>
+    </div>
+  <% end %>
+<% end %>
 <% if @organisations.any? %>
   <h2>Organisations</h2>
   <section class="c-dashboard-organisations">
@@ -17,35 +25,19 @@
   </section>
   <hr>
 <% end %>
-<section class="c-dashboard-links">
-  <h2>Share</h2>
-  <div class="row">
-    <div class="col-4">
-      <%= link_to '#' do %>
-        <div class="c-dashboard-links__link card">
-          <div class="card-body">
-            Requested shares
-          </div>
-        </div>
+<% if @documents.any? %>
+  <section>
+    <h2>Your documents</h2>
+    <div class="index-cards">
+      <% @documents.each do |record| %>
+        <%= render partial: 'shared/documents/preview', locals: {
+          document: record,
+          actions: [
+            link_to('View', user_birth_record_path(record), class: 'btn btn-secondary'),
+            render('user/shares/modal_form', record: record, classes: 'btn btn-primary')
+          ]
+        } %>
       <% end %>
     </div>
-    <div class="col-4">
-      <%= link_to user_shares_path do %>
-        <div class="c-dashboard-links__link card">
-          <div class="card-body">
-            My shares
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-4">
-      <%= link_to user_birth_records_path do %>
-        <div class="c-dashboard-links__link card">
-          <div class="card-body">
-            Documents
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</section>
+  </section>
+<% end %>
