@@ -5,6 +5,7 @@ cache:
   yarn: true
 services:
   - postgresql
+  - elasticsearch
 
 # Note: we will build pull requests, and these branches
 # This stops travis running two jobs on every pull requests
@@ -12,8 +13,7 @@ branches:
   only:
   - master
   - staging
-services:
-  - elasticsearch
+
 addons:
   postgresql: "10"
   apt:
