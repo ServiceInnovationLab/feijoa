@@ -18,12 +18,7 @@
             <% current_user.documents(type: request.document_type).each do |document| %>
               <div class="mb-2">
                 <%= render partial: 'shared/documents/preview', locals: { document: document, actions: [
-                  {
-                    form: true,
-                    link: respond_user_request_path(request.id, document_id: document.id, document_type: request.document_type),
-                    title: 'Share',
-                    button_class: 'primary'
-                  }
+                  render(partial: 'user/requests/share_button', locals: { document: document, request: request })
                 ] } %>
               </div>
             <% end %>
