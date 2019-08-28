@@ -62,10 +62,12 @@ brew install elasticsearch
 brew services start elasticsearch
 ```
 
-You will also need to build a search index.
-`bundle exec rake search:index`
+**4. Create a search index in Elastic Search**
+```
+bundle exec rake search:index
+```
 
-**4. Start a local server**
+**5. Start a local server**
 ```
 > bundle exec rails server
 ```
