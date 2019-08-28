@@ -74,6 +74,7 @@ You will also need to build a search index.
 
 You can import organisations 
 
+`bundle exec rake import:ece`
 `bundle exec rake import:schools`
 `bundle exec rake import:tkkm`
 
