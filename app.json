@@ -2,12 +2,15 @@
   "name": "feijoa",
   "stack": "heroku-18",
   "addons": [
+    {
+      "plan": "bonsai",
+      "as": "ELASTICSEARCH"
+    },
     "heroku-postgresql",
     "raygun",
     "sendgrid"
   ],
   "buildpacks": [
-    "bonsai",
   ],
   "env": {
   },
