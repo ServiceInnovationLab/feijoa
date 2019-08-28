@@ -20,6 +20,6 @@
     }
   },
   "scripts": {
-    "postdeploy": "bundle exec rake db:migrate db:seed assets:precompile"
+    "postdeploy": "bundle exec rake db:migrate db:seed assets:precompile searchkick:reindex:all"
   }
 }
