@@ -11,13 +11,13 @@
  * It is generally better to create a new file per style scope.
  */
 
-@import 'variables';
-@import 'bootstrap';
-@import 'rails_bootstrap_forms';
-@import 'badge';
-@import 'bootstrap_overrides';
+@import "variables";
+@import "bootstrap";
+@import "rails_bootstrap_forms";
+@import "badge";
+@import "bootstrap_overrides";
 
-@import 'body';
+@import "body";
 
 .index-cards {
   display: flex;
