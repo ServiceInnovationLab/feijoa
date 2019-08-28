@@ -23,11 +23,11 @@ CI      | https://travis-ci.org/ServiceInnovationLab/feijoa
 **Role(s)** | **Name(s)**
 ---        | ---
 Team       | Yeah Nah / Feijoa
-Developers | [Brenda Wallace](https://github.com/Br3nda), [Lyall Morrison](https://github.com/lamorrison)
-Designers |
-Testers | [Merridy Marshall](https://github.com/merridy)
-Project Manager |
-Product Owner |
+Developers | [@br3nda](https://github.com/Br3nda), [@lamorrison](https://github.com/lamorrison) [@mermop](@mermop)(https://github.com/mermop) [@JacOng17](https://github.com/JacOng17]
+Designers | [@rosspatel01](https://github.com/rosspatel01)
+Testers | 
+Scrum Master | [@merridy](https://github.com/merridy)
+Product Owner | [@workbygrant](https://github.com/workbygrant]
 
 ## Comms
 Slack: LabPlus-team #feijoa
