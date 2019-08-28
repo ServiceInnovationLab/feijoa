@@ -52,9 +52,7 @@
         <% if @request.share.present? %>
           <dt>Shared document</dt>
           <%= render partial: 'shared/documents/preview', locals: { document: @request.share.birth_record , actions: [
-            link: user_birth_record_path(@request.share.birth_record),
-            button_class: 'secondary',
-            title: 'View'
+            link_to('View', user_birth_record_path(@request.share.birth_record), class: 'btn btn-secondary')
           ]} %>
         <% end %>
       </div>

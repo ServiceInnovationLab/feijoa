@@ -1,11 +1,11 @@
-require 'application_responder'
-
 # frozen_string_literal: true
+
+require 'application_responder'
 
 class ApplicationController < ActionController::Base
   include Pundit
   self.responder = ApplicationResponder
-  respond_to :html
+  respond_to :html, :json
 
   # By default authenticated users can't access controller actions.
   #
