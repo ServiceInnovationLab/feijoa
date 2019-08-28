@@ -9,6 +9,8 @@ class Organisation < ApplicationRecord
   validates :name, presence: true
   validates :data_source_key, uniqueness: { scope: :data_source_name }, allow_nil: true
 
+  searchkick word_start: %i[name], case_sensitive: false
+
   def add_admin(user)
     organisation_members.create(user: user, role: OrganisationMember::ADMIN_ROLE)
   end

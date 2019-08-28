@@ -44,7 +44,9 @@ Rails.application.routes.draw do
       end
     end
     resources :audits, only: :index
-    resources :organisations, except: %i[new create]
+    resources :organisations, except: %i[new create] do
+      collection { get 'autocomplete' }
+    end
   end
 
   scope 'organisation_member/:organisation_id', as: 'organisation_member' do

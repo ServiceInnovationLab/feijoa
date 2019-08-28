@@ -46,11 +46,12 @@
       <div class="col-sm-6">
         <% if @request.share.present? %>
           <dt>Shared document</dt>
-          <%= render partial: 'shared/documents/preview', locals: { document: @request.share.birth_record , actions: [
-            link: organisation_member_share_path(@organisation, @request.share),
-            button_class: 'secondary',
-            title: 'View'
-          ]} %>
+          <%= render partial: 'shared/documents/preview', locals: {
+            document: @request.share.birth_record, actions: [
+              link_to('View', organisation_member_share_path(@organisation, @request.share), class: 'btn btn-secondary'),
+              ]
+            }
+          %>
         <% end %>
       </div>
     </div>
