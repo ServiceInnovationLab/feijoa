@@ -72,7 +72,7 @@ You will also need to build a search index.
 
 ## Local data
 
-You can import organisations 
+You can import organisations
 
 ```
 bundle exec rake import:ece
@@ -120,7 +120,7 @@ namespace :admin do
   resources :shares
   resources :organisations
   resources :organisation_members
-  
+
   root to: 'birth_records#index'
 end
 ```
