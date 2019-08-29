@@ -34,7 +34,7 @@ class AuditedOperationsService
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
     Audited.audit_class.as_user(user) do
-      begin
+      
         user
           .birth_records_users
           .find_by!(birth_record_id: birth_record_id)
@@ -44,7 +44,7 @@ class AuditedOperationsService
           )
       rescue ActiveRecord::RecordNotFound
         return false
-      end
+      
     end
   end
 

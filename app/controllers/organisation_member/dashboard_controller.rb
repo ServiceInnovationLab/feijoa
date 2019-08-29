@@ -4,7 +4,7 @@ class OrganisationMember::DashboardController < OrganisationMember::BaseControll
   # GET
   def index
     authorize @organisation, :dashboard?
-    @shares = @organisation.shares.order(updated_at: :desc)
-    @requests = @organisation.requests.order(updated_at: :desc)
+    @shares = @organisation.shares.unrevoked.order(updated_at: :desc)
+    @requests = @organisation.requests.unresolved.order(updated_at: :desc)
   end
 end
