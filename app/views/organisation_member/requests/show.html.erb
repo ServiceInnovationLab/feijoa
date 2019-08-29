@@ -44,7 +44,7 @@
         <dd><%= time_ago_in_words(@request.updated_at) %> ago</dd>
       </div>
       <div class="col-sm-6">
-        <% if @request.share.present? %>
+        <% if @request.share.present? && policy(@request.share).show? %>
           <dt>Shared document</dt>
           <%= render partial: 'shared/documents/preview', locals: {
             document: @request.share.birth_record, actions: [

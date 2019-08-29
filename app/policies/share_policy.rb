@@ -9,11 +9,11 @@ class SharePolicy
   end
 
   def show?
-    user == share.user || user.member_of?(share.recipient)
+    user == share.user || (user.member_of?(share.recipient) && share.unrevoked?)
   end
 
   def update?
-    user == share.user || user.admin_for?(share.recipient)
+    user == share.user || (user.admin_for?(share.recipient) && share.unrevoked?)
   end
 
   def destroy?
