@@ -7,17 +7,6 @@ class AuditedOperationsService
   class UnauthorisedAccessRequestError < StandardError
   end
 
-  # constants for User/BirthRecord actions
-  ADD_BIRTH_RECORD_TO_USER = 'ADD_BIRTH_RECORD_TO_USER'
-  REMOVE_BIRTH_RECORD_FROM_USER = 'REMOVE_BIRTH_RECORD_FROM_USER'
-
-  # constants for User/Share actions
-  SHARE_BIRTH_RECORD = 'SHARE_BIRTH_RECORD'
-  REVOKE_SHARE = 'REVOKE_SHARE'
-
-  # constants for Recipient/Share actions
-  VIEW_SHARED_BIRTH_RECORD = 'VIEW_SHARED_BIRTH_RECORD'
-
   def self.add_birth_record_to_user(user:, birth_record:)
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
@@ -25,7 +14,7 @@ class AuditedOperationsService
       user.user_documents << UserDocument.create!(
         user: user,
         document: birth_record,
-        audit_comment: ADD_BIRTH_RECORD_TO_USER
+        audit_comment: Audit::ADD_BIRTH_RECORD_TO_USER
       )
     end
   end
@@ -40,7 +29,7 @@ class AuditedOperationsService
           .find_by!(document_id: birth_record_id)
           .update!(
             discarded_at: Time.now.utc,
-            audit_comment: REMOVE_BIRTH_RECORD_FROM_USER
+            audit_comment: Audit::REMOVE_BIRTH_RECORD_FROM_USER
           )
       rescue ActiveRecord::RecordNotFound
         return false
@@ -56,7 +45,7 @@ class AuditedOperationsService
         user: user,
         document: birth_record,
         recipient: recipient,
-        audit_comment: SHARE_BIRTH_RECORD
+        audit_comment: Audit::SHARE_BIRTH_RECORD
       )
     end
   end
@@ -68,7 +57,7 @@ class AuditedOperationsService
       share.update!(
         revoked_by: user,
         revoked_at: Time.now.utc,
-        audit_comment: REVOKE_SHARE
+        audit_comment: Audit::REVOKE_SHARE
       )
     end
   end
@@ -82,7 +71,7 @@ class AuditedOperationsService
     Audited.audit_class.as_user(logged_identity) do
       share.update!(
         last_accessed_at: Time.now.utc,
-        audit_comment: VIEW_SHARED_BIRTH_RECORD
+        audit_comment: Audit::VIEW_SHARED_BIRTH_RECORD
       )
     end
 

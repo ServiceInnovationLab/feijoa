@@ -10,10 +10,7 @@ class OrganisationMember::SharesController < OrganisationMember::BaseController
 
   # GET /shares/1
   def show
-    @official_birth_record = AuditedOperationsService.access_shared_birth_record(
-      logged_identity: current_account,
-      share: @share
-    )
+    @official_birth_record = @share.access(accessed_by: current_account)
   end
 
   private

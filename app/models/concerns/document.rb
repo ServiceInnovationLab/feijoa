@@ -18,11 +18,11 @@ module Document
       self.class.to_s
     end
 
-    def add_to(user:)
+    def add_to(user)
       user_documents.create(user: user)
     end
 
-    def remove_from(user:)
+    def remove_from(user)
       ud = user_documents.find_by(user: user)
       return nil if ud.blank?
 

@@ -36,7 +36,7 @@ class BirthRecord < ApplicationRecord
     "#{family_name}, #{first_and_middle_names}"
   end
 
-  def share(user:, recipient:)
+  def share_with(user:, recipient:)
     AuditedOperationsService.share_birth_record_with_recipient(
       user: user,
       birth_record: self,

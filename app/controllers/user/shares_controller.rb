@@ -48,7 +48,7 @@ class User::SharesController < User::BaseController
 
   def create_share_with_auditing
     birth_record = current_user.birth_records.find_by(id: share_params['document_id'])
-    birth_record.share(user: current_user, recipient: Organisation.find_by(id: share_params['recipient_id']))
+    birth_record.share_with(recipient: Organisation.find_by(id: share_params['recipient_id']), user: current_user)
   end
 
   # Set the share, if it exists and is available to the current user

@@ -58,6 +58,6 @@ class User::RequestsController < User::BaseController
     existing_share = Share.find_by(user: current_user, recipient: @request.requester, document: document)
     return existing_share if existing_share.present?
 
-    document.share(user: current_user, recipient: @request.requester)
+    document.share_with(user: current_user, recipient: @request.requester)
   end
 end

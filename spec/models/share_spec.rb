@@ -18,7 +18,7 @@ RSpec.describe Share, type: :model do
 
   describe '#revoke' do
     it 'sets revoked_by and revoked_at' do
-      AuditedOperationsService.revoke_share(share: subject, user: user)
+      subject.revoke(revoked_by: user)
 
       subject.reload
 

@@ -21,8 +21,15 @@ class Share < ApplicationRecord
   scope :unrevoked, -> { where(revoked_by: nil) }
   scope :revoked, -> { where.not(revoked_by: nil) }
 
-  def revoke(revoked_by:)
+  def revoke(revoked_by: user)
     AuditedOperationsService.revoke_share(share: self, user: revoked_by)
+  end
+
+  def access(accessed_by:)
+    AuditedOperationsService.access_shared_birth_record(
+      share: self,
+      logged_identity: accessed_by
+    )
   end
 
   def revoked?
