@@ -18,8 +18,15 @@ class Share < ApplicationRecord
 
   validate :not_currently_shared, on: :create
 
+  scope :unrevoked, -> { where(revoked_by: nil) }
+  scope :revoked, -> { where.not(revoked_by: nil) }
+
   def revoked?
     revoked_by.present?
+  end
+
+  def unrevoked?
+    !revoked?
   end
 
   private
