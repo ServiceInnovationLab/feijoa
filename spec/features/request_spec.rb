@@ -110,4 +110,34 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
       end
     end
   end
+  context 'when the document has been revoked before' do
+    let(:birth_record) { FactoryBot.create(:birth_record, :static_details) }
+    let(:recipient) { FactoryBot.create(:user) }
+
+    before do
+      logout(:user)
+      first_share = AuditedOperationsService.share_birth_record_with_recipient(user: recipient, recipient: organisation, birth_record: birth_record)
+      AuditedOperationsService.revoke_share(user: recipient, share: first_share)
+      FactoryBot.create(:request, requestee: recipient, requester: organisation)
+      login_as(recipient, scope: :user)
+      visit user_requests_path
+      click_link 'Respond'
+      click_button 'Share'
+    end
+
+    it 'allows the request recipient to share it again' do
+      expect(page).to have_content(birth_record.heading)
+      expect(page).to have_content('resolved')
+    end
+
+    it 'allows the requester to view the document' do
+      click_link 'Log out'
+      login_as(user, scope: :user)
+      visit '/'
+      expect(page).to have_content(birth_record.heading)
+      expect(page).to have_content("Shared by #{recipient.email}")
+      click_link('View')
+      expect(page).to have_content(birth_record.date_of_birth)
+    end
+  end
 end

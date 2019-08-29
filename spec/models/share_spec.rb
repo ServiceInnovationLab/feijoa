@@ -28,4 +28,17 @@ RSpec.describe Share, type: :model do
       expect(Share.kept).not_to include(subject)
     end
   end
+
+  describe 'revocation' do
+    context 'when a user has previously revoked a share for the same document' do
+      let(:share) { FactoryBot.create(:share) }
+      before do
+        AuditedOperationsService.revoke_share(user: share.user, share: share)
+      end
+      it 'allows the creation of a new share' do
+        new_share = AuditedOperationsService.share_birth_record_with_recipient(birth_record: share.birth_record, user: share.user, recipient: share.recipient)
+        expect(new_share).to be_valid
+      end
+    end
+  end
 end
