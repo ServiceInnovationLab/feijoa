@@ -10,5 +10,11 @@ FactoryBot.define do
     trait :for_organisation do
       association :recipient, factory: :organisation
     end
+
+    trait :revoked do
+      after(:create) do |share, _evaluator|
+        AuditedOperationsService.revoke_share(user: share.user, share: share)
+      end
+    end
   end
 end
