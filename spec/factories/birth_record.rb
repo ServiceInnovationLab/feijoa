@@ -2,7 +2,11 @@
 
 FactoryBot.define do
   factory :birth_record do
-    first_and_middle_names { Faker::Name.name_with_middle }
+    first_and_middle_names do
+      ["#{Faker::Name.first_name} #{Faker::Name.middle_name}",
+      "#{Faker::Name.first_name}",
+      "#{Faker::Name.first_name} #{Faker::Name.middle_name} #{Faker::Name.middle_name}"].sample
+    end
     family_name { Faker::Name.last_name }
     date_of_birth { Faker::Date.birthday(18, 65) }
     place_of_birth { Faker::Address.city }
