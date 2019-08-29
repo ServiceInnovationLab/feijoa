@@ -14,7 +14,7 @@ class UserDocumentDashboard < Administrate::BaseDashboard
     document: Field::Polymorphic,
     id: Field::Number,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
