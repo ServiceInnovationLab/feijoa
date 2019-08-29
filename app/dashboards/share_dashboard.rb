@@ -12,7 +12,7 @@ class ShareDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
     recipient: Field::Polymorphic,
-    birth_record: Field::BelongsTo,
+    document: Field::BelongsTo,
     id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,

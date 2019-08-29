@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 class BirthRecord < ApplicationRecord
+  include Document
   has_associated_audits
-
-  has_many :birth_records_users, dependent: :nullify
-  has_many :users, -> { distinct }, through: :birth_records_users
-  has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :birth_record
-
-  DOCUMENT_TYPE = 'birth_record'
 
   def date_of_birth
     format_date(self[:date_of_birth])
@@ -41,8 +36,26 @@ class BirthRecord < ApplicationRecord
     "#{family_name}, #{first_and_middle_names}"
   end
 
-  def document_type
-    DOCUMENT_TYPE
+  def share(user:, recipient:)
+    AuditedOperationsService.share_birth_record_with_recipient(
+      user: user,
+      birth_record: self,
+      recipient: recipient
+    )
+  end
+
+  def add_to(user)
+    AuditedOperationsService.add_birth_record_to_user(
+      user: user,
+      birth_record: self
+    )
+  end
+
+  def remove_from(user)
+    AuditedOperationsService.remove_birth_record_from_user(
+      user: user,
+      birth_record_id: id
+    )
   end
 
   private

@@ -47,7 +47,7 @@
         <% if @request.share.present? && policy(@request.share).show? %>
           <dt>Shared document</dt>
           <%= render partial: 'shared/documents/preview', locals: {
-            document: @request.share.birth_record, actions: [
+            document: @request.share.document, actions: [
               link_to('View', organisation_member_share_path(@organisation, @request.share), class: 'btn btn-secondary'),
               ]
             }

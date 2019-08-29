@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :share do
-    birth_record
+    association :document, factory: :birth_record
     user
     audit_comment { AuditedOperationsService::SHARE_BIRTH_RECORD }
     for_organisation

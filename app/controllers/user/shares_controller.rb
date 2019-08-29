@@ -33,25 +33,22 @@ class User::SharesController < User::BaseController
     @share = create_share_with_auditing
 
     if @share.valid?
-      respond_with(@share, location: user_birth_record_path(@share.birth_record))
+      respond_with(@share, location: user_birth_record_path(@share.document))
     else
       respond_with(@share)
     end
   end
 
   def revoke
-    AuditedOperationsService.revoke_share(share: @share, user: current_account)
-    respond_with(@share, location: user_birth_record_path(@share.birth_record))
+    @share.revoke(revoked_by: current_user)
+    respond_with(@share, location: user_birth_record_path(@share.document))
   end
 
   private
 
   def create_share_with_auditing
-    AuditedOperationsService.share_birth_record_with_recipient(
-      user: current_user,
-      birth_record: current_user.birth_records.find_by(id: share_params['birth_record_id']),
-      recipient: Organisation.find_by(id: share_params['recipient_id'])
-    )
+    birth_record = current_user.birth_records.find_by(id: share_params['document_id'])
+    birth_record.share(user: current_user, recipient: Organisation.find_by(id: share_params['recipient_id']))
   end
 
   # Set the share, if it exists and is available to the current user
@@ -66,12 +63,12 @@ class User::SharesController < User::BaseController
   def require_valid_params
     params
       .require(:share)
-      .require([:birth_record_id, :recipient_id])
+      .require([:document_id, :recipient_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def share_params
-    params.require(:share).permit(:birth_record_id, :recipient_id)
+    params.require(:share).permit(:document_id, :recipient_id)
   end
 
   # The shares visible to the current user

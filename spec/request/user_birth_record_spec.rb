@@ -81,7 +81,7 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
       context 'when a birth record is associated with the user' do
         let(:birth_record) { FactoryBot.create(:birth_record) }
         before do
-          AuditedOperationsService.add_birth_record_to_user(birth_record: birth_record, user: user)
+          birth_record.add_to(user)
         end
 
         it 'adding it again is a no-op' do

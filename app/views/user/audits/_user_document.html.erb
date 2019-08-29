@@ -1,16 +1,16 @@
 <% # Normalise auto-assigned variable %>
-<% audit ||= birth_records_user %>
+<% audit ||= user_document %>
 
 <div class="card audit" data-id="<%= audit.id %>">
   <div class="card-body">
     <h5 class="card-title">
       <% if audit.action == 'create'%>
-        <strong>Add</strong> birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
+        <strong>Add</strong> birth record of <strong><%= audit.auditable.document.full_name %></strong>
         <div class="text-muted">
            to your documents
         </div>
       <% else %>
-        <strong>Remove</strong> birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
+        <strong>Remove</strong> birth record of <strong><%= audit.auditable.document.full_name %></strong>
         <div class="text-muted">
           From Your Documents
         </div>

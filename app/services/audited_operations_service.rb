@@ -22,9 +22,9 @@ class AuditedOperationsService
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
     Audited.audit_class.as_user(user) do
-      user.birth_records_users << BirthRecordsUser.create!(
+      user.user_documents << UserDocument.create!(
         user: user,
-        birth_record: birth_record,
+        document: birth_record,
         audit_comment: ADD_BIRTH_RECORD_TO_USER
       )
     end
@@ -36,8 +36,8 @@ class AuditedOperationsService
     Audited.audit_class.as_user(user) do
       begin
         user
-          .birth_records_users
-          .find_by!(birth_record_id: birth_record_id)
+          .user_documents
+          .find_by!(document_id: birth_record_id)
           .update!(
             discarded_at: Time.now.utc,
             audit_comment: REMOVE_BIRTH_RECORD_FROM_USER
@@ -54,7 +54,7 @@ class AuditedOperationsService
     Audited.audit_class.as_user(user) do
       Share.create!(
         user: user,
-        birth_record: birth_record,
+        document: birth_record,
         recipient: recipient,
         audit_comment: SHARE_BIRTH_RECORD
       )
@@ -91,6 +91,6 @@ class AuditedOperationsService
 
     # logged_identity would be recorded in the BDM register access logs
     # official birth record would be returned here
-    share.birth_record
+    share.document
   end
 end

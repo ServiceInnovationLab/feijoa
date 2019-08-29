@@ -19,7 +19,7 @@
     <tbody>
       <% @shares.each do |share| %>
         <tr>
-          <td><%= share.birth_record.short_name %></td>
+          <td><%= share.document.short_name %></td>
           <td><%= share.user.email %></td>
           <td><%= share.recipient.name %></td>
           <td><%= link_to 'Show', organisation_member_share_path(@organisation, share) %></td>

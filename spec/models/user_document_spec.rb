@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe BirthRecordsUser, type: :model do
+RSpec.describe UserDocument, type: :model do
   describe 'Factory' do
-    subject { FactoryBot.create(:birth_records_user) }
+    subject { FactoryBot.create(:user_document) }
 
     it 'is valid' do
       expect(subject).to be_valid

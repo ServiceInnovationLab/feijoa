@@ -85,7 +85,7 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
     context 'the user responding to the request' do
       let(:birth_record) { FactoryBot.create(:birth_record, :static_details) }
       before do
-        FactoryBot.create(:birth_records_user, user: recipient, birth_record: birth_record)
+        FactoryBot.create(:user_document, user: recipient, document: birth_record)
         recipient.reload
       end
       it 'marks the request as received when the recipient views it' do

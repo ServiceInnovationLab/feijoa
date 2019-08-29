@@ -26,10 +26,8 @@ class User::BirthRecordsController < User::BaseController
   # Attempts to add a record which is already attached will be ignored (by
   # 'distinct' modifier on User.birth_records).
   def add
-    AuditedOperationsService.add_birth_record_to_user(
-      user: current_user,
-      birth_record: BirthRecord.find_by(params.permit(:id))
-    )
+    @birth_record = BirthRecord.find_by(params.permit(:id))
+    @birth_record&.add_to(current_user)
 
     redirect_to user_birth_records_path
   end
@@ -39,10 +37,8 @@ class User::BirthRecordsController < User::BaseController
   # Attempts to remove a record which is not attached or doesn't exist will be
   # silently ignored.
   def remove
-    AuditedOperationsService.remove_birth_record_from_user(
-      user: current_user,
-      birth_record_id: params.permit(:id)[:id].to_i
-    )
+    @birth_record = current_user.birth_records.find_by(params.permit(:id))
+    @birth_record&.remove_from(current_user)
 
     redirect_to user_birth_records_path
   end
