@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :admin_users
     resources :birth_records
     resources :shares
+    resources :user_documents
     resources :organisations
     resources :organisation_members
 
