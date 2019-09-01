@@ -3,7 +3,7 @@
   <div>
     Sharing birth record of <%= record.full_name %>
   </div>
-  <%= f.hidden_field :birth_record_id, value: record.id %>
+  <%= f.hidden_field :document_id, value: record.id %>
   <%= f.hidden_field :recipient_id, id: 'recipient_id', value: nil %>
   <div >
     <%= f.text_field :organisation, id: "org-query", label_as_placeholder: true, label: 'Organisation' %>

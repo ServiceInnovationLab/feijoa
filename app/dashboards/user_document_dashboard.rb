@@ -2,7 +2,7 @@
 
 require 'administrate/base_dashboard'
 
-class ShareDashboard < Administrate::BaseDashboard
+class UserDocumentDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -11,16 +11,10 @@ class ShareDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
-    recipient: Field::Polymorphic,
-    document_id: Field::Number,
-    document_type: Field::String,
+    document: Field::Polymorphic,
     id: Field::Number,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
-    revoked_by_type: Field::String,
-    revoked_by_id: Field::Number,
-    revoked_at: Field::DateTime,
-    last_accessed_at: Field::DateTime
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -30,26 +24,20 @@ class ShareDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     user
-    recipient
-    document_id
-    document_type
+    document
     id
+    created_at
+    updated_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     user
-    recipient
-    document_id
-    document_type
+    document
     id
     created_at
     updated_at
-    revoked_by_type
-    revoked_by_id
-    revoked_at
-    last_accessed_at
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -57,19 +45,13 @@ class ShareDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     user
-    recipient
-    document_id
-    document_type
-    revoked_by_type
-    revoked_by_id
-    revoked_at
-    last_accessed_at
+    document
   ].freeze
 
   # Overwrite this method to customize how shares are displayed
   # across all pages of the admin dashboard.
   #
   # def display_resource(share)
-  #   "Share ##{share.id}"
+  #   "UserDocument ##{user_document.id}"
   # end
 end

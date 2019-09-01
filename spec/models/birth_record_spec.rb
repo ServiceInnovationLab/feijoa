@@ -35,13 +35,13 @@ RSpec.describe BirthRecord, type: :model do
     let(:birth_record) { FactoryBot.create :birth_record }
     let(:user) { FactoryBot.create :user }
     let(:recipient) { FactoryBot.create :organisation }
-    it "don't make duplicate shares" do
-      FactoryBot.create :share, birth_record: birth_record,
+    it "doesn't make duplicate shares" do
+      FactoryBot.create :share, document: birth_record,
                                 user: user, recipient: recipient
       expect(birth_record.shares.size).to eq 1
 
       expect do
-        FactoryBot.create :share, birth_record: birth_record,
+        FactoryBot.create :share, document: birth_record,
                                   user: user, recipient: recipient
       end.to raise_error ActiveRecord::RecordInvalid
     end

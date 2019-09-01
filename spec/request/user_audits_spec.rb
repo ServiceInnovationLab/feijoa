@@ -14,7 +14,7 @@ RSpec.describe 'user/AuditsController', type: :request do
       context 'when the user has added a birth record' do
         let(:birth_record) { FactoryBot.create(:birth_record) }
         before do
-          AuditedOperationsService.add_birth_record_to_user(user: user, birth_record: birth_record)
+          birth_record.add_to(user)
         end
 
         it 'the view shows an audit for it' do
@@ -29,11 +29,7 @@ RSpec.describe 'user/AuditsController', type: :request do
           let(:organisation) { FactoryBot.create(:organisation) }
 
           before do
-            AuditedOperationsService.share_birth_record_with_recipient(
-              user: user,
-              birth_record: birth_record,
-              recipient: organisation
-            )
+            birth_record.share_with(recipient: organisation, user: user)
           end
 
           it 'the view shows an audit for it' do
@@ -46,7 +42,7 @@ RSpec.describe 'user/AuditsController', type: :request do
 
           context 'then they revoke the share' do
             before do
-              AuditedOperationsService.revoke_share(user: user, share: user.shares.last)
+              user.shares.last.revoke(revoked_by: user)
             end
 
             it 'the view shows an audit for it' do
@@ -63,7 +59,7 @@ RSpec.describe 'user/AuditsController', type: :request do
 
         context 'then they remove the birth record' do
           before do
-            AuditedOperationsService.remove_birth_record_from_user(user: user, birth_record_id: birth_record.id)
+            birth_record.remove_from(user)
           end
 
           it 'the view shows an audit for it' do

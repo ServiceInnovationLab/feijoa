@@ -55,13 +55,9 @@ class User::RequestsController < User::BaseController
   end
 
   def find_or_create_share(document)
-    existing_share = Share.kept.find_by(user: current_user, recipient: @request.requester, birth_record: document)
+    existing_share = Share.kept.find_by(user: current_user, recipient: @request.requester, document: document)
     return existing_share if existing_share.present?
 
-    AuditedOperationsService.share_birth_record_with_recipient(
-      user: current_user,
-      birth_record: document,
-      recipient: @request.requester
-    )
+    document.share_with(user: current_user, recipient: @request.requester)
   end
 end

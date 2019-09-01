@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_085902) do
+ActiveRecord::Schema.define(version: 2019_08_29_044246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,15 +70,6 @@ ActiveRecord::Schema.define(version: 2019_08_20_085902) do
     t.index ["first_and_middle_names"], name: "index_birth_records_on_first_and_middle_names"
   end
 
-  create_table "birth_records_users", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "birth_record_id", null: false
-    t.datetime "discarded_at"
-    t.index ["birth_record_id", "user_id"], name: "index_birth_records_users_on_birth_record_id_and_user_id"
-    t.index ["discarded_at"], name: "index_birth_records_users_on_discarded_at"
-    t.index ["user_id", "birth_record_id"], name: "index_birth_records_users_on_user_id_and_birth_record_id"
-  end
-
   create_table "organisation_members", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "organisation_id", null: false
@@ -132,7 +123,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_085902) do
 
   create_table "shares", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "birth_record_id", null: false
+    t.bigint "document_id", null: false
     t.string "recipient_type", null: false
     t.bigint "recipient_id", null: false
     t.datetime "created_at", null: false
@@ -141,11 +132,22 @@ ActiveRecord::Schema.define(version: 2019_08_20_085902) do
     t.bigint "revoked_by_id"
     t.datetime "revoked_at"
     t.datetime "last_accessed_at"
-    t.index ["birth_record_id"], name: "index_shares_on_birth_record_id"
+    t.string "document_type"
+    t.index ["document_id"], name: "index_shares_on_document_id"
     t.index ["recipient_type", "recipient_id"], name: "index_shares_on_recipient_type_and_recipient_id"
     t.index ["revoked_at"], name: "index_shares_on_revoked_at"
     t.index ["revoked_by_type", "revoked_by_id"], name: "index_shares_on_revoked_by_type_and_revoked_by_id"
     t.index ["user_id"], name: "index_shares_on_user_id"
+  end
+
+  create_table "user_documents", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "document_id", null: false
+    t.datetime "discarded_at"
+    t.string "document_type"
+    t.index ["discarded_at"], name: "index_user_documents_on_discarded_at"
+    t.index ["document_id", "user_id"], name: "index_user_documents_on_document_id_and_user_id"
+    t.index ["user_id", "document_id"], name: "index_user_documents_on_user_id_and_document_id"
   end
 
   create_table "users", force: :cascade do |t|

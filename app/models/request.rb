@@ -14,7 +14,7 @@ class Request < ApplicationRecord
 
   delegate :email, to: :requestee, prefix: true, allow_nil: true
 
-  DOCUMENT_TYPES = [BirthRecord::DOCUMENT_TYPE].freeze
+  DOCUMENT_TYPES = %w[BirthRecord].freeze
   validates :document_type, inclusion: { in: DOCUMENT_TYPES }
   validates_associated :requestee
 

@@ -4,18 +4,18 @@
 <div class="card audit" data-id="<%= audit.id %>">
   <div class="card-body">
     <h5 class="card-title">
-      <% if audit.comment == AuditedOperationsService::SHARE_BIRTH_RECORD%>
-        <strong>Share</strong> birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
+      <% if audit.comment == Audit::SHARE_BIRTH_RECORD%>
+        <strong>Share</strong> birth record of <strong><%= audit.auditable.document.full_name %></strong>
         <div class="text-muted">
           with <strong><%= audit.auditable.recipient.name %></strong>
         </div>
-      <% elsif audit.comment == AuditedOperationsService::REVOKE_SHARE %>
-        <strong>Revoke</strong> sharing of birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
+      <% elsif audit.comment == Audit::REVOKE_SHARE %>
+        <strong>Revoke</strong> sharing of birth record of <strong><%= audit.auditable.document.full_name %></strong>
         <div class="text-muted">
           with <strong><%= audit.auditable.recipient.name %></strong>
         </div>
-      <% elsif audit.comment == AuditedOperationsService::VIEW_SHARED_BIRTH_RECORD %>
-        <strong>View</strong> birth record of <strong><%= audit.auditable.birth_record.full_name %></strong>
+      <% elsif audit.comment == Audit::VIEW_SHARED_BIRTH_RECORD %>
+        <strong>View</strong> birth record of <strong><%= audit.auditable.document.full_name %></strong>
         <div class="text-muted">
           by <strong><%= audit.auditable.recipient.name %></strong>
         </div>

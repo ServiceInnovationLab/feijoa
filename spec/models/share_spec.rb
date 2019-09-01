@@ -18,7 +18,7 @@ RSpec.describe Share, type: :model do
 
   describe '#revoke' do
     it 'sets revoked_by and revoked_at' do
-      AuditedOperationsService.revoke_share(share: subject, user: user)
+      subject.revoke(revoked_by: user)
 
       subject.reload
 
@@ -37,7 +37,7 @@ RSpec.describe Share, type: :model do
       end
       it 'allows the creation of a new share' do
         new_share = AuditedOperationsService.share_birth_record_with_recipient(
-          birth_record: share.birth_record,
+          birth_record: share.document,
           user: share.user,
           recipient: share.recipient
         )

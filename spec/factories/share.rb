@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :share do
-    birth_record
+    association :document, factory: :birth_record
     user
-    audit_comment { AuditedOperationsService::SHARE_BIRTH_RECORD }
+    audit_comment { Audit::SHARE_BIRTH_RECORD }
     for_organisation
 
     trait :for_organisation do
@@ -13,7 +13,7 @@ FactoryBot.define do
 
     trait :revoked do
       after(:create) do |share, _evaluator|
-        AuditedOperationsService.revoke_share(user: share.user, share: share)
+        share.revoke(revoked_by: share.user)
       end
     end
   end

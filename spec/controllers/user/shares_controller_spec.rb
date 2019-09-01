@@ -38,7 +38,7 @@ RSpec.describe User::SharesController, type: :controller do
       context 'with valid params' do
         let(:birth_record) { FactoryBot.create(:birth_record) }
         let!(:birth_records_user) do
-          FactoryBot.create(:birth_records_user, birth_record: birth_record, user: user)
+          FactoryBot.create(:user_document, document: birth_record, user: user)
         end
         let(:valid_attributes) do
           FactoryBot
@@ -46,7 +46,7 @@ RSpec.describe User::SharesController, type: :controller do
               :share,
               user: user,
               recipient: FactoryBot.create(:organisation),
-              birth_record: birth_record
+              document: birth_record
             )
             .attributes
         end
@@ -59,7 +59,7 @@ RSpec.describe User::SharesController, type: :controller do
 
         it 'redirects to the created share' do
           post :create, params: { share: valid_attributes }
-          expect(response).to redirect_to(user_birth_record_path(Share.last.birth_record))
+          expect(response).to redirect_to(user_birth_record_path(Share.last.document))
         end
       end
 

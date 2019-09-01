@@ -21,8 +21,8 @@ RSpec.describe 'acting on behalf of an organisation', type: :feature do
     let!(:declined_request) { FactoryBot.create(:request, :declined, requester: organisation) }
     it 'shows unrevoked shares' do
       visit organisation_member_dashboard_path(organisation)
-      expect(page).to have_content(unrevoked_share.birth_record.heading)
-      expect(page).not_to have_content(revoked_share.birth_record.heading)
+      expect(page).to have_content(unrevoked_share.document.heading)
+      expect(page).not_to have_content(revoked_share.document.heading)
     end
     it 'shows unresolved requests' do
       visit organisation_member_dashboard_path(organisation)

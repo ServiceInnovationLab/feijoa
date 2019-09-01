@@ -17,9 +17,9 @@ RSpec.describe 'user/SharesController', type: :feature do
   before do
     travel_to Time.zone.local('2019-01-01') # So Percy visual diffs show the same time
     birth_records.each do |birth_record|
-      AuditedOperationsService.add_birth_record_to_user(birth_record: birth_record, user: user)
+      birth_record.add_to(user)
     end
-    AuditedOperationsService.add_birth_record_to_user(birth_record: target_birth_record, user: user)
+    target_birth_record.add_to(user)
   end
   after do
     travel_back

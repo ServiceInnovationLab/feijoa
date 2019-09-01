@@ -7,8 +7,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :timeoutable, :trackable, :invitable
 
-  has_many :birth_records_users, dependent: :nullify
-  has_many :birth_records, -> { distinct.merge(BirthRecordsUser.kept) }, through: :birth_records_users
+  has_many :user_documents, dependent: :nullify
+  has_many :birth_records, -> { distinct.merge(UserDocument.kept) },
+           through: :user_documents,
+           source: :document, source_type: 'BirthRecord'
   has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :user
 
   has_many :organisation_members, dependent: :destroy
@@ -44,8 +46,8 @@ class User < ApplicationRecord
     organisations.include? organisation
   end
 
-  def documents(type: BirthRecord::DOCUMENT_TYPE)
-    return birth_records if type.to_s == BirthRecord::DOCUMENT_TYPE
+  def documents(type: 'BirthRecord')
+    return birth_records if type.to_s == 'BirthRecord'
 
     # one day there will be other types of documents, but for the moment...
     []
