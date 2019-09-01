@@ -116,13 +116,9 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
     let(:recipient) { FactoryBot.create(:user) }
 
     before do
-      FactoryBot.create(:birth_records_user, user: recipient, birth_record: birth_record)
-      first_share = AuditedOperationsService.share_birth_record_with_recipient(
-        user: recipient,
-        recipient: organisation,
-        birth_record: birth_record
-      )
-      AuditedOperationsService.revoke_share(user: recipient, share: first_share)
+      FactoryBot.create(:user_document, user: recipient, document: birth_record)
+      first_share = birth_record.share_with(recipient: organisation, user: user)
+      first_share.revoke
       FactoryBot.create(:request, requestee: recipient, requester: organisation)
 
       login_as(recipient, scope: :user)
