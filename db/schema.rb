@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_044246) do
+ActiveRecord::Schema.define(version: 2019_08_30_010504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,15 @@ ActiveRecord::Schema.define(version: 2019_08_29_044246) do
     t.datetime "updated_at", null: false
     t.index ["family_name"], name: "index_birth_records_on_family_name"
     t.index ["first_and_middle_names"], name: "index_birth_records_on_first_and_middle_names"
+  end
+
+  create_table "immunisation_records", force: :cascade do |t|
+    t.string "full_name", null: false
+    t.string "nhi", null: false
+    t.date "date_of_birth", null: false
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "organisation_members", force: :cascade do |t|

@@ -1,0 +1,74 @@
+immunisations: [
+  {
+    age_due: 0,
+    vaccine: 'BCG'
+  },
+  {
+    age_due: 0,
+    vaccine: 'Hep B'
+  },
+  {
+    age_due: 0,
+    vaccine: 'HBIG'
+  },
+  {
+    age_due: 'P6W',
+    vaccine: 'Rotavirus'
+  },
+  {
+    age_due: 'P6W',
+    vaccine: 'DTaP-IPV-Hep B/Hib'
+  },
+  {
+    age_due: 'P6W',
+    vaccine: 'PCV10'
+  },
+  {
+    age_due: 'P3M',
+    vaccine: 'Rotavirus'
+  },
+  {
+    age_due: 'P3M',
+    vaccine: 'DTaP-IPV-Hep B/Hib'
+  },
+  {
+    age_due: 'P3M',
+    vaccine: 'PCV10'
+  },
+  {
+    age_due: 'P5M',
+    vaccine: 'DTaP-IPV-Hep B/Hib'
+  },
+  {
+    age_due: 'P5M',
+    vaccine: 'PCV10'
+  },
+  {
+    age_due: 'P3M',
+    vaccine: 'DTaP-IPV-Hep B/Hib'
+  },
+  {
+    age_due: 'P15M',
+    vaccine: 'Hib'
+  },
+  {
+    age_due: 'P15M',
+    vaccine: 'MMR'
+  },
+  {
+    age_due: 'P15M',
+    vaccine: 'PCV10'
+  },
+  {
+    age_due: 'P15M',
+    vaccine: 'VV'
+  },
+  {
+    age_due: 'P4Y',
+    vaccine: 'DTaP-IPV'
+  },
+  {
+    age_due: 'P4Y',
+    vaccine: 'MMR'
+  }
+]
