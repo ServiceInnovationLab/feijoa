@@ -50,9 +50,10 @@ class User < ApplicationRecord
     organisations.include? organisation
   end
 
-  def documents(type: 'BirthRecord')
+  def documents(type: nil)
     return birth_records if type.to_s == 'BirthRecord'
     return immunisation_records if type.to_s == 'ImmunisationRecord'
+    return birth_records + immunisation_records if type.nil?
 
     []
   end

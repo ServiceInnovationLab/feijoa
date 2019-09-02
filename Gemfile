@@ -61,8 +61,12 @@ gem 'discard', '~> 1.0'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 
+# HTTP connections
 gem 'faraday'
 gem 'faraday_middleware'
+
+# Validating NHI number
+gem 'nhi-validator', '~> 0.1.0'
 
 group :production do
   gem 'sendgrid-ruby'
