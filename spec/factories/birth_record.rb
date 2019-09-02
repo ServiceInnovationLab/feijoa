@@ -3,9 +3,11 @@
 FactoryBot.define do
   factory :birth_record do
     first_and_middle_names do
-      ["#{Faker::Name.first_name} #{Faker::Name.middle_name}",
-       Faker::Name.first_name.to_s,
-       "#{Faker::Name.first_name} #{Faker::Name.middle_name} #{Faker::Name.middle_name}"].sample
+      [
+        "#{Faker::Name.first_name} #{Faker::Name.middle_name}",
+        Faker::Name.first_name.to_s,
+        "#{Faker::Name.first_name} #{Faker::Name.middle_name} #{Faker::Name.middle_name}"
+      ].sample(random: Faker::Config.random)
     end
     family_name { Faker::Name.last_name }
     date_of_birth { Faker::Date.birthday(min_age: 18, max_age: 65) }
