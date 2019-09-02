@@ -23,7 +23,7 @@ CI      | https://travis-ci.org/ServiceInnovationLab/feijoa
 **Role(s)** | **Name(s)**
 ---        | ---
 Team       | Yeah Nah / Feijoa
-Developers | [@br3nda](https://github.com/Br3nda), [@lamorrison](https://github.com/lamorrison) [@mermop](@mermop)(https://github.com/mermop) [@JacOng17](https://github.com/JacOng17]
+Developers | [@br3nda](https://github.com/Br3nda), [@lamorrison](https://github.com/lamorrison), [@mermop](https://github.com/mermop), [@JacOng17](https://github.com/JacOng17)
 Designers | [@rosspatel01](https://github.com/rosspatel01)
 Testers | 
 Scrum Master | [@merridy](https://github.com/merridy)

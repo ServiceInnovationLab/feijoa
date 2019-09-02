@@ -55,7 +55,7 @@ class User::RequestsController < User::BaseController
   end
 
   def find_or_create_share(document)
-    existing_share = Share.find_by(user: current_user, recipient: @request.requester, document: document)
+    existing_share = Share.kept.find_by(user: current_user, recipient: @request.requester, document: document)
     return existing_share if existing_share.present?
 
     document.share_with(user: current_user, recipient: @request.requester)

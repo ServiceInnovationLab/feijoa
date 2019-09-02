@@ -2,7 +2,13 @@
 
 FactoryBot.define do
   factory :birth_record do
-    sequence(:first_and_middle_names) { |n| "#{Faker::Name.first_name} #{n}" }
+    first_and_middle_names do
+      [
+        "#{Faker::Name.first_name} #{Faker::Name.middle_name}",
+        Faker::Name.first_name.to_s,
+        "#{Faker::Name.first_name} #{Faker::Name.middle_name} #{Faker::Name.middle_name}"
+      ].sample(random: Faker::Config.random)
+    end
     family_name { Faker::Name.last_name }
     date_of_birth { Faker::Date.birthday(min_age: 18, max_age: 65) }
     place_of_birth { Faker::Address.city }

@@ -9,11 +9,11 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
 
   before do
     travel_to Time.zone.local('2019-01-01') # So Percy visual diffs show the same time
-    login_as(user, scope: :user)
   end
 
   context 'when a user is acting on behalf of an organisation' do
     before do
+      login_as(user, scope: :user)
       visit new_organisation_member_request_path(organisation_id: organisation.id)
       fill_in 'Note', with: 'A note'
       select 'Birth record', from: 'Document type'
@@ -53,6 +53,7 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
     let!(:recipient) { FactoryBot.create(:user, email: recipient_email) }
 
     before do
+      login_as(user, scope: :user)
       visit new_organisation_member_request_path(organisation_id: organisation.id)
       fill_in 'Note', with: 'A note'
       select 'Birth record', from: 'Document type'
@@ -108,6 +109,37 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
         expect(page).to have_content('resolved')
         Percy.snapshot(page, name: 'user request show with response')
       end
+    end
+  end
+  context 'when the document has been revoked before' do
+    let(:birth_record) { FactoryBot.create(:birth_record, :static_details) }
+    let(:recipient) { FactoryBot.create(:user) }
+
+    before do
+      FactoryBot.create(:user_document, user: recipient, document: birth_record)
+      first_share = birth_record.share_with(recipient: organisation, user: user)
+      first_share.revoke
+      FactoryBot.create(:request, requestee: recipient, requester: organisation)
+
+      login_as(recipient, scope: :user)
+      visit user_requests_path
+      click_link 'Respond'
+      click_button 'Share'
+    end
+
+    it 'allows the request recipient to share it again' do
+      expect(page).to have_content(birth_record.heading)
+      expect(page).to have_content('resolved')
+    end
+
+    it 'allows the requester to view the document' do
+      click_link 'Log out'
+      login_as(user, scope: :user)
+      visit organisation_member_dashboard_path(organisation)
+      expect(page).to have_content(birth_record.heading)
+      expect(page).to have_content("Shared by #{recipient.email}")
+      click_link('View')
+      expect(page).to have_content(birth_record.date_of_birth)
     end
   end
 end
