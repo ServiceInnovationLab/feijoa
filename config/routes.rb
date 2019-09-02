@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       end
     end
     resources :audits, only: :index
-    resources :organisations, except: %i[new create] do
+    resources :organisations, only: [] do
       collection { get 'autocomplete' }
     end
   end
