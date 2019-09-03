@@ -33,7 +33,7 @@ class User::SharesController < User::BaseController
     @share = create_share_with_auditing
 
     if @share.valid?
-      respond_with(@share, location: user_birth_record_path(@share.document))
+      respond_with(@share, location: user_document_path(@share.document.document_type, @share.document.id))
     else
       respond_with(@share)
     end
@@ -41,14 +41,15 @@ class User::SharesController < User::BaseController
 
   def revoke
     @share.revoke(revoked_by: current_user)
-    respond_with(@share, location: user_birth_record_path(@share.document))
+    respond_with(@share, location: user_document_path(@share.document.document_type, @share.document.id))
   end
 
   private
 
   def create_share_with_auditing
-    birth_record = current_user.birth_records.find_by(id: share_params['document_id'])
-    birth_record.share_with(recipient: Organisation.find_by(id: share_params['recipient_id']), user: current_user)
+    birth_record = current_user.documents(type: share_params[:document_type])
+                               .find_by(id: share_params[:document_id])
+    birth_record.share_with(recipient: Organisation.find_by(id: share_params[:recipient_id]), user: current_user)
   end
 
   # Set the share, if it exists and is available to the current user
@@ -63,12 +64,12 @@ class User::SharesController < User::BaseController
   def require_valid_params
     params
       .require(:share)
-      .require([:document_id, :recipient_id])
+      .require([:document_id, :document_type, :recipient_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def share_params
-    params.require(:share).permit(:document_id, :recipient_id)
+    params.require(:share).permit(:document_id, :document_type, :recipient_id)
   end
 
   # The shares visible to the current user

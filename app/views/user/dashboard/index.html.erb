@@ -34,7 +34,7 @@
           document: document,
           actions: [
             link_to('View', user_document_path(document.document_type, document.id), class: 'btn btn-secondary'),
-            render('user/shares/modal_form', record: document, classes: 'btn btn-primary')
+            render('user/shares/modal_form', document: document, classes: 'btn btn-primary')
           ]
         } %>
       <% end %>

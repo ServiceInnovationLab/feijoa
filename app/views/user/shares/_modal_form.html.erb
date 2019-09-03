@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalSharesForm-<%= record.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="modalSharesForm-<%= document.document_type %>-<%= document.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -9,12 +9,12 @@
         </button>
       </div>
       <div class="modal-body mx-3">
-        <%= render 'user/shares/form', record: record %>
+        <%= render 'user/shares/form', document: document %>
       </div>
     </div>
   </div>
 </div>
 
-<a href="#" id="share-record-<%= record.id %>" data-toggle="modal" data-target="#modalSharesForm-<%= record.id %>" class="<%= classes %>">
+<a href="#" id="share-document-<%= document.document_type %>-<%= document.id %>" data-toggle="modal" data-target="#modalSharesForm-<%= document.document_type %>-<%= document.id %>" class="<%= classes %>">
   Share
 </a>

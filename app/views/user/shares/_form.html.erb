@@ -1,9 +1,10 @@
 <%= bootstrap_form_with(url: user_shares_path, layout: :horizontal, scope: 'share', local: true,) do |f| %>
 <h5>Type name of organisation</h5>
   <div>
-    Sharing birth record of <%= record.full_name %>
+    Sharing <%= t("documents.types.#{document.document_type}") %> of <%= document.heading %>
   </div>
-  <%= f.hidden_field :document_id, value: record.id %>
+  <%= f.hidden_field :document_id, value: document.id %>
+  <%= f.hidden_field :document_type, value: document.document_type %>
   <%= f.hidden_field :recipient_id, id: 'recipient_id', value: nil %>
   <div >
     <%= f.text_field :organisation, id: "org-query", label_as_placeholder: true, label: 'Organisation' %>
