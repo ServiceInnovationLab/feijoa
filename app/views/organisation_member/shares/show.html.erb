@@ -15,7 +15,8 @@
         <strong>Birth record:</strong>
         <%= render partial: 'shared/birth_records/short_details', object: @document %>
       <% elsif @document.immunisation_record? %>
-
+        <strong>Immunisation record:</strong>
+        <%= render partial: 'shared/immunisation_records/full_details', locals: { immunisation_record: @document } %>
       <% end %>
     </p>
 
