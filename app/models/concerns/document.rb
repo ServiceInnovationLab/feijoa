@@ -41,10 +41,7 @@ module Document
       ud = user_documents.find_by(user: user)
       return nil if ud.blank?
 
-      ud.update!(
-        discarded_at: Time.now.utc,
-        audit_comment: self.class.remove_audit_comment
-      )
+      ud.revoke_shares_and_discard!
     end
 
     def share_with(recipient:, user:)

@@ -26,11 +26,9 @@ class AuditedOperationsService
       begin
         user
           .user_documents
+          .kept
           .find_by!(document_id: birth_record_id)
-          .update!(
-            discarded_at: Time.now.utc,
-            audit_comment: BirthRecord.remove_audit_comment
-          )
+          .revoke_shares_and_discard!
       rescue ActiveRecord::RecordNotFound
         return false
       end

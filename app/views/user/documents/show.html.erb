@@ -5,6 +5,7 @@
     <div class="d-flex justify-content-between mb-4">
       <h1 class="card-title"><%= t("documents.types.#{@document.document_type}") %></h1>
       <div>
+        <%= link_to 'Remove', user_document_remove_path(@document.document_type, @document.id), class: 'btn btn-danger', data: { confirm: 'Are you sure? This will remove this from your documents'}, method: :post %>
       </div>
     </div>
     <h5>
