@@ -17,7 +17,7 @@ module PublicOnly
     return unless signed_in?
 
     flash.clear
-    flash[:alert] = "Already logged in"
+    flash[:alert] = 'Already logged in'
     redirect_to(root_path)
   end
 end
