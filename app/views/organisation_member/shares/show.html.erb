@@ -6,13 +6,17 @@
   <%= link_to "← Back", organisation_member_dashboard_path(@organisation), class: 'text-dark' %>
 </div>
 
-<div class="card mb-4 p-4 birth-record" data-id="<%= @birth_record.to_param %>">
+<div class="card mb-4 p-4 birth-record" data-id="<%= @document.to_param %>">
   <div class="card-body">
     <h1 class="card-title">Shared document</h1>
     <p class="lead"><%= @share.user.email %> has shared this with you.</p>
     <p>
-      <strong>Birth record:</strong>
-      <%= render partial: 'shared/birth_records/short_details', object: @official_birth_record %>
+      <% if @document.birth_record? %>
+        <strong>Birth record:</strong>
+        <%= render partial: 'shared/birth_records/short_details', object: @document %>
+      <% elsif @document.immunisation_record? %>
+
+      <% end %>
     </p>
 
     <p>

@@ -14,8 +14,7 @@ class Request < ApplicationRecord
 
   delegate :email, to: :requestee, prefix: true, allow_nil: true
 
-  DOCUMENT_TYPES = %w[BirthRecord ImmunisationRecord].freeze
-  validates :document_type, inclusion: { in: DOCUMENT_TYPES }
+  validates :document_type, inclusion: { in: Document::DOCUMENT_TYPES }
   validates_associated :requestee
 
   scope :unresolved, -> { with_state(:initiated, :received) }

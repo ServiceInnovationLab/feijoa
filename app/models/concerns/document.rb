@@ -4,12 +4,23 @@ require 'active_support/concern'
 
 module Document
   extend ActiveSupport::Concern
+  IMMUNISATION_RECORD = 'ImmunisationRecord'
+  BIRTH_RECORD = 'BirthRecord'
+  DOCUMENT_TYPES = [IMMUNISATION_RECORD, BIRTH_RECORD].freeze
 
   included do # rubocop:disable Metrics/BlockLength
     has_many :user_documents, dependent: :nullify, as: :document
     has_many :users, -> { distinct }, through: :user_documents
     has_many :shares, -> { merge(Share.kept) }, as: :document, dependent: :nullify,
                                                 inverse_of: :document, foreign_key: 'document_id'
+
+    def immunisation_record?
+      document_type == IMMUNISATION_RECORD
+    end
+
+    def birth_record?
+      document_type == BIRTH_RECORD
+    end
 
     def heading
       to_s

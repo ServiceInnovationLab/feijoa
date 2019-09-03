@@ -10,10 +10,10 @@ class User < ApplicationRecord
   has_many :user_documents, dependent: :nullify
   has_many :birth_records, -> { distinct.merge(UserDocument.kept) },
            through: :user_documents,
-           source: :document, source_type: 'BirthRecord'
+           source: :document, source_type: Document::BIRTH_RECORD
   has_many :immunisation_records, -> { distinct.merge(UserDocument.kept) },
            through: :user_documents,
-           source: :document, source_type: 'ImmunisationRecord'
+           source: :document, source_type: Document::IMMUNISATION_RECORD
 
   has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :user
 
@@ -51,8 +51,8 @@ class User < ApplicationRecord
   end
 
   def documents(type: nil)
-    return birth_records if type.to_s == 'BirthRecord'
-    return immunisation_records if type.to_s == 'ImmunisationRecord'
+    return birth_records if type.to_s == Document::BIRTH_RECORD
+    return immunisation_records if type.to_s == Document::IMMUNISATION_RECORD
     return birth_records + immunisation_records if type.nil?
 
     []
