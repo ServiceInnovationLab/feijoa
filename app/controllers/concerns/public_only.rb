@@ -17,13 +17,7 @@ module PublicOnly
     return unless signed_in?
 
     flash.clear
-    flash[:alert] = "Already logged in as #{describe_current_account}"
+    flash[:alert] = "Already logged in"
     redirect_to(root_path)
-  end
-
-  def describe_current_account
-    return "user #{current_user.email}" if current_user
-
-    "a #{current_account.model_name.human.downcase}"
   end
 end

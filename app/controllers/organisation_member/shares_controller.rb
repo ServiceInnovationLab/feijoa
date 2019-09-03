@@ -10,7 +10,7 @@ class OrganisationMember::SharesController < OrganisationMember::BaseController
 
   # GET /shares/1
   def show
-    @official_birth_record = @share.access(accessed_by: current_account)
+    @official_birth_record = @share.access(accessed_by: current_user)
   end
 
   private
