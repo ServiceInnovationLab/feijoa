@@ -41,7 +41,7 @@ RSpec.describe 'sharing a document', type: :feature do
 
       context 'the user chooses to share the birth record' do
         before do
-          visit user_birth_records_path
+          visit user_dashboard_index_path
           click_link "share-document-BirthRecord-#{target_birth_record.id}"
 
           # wait for destination page to load
