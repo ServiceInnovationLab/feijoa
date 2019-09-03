@@ -1,5 +1,5 @@
 <section>
-  <h2>Your documents dashboard</h2>
+  <h2 class="font-weight-bold">Your documents dashboard</h2>
   <p>This is where your documents are stored. Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity</strong> but are a legal representation of the data of your ID which is held within the New Zealand government.</p>
   <%= render 'modal_form' %>
   <% if @birth_records.any? %>
@@ -18,4 +18,7 @@
   <% else %>
     <p class="text-muted font-italic">There are currently no birth records for <%= current_user.email %>.</p>
   <% end %>
+  <a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="add-doc pt-4">
+    <%= image_tag("plus.svg", alt: 'Add a new document') %>
+  </a>
 </section>
