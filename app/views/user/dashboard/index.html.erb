@@ -29,12 +29,12 @@
   <section>
     <h2>Your documents</h2>
     <div class="index-cards">
-      <% @documents.each do |record| %>
+      <% @documents.each do |document| %>
         <%= render partial: 'shared/documents/preview', locals: {
-          document: record,
+          document: document,
           actions: [
-            link_to('View', user_birth_record_path(record), class: 'btn btn-secondary'),
-            render('user/shares/modal_form', record: record, classes: 'btn btn-primary')
+            link_to('View', user_document_path(document.document_type, document.id), class: 'btn btn-secondary'),
+            render('user/shares/modal_form', record: document, classes: 'btn btn-primary')
           ]
         } %>
       <% end %>

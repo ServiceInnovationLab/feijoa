@@ -8,5 +8,7 @@ class ImmunisationRecord < ApplicationRecord
   validates :full_name, presence: true
   before_create { nhi.upcase! }
 
-  
+  def heading
+    full_name
+  end
 end

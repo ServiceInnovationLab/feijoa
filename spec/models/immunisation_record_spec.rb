@@ -30,4 +30,15 @@ RSpec.describe ImmunisationRecord, type: :model do
       expect(no_dob_imm).not_to be_valid
     end
   end
+  describe 'adding to a user' do
+    let(:immunisation_record) { FactoryBot.create(:immunisation_record) }
+    let(:user) { FactoryBot.create :user }
+    before do
+      immunisation_record.add_to(user)
+    end
+    it 'creates a user_document linking the immunisation record and user' do
+      expect(immunisation_record.users).to eq([user])
+      expect(user.immunisation_records).to eq([immunisation_record])
+    end
+  end
 end

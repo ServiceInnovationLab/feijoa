@@ -6,9 +6,10 @@ module Document
   extend ActiveSupport::Concern
 
   included do # rubocop:disable Metrics/BlockLength
-    has_many :user_documents, dependent: :nullify
+    has_many :user_documents, dependent: :nullify, as: :document
     has_many :users, -> { distinct }, through: :user_documents
-    has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :document, foreign_key: 'document_id'
+    has_many :shares, -> { merge(Share.kept) }, as: :document, dependent: :nullify,
+                                                inverse_of: :document, foreign_key: 'document_id'
 
     def heading
       to_s

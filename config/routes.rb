@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   resources :user, only: [:index]
   namespace :user do
+    get 'documents/:type/:id', to: 'documents#show', as: :document
     resources :birth_records, only: %i[index show] do
       collection do
         get :find

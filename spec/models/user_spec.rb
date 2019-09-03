@@ -78,13 +78,13 @@ RSpec.describe User, type: :model do
       immunisation_record.add_to(user)
     end
     it 'returns birth records and immunisation records by default' do
-      expect(user.documents).to contain_same elements([birth_record, immunisation_record])
+      expect(user.documents).to match_array([birth_record, immunisation_record])
     end
     it 'returns birth records when passed BirthRecord as a document type' do
       expect(user.documents(type: 'BirthRecord')).to eq([birth_record])
     end
     it 'returns immunisation records when passed ImmunisationRecord as a document type' do
-      expect(user.documents(type: 'BirthRecord')).to eq([birth_record])
+      expect(user.documents(type: 'ImmunisationRecord')).to eq([immunisation_record])
     end
     it 'returns an empty array when passed any other document type' do
       expect(user.documents(type: 'passport')).to eq([])

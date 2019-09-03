@@ -3,7 +3,7 @@
 class UserDocument < ApplicationRecord
   include Discard::Model
 
-  audited associated_with: :user, comment_required: true
+  audited associated_with: :user
 
   belongs_to :user
   belongs_to :document, polymorphic: true
