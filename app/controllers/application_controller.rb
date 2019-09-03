@@ -19,5 +19,5 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  devise_group :account, contains: %i[user admin_user]
+  devise_group :account, contains: %i[user]
 end

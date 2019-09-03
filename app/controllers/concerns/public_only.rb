@@ -24,8 +24,6 @@ module PublicOnly
   def describe_current_account
     return "user #{current_user.email}" if current_user
 
-    return "admin #{current_admin_user.email}" if current_admin_user
-
     "a #{current_account.model_name.human.downcase}"
   end
 end

@@ -4,7 +4,6 @@ require 'rails_helper'
 
 RSpec.feature 'Auditing' do
   let(:user) { FactoryBot.create(:user, email: 'user@example.com') }
-  let(:admin) { FactoryBot.create(:admin_user, email: 'admin@example.com') }
   let!(:organisation) { FactoryBot.create(:organisation, name: 'Example Org') }
   let!(:birth_records) { FactoryBot.create_list(:birth_record, 10) }
   let!(:organisation_member) do
