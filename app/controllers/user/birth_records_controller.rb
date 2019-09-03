@@ -8,7 +8,7 @@ class User::BirthRecordsController < User::BaseController
 
   # GET
   def show
-    redirect_to user_document_path('BirthRecord', params.permit(:id))
+    redirect_to user_document_path(Document::BIRTH_RECORD, params.permit(:id))
   end
 
   # POST query
