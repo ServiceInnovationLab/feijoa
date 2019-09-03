@@ -39,3 +39,26 @@ RSpec.shared_examples 'a document' do
     end
   end
 end
+
+RSpec.shared_context 'document types' do
+  def create_lists_of_documents(length: 3)
+    docs = []
+    Document::DOCUMENT_TYPES.each do |document_type|
+      docs << FactoryBot.create_list(document_type.underscore.to_sym, length)
+    end
+    docs
+  end
+
+  Document::DOCUMENT_TYPES.each do |document_type|
+    let(document_type.underscore.to_sym) { FactoryBot.create(document_type.underscore.to_sym) }
+  end
+
+  let(:one_of_each_document_type) do
+    docs = []
+    Document::DOCUMENT_TYPES.each do |document_type|
+      docs << FactoryBot.create(document_type.underscore.to_sym)
+    end
+    docs
+  end
+
+end
