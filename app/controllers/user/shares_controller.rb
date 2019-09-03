@@ -64,7 +64,7 @@ class User::SharesController < User::BaseController
   def require_valid_params
     params
       .require(:share)
-      .require([:document_id, :document_type, :recipient_id])
+      .require(%i[document_id document_type recipient_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

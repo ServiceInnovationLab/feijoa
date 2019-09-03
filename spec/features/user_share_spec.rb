@@ -49,7 +49,7 @@ RSpec.describe 'sharing a document', type: :feature do
         end
 
         it 'shows the selected birth record' do
-          expect(page).to have_text("Sharing Birth record of Target-Person, Timmy")
+          expect(page).to have_text('Sharing Birth record of Target-Person, Timmy')
           Percy.snapshot(page, name: 'share the birth record')
         end
       end

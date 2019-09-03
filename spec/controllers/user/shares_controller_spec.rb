@@ -59,7 +59,7 @@ RSpec.describe User::SharesController, type: :controller do
 
         it 'redirects to the created share' do
           post :create, params: { share: valid_attributes }
-          expect(response).to redirect_to(user_birth_record_path(Share.last.document))
+          expect(response).to redirect_to(user_document_path(Share.last.document.document_type, Share.last.document.id))
         end
       end
 
