@@ -58,3 +58,5 @@ class CoolDocument < ApplicationRecord
   <dd><%= cool_document.coolness_rating %></dd>
 </dl>
 ```
+
+This will allow the document type to be requested and shared. 

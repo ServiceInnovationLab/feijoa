@@ -60,7 +60,7 @@ class AuditedOperationsService
     end
   end
 
-  def self.access_shared_birth_record(logged_identity:, share:)
+  def self.access_shared_document(logged_identity:, share:)
     raise ArgumentError, 'share cannot be nil' if share.nil?
     raise ArgumentError, 'logged_identity cannot be nil' if logged_identity.nil?
     raise ShareRevokedError if share.revoked?
@@ -69,7 +69,7 @@ class AuditedOperationsService
     Audited.audit_class.as_user(logged_identity) do
       share.update!(
         last_accessed_at: Time.now.utc,
-        audit_comment: BirthRecord.view_audit_comment
+        audit_comment: share.document.class.view_audit_comment
       )
     end
 

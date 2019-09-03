@@ -40,7 +40,7 @@ RSpec.feature 'Auditing' do
         context 'they remove the birth record' do
           before do
             click_on 'View'
-            page.accept_alert 'Are you sure? This will remove this from your documents' do
+            page.accept_alert 'Are you sure? This will remove the record from your documents' do
               click_on 'Remove'
             end
           end

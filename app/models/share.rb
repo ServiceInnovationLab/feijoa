@@ -26,7 +26,7 @@ class Share < ApplicationRecord
   end
 
   def access(accessed_by:)
-    AuditedOperationsService.access_shared_birth_record(
+    AuditedOperationsService.access_shared_document(
       share: self,
       logged_identity: accessed_by
     )
