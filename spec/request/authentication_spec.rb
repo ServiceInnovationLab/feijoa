@@ -14,6 +14,13 @@ RSpec.describe 'Sign in users', type: :request do
       expect(response.location).to eq(authenticated_user_root_url)
     end
 
+    it 'is redirected if already signed in' do
+      sign_in(user)
+      get new_user_session_path
+      expect(response.status).to eq(302)
+      expect(response.location).to eq(authenticated_user_root_url)
+    end
+
     context 'without a valid CSRF token' do
       # We're specifically interested in checking the forgery protection in these
       # tests. It's not usually enabled in the test environment so we'll turn it on
