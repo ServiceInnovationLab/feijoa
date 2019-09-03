@@ -21,6 +21,9 @@ class Share < ApplicationRecord
   scope :unrevoked, -> { where(revoked_by: nil) }
   scope :revoked, -> { where.not(revoked_by: nil) }
 
+  delegate :document_type, to: :document
+  delegate :view_audit_comment, to: :document
+
   def revoke(revoked_by: user)
     AuditedOperationsService.revoke_share(share: self, user: revoked_by)
   end
@@ -28,7 +31,7 @@ class Share < ApplicationRecord
   def access(accessed_by:)
     AuditedOperationsService.access_shared_document(
       share: self,
-      logged_identity: accessed_by
+      user: accessed_by
     )
   end
 

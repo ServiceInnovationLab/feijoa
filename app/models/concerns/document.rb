@@ -14,6 +14,8 @@ module Document
     has_many :shares, -> { merge(Share.kept) }, as: :document, dependent: :nullify,
                                                 inverse_of: :document, foreign_key: 'document_id'
 
+    delegate :share_audit_comment, :remove_audit_comment, :add_audit_comment, :view_audit_comment, to: :class
+
     def immunisation_record?
       document_type == IMMUNISATION_RECORD
     end

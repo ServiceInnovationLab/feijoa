@@ -10,7 +10,7 @@ class AuditedOperationsService
   def self.add_birth_record_to_user(user:, birth_record:)
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
-    Audited.audit_class.as_user(user) do
+    Audit.as_user(user) do
       UserDocument.create!(
         user: user,
         document: birth_record,
@@ -22,7 +22,7 @@ class AuditedOperationsService
   def self.remove_birth_record_from_user(user:, birth_record_id:)
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
-    Audited.audit_class.as_user(user) do
+    Audit.as_user(user) do
       begin
         user
           .user_documents
@@ -38,7 +38,7 @@ class AuditedOperationsService
   def self.share_birth_record_with_recipient(user:, birth_record:, recipient:)
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
-    Audited.audit_class.as_user(user) do
+    Audit.as_user(user) do
       Share.create!(
         user: user,
         document: birth_record,
@@ -51,7 +51,7 @@ class AuditedOperationsService
   def self.revoke_share(user:, share:)
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
-    Audited.audit_class.as_user(user) do
+    Audit.as_user(user) do
       share.update!(
         revoked_by: user,
         revoked_at: Time.now.utc,
@@ -60,23 +60,23 @@ class AuditedOperationsService
     end
   end
 
-  def self.access_shared_document(logged_identity:, share:)
+  def self.access_shared_document(user:, share:)
     raise ArgumentError, 'share cannot be nil' if share.nil?
-    raise ArgumentError, 'logged_identity cannot be nil' if logged_identity.nil?
+    raise ArgumentError, 'user cannot be nil' if user.nil?
     raise ShareRevokedError if share.revoked?
 
     # update last_accessed_at, which will generate an audit record
-    Audited.audit_class.as_user(logged_identity) do
+    Audit.as_user(user) do
       share.update!(
         last_accessed_at: Time.now.utc,
-        audit_comment: share.document.class.view_audit_comment
+        audit_comment: share.document.view_audit_comment
       )
     end
 
     # In a real system this would be a call to the DIA birth register API.
     # We are faking this so the record is already available.
 
-    # logged_identity would be recorded in the BDM register access logs
+    # user identity would be recorded in the BDM register access logs
     # official birth record would be returned here
     share.document
   end
