@@ -6,25 +6,9 @@
     </div>
   <% end %>
 <% end %>
-<% if @organisations.any? %>
-  <h2>Organisations</h2>
-  <section class="c-dashboard-organisations">
-    <div class="row">
-      <% @organisations.each do |organisation| %>
-        <div class="col-4">
-          <%= link_to organisation_member_dashboard_path(organisation) do %>
-            <div class="c-dashboard-organisations__org card">
-              <div class="card-body">
-                <%= organisation.name %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </section>
-  <hr>
-<% end %>
+<h2>Your documents dashboard</h2>
+<p>This is where your documents are stored. Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity</strong> but are a legal representation of the data of your ID which is held within the New Zealand government.</p>
+<%= render 'user/birth_records/modal_form' %>
 <% if @documents.any? %>
   <section>
     <h2>Your documents</h2>

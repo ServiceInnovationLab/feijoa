@@ -62,7 +62,7 @@ RSpec.describe 'sharing a document', type: :feature do
 
       context 'the user chooses to share the immunisation record' do
         before do
-          visit authenticated_user_root_path
+          visit user_dashboard_index_path
           click_link "share-document-ImmunisationRecord-#{target_immunisation_record.id}"
 
           # wait for destination page to load

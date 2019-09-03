@@ -11,7 +11,7 @@ class User::DocumentsController < User::BaseController
   def remove
     @document&.remove_from(current_user)
     flash[:alert] = 'Document removed.'
-    redirect_to authenticated_user_root_path
+    redirect_to user_dashboard_index_path
   end
 
   private

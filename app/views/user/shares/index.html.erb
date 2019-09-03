@@ -1,10 +1,10 @@
-<%= render partial: 'shared/back', locals: { path: authenticated_user_root_path } %>
+<%= render partial: 'shared/back', locals: { path: user_dashboard_index_path } %>
 
 <h1>Shared documents</h1>
 <p class="lead">Documents you have shared.</p>
 <% if @shares.blank? %>
   <p>You haven't yet shared any documents.</p>
-  <%= link_to "Go back to your documents", authenticated_user_root_path %>
+  <%= link_to "Go back to your documents", user_dashboard_index_path %>
 <% else %>
   <table class="table">
     <thead>
