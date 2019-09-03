@@ -71,7 +71,7 @@ class AuditedOperationsService
     Audited.audit_class.as_user(logged_identity) do
       share.update!(
         last_accessed_at: Time.now.utc,
-        audit_comment: BirthRecord.access_audit_comment
+        audit_comment: BirthRecord.view_audit_comment
       )
     end
 

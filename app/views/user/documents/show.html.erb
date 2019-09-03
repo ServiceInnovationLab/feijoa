@@ -1,6 +1,5 @@
-<div class="mb-4">
-  <%= link_to "← Back", authenticated_user_root_path, class: 'text-dark' %>
-</div>
+<%= render partial: 'shared/back', locals: { path: authenticated_user_root_path } %>
+
 <div class="card mb-4 p-4 birth-record" data-id="<%= @document.to_param %>">
   <div class="card-body">
     <div class="d-flex justify-content-between mb-4">
@@ -11,11 +10,7 @@
     <h5>
       <strong><%= @document.heading %></strong>
     </h5>
-    <% if @document.birth_record? %>
-      <%= render partial: 'shared/birth_records/short_details', object: @document %>
-    <% elsif @document.immunisation_record? %>
-      <%= render partial: 'shared/immunisation_records/full_details', locals: { immunisation_record: @document } %>
-    <% end %>
+    <%= render partial: @document %>
   </div>
   <div class="row justify-content-center mb-4 mt-4">
     <div class="col-sm-6">

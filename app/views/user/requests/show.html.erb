@@ -1,6 +1,4 @@
-<div class="mb-4">
-  <%= link_to "← Back", user_requests_path, class: 'text-dark' %>
-</div>
+<%= render partial: 'shared/back', locals: { path: user_requests_path } %>
 
 <div class="card mb-4 p-4 birth-record" data-id="<%= @birth_record.to_param %>">
   <div class="card-body">

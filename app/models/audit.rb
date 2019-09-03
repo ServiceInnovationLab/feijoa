@@ -33,9 +33,9 @@ class Audit < Audited::Audit
   # application-wide if necessary, see
   # `Rails.application.config.action_view.prefix_partial_path_with_controller_namespace = false`
   def to_partial_path
-    return "audits/#{auditable_type.underscore}" if custom_rendering?
+    return "shared/audits/#{auditable_type.underscore}" if custom_rendering?
 
-    'audits/audit'
+    'shared/audits/audit'
   end
 
   private

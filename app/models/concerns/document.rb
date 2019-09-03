@@ -55,6 +55,10 @@ module Document
         audit_comment: self.class.share_audit_comment
       )
     end
+
+    def to_partial_path
+      "shared/documents/#{self.class.to_s.underscore}"
+    end
   end
 
   class_methods do
