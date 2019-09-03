@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples 'a document' do
   describe 'adding to a user' do
     let(:user) { FactoryBot.create :user }

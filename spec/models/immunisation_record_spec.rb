@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ImmunisationRecord, type: :model do
   let(:document) { FactoryBot.create(:immunisation_record) }
   it_behaves_like 'a document'
-  
+
   describe 'validations' do
     let(:valid_nhi) { 'CGC2720' }
     let(:invalid_nhi) { 'DAB8233' }
