@@ -10,7 +10,7 @@ RSpec.describe User::DocumentsController do
 
   describe 'show' do
     include_context 'document types' do
-      it "renders each document type" do
+      it 'renders each document type' do
         one_of_each_document_type.each do |document|
           document.add_to(user)
           get(:show, params: { id: document.id, type: document.document_type })
@@ -18,6 +18,5 @@ RSpec.describe User::DocumentsController do
         end
       end
     end
-
   end
 end

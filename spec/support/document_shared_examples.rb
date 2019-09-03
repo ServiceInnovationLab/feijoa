@@ -60,5 +60,4 @@ RSpec.shared_context 'document types' do
     end
     docs
   end
-
 end
