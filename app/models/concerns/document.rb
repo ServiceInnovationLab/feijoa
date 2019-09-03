@@ -31,16 +31,19 @@ module Document
     end
 
     def add_to(user)
-      user_documents.create(user: user)
+      user_documents.create(
+        user: user,
+        audit_comment: self.class.add_audit_comment
+      )
     end
 
     def remove_from(user)
       ud = user_documents.find_by(user: user)
       return nil if ud.blank?
 
-      ud.update(
+      ud.update!(
         discarded_at: Time.now.utc,
-        audit_comment: 'REMOVE_DOCUMENT_FROM_USER'
+        audit_comment: self.class.remove_audit_comment
       )
     end
 
@@ -49,7 +52,7 @@ module Document
         user: user,
         document: self,
         recipient: recipient,
-        audit_comment: 'SHARE_DOCUMENT'
+        audit_comment: self.class.share_audit_comment
       )
     end
   end
@@ -57,6 +60,22 @@ module Document
   class_methods do
     def document_type
       to_s
+    end
+
+    def share_audit_comment
+      Audit::SHARE_DOCUMENT
+    end
+
+    def remove_audit_comment
+      Audit::REMOVE_DOCUMENT_FROM_USER
+    end
+
+    def add_audit_comment
+      Audit::ADD_DOCUMENT_TO_USER
+    end
+
+    def view_audit_comment
+      Audit::VIEW_SHARED_DOCUMENT
     end
   end
 end

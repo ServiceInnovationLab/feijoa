@@ -7,14 +7,18 @@ class Audit < Audited::Audit
 
   # constants for User/BirthRecord actions
   ADD_BIRTH_RECORD_TO_USER = 'ADD_BIRTH_RECORD_TO_USER'
+  ADD_DOCUMENT_TO_USER = 'ADD_DOCUMENT_TO_USER'
   REMOVE_BIRTH_RECORD_FROM_USER = 'REMOVE_BIRTH_RECORD_FROM_USER'
+  REMOVE_DOCUMENT_FROM_USER = 'REMOVE_DOCUMENT_FROM_USER'
 
   # constants for User/Share actions
   SHARE_BIRTH_RECORD = 'SHARE_BIRTH_RECORD'
+  SHARE_DOCUMENT = 'SHARE_DOCUMENT'
   REVOKE_SHARE = 'REVOKE_SHARE'
 
   # constants for Recipient/Share actions
   VIEW_SHARED_BIRTH_RECORD = 'VIEW_SHARED_BIRTH_RECORD'
+  VIEW_SHARED_DOCUMENT = 'VIEW_SHARED_DOCUMENT'
 
   # Override the default partial path generator so we can render appropriate
   # different partials for each kind of audit

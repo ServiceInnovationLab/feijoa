@@ -11,10 +11,10 @@ class AuditedOperationsService
     raise ArgumentError, 'user cannot be nil' if user.nil?
 
     Audited.audit_class.as_user(user) do
-      user.user_documents << UserDocument.create!(
+      UserDocument.create!(
         user: user,
         document: birth_record,
-        audit_comment: Audit::ADD_BIRTH_RECORD_TO_USER
+        audit_comment: BirthRecord.add_audit_comment
       )
     end
   end
@@ -29,7 +29,7 @@ class AuditedOperationsService
           .find_by!(document_id: birth_record_id)
           .update!(
             discarded_at: Time.now.utc,
-            audit_comment: Audit::REMOVE_BIRTH_RECORD_FROM_USER
+            audit_comment: BirthRecord.remove_audit_comment
           )
       rescue ActiveRecord::RecordNotFound
         return false
@@ -45,7 +45,7 @@ class AuditedOperationsService
         user: user,
         document: birth_record,
         recipient: recipient,
-        audit_comment: Audit::SHARE_BIRTH_RECORD
+        audit_comment: BirthRecord.share_audit_comment
       )
     end
   end
@@ -71,7 +71,7 @@ class AuditedOperationsService
     Audited.audit_class.as_user(logged_identity) do
       share.update!(
         last_accessed_at: Time.now.utc,
-        audit_comment: Audit::VIEW_SHARED_BIRTH_RECORD
+        audit_comment: BirthRecord.access_audit_comment
       )
     end
 

@@ -3,6 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe BirthRecord, type: :model do
+  let(:document) { FactoryBot.create(:birth_record) }
+  it_behaves_like 'a document'
+
   describe 'Factory' do
     subject { FactoryBot.create(:birth_record) }
 

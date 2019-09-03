@@ -3,6 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe ImmunisationRecord, type: :model do
+  let(:document) { FactoryBot.create(:immunisation_record) }
+  it_behaves_like 'a document'
+  
   describe 'validations' do
     let(:valid_nhi) { 'CGC2720' }
     let(:invalid_nhi) { 'DAB8233' }
@@ -28,17 +31,6 @@ RSpec.describe ImmunisationRecord, type: :model do
     end
     it 'requires date of birth' do
       expect(no_dob_imm).not_to be_valid
-    end
-  end
-  describe 'adding to a user' do
-    let(:immunisation_record) { FactoryBot.create(:immunisation_record) }
-    let(:user) { FactoryBot.create :user }
-    before do
-      immunisation_record.add_to(user)
-    end
-    it 'creates a user_document linking the immunisation record and user' do
-      expect(immunisation_record.users).to eq([user])
-      expect(user.immunisation_records).to eq([immunisation_record])
     end
   end
 end
