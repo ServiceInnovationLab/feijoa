@@ -4,10 +4,7 @@
 Rails.application.routes.draw do
   resources :organisations, only: [:index]
 
-  devise_for :users, path: 'user', controllers: {
-    # we need to override the sessions controller, others can be default
-    sessions: 'user/sessions'
-  }
+  devise_for :users, path: 'user'
 
   namespace :user do
     resources :birth_records, only: %i[index show] do
@@ -47,8 +44,12 @@ Rails.application.routes.draw do
     end
   end
 
+  authenticated :user do
+    root 'user/dashboard#index', as: :authenticated_user_root
+  end
+
   devise_scope :user do
-    root to: 'user/dashboard#index'
+    root to: 'devise/sessions#new'
   end
 end
 # rubocop:enable Metrics/BlockLength
