@@ -1,34 +1,36 @@
 <%= content_for :subhead do %>
   <%= render partial: "organisation_member/shared/subhead" %>
 <% end %>
-<h1><%= @organisation.name %>'s documents dashboard</h1>
+<h1 class="font-weight-bold"><%= @organisation.name %>'s documents dashboard</h1>
 <p class="lead">This is where your documents are stored. This is where you can request documents, view them, or remove your access to them.</p>
 
-<section  class="mt-4">
-  <h3>Request a document</h3>
-  <div class="row">
+<section class="mt-5">
+  <h3 class="mt-5">Request a document</h3>
+  <div class="index-cards">
     <% @requests.each do |request| %>
-      <div class="col-sm-4 mb-4">
+      <%# <div class="col-sm-4 mt-4 mb-4"> %>
         <%= render partial: 'organisation_member/requests/request', locals: { request: request } %>
-      </div>
+      <%# </div> %>
     <% end %>
   </div>
-  <%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
-    <%= image_tag("plus.svg", alt: 'Add a new request') %>
-  <% end %>
+  <div class="mt-4 mb-4">
+    <%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
+      <%= image_tag("plus.svg", alt: 'Add a new request') %>
+    <% end %>
+  </div>
 </section>
-<section class="shares mt-4">
+<section class="shares mt-5">
   <h3>Received documents</h3>
-  <div class="row">
+  <div class="index-cards">
     <% @shares.each do |share| %>
-      <div class="col-sm-4 mb-4">
+      <%# <div class="col-sm-4 mt-4 mb-4"> %>
         <%= render partial: 'shared/documents/preview', locals: { document: share.document,
           shared_by: share.user.email,
           actions: [
             link_to('View', organisation_member_share_path(@organisation, share), class: 'btn btn-secondary')
           ]}
         %>
-      </div>
+      <%# </div> %>
     <% end %>
   </div>
 </section>
