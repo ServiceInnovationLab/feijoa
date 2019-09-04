@@ -48,7 +48,7 @@ class User::SharesController < ApplicationController
 
   def create_share_with_auditing
     document = current_user.documents(type: share_params[:document_type])
-                               .find_by(id: share_params[:document_id])
+                           .find_by(id: share_params[:document_id])
     authorize document, :share?
     document.share_with(recipient: Organisation.find_by(id: share_params[:recipient_id]), user: current_user)
   end
