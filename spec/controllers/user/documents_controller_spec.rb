@@ -27,7 +27,7 @@ RSpec.describe User::DocumentsController do
           document.add_to(user)
           post(:remove, params: { id: document.id, type: document.document_type })
           expect(user.documents).not_to include(document)
-          expect(response).to have_http_status(302) #redirected
+          expect(response).to have_http_status(302) # redirected
         end
       end
     end
