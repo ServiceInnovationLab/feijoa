@@ -39,9 +39,6 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form', '>= 4.2.0'
 gem 'jquery-rails'
 
-# easy admin dashboard for editing data
-gem 'administrate'
-
 gem 'raygun4ruby'
 
 # Create fake data

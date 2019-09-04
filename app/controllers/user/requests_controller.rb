@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class User::RequestsController < User::BaseController
+class User::RequestsController < ApplicationController
   respond_to :html
   before_action :set_request, only: %i[show respond decline]
   responders :flash
 
   # GET /requests
   def index
-    @requests = current_user.requests
+    @requests = policy_scope(current_user.requests)
   end
 
   # GET /requests/1
@@ -43,6 +43,7 @@ class User::RequestsController < User::BaseController
   # Set the request, if it exists and is available to the current user
   def set_request
     @request = current_user.requests.find(params[:id])
+    authorize @request
   end
 
   def response_params

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrganisationMember::BaseController < User::BaseController
+class OrganisationMember::BaseController < ApplicationController
   # Controllers for users acting on behalf of organisations
 
   before_action :set_organisation

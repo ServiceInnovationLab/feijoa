@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User::DocumentsController < User::BaseController
+class User::DocumentsController < ApplicationController
   before_action :set_document
   # GET
   def show

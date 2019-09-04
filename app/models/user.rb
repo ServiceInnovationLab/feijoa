@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many :organisations, through: :organisation_members
 
   has_many :requests, inverse_of: :requestee, foreign_key: 'requestee_id', dependent: :destroy
+  has_many :audits, dependent: :nullify
 
   def self.find_or_invite(email)
     user = find_by(email: email)
@@ -58,14 +59,11 @@ class User < ApplicationRecord
     []
   end
 
-  # Get the audits for this user
-  #
-  # These are audits where the user is the one who took action. Notably this
-  # doesn't include audits where an organisation views a birth record shared by
-  # this use (because the organisation takes the action). Those audits can be
-  # retrieved separately with `user.shares.map(&:audits).flatten` - see
-  # User::AuditsController#index for an implementation
-  def audits
-    Audit.where(user: self)
+  def add_role(organisation, role)
+    OrganisationMember.create!(
+      user: self,
+      organisation: organisation,
+      role: role
+    )
   end
 end
