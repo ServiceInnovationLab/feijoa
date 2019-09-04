@@ -27,7 +27,7 @@ Developers | [@br3nda](https://github.com/Br3nda), [@lamorrison](https://github.
 Designers | [@rosspatel01](https://github.com/rosspatel01)
 Testers |
 Scrum Master | [@merridy](https://github.com/merridy)
-Product Owner | [@workbygrant](https://github.com/workbygrant]
+Product Owner | [@workbygrant](https://github.com/workbygrant)
 
 ## Comms
 Slack: LabPlus-team #feijoa
