@@ -61,6 +61,10 @@ gem 'state_machines-activerecord'
 gem 'faraday'
 gem 'faraday_middleware'
 
+# Pagination
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'
+
 group :production do
   gem 'sendgrid-ruby'
 end
