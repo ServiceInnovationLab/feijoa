@@ -65,6 +65,10 @@ gem 'faraday_middleware'
 # Validating NHI number
 gem 'nhi-validator', '~> 0.1.0'
 
+# Pagination
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'
+
 group :production do
   gem 'sendgrid-ruby'
 end
