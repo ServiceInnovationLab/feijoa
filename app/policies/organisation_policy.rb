@@ -1,19 +1,12 @@
 # frozen_string_literal: true
 
-class OrganisationPolicy
-  attr_reader :organisation, :user
-
-  def initialize(user, organisation)
-    @user = user
-    @organisation = organisation
+class OrganisationPolicy < ApplicationPolicy
+  def create?
+    @user.janitor?
   end
 
   def index?
     true
-  end
-
-  def create?
-    user.janitor?
   end
 
   def show?
@@ -21,11 +14,11 @@ class OrganisationPolicy
   end
 
   def update?
-    user.admin_for?(organisation) || user.janitor?
+    @user.admin_for?(@record) || @user.janitor?
   end
 
   def destroy?
-    user.janitor?
+    @user.janitor?
   end
 
   def dashboard?
@@ -33,6 +26,19 @@ class OrganisationPolicy
   end
 
   def act_as?
-    user.member_of?(organisation)
+    @user.member_of?(@record)
+  end
+
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      scope.all
+    end
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User::SharesController < User::BaseController
+class User::SharesController < ApplicationController
   respond_to :html, :json
   before_action :set_share, only: %i[show revoke]
   responders :flash
@@ -22,8 +22,8 @@ class User::SharesController < User::BaseController
              else
                Share.new
              end
-
-    @organisations = Organisation.all.order(:name)
+    @share.user = current_user
+    authorize @share
   end
 
   # POST /shares
@@ -48,12 +48,18 @@ class User::SharesController < User::BaseController
 
   def create_share_with_auditing
     birth_record = current_user.birth_records.find_by(id: share_params['document_id'])
-    birth_record.share_with(recipient: Organisation.find_by(id: share_params['recipient_id']), user: current_user)
+    authorize birth_record, :share?
+    recipient = Organisation.find_by(id: share_params['recipient_id'])
+    birth_record.share_with(
+      recipient: recipient,
+      user: current_user
+    )
   end
 
   # Set the share, if it exists and is available to the current user
   def set_share
     @share = user_shares.find_by(params.permit(:id))
+    authorize @share
   end
 
   # Require the params which will allow a valid model to be created
@@ -76,6 +82,6 @@ class User::SharesController < User::BaseController
   # This is not as obvious as current_user.shares because shares are
   # soft-deleted with the 'discard' gem when they are revoked
   def user_shares
-    current_user.shares.kept
+    policy_scope(current_user.shares).kept
   end
 end

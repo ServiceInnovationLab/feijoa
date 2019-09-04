@@ -1,15 +1,21 @@
 # frozen_string_literal: true
 
-class User::BirthRecordsController < User::BaseController
+class User::BirthRecordsController < ApplicationController
   # GET
   def index
-    @birth_records = current_user.birth_records
+    @birth_records = policy_scope(current_user.birth_records)
   end
 
   # GET
   def show
-    @birth_record = current_user.birth_records.find_by!(params.permit(:id))
-    @shares = @birth_record.shares.where(user: current_user)
+    @birth_record = policy_scope(current_user.birth_records).find_by!(params.permit(:id))
+    authorize @birth_record
+    @shares = policy_scope(@birth_record.shares).where(user: current_user)
+  end
+
+  # GET
+  def find
+    authorize BirthRecord, :find?
   end
 
   # POST query
@@ -19,6 +25,8 @@ class User::BirthRecordsController < User::BaseController
     supplied_params = query_params.to_h.select { |_k, v| v.present? }
 
     @results = BirthRecordService.query(supplied_params)
+    policy_scope(@results)
+    skip_authorization # we're using policy scope instead here
   end
 
   # POST
@@ -27,6 +35,7 @@ class User::BirthRecordsController < User::BaseController
   # 'distinct' modifier on User.birth_records).
   def add
     @birth_record = BirthRecord.find_by(params.permit(:id))
+    authorize @birth_record
     @birth_record&.add_to(current_user)
 
     redirect_to user_birth_records_path
@@ -38,7 +47,12 @@ class User::BirthRecordsController < User::BaseController
   # silently ignored.
   def remove
     @birth_record = current_user.birth_records.find_by(params.permit(:id))
-    @birth_record&.remove_from(current_user)
+    if @birth_record
+      authorize @birth_record
+      @birth_record.remove_from(current_user)
+    else
+      skip_authorization
+    end
 
     redirect_to user_birth_records_path
   end
