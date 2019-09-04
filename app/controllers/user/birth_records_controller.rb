@@ -4,11 +4,13 @@ class User::BirthRecordsController < ApplicationController
   # GET
   def index
     redirect_to user_dashboard_index_path
+    skip_policy_scope
   end
 
   # GET
   def show
     redirect_to user_document_path(Document::BIRTH_RECORD, params.permit(:id))
+    skip_authorization
   end
 
   # GET

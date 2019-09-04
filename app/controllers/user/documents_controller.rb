@@ -18,6 +18,7 @@ class User::DocumentsController < ApplicationController
 
   def set_document
     @document = current_user.documents(type: show_params[:type]).find_by(id: show_params[:id])
+    authorize @document
   end
 
   def show_params

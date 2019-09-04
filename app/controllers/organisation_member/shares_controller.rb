@@ -10,7 +10,7 @@ class OrganisationMember::SharesController < OrganisationMember::BaseController
 
   # GET /shares/1
   def show
-    @document = @share.access(accessed_by: current_account)
+    @document = @share.access(accessed_by: current_user)
     authorize @document
   end
 
