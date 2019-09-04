@@ -1,8 +1,5 @@
 <%= bootstrap_form_with(url: user_shares_path, layout: :horizontal, scope: 'share', local: true,) do |f| %>
 <h5 class="font-weight-bold mb-4">Feijoa-registered recipient</h5>
-  <%# <div>
-    Sharing birth record of <%= record.full_name %>
-  <%# </div> %>
   <%= f.hidden_field :document_id, value: record.id %>
   <%= f.hidden_field :recipient_id, id: 'recipient_id', value: nil %>
   <div >

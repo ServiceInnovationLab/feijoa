@@ -8,9 +8,7 @@
   <h3 class="mt-5">Request a document</h3>
   <div class="index-cards">
     <% @requests.each do |request| %>
-      <%# <div class="col-sm-4 mt-4 mb-4"> %>
         <%= render partial: 'organisation_member/requests/request', locals: { request: request } %>
-      <%# </div> %>
     <% end %>
   </div>
   <div class="mt-4 mb-4">
@@ -23,14 +21,12 @@
   <h3>Received documents</h3>
   <div class="index-cards">
     <% @shares.each do |share| %>
-      <%# <div class="col-sm-4 mt-4 mb-4"> %>
         <%= render partial: 'shared/documents/preview', locals: { document: share.document,
           shared_by: share.user.email,
           actions: [
             link_to('View', organisation_member_share_path(@organisation, share), class: 'btn btn-secondary')
           ]}
         %>
-      <%# </div> %>
     <% end %>
   </div>
 </section>
