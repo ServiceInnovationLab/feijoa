@@ -6,44 +6,55 @@ RSpec.describe User::RequestsController do
   render_views
 
   let(:user) { FactoryBot.create(:user) }
-  let(:req) { FactoryBot.create(:request, requestee: user) } # can't call this `request` - namespace collision
-  before do
-    sign_in user
-    FactoryBot.create_list(:request, 5) # create some other requests
-    req
-  end
-  describe 'GET index' do
-    it 'assigns @requests' do
-      get :index
-      expect(assigns(:requests)).to eq([req])
+  # can't call this `request` - namespace collision
+  let!(:req) { FactoryBot.create(:request, requestee: user) }
+  let!(:requests) { FactoryBot.create_list(:request, 5) }
+
+  context 'anonymous' do
+    describe 'GET index' do
+      before { get :index }
+      it { expect(response).to redirect_to new_user_session_path }
     end
-    it 'renders the index template' do
-      get :index
-      expect(response).to render_template('index')
+    describe 'GET show' do
+      before { get(:show, params: { id: req.id }) }
+      it { expect(response).to redirect_to new_user_session_path }
     end
   end
-  describe 'GET show' do
-    it 'allows a user to see their own requests' do
-      get(:show, params: { id: req.id })
-      expect(response).to have_http_status(200)
+
+  context 'signed in' do
+    before { sign_in user }
+    describe 'GET index' do
+      before { get :index }
+      it 'Can only see their request' do
+        expect(assigns(:requests)).to eq([req])
+      end
     end
-    it 'does not allow a user to see requests that are not theirs' do
-      other_request = FactoryBot.create(:request)
-      expect { get(:show, params: { id: other_request.id }) }.to raise_error(ActiveRecord::RecordNotFound)
+    describe 'GET show' do
+      describe 'their own request' do
+        before { get(:show, params: { id: req.id }) }
+        it { expect(assigns(:request)).to eq req }
+        it { expect(response).to have_http_status(:ok) }
+      end
+      describe "asking for someone else's request" do
+        it 'does not allow a user to see requests that are not theirs' do
+          other_request = FactoryBot.create(:request)
+          expect { get(:show, params: { id: other_request.id }) }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
     end
-  end
-  describe 'POST decline' do
-    subject { post(:decline, params: { id: req.id }) }
-    it 'assigns @request' do
-      subject
-      expect(assigns(:request)).to eq(req)
-    end
-    it 'checks permissions' do
-      other_request = FactoryBot.create(:request)
-      expect { post(:decline, params: { id: other_request.id }) }.to raise_error(ActiveRecord::RecordNotFound)
-    end
-    it 'renders the request show page' do
-      expect(subject).to render_template('show')
+    describe 'POST decline' do
+      subject { post(:decline, params: { id: req.id }) }
+      it 'assigns @request' do
+        subject
+        expect(assigns(:request)).to eq(req)
+      end
+      it 'checks permissions' do
+        other_request = FactoryBot.create(:request)
+        expect { post(:decline, params: { id: other_request.id }) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+      it 'renders the request show page' do
+        expect(subject).to render_template('show')
+      end
     end
   end
 end

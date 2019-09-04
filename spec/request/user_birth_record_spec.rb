@@ -7,9 +7,7 @@ RSpec.describe 'user/BirthRecordsController', type: :request do
     context 'A User' do
       let(:user) { FactoryBot.create(:user) }
 
-      before do
-        sign_in user
-      end
+      before { sign_in user }
 
       context 'when a birth record is associated with the user' do
         let(:birth_record) { FactoryBot.create(:birth_record) }
