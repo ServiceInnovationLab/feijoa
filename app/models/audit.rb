@@ -3,6 +3,12 @@
 class Audit < Audited::Audit
   scope :viewing_birth_record, -> { where(comment: VIEW_SHARED_BIRTH_RECORD) }
   scope :sharing_birth_record, -> { where(comment: SHARE_BIRTH_RECORD) }
+
+  scope :for_user_shares, lambda { |user|
+    share_ids = user.shares.ids
+    where(auditable_type: 'Share', auditable_id: share_ids)
+  }
+
   CUSTOM_RENDERING_TYPES = %w[share user_document].freeze
 
   # constants for User/BirthRecord actions
