@@ -8,7 +8,7 @@ class ImmunisationRecordPolicy < ApplicationPolicy
   def share?
     user.immunisation_records.includes record
   end
-  
+
   def remove?
     user.immunisation_records.includes record
   end
