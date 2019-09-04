@@ -10,7 +10,7 @@ RSpec.feature 'Authentication' do
     it 'can view the home page' do
       visit root_path
 
-      expect(page.current_path).to eq(new_user_session_path)
+      expect(page.current_path).to eq(root_path)
     end
 
     it 'can view the user login page' do
@@ -25,6 +25,12 @@ RSpec.feature 'Authentication' do
       visit new_user_registration_path
 
       expect(page.current_path).to eq(new_user_registration_path)
+    end
+
+    it 'is redirected to user sign-in if it tries to open a user page' do
+      visit user_requests_path
+
+      expect(page.current_path).to eq(new_user_session_path)
     end
   end
 

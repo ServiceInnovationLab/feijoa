@@ -6,16 +6,16 @@
     <% end %>
     <ul class="navbar-nav">
       <% if current_user&.organisations.present? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Your organisations
-            </a>
-            <div class="dropdown-menu" aria-labelledby="userDropdown">
-              <% current_user&.organisations.each do |organisation| %>
-                <%= link_to organisation.name, organisation_member_dashboard_path(organisation), class: 'dropdown-item' %>
-              <% end %>
-            </div>
-          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Your organisations
+          </a>
+          <div class="dropdown-menu" aria-labelledby="userDropdown">
+            <% current_user&.organisations.each do |organisation| %>
+              <%= link_to organisation.name, organisation_member_dashboard_path(organisation), class: 'dropdown-item' %>
+            <% end %>
+          </div>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Your personal data

@@ -4,13 +4,19 @@ require 'rails_helper'
 
 RSpec.describe 'Sign in users', type: :request do
   let(:password) { SecureRandom.hex(16) }
-
   context 'A User' do
     let(:user) { FactoryBot.create(:user, password: password) }
 
     it 'can sign in with valid credentials' do
       post new_user_session_path, params: { 'user[email]' => user.email, 'user[password]' => password }
 
+      expect(response.status).to eq(302)
+      expect(response.location).to eq(authenticated_user_root_url)
+    end
+
+    it 'is redirected if already signed in' do
+      sign_in(user)
+      get new_user_session_path
       expect(response.status).to eq(302)
       expect(response.location).to eq(root_url)
     end

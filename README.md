@@ -25,7 +25,7 @@ CI      | https://travis-ci.org/ServiceInnovationLab/feijoa
 Team       | Yeah Nah / Feijoa
 Developers | [@br3nda](https://github.com/Br3nda), [@lamorrison](https://github.com/lamorrison), [@mermop](https://github.com/mermop), [@JacOng17](https://github.com/JacOng17)
 Designers | [@rosspatel01](https://github.com/rosspatel01)
-Testers | 
+Testers |
 Scrum Master | [@merridy](https://github.com/merridy)
 Product Owner | [@workbygrant](https://github.com/workbygrant]
 
