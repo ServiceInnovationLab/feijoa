@@ -288,7 +288,7 @@ Devise.setup do |config|
   #
   # Lyall: Enabled because we expect to support Users, Admins, and ELSs (or some
   # kind of trusted message receiver)
-  config.scoped_views = true
+  # config.scoped_views = false
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).

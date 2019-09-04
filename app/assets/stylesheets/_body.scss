@@ -7,8 +7,8 @@ body, html {
 .organisation-user__sessions--new,
 .organisation-user__sessions--create,
 .home--index,
-.user__sessions--new,
-.user__sessions--create {
+.devise__sessions--new,
+.devise__sessions--create {
   background-color: $grey;
   form {
     background-color: $white;
