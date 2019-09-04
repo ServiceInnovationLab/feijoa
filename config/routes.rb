@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   devise_for :users, path: 'user'
 
-  resources :user, only: [:index]
   namespace :user do
     resources :birth_records, only: %i[index show] do
       collection do

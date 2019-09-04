@@ -33,7 +33,7 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
-      <% elsif signed_in? %>
+      <% elsif user_signed_in? %>
         <li class="nav-item">
           <%= link_to 'My Documents', user_birth_records_path, class: 'nav-link' %>
         </li>
@@ -51,7 +51,7 @@
       <% end %>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <% if signed_in? %>
+      <% if user_signed_in? %>
         <li class="nav-item mr-auto">
           <% if current_user&.present? %>
             <%= render partial: 'shared/logout', locals: { _logout_path: destroy_user_session_path } %>

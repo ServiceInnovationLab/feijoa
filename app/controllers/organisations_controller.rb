@@ -2,6 +2,6 @@
 
 class OrganisationsController < ApplicationController
   def index
-    @organisations = Organisation.all
+    @organisations = policy_scope(Organisation.all)
   end
 end

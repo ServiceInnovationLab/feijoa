@@ -18,7 +18,7 @@ RSpec.describe 'Sign in users', type: :request do
       sign_in(user)
       get new_user_session_path
       expect(response.status).to eq(302)
-      expect(response.location).to eq(authenticated_user_root_url)
+      expect(response.location).to eq(root_url)
     end
 
     context 'without a valid CSRF token' do

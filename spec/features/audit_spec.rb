@@ -4,12 +4,11 @@ require 'rails_helper'
 
 RSpec.feature 'Auditing' do
   let(:user) { FactoryBot.create(:user, email: 'user@example.com') }
+  let(:org_user) { FactoryBot.create :user }
   let!(:organisation) { FactoryBot.create(:organisation, name: 'Example Org') }
   let!(:birth_records) { FactoryBot.create_list(:birth_record, 10) }
-  let!(:organisation_member) do
-    u = FactoryBot.create(:user)
-    FactoryBot.create(:organisation_member, organisation: organisation, user: u)
-    u.reload
+  before do
+    org_user.add_role(organisation, 'staff')
   end
 
   include_context 'signed in' do
@@ -69,19 +68,25 @@ RSpec.feature 'Auditing' do
           context 'the organisation views the share' do
             before do
               sign_out user
-              sign_in organisation_member
+              sign_in org_user
 
               visit organisation_member_shares_path(organisation)
 
               click_on 'Show'
               sleep(0.5) # to wait for audit to go through...
-              sign_out organisation_member
-              sign_in user
+              sign_out org_user
             end
 
-            it 'shows a "viewed..." audit message' do
+            it 'shows a "viewed..." audit message on org users account' do
+              sign_in org_user
               visit user_audits_path
               expect(page).to have_text("View birth record of #{target_record.full_name}")
+            end
+            it 'shows a "viewed by" on birth record page' do
+              sign_in user
+              visit user_birth_record_path(target_record)
+              expect(page).to have_text 'Viewed on '
+              expect(page).to have_text " by #{org_user.email}"
             end
           end
 
