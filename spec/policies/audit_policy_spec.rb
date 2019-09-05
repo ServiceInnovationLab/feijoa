@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 describe AuditPolicy do
-  subject { AuditPolicy.new(user, share) }
-
   let(:user) { FactoryBot.create(:user) }
   let(:some_other_guy) { FactoryBot.create(:user) }
   let(:share) { FactoryBot.create(:share, user: user) }
