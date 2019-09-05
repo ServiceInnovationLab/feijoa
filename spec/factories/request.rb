@@ -5,7 +5,7 @@ FactoryBot.define do
     association :requestee, factory: :user
     association :requester, factory: :organisation
     share_id { nil }
-    document_type { 'BirthRecord' }
+    document_type { Document::BIRTH_RECORD }
     note { 'Please share the birth record of Hemi' }
     trait :cancelled do
       after(:create) do |request, _evaluator|

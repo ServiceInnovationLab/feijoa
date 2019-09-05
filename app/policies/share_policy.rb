@@ -22,7 +22,17 @@ class SharePolicy < ApplicationPolicy
   end
 
   def create?
-    @user == @record.user
+    # They are creating a share for their own user
+    # and it's for a document in their collection
+    @user == @record.user && user_has_document
+  end
+
+  private
+
+  def user_has_document
+    @user.documents(type: @record.document_type)
+         .find_by(id: @record.document_id)
+         .present?
   end
 
   class Scope

@@ -1,9 +1,7 @@
+<%= render partial: 'shared/back', locals: { path: user_shares_path } %>
+
 <h1>Shared document</h1>
 <p class="lead">You have shared this with <%= @share.recipient.name %>.</p>
-<p>
-  <strong>Birth record:</strong>
-  <%= render partial: 'shared/birth_records/short_details', object: @share.document %>
-</p>
 
 <p>
   <strong>User:</strong>
@@ -14,5 +12,11 @@
   <strong>Recipient:</strong>
   <%= @share.recipient.name %>
 </p>
-
-<%= link_to 'Back', user_shares_path %>
+<div class="card">
+  <div class="card-header">
+    <h5>Document details</h3>
+    </div>
+  <div class="card-body">
+    <%= render @share.document %>
+  </div>
+</div>

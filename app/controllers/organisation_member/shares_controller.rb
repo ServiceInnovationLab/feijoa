@@ -10,8 +10,8 @@ class OrganisationMember::SharesController < OrganisationMember::BaseController
 
   # GET /shares/1
   def show
-    @official_birth_record = @share.access(accessed_by: current_user)
-    authorize @official_birth_record
+    @document = @share.access(accessed_by: current_user)
+    authorize @document
   end
 
   private

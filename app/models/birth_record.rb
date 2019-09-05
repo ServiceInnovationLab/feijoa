@@ -4,6 +4,24 @@ class BirthRecord < ApplicationRecord
   include Document
   has_associated_audits
 
+  class << self
+    def share_audit_comment
+      Audit::SHARE_BIRTH_RECORD
+    end
+
+    def remove_audit_comment
+      Audit::REMOVE_BIRTH_RECORD_FROM_USER
+    end
+
+    def add_audit_comment
+      Audit::ADD_BIRTH_RECORD_TO_USER
+    end
+
+    def view_audit_comment
+      Audit::VIEW_SHARED_BIRTH_RECORD
+    end
+  end
+
   def date_of_birth
     format_date(self[:date_of_birth])
   end

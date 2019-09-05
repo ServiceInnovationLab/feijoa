@@ -64,13 +64,6 @@ RSpec.describe User::SharesController, type: :controller do
         end
       end
 
-      describe 'GET #new' do
-        before { get :new }
-        it 'returns a success response' do
-          expect(response).to be_successful
-        end
-      end
-
       describe 'POST #create' do
         context 'with valid params' do
           it 'creates a new Share' do
@@ -81,7 +74,9 @@ RSpec.describe User::SharesController, type: :controller do
 
           it 'redirects to the created share' do
             post :create, params: { share: valid_attributes }
-            expect(response).to redirect_to(user_birth_record_path(Share.last.document))
+            expect(response).to redirect_to(
+              user_document_path(Share.last.document.document_type, Share.last.document.id)
+            )
           end
         end
 
