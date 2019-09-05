@@ -23,7 +23,7 @@
       <% end %>
 
       <%= f.select :document_type,
-                   Request::DOCUMENT_TYPES.map { |t| [t("documents.types.#{t}"), t] },
+                   Document::DOCUMENT_TYPES.map { |t| [t("documents.types.#{t}"), t] },
                    include_blank: true,
                    required: true %>
       <%= f.text_field :requestee_email,

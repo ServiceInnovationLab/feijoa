@@ -3,14 +3,14 @@
 class User::BirthRecordsController < ApplicationController
   # GET
   def index
-    @birth_records = policy_scope(current_user.birth_records)
+    redirect_to user_dashboard_index_path
+    skip_policy_scope
   end
 
   # GET
   def show
-    @birth_record = policy_scope(current_user.birth_records).find_by!(params.permit(:id))
-    authorize @birth_record
-    @shares = policy_scope(@birth_record.shares).where(user: current_user)
+    redirect_to user_document_path(Document::BIRTH_RECORD, params.permit(:id))
+    skip_authorization
   end
 
   # GET
@@ -37,22 +37,6 @@ class User::BirthRecordsController < ApplicationController
     @birth_record = BirthRecord.find_by(params.permit(:id))
     authorize @birth_record
     @birth_record&.add_to(current_user)
-
-    redirect_to user_birth_records_path
-  end
-
-  # POST
-  #
-  # Attempts to remove a record which is not attached or doesn't exist will be
-  # silently ignored.
-  def remove
-    @birth_record = current_user.birth_records.find_by(params.permit(:id))
-    if @birth_record
-      authorize @birth_record
-      @birth_record.remove_from(current_user)
-    else
-      skip_authorization
-    end
 
     redirect_to user_birth_records_path
   end

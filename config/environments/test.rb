@@ -46,7 +46,4 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   Faker::Config.locale = 'en-NZ'
-  # Set Faker seed so that it creates names in deterministic order
-  # since we are using Percy for visual diffs
-  Faker::Config.random = Random.new(42)
 end

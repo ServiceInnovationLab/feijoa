@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   devise_for :users, path: 'user'
 
   namespace :user do
+    resources :dashboard, only: %i[index]
+    get 'documents/:type/:id', to: 'documents#show', as: :document
+    post 'documents/:type/:id/remove', to: 'documents#remove', as: :document_remove
     resources :birth_records, only: %i[index show] do
       collection do
         get :find
