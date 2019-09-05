@@ -1,16 +1,15 @@
-
-$( document ).ready(function() {
+$(document).ready(function() {
   var organisations = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
       url: '/user/organisations/autocomplete?query=%QUERY',
-      wildcard: '%QUERY'
-    }
+      wildcard: '%QUERY',
+    },
   });
   $('#org-query').typeahead(null, {
     displayKey: 'name',
-    source: organisations
+    source: organisations,
   });
 
   $('#org-query').bind('typeahead:select', function(ev, organisation) {
@@ -20,4 +19,3 @@ $( document ).ready(function() {
     $('#org-address').text(organisation.address);
   });
 });
-
