@@ -22,7 +22,18 @@ class SharePolicy < ApplicationPolicy
   end
 
   def create?
-    @user == @record.user
+    # They are creating a share for their own user
+    # and it's for a document in their collection
+    @user == @record.user && user_has_document
+  end
+
+  private
+
+  def user_has_document
+    # the ids of documents the user has in her collection
+    ids = @user.user_documents.where(document_type: @record.document_type).pluck(:id)
+    # check if document they want to share is in that list
+    ids.include? @record.document_id
   end
 
   class Scope
