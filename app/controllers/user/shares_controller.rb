@@ -28,9 +28,10 @@ class User::SharesController < ApplicationController
 
   # POST /shares
   def create
-    @share = Share.new(share_params)
-    @share.user = current_user
+    require_valid_params
+    @share = Share.new(recipient: find_organisation, document: find_document, user: current_user)
     authorize @share
+    @share.save
     respond_with(@share, location: user_document_path(@share.document.document_type, @share.document.id))
   end
 
@@ -50,6 +51,24 @@ class User::SharesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def share_params
     params.require(:share).permit(:document_id, :document_type, :recipient_id)
+  end
+
+  # Require the params which will allow a valid model to be created
+  #
+  # The return value isn't useful, but this will raise an error if parameters
+  # are missing
+  def require_valid_params
+    params
+      .require(:share)
+      .require(%i[document_id document_type recipient_id])
+  end
+
+  def find_document
+    current_user.documents(type: share_params[:document_type]).find_by(id: share_params[:document_id])
+  end
+
+  def find_organisation
+    Organisation.find_by(id: share_params[:recipient_id])
   end
 
   # The shares visible to the current user

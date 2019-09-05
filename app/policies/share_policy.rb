@@ -30,10 +30,9 @@ class SharePolicy < ApplicationPolicy
   private
 
   def user_has_document
-    # the ids of documents the user has in her collection
-    ids = @user.user_documents.where(document_type: @record.document_type).pluck(:id)
-    # check if document they want to share is in that list
-    ids.include? @record.document_id
+    @user.documents(type: @record.document_type)
+         .find_by(id: @record.document_id)
+         .present?
   end
 
   class Scope

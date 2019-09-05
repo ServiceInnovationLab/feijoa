@@ -23,6 +23,9 @@ class Share < ApplicationRecord
 
   delegate :document_type, to: :document
   delegate :view_audit_comment, to: :document
+  delegate :share_audit_comment, to: :document
+
+  before_validation :set_audit_comment, on: :create
 
   def revoke(revoked_by: user)
     AuditedOperationsService.revoke_share(share: self, user: revoked_by)
@@ -51,5 +54,9 @@ class Share < ApplicationRecord
     return false unless Share.where(recipient: recipient, user: user, document: document).kept.any?
 
     errors.add(:recipient, 'is currently shared with this entity')
+  end
+
+  def set_audit_comment
+    self.audit_comment = share_audit_comment
   end
 end
