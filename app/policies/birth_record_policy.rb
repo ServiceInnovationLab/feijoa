@@ -17,10 +17,6 @@ class BirthRecordPolicy < ApplicationPolicy
     true
   end
 
-  def share?
-    user.birth_records.includes record
-  end
-
   class Scope
     attr_reader :user, :scope
 
