@@ -1,17 +1,19 @@
-<% actions = local_assigns[:actions] || [] %>
-<div class="card card--with-fancy-footer birth-record card--<%= local_assigns[:card_modifier] %>" data-id="<%= document.to_param %>">
-    <div class="card-body">
-      <h5 class="card-title"><%= t("documents.types.#{document.document_type}") %></h5>
-      <p><%= document.heading %></p>
-      <% if local_assigns[:shared_by] %>
-        <p>Shared by <%= shared_by %></p>
-      <% end %>
-    </div>
-  <div class="card-footer">
-    <div class="card-footer__inner d-flex justify-content-around">
-      <% actions.each do |action| %>
-        <%= action %>
-      <% end %>
+<div class="col-sm-3">
+  <% actions = local_assigns[:actions] || [] %>
+  <div class="card card--with-fancy-footer birth-record card--<%= local_assigns[:card_modifier] %>" data-id="<%= document.to_param %>">
+      <div class="card-body">
+        <h5 class="card-title"><%= t("documents.types.#{document.document_type}") %></h5>
+        <p><%= document.heading %></p>
+        <% if local_assigns[:shared_by] %>
+          <p>Shared by <%= shared_by %></p>
+        <% end %>
+      </div>
+    <div class="card-footer">
+      <div class="card-footer__inner d-flex justify-content-around">
+        <% actions.each do |action| %>
+          <%= action %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
