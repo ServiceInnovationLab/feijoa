@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter [
-    # Ignore Administrate auto-generated files
-    %r{/dashboards/},
-    %r{/controllers/admin/}
-  ]
-end
+SimpleCov.start 'rails'
 
 require 'audited-rspec'
 

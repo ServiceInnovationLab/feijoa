@@ -5,12 +5,13 @@ class OrganisationMember::SharesController < OrganisationMember::BaseController
 
   # GET /shares
   def index
-    @shares = @organisation.shares
+    @shares = policy_scope(@organisation.shares)
   end
 
   # GET /shares/1
   def show
-    @official_birth_record = @share.access(accessed_by: current_account)
+    @document = @share.access(accessed_by: current_user)
+    authorize @document
   end
 
   private
@@ -18,5 +19,6 @@ class OrganisationMember::SharesController < OrganisationMember::BaseController
   # Use callbacks to share common setup or constraints between actions.
   def set_share
     @share = @organisation.shares.find_by(params.permit(:id))
+    authorize @share
   end
 end

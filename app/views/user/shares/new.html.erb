@@ -1,7 +1,5 @@
-<div class="mb-4">
-  <%= link_to "← Back", user_shares_path, class: 'text-dark' %>
-</div>
+<%= render partial: 'shared/back', locals: { path: user_shares_path } %>
 
 <h1>Share a document</h1>
 
-<%= render 'form', share: @share, organisations: @organisations %>
+<%= render 'form', share: @share %>

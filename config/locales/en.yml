@@ -34,3 +34,4 @@ en:
   documents:
     types:
       BirthRecord: "Birth record"
+      ImmunisationRecord: "Immunisation record"

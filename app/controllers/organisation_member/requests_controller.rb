@@ -6,7 +6,7 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
 
   # GET /requests
   def index
-    @requests = @organisation.requests
+    @requests = policy_scope(@organisation.requests)
   end
 
   def new
@@ -42,7 +42,8 @@ class OrganisationMember::RequestsController < OrganisationMember::BaseControlle
 
   # Use callbacks to share common setup or constraints between actions.
   def set_request
-    @request = @organisation.requests.find(params[:id])
+    @request = Request.find(params[:id])
+    authorize @request
   end
 
   def request_params

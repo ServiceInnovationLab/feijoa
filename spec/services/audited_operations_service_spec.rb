@@ -95,4 +95,26 @@ RSpec.describe AuditedOperationsService do
       end
     end
   end
+
+  describe '#access_shared_document' do
+    let(:user) { FactoryBot.create(:user) }
+    let(:document) { FactoryBot.create(:birth_record) }
+    let(:share) { FactoryBot.create(:share, document: document) }
+    it 'audits that the record was accessed' do
+      expect do
+        described_class.access_shared_document(user: user, share: share)
+      end.to change { user.audits.count }.by(1)
+    end
+    it 'uses the audit comment from the share document class' do
+      described_class.access_shared_document(user: user, share: share)
+      expect(share.audits.last.comment).to eq(BirthRecord.view_audit_comment)
+    end
+    context 'when the shared document is an immunisation record' do
+      let(:document) { FactoryBot.create(:immunisation_record) }
+      it 'uses the immunisation record audit comment' do
+        described_class.access_shared_document(user: user, share: share)
+        expect(share.audits.last.comment).to eq(ImmunisationRecord.view_audit_comment)
+      end
+    end
+  end
 end

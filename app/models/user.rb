@@ -10,13 +10,18 @@ class User < ApplicationRecord
   has_many :user_documents, dependent: :nullify
   has_many :birth_records, -> { distinct.merge(UserDocument.kept) },
            through: :user_documents,
-           source: :document, source_type: 'BirthRecord'
+           source: :document, source_type: Document::BIRTH_RECORD
+  has_many :immunisation_records, -> { distinct.merge(UserDocument.kept) },
+           through: :user_documents,
+           source: :document, source_type: Document::IMMUNISATION_RECORD
+
   has_many :shares, -> { merge(Share.kept) }, dependent: :nullify, inverse_of: :user
 
   has_many :organisation_members, dependent: :destroy
   has_many :organisations, through: :organisation_members
 
   has_many :requests, inverse_of: :requestee, foreign_key: 'requestee_id', dependent: :destroy
+  has_many :audits, dependent: :nullify
 
   def self.find_or_invite(email)
     user = find_by(email: email)
@@ -46,21 +51,19 @@ class User < ApplicationRecord
     organisations.include? organisation
   end
 
-  def documents(type: 'BirthRecord')
-    return birth_records if type.to_s == 'BirthRecord'
+  def documents(type: nil)
+    return birth_records if type.to_s == Document::BIRTH_RECORD
+    return immunisation_records if type.to_s == Document::IMMUNISATION_RECORD
+    return birth_records + immunisation_records if type.nil?
 
-    # one day there will be other types of documents, but for the moment...
     []
   end
 
-  # Get the audits for this user
-  #
-  # These are audits where the user is the one who took action. Notably this
-  # doesn't include audits where an organisation views a birth record shared by
-  # this use (because the organisation takes the action). Those audits can be
-  # retrieved separately with `user.shares.map(&:audits).flatten` - see
-  # User::AuditsController#index for an implementation
-  def audits
-    Audit.where(user: self)
+  def add_role(organisation, role)
+    OrganisationMember.create!(
+      user: self,
+      organisation: organisation,
+      role: role
+    )
   end
 end

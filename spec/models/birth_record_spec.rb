@@ -3,6 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe BirthRecord, type: :model do
+  let(:document) { FactoryBot.create(:birth_record) }
+  it_behaves_like 'a document'
+
   describe 'Factory' do
     subject { FactoryBot.create(:birth_record) }
 
@@ -44,6 +47,18 @@ RSpec.describe BirthRecord, type: :model do
         FactoryBot.create :share, document: birth_record,
                                   user: user, recipient: recipient
       end.to raise_error ActiveRecord::RecordInvalid
+    end
+  end
+
+  describe 'adding to a user' do
+    let(:birth_record) { FactoryBot.create(:birth_record) }
+    let(:user) { FactoryBot.create :user }
+    before do
+      birth_record.add_to(user)
+    end
+    it 'creates a user_document linking the birth record and user' do
+      expect(birth_record.users).to eq([user])
+      expect(user.birth_records).to eq([birth_record])
     end
   end
 end

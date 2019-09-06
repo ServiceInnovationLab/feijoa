@@ -39,9 +39,6 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form', '>= 4.2.0'
 gem 'jquery-rails'
 
-# easy admin dashboard for editing data
-gem 'administrate'
-
 gem 'raygun4ruby'
 
 # Create fake data
@@ -61,8 +58,16 @@ gem 'discard', '~> 1.0'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 
+# HTTP connections
 gem 'faraday'
 gem 'faraday_middleware'
+
+# Validating NHI number
+gem 'nhi-validator', '~> 0.1.0'
+
+# Pagination
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'
 
 group :production do
   gem 'sendgrid-ruby'

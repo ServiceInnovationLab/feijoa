@@ -3,21 +3,23 @@
 require 'application_responder'
 
 class ApplicationController < ActionController::Base
-  include Pundit
-  self.responder = ApplicationResponder
   respond_to :html, :json
+  include Pundit
 
-  # By default authenticated users can't access controller actions.
-  #
-  # This is deny-by-default, and setting it here will also cover the Devise
-  # controllers which will prevent logged-in users from doing stuff like
-  # requesting password resets or logging in as an Admin while already a User
-  #
-  # See User::BaseController and Admin::BaseController where the appropriate
-  # user models are explicitly allowed.
-  include PublicOnly
+  before_action :authenticate_user!
+  after_action :verify_authorized, except: :index, unless: :devise_controller?
+  after_action :verify_policy_scoped, only: :index, unless: :devise_controller?
+
+  self.responder = ApplicationResponder
 
   protect_from_forgery with: :exception
 
-  devise_group :account, contains: %i[user admin_user]
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  private
+
+  def user_not_authorized
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to(request.referer || root_path)
+  end
 end

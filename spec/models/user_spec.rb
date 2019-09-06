@@ -72,14 +72,19 @@ RSpec.describe User, type: :model do
   describe 'user#documents' do
     let(:user) { FactoryBot.create(:user) }
     let(:birth_record) { FactoryBot.create(:birth_record) }
+    let(:immunisation_record) { FactoryBot.create(:immunisation_record) }
     before do
-      FactoryBot.create(:user_document, document: birth_record, user: user)
+      birth_record.add_to(user)
+      immunisation_record.add_to(user)
     end
-    it 'returns birth records by default' do
-      expect(user.documents).to eq([birth_record])
+    it 'returns birth records and immunisation records by default' do
+      expect(user.documents).to match_array([birth_record, immunisation_record])
     end
-    it 'returns birth records when passed birth_record as a document type' do
+    it 'returns birth records when passed BirthRecord as a document type' do
       expect(user.documents(type: 'BirthRecord')).to eq([birth_record])
+    end
+    it 'returns immunisation records when passed ImmunisationRecord as a document type' do
+      expect(user.documents(type: 'ImmunisationRecord')).to eq([immunisation_record])
     end
     it 'returns an empty array when passed any other document type' do
       expect(user.documents(type: 'passport')).to eq([])

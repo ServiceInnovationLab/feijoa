@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User::SharesController < User::BaseController
+class User::SharesController < ApplicationController
   respond_to :html, :json
   before_action :set_share, only: %i[show revoke]
   responders :flash
@@ -22,38 +22,35 @@ class User::SharesController < User::BaseController
              else
                Share.new
              end
-
-    @organisations = Organisation.all.order(:name)
+    @share.user = current_user
+    authorize @share
   end
 
   # POST /shares
   def create
     require_valid_params
-
-    @share = create_share_with_auditing
-
-    if @share.valid?
-      respond_with(@share, location: user_birth_record_path(@share.document))
-    else
-      respond_with(@share)
-    end
+    @share = Share.new(recipient: find_organisation, document: find_document, user: current_user)
+    authorize @share
+    @share.save
+    respond_with(@share, location: user_document_path(@share.document.document_type, @share.document.id))
   end
 
   def revoke
     @share.revoke(revoked_by: current_user)
-    respond_with(@share, location: user_birth_record_path(@share.document))
+    respond_with(@share, location: user_document_path(@share.document.document_type, @share.document.id))
   end
 
   private
 
-  def create_share_with_auditing
-    birth_record = current_user.birth_records.find_by(id: share_params['document_id'])
-    birth_record.share_with(recipient: Organisation.find_by(id: share_params['recipient_id']), user: current_user)
-  end
-
   # Set the share, if it exists and is available to the current user
   def set_share
     @share = user_shares.find_by(params.permit(:id))
+    authorize @share
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def share_params
+    params.require(:share).permit(:document_id, :document_type, :recipient_id)
   end
 
   # Require the params which will allow a valid model to be created
@@ -63,12 +60,15 @@ class User::SharesController < User::BaseController
   def require_valid_params
     params
       .require(:share)
-      .require([:document_id, :recipient_id])
+      .require(%i[document_id document_type recipient_id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def share_params
-    params.require(:share).permit(:document_id, :recipient_id)
+  def find_document
+    current_user.documents(type: share_params[:document_type]).find_by(id: share_params[:document_id])
+  end
+
+  def find_organisation
+    Organisation.find_by(id: share_params[:recipient_id])
   end
 
   # The shares visible to the current user
@@ -76,6 +76,6 @@ class User::SharesController < User::BaseController
   # This is not as obvious as current_user.shares because shares are
   # soft-deleted with the 'discard' gem when they are revoked
   def user_shares
-    current_user.shares.kept
+    policy_scope(current_user.shares).kept
   end
 end
