@@ -1,5 +1,5 @@
 <% actions = local_assigns[:actions] || [] %>
-<div class="card card--with-fancy-footer birth-record card--<%= local_assigns[:card_modifier] %>" data-id="<%= document.to_param %>">
+<div class="card card--with-fancy-footer birth-record card--<%= local_assigns[:card_modifier] %> col-3" data-id="<%= document.to_param %>">
     <div class="card-body">
       <h5 class="card-title"><%= t("documents.types.#{document.document_type}") %></h5>
       <p><%= document.heading %></p>
