@@ -2,6 +2,10 @@
   @extend .shadow;
 }
 
+.card-title {
+  font-weight: bold;
+}
+
 .card--with-fancy-footer {
   background-color: $grey;
   .card-body {
