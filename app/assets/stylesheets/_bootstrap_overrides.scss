@@ -8,6 +8,10 @@
   border-bottom: 0;
 }
 
+dd {
+  border-bottom: 1px solid $grey;
+}
+
 @include media-breakpoint-down(sm) {
   .navbar {
     font-size: 0.8em;

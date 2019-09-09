@@ -18,29 +18,30 @@
     <div class="row">
       <div class="col-sm-6">
         <dt>Requester</dt>
-        <dd class="border-bottom">
+        <dd>
           <%= @request.requester.name %>
-        </dd>
+        </dd clas="border-bottom">
         <dt>Requestee</dt>
-        <dd class="border-bottom">
+        <dd>
           <%= @request.requestee.email %>
         </dd>
         <dt>Note</dt>
-        <dd class="border-bottom">
+        <dd>
           <%= @request.note %>
         </dd>
         <dt>State</dt>
-        <dd class="border-bottom">
+        <dd>
           <%= @request.state %>
         </dd>
         <dt>Document type</dt>
-        <dd class="border-bottom">
+        <dd>
           <%= t("documents.types.#{@request.document_type}") %>
         </dd>
+
         <dt>Initiated</dt>
-        <dd class="border-bottom"><%= time_ago_in_words(@request.created_at) %> ago</dd>
+        <dd><%= time_ago_in_words(@request.created_at) %> ago</dd>
         <dt>Updated</dt>
-        <dd class="border-bottom"><%= time_ago_in_words(@request.updated_at) %> ago</dd>
+        <dd><%= time_ago_in_words(@request.updated_at) %> ago</dd>
       </div>
       <div class="col-sm-6">
         <% if @request.share.present? && policy(@request.share).show? %>

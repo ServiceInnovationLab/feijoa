@@ -26,25 +26,25 @@
       <div class="col-sm-6">
         <span class="badge badge--<%= @request.state %>"><%= @request.state %></span>
         <dt>Requester</dt>
-        <dd class="border-bottom">
+        <dd>
           <%= @request.requester.name %>
         </dd>
         <dt>Requestee</dt>
-        <dd class="border-bottom">
+        <dd>
           <%= @request.requestee.email %>
         </dd>
         <dt>Note</dt>
-        <dd class="border-bottom">
+        <dd>
           <%= @request.note %>
         </dd>
         <dt>Document type</dt>
-        <dd class="border-bottom">
+        <dd>
           <%= t("documents.types.#{@request.document_type}") %>
         </dd>
         <dt>Initiated</dt>
-        <dd class="border-bottom"><%= time_ago_in_words(@request.created_at) %> ago</dd>
+        <dd><%= time_ago_in_words(@request.created_at) %> ago</dd>
         <dt>Updated</dt>
-        <dd class="border-bottom"><%= time_ago_in_words(@request.updated_at) %> ago</dd>
+        <dd><%= time_ago_in_words(@request.updated_at) %> ago</dd>
       </div>
       <div class="col-sm-6">
         <% if @request.share.present? %>
