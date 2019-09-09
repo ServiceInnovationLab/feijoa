@@ -1,18 +1,33 @@
-<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <h2 class="mb-4">Sign up</h2>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="row mt-4 pt-4">
+  <div class="col pr-4">
+    <h1 class="font-weight-bold">Nau mai ki Feijoa</h1>
+    <h1>Welcome to Feijoa</h1>
+    <p class="lead mt-4 font-weight-bold">Allowing you to share your personal government-administered information through consent-based sharing with other users, organisations and businesses.</p>
+    <p class="mt-4">Passports, birth records, immunisations, licenses, etc.</p>
 
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-
-  <% if @minimum_password_length %>
-  <em>(<%= @minimum_password_length %> characters minimum)</em>
-  <% end %><br />
-  <%= f.password_field :password, autocomplete: "new-password" %>
-
-  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-
-  <%= f.submit "Sign up" %>
-  <div class="mt-4">
-    <%= render "devise/shared/links" %>
   </div>
-<% end %>
+  <div class="col pl-4">
+    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="p-4">
+        <h2 class="mb-4">Sign up</h2>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+
+        <div class="actions mt-4 pl-4 pr-4">
+        <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+        </div>
+        <div class="mt-4 text-center">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
