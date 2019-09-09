@@ -12,6 +12,10 @@ dd {
   border-bottom: 1px solid $grey;
 }
 
+h4.modal-title {
+  font-weight: bold;
+}
+
 @include media-breakpoint-down(sm) {
   .navbar {
     font-size: 0.8em;
