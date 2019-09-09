@@ -3,12 +3,10 @@
   <%= f.hidden_field :document_id, value: document.id %>
   <%= f.hidden_field :document_type, value: document.document_type %>
   <%= f.hidden_field :recipient_id, id: 'recipient_id', value: nil %>
-  <div >
+  <div>
     <%= f.text_field :organisation, id: "org-query", label_as_placeholder: true, label: 'Organisation' %>
   </div>
   <hr />
-  <%# <h5 class="font-weight-bold mt-4 mb-4">or email</h5> 
-  <hr />%>
   <h5 class="font-weight-bold mt-4 mb-4">Custom Message</h5>
   <p>Hi there, I now give you access to my birth registration details.</p>
   <hr />
