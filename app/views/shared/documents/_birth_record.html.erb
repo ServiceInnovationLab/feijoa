@@ -1,22 +1,29 @@
 <dl>
   <dt>First And Middle Names</dt>
   <dd><%= birth_record.first_and_middle_names %></dd>
+  <hr />
   <dt>Family Name</dt>
   <dd><%= birth_record.family_name %></dd>
+  <hr />
   <dt>Date of birth</dt>
   <dd><%= birth_record.date_of_birth %></dd>
+  <hr />
   <dt>Place of birth</dt>
   <dd><%= birth_record.place_of_birth %></dd>
+  <hr />
   <dt>Sex</dt>
   <dd><%= birth_record.sex %></dd>
+  <hr />
   <dt>Parent 1</dt>
   <dd>
     <%= birth_record.parent_family_name %>,
     <%= birth_record.parent_first_and_middle_names %>
   </dd>
+  <hr />
   <dt>Parent 2</dt>
   <dd>
     <%= birth_record.other_parent_family_name %>,
     <%= birth_record.other_parent_first_and_middle_names %>
   </dd>
+  <hr />
 </dl>
