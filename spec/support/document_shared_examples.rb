@@ -49,10 +49,6 @@ RSpec.shared_context 'document types' do
     docs
   end
 
-  Document::DOCUMENT_TYPES.each do |document_type|
-    let(document_type.underscore.to_sym) { FactoryBot.create(document_type.underscore.to_sym) }
-  end
-
   let(:one_of_each_document_type) do
     docs = []
     Document::DOCUMENT_TYPES.each do |document_type|

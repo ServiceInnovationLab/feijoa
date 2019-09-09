@@ -26,7 +26,6 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
             other_parent_family_name: 'Senger'
           )
         end
-        let(:birth_records) { FactoryBot.create_list(:birth_record, 10) }
 
         context 'the required fields are filled in correctly' do
           # Test marked as pending due to flakiness

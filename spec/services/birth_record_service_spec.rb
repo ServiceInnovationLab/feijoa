@@ -86,7 +86,6 @@ RSpec.describe BirthRecordService do
           other_parent_family_name: 'Senger'
         )
       end
-      let(:birth_records) { FactoryBot.create_list(:birth_record, 10) }
 
       context 'a query matching the required params' do
         let(:params) { target_record.attributes.slice(*described_class::REQUIRED_KEYS) }
