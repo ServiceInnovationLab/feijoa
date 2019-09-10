@@ -61,8 +61,6 @@ module Document
     end
 
     def shared_with?(user)
-      return true if users.include?(user)
-
       recipients = shares.map(&:recipient)
       return true if recipients.include?(user)
 

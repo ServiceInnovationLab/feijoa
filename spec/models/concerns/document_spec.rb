@@ -61,8 +61,8 @@ RSpec.describe Document, type: :concern do
         expect(immunisation_record.shared_with?(organisation_user)).to eq true
       end
 
-      it 'is shared with someone who has the document on their own record' do
-        expect(immunisation_record.shared_with?(user_with_document)).to eq true
+      it 'is not shared with someone just because they have it on their record' do
+        expect(immunisation_record.shared_with?(user_with_document)).to eq false
       end
 
       it 'is not shared with someone who is staff of an organisation the doc has not been shared with' do
