@@ -16,4 +16,12 @@ class ImmunisationRecordPolicy < ApplicationPolicy
   def update?
     user.immunisation_records.includes record || record.shared_with?(user)
   end
+
+  def create?
+    true
+  end
+
+  def new?
+    true
+  end
 end
