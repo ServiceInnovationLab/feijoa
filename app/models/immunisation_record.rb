@@ -14,6 +14,10 @@ class ImmunisationRecord < ApplicationRecord
     full_name
   end
 
+  def last_data_update
+    audits.where(comment: update_audit_comment).last
+  end
+
   def update_data(updated_by:)
     fetcher = ImmunisationDataFetcher.new(self)
     imms_data = fetcher.fetch_data

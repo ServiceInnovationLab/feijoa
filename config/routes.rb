@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         post :remove
       end
     end
+    resources :immunisation_records, only: %i[update]
     resources :shares, only: %i[index show new create] do
       member do
         post :revoke

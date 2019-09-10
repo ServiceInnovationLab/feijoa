@@ -59,6 +59,19 @@ module Document
     def to_partial_path
       "shared/documents/#{self.class.to_s.underscore}"
     end
+
+    def shared_with?(user)
+      return true if users.include?(user)
+
+      recipients = shares.map(&:recipient)
+      return true if recipients.include?(user)
+
+      recipients.each do |recipient|
+        return true if user.member_of?(recipient)
+      end
+
+      false
+    end
   end
 
   class_methods do

@@ -1,5 +1,10 @@
 .card {
   @extend .shadow;
+  .card-body {
+    @include media-breakpoint-down(md) {
+      padding: 0;
+    }
+  }
 }
 
 .card--with-fancy-footer {

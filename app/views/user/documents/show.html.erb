@@ -2,7 +2,7 @@
 
 <div class="card mb-4 p-4 birth-record" data-id="<%= @document.to_param %>">
   <div class="card-body">
-    <div class="d-flex justify-content-between mb-4">
+    <div class="d-flex flex-wrap justify-content-between mb-4">
       <h1 class="card-title"><%= t("documents.types.#{@document.document_type}") %></h1>
       <div>
         <%= link_to 'Remove', user_document_remove_path(@document.document_type, @document.id), class: 'btn btn-danger', data: { confirm: 'Are you sure? This will remove the record from your documents'}, method: :post %>
@@ -24,7 +24,7 @@
   <ul class="list-group list-group-flush">
     <%- @shares.each do |share| %>
       <li class="list-group-item">
-        <div class=" d-flex justify-content-between ">
+        <div class=" d-flex flex-wrap justify-content-between ">
           <strong><%= share.recipient.name %></strong>
           <span class="share-buttons">
             <%= link_to 'Revoke', revoke_user_share_path(share),

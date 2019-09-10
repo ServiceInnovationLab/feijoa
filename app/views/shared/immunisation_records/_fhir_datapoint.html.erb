@@ -1,0 +1,15 @@
+<%# immunisation_record: immunisation_record, datapoint: datapoint %>
+<tr>
+  <td>
+    <%= datapoint.vaccineCode.coding.first.display %>
+    <%= datapoint.vaccineCode.text %>
+  </td>
+  <td>
+    <%= datapoint.occurrenceDateTime %>
+  </td>
+  <td>
+    <% datapoint.note.each do |note| %>
+      <%= note&.text %>
+    <% end %>
+  </td>
+</tr>

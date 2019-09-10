@@ -1,12 +1,14 @@
-<div class="immunisation-record__details">
-  <dl>
-    <dt>Full name</dt>
-    <dd><%= immunisation_record.full_name %></dd>
-    <dt>Date of birth</dt>
-    <dd><%= immunisation_record.date_of_birth %></dd>
-    <dt>NHI number</dt>
-    <dd><%= immunisation_record.nhi %></dd>
-    <dt>Data</dt>
-    <dd><%= immunisation_record.data %></dd>
-  </dl>
-</div>
+<table class="table table-striped table-responsive">
+  <thead>
+    <th>Immunisation type</th>
+    <th>Date</th>
+    <th>Notes</th>
+  </thead>
+  <tbody>
+    <% fhir_data(immunisation_record).each do |datapoint| %>
+      <%= render partial: 'shared/immunisation_records/fhir_datapoint',
+      locals: { immunisation_record: immunisation_record, datapoint: datapoint }
+      %>
+    <% end %>
+  </tbody>
+</table>
