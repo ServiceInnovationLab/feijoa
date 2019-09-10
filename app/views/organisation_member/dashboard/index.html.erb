@@ -5,15 +5,12 @@
 <p class="lead">This is where your documents are stored. This is where you can request documents, view them, or remove your access to them.</p>
 
 <section class="mt-5">
-  <h3 class="mt-5">Request a document</h3>
+  <h3 class="mt-5"><%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
+      <%= image_tag("plus.svg", alt: 'Add a new request') %>
+    <% end %> Request a document</h3>
   <div class="index-cards">
     <% @requests.each do |request| %>
         <%= render partial: 'organisation_member/requests/request', locals: { request: request } %>
-    <% end %>
-  </div>
-  <div class="mt-4 mb-4">
-    <%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
-      <%= image_tag("plus.svg", alt: 'Add a new request') %>
     <% end %>
   </div>
 </section>
