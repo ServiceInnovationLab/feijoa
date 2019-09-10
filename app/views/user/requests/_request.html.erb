@@ -22,7 +22,7 @@
       <% end %>
       <%= link_to "View", user_request_path(request), class: 'btn btn-secondary' %>
       <% if request.can_respond? %>
-        <a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="btn btn-primary pr-2">
+        <a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="btn btn-primary">
           Respond
         </a>
         <%= render partial: 'user/requests/response_modal', locals: { request: request } %>
