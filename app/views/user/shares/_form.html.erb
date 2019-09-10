@@ -1,10 +1,10 @@
 <%= bootstrap_form_with(url: user_shares_path, layout: :horizontal, scope: 'share', local: true,) do |f| %>
-<h5 class="font-weight-bold">Type name of organisation</h5>
+<h5 class="font-weight-bold pb-2">Type name of organisation</h5>
   <%= f.hidden_field :document_id, value: document.id %>
   <%= f.hidden_field :document_type, value: document.document_type %>
   <%= f.hidden_field :recipient_id, id: 'recipient_id', value: nil %>
   <div>
-    <%= f.text_field :organisation, id: "org-query", label_as_placeholder: true, label: 'Organisation' %>
+    <h5><%= f.text_field :organisation, id: "org-query", label_as_placeholder: true, label: 'Organisation' %></h5>
   </div>
   <hr />
   <h5 class="font-weight-bold mt-4 mb-4">Custom message</h5>
@@ -15,7 +15,7 @@
     <div class="col-12" id="org-email">  </div>
     <div class="col-12" id="org-address">  </div>
   </p>
-  <div class="actions mt-4 pl-4 pr-4">
+  <div class="actions form-share">
     <%= f.submit 'Share', id: 'share-button', class: "btn btn-primary btn-block" %>
   </div>
 <% end %>

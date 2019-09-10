@@ -1,16 +1,24 @@
 .card {
-  @extend .shadow;
+  @extend .shadow-sm;
 }
 
 .card-title {
   font-weight: bold;
 }
 
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-heading {
+  padding-bottom: 1.25rem;
+}
+
 .card--with-fancy-footer {
   background-color: $grey;
   .card-footer {
     position: relative;
-    padding-bottom: 1.75em;
+    padding-bottom: 2em;
   }
   .card-footer__inner {
     position: absolute;

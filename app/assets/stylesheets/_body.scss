@@ -30,3 +30,48 @@ body, html {
   position: relative;
   padding: 0 .5rem 0 0;
 }
+
+h1 {
+  font-weight: bold;
+  font-size: 2.25rem;
+  color: $navy;
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: $navy;
+}
+
+h3 {
+  font-size: 1rem;
+  color: $navy;
+  line-height: 1.5rem;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 1rem;
+  color: $navy;
+}
+
+h5 {
+  font-size: .75rem;
+  color: $navy;
+  margin-bottom: 0;
+}
+
+dt {
+  padding-top: .5rem;
+  font-size: .75rem;
+  color: $navy;
+}
+
+dd {
+  font-size: .75rem;
+  color: $navy;
+}
+
+.add-doc {
+  width: 2.5rem;
+  height: 2.5rem;
+}

@@ -8,9 +8,7 @@
         <%= link_to 'Remove', user_document_remove_path(@document.document_type, @document.id), class: 'btn btn-danger', data: { confirm: 'Are you sure? This will remove the record from your documents'}, method: :post %>
       </div>
     </div>
-    <h5>
-      <strong><%= @document.heading %></strong>
-    </h5>
+      <h4><%= @document.heading %></h4>
     <%= render partial: @document %>
   </div>
   <div class="row justify-content-center mb-4 mt-4">

@@ -52,5 +52,37 @@
 
 .add-doc {
   width: 1.5em;
+  height: 1.5em;
+  padding-right: .5rem;
   display: inline-block;
+}
+
+.btn-secondary {
+  color: $white;
+}
+
+.view-btn {
+  margin-left: .75rem;
+}
+
+.share-btn {
+  margin-right: .75rem;
+}
+
+.cancel-btn {
+  margin-right: .75rem;
+}
+
+.single-view-btn {
+  margin-top: 1rem;
+  position: relative;
+}
+
+.form-control {
+  font-size: .75rem;
+}
+
+.form-share {
+  margin-right: 16rem;
+  margin-left: 16rem;
 }
