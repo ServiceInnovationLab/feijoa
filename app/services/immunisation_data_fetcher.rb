@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ImmunisationDataFetcher
+  include Rails.application.routes.url_helpers
+
   def initialize(immunisation_record)
     @immunisation_record = immunisation_record
   end
@@ -8,7 +10,7 @@ class ImmunisationDataFetcher
   def fetch_data
     data = connection.get(
       immunisation_record_url(
-        @immunisation_record.id,
+        identifier,
         @immunisation_record.date_of_birth.iso8601
       )
     ).body
@@ -24,8 +26,17 @@ class ImmunisationDataFetcher
     end
   end
 
+  def identifier
+    user_document_url(
+      'ImmunisationRecord',
+      @immunisation_record.id,
+      host: Rails.application.config.default_url_options[:host],
+      port: Rails.application.config.default_url_options[:port]
+    )
+  end
+
   def immunisation_record_url(id, date_of_birth)
-    "/immunisation_records/#{id}?date_of_birth=#{date_of_birth}"
+    "/immunisation_records?feijoa_id=#{id}&date_of_birth=#{date_of_birth}"
   end
 
   def immunisation_record_provider
