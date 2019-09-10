@@ -15,7 +15,7 @@
         <% end %>
         <% if @request.can_respond? %>
           <div>
-            <a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="btn btn-primary">
+            <a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="btn btn-primary pr-2">
               Respond
             </a>
             <%= render partial: 'user/requests/response_modal', locals: { request: @request } %>

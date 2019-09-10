@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=latin-ext" rel="stylesheet">
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
@@ -19,7 +19,7 @@
     <%= render "shared/header" %>
     <%= yield :subhead %>
     <%= render "shared/flash_messages" %>
-    <main class="container pb-5 pt-5">
+    <main class="container py-5">
       <%= yield %>
     </main>
   </body>

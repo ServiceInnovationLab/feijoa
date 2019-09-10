@@ -25,3 +25,8 @@ body, html {
   background-image: linear-gradient(to bottom, $grey 0%, $grey 47%, #ffffff 47%, #ffffff 100%);
   background-repeat: no-repeat;
 }
+
+.alert-dismissible .close {
+  position: relative;
+  padding: 0 .5rem 0 0;
+}

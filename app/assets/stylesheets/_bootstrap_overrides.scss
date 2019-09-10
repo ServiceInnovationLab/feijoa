@@ -40,3 +40,40 @@ label.required:after {
     @extend .badge-success;
   }
 }
+
+.container {
+  padding: 0;
+}
+
+.alert {
+  padding: 0.5rem 1.25rem;
+  margin: 0;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 36px;
+  color: $navy;
+}
+
+h2 {
+  font-size: 28px;
+  color: $navy;
+}
+
+h3 {
+  font-size: 16px;
+  color: $navy;
+  line-height: 22px;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 16px;
+  color: $navy;
+}
+
+h5 {
+  font-size: 12px;
+  color: $navy;
+}

@@ -6,12 +6,11 @@
     </div>
   <% end %>
 <% end %>
-<h2>Your documents dashboard</h2>
-<p>This is where your documents are stored. Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity</strong> but are a legal representation of the data of your ID which is held within the New Zealand government.</p>
+<h1 class="pt-3 pb-2">Your documents dashboard</h2>
+<h3>This is where your documents are stored. Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity</strong> but are a legal representation of the data of your ID which is held within the New Zealand government.</h3>
 <%= render 'user/birth_records/modal_form' %>
 <% if @documents.any? %>
   <section>
-    <h2>Your documents</h2>
     <div class="index-cards">
       <% @documents.each do |document| %>
         <%= render partial: 'shared/documents/preview', locals: {
