@@ -1,4 +1,3 @@
-<%# immunisation_record: immunisation_record, datapoint: datapoint %>
 <tr>
   <td>
     <%= datapoint.vaccineCode.coding.first.display %>
@@ -9,7 +8,7 @@
   </td>
   <td>
     <% datapoint.note.each do |note| %>
-      <%= note&.text %>
+      <p><%= note&.text %></p>
     <% end %>
   </td>
 </tr>

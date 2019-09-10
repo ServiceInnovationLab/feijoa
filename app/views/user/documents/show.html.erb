@@ -1,6 +1,6 @@
 <%= render partial: 'shared/back', locals: { path: user_dashboard_index_path } %>
 
-<div class="card mb-4 p-4 birth-record" data-id="<%= @document.to_param %>">
+<div class="card mb-4 birth-record" data-id="<%= @document.to_param %>">
   <div class="card-body">
     <div class="d-flex flex-wrap justify-content-between mb-4">
       <h1 class="card-title"><%= t("documents.types.#{@document.document_type}") %></h1>
@@ -13,9 +13,11 @@
     </h5>
     <%= render partial: @document %>
   </div>
-  <div class="row justify-content-center mb-4 mt-4">
-    <div class="col-sm-6">
-      <%= render 'user/shares/modal_form', document: @document, classes: 'btn btn-primary btn-block' %>
+  <div class="card-footer">    
+    <div class="row justify-content-center mb-4 mt-4">
+      <div class="col-sm-6">
+        <%= render 'user/shares/modal_form', document: @document, classes: 'btn btn-primary btn-block' %>
+      </div>
     </div>
   </div>
 </div>
