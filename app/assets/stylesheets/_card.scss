@@ -8,12 +8,9 @@
 
 .card--with-fancy-footer {
   background-color: $grey;
-  .card-body {
-    padding-bottom: 2em;
-  }
   .card-footer {
     position: relative;
-    padding-bottom: 2em;
+    padding-bottom: 1.75em;
   }
   .card-footer__inner {
     position: absolute;
