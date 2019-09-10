@@ -18,6 +18,9 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+# Load environment variables from a .env file
+gem 'dotenv-rails'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
@@ -44,6 +47,9 @@ gem 'raygun4ruby'
 # Create fake data
 gem 'factory_bot_rails'
 gem 'faker'
+
+# FHIR client for data
+gem 'fhir_client'
 
 # Log access to database records
 gem 'audited', '~> 4.7'
