@@ -17,6 +17,8 @@ module Document
     delegate :share_audit_comment, :remove_audit_comment, :add_audit_comment,
              :view_audit_comment, :update_audit_comment, to: :class
 
+    audited
+
     def immunisation_record?
       document_type == IMMUNISATION_RECORD
     end

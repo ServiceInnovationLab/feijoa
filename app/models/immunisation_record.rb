@@ -3,7 +3,6 @@
 class ImmunisationRecord < ApplicationRecord
   include Document
   has_associated_audits
-  audited
 
   validates :nhi, presence: true, national_health_index: true
   validates :date_of_birth, presence: true
