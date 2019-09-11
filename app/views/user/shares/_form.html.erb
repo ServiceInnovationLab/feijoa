@@ -7,15 +7,12 @@
     <h5><%= f.text_field :organisation, id: "org-query", label_as_placeholder: true, label: 'Organisation' %></h5>
   </div>
   <hr />
-  <h5 class="font-weight-bold mt-4 mb-4">Custom message</h5>
-  <p></p>
-  <hr />
   <p>
     <div class="col-12" id="org-name">  </div>
     <div class="col-12" id="org-email">  </div>
     <div class="col-12" id="org-address">  </div>
   </p>
-  <div class="actions form-share">
-    <%= f.submit 'Share', id: 'share-button', class: "btn btn-primary btn-block" %>
+  <div class="actions d-flex justify-content-center">
+    <%= f.submit 'Share', id: 'share-button', class: "btn btn-primary single-view-btn" %>
   </div>
 <% end %>

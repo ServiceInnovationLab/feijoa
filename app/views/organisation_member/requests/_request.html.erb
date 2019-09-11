@@ -6,14 +6,14 @@
         <span class="badge badge--<%= request.state %>"><%= request.state %></span>
       </div>
     </div>
-    <h5>Requested from <%= request.requestee.email %></h5>
+    <h5 class="pb-3">Requested from <%= request.requestee.email %></h5>
   </div>
   <div class="card-footer">
     <div class="card-footer__inner">
-      <%= link_to "View", organisation_member_request_path(@organisation, request), class: "btn btn-secondary view-btn" %>
+      <%= link_to "View", organisation_member_request_path(@organisation, request), class: "btn btn-secondary shifted-right-btn" %>
       <% if request.can_cancel? %>
         <%= form_with(url: cancel_organisation_member_request_path(@organisation, request), method: "post", local: true) do %>
-          <%= submit_tag("Cancel", class: 'btn btn-danger cancel-btn') %>
+          <%= submit_tag("Cancel", class: 'btn btn-danger shifted-right-btn') %>
         <% end %>
       <% end %>
     </div>
