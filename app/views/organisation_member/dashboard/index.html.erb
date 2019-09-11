@@ -1,8 +1,8 @@
 <%= content_for :subhead do %>
   <%= render partial: "organisation_member/shared/subhead" %>
 <% end %>
-<h1 class="font-weight-bold"><%= @organisation.name %>'s documents dashboard</h1>
-<p class="lead">This is where your documents are stored. This is where you can request documents, view them, or remove your access to them.</p>
+<h1 class="pt-3 pb-2"><%= @organisation.name %>'s documents dashboard</h1>
+<h3>This is where your documents are stored. This is where you can request documents, view them, or remove your access to them.</h3>
 
 <section class="mt-5">
   <h2 class="mt-5"><%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
