@@ -7,7 +7,7 @@
       To access Feijoa, you need a RealMe login. If you've used a RealMe login somewhere else, you can use it here too. If you don't already have a username and password, just select Login and choose to create one.
     </p>
     <div class='d-flex'>
-      <%= image_tag('realme/logo.png') %>
+      <%= image_tag('realme/logo.png', alt: 'RealMe') %>
       <%= link_to omniauth_authorize_path(:user, :realme), class: 'realme_button d-flex align-items-center pl-2', style: 'flex-grow: 1' do %>
         <span>
           Login

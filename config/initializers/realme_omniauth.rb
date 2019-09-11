@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 OmniAuth::Strategies::Realme.configure do |config|
   # Website issuer namespace
   config.issuer = ENV['REALME_ISSUER']
