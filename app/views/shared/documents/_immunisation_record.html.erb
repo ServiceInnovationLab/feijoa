@@ -6,7 +6,36 @@
     <dd><%= immunisation_record.date_of_birth %></dd>
     <dt>NHI number</dt>
     <dd><%= immunisation_record.nhi %></dd>
-    <dt>Data</dt>
-    <dd><%= immunisation_record.data %></dd>
   </dl>
+  <h3>Data</h3>
+  <% if fhir_data(immunisation_record) %>
+    <table class="table table-striped table-responsive">
+      <thead>
+        <th>Immunisation type</th>
+        <th>Date</th>
+        <th>Notes</th>
+      </thead>
+      <tbody>
+        <% fhir_data(immunisation_record).each do |datapoint| %>
+          <%= render partial: 'shared/immunisation_records/fhir_datapoint',
+          locals: { immunisation_record: immunisation_record, datapoint: datapoint }
+          %>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    There is currently no data for this record.
+  <% end %>
+  <% if immunisation_record.last_data_update.present? %>
+    <p>
+      Data last fetched
+      <%= time_ago_in_words(immunisation_record.last_data_update.created_at) %> ago
+      by <%= immunisation_record.last_data_update.user.email %>
+    </p>
+  <% else %>
+    <p>This record has never had data fetched.</p>
+  <% end %>
+  <%= form_with(url: user_immunisation_record_path(immunisation_record), method: "PUT", local: true) do %>
+    <%= submit_tag('Update immunisation data', class: 'btn btn-primary') %>
+  <% end %>
 </div>

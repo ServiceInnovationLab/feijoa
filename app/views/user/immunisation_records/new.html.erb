@@ -1,0 +1,9 @@
+<%= render partial: 'shared/back', locals: { path: user_dashboard_index_path } %>
+
+<h1>Add a new immunisation record</h1>
+<%= bootstrap_form_for(@immunisation_record, url: user_immunisation_records_path, local: true) do |f| %>
+  <%= f.text_field :full_name %>
+  <%= f.text_field :date_of_birth %>
+  <%= f.text_field :nhi, label: 'NHI' %>
+  <%= f.submit 'Create', class: 'btn btn-primary' %>
+<% end %>
