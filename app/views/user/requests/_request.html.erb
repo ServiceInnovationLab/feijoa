@@ -14,7 +14,7 @@
     <hr>
   </div>
   <div class="card-footer">
-    <div class="d-flex flex-wrap justify-content-between align-content-center">
+    <div class="d-flex justify-content-between align-content-center">
       <% if request.can_decline? %>
         <%= form_with(url: decline_user_request_path(request), method: "post", local: true) do %>
           <%= submit_tag("Decline", class: 'btn btn-danger', data: { confirm: 'Are you sure you want to decline this request?' }) %>
