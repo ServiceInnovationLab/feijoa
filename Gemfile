@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Authentication
 gem 'devise', '~> 4.6.2'
 gem 'devise_invitable', '~> 2.0.0'
+gem 'omniauth-realme'
 
 # Authorization
 gem 'pundit'

@@ -1,0 +1,32 @@
+<div class="sc-realme">
+  <div class='realme_widget realme_primary_login realme_theme_default'>
+    <h2 class='realme_title'>
+      Login with RealMe®
+    </h2>
+    <p class='realme_info'>
+      To access Feijoa, you need a RealMe login. If you've used a RealMe login somewhere else, you can use it here too. If you don't already have a username and password, just select Login and choose to create one.
+    </p>
+    <div class='d-flex'>
+      <%= image_tag('realme/logo.png') %>
+      <%= link_to omniauth_authorize_path(:user, :realme), class: 'realme_button d-flex align-items-center pl-2', style: 'flex-grow: 1' do %>
+        <span>
+          Login
+          <span class='realme_icon_new_window'></span>
+        </span>
+        <span class='realme_icon_padlock ml-auto'></span>
+      <% end %>
+    </div>
+    <div class='realme_popup_position'>
+      <a class='js_toggle_popup whats_realme' href='http://www.realme.govt.nz'>What's RealMe?</a>
+      <div class='realme_popup_wrapper realme_arrow_top_left'>
+        <div class='realme_popup' style='width:420px;'>
+          <h2 class='realme_popup_title'>To log in to Feijoa you need a RealMe login.</h2>
+          <p>Feijoa uses RealMe login to secure and protect your personal information.</p>
+          <p><b>RealMe</b> login is a service from the New Zealand government that includes a single login, letting you use one username and password to access a wide range of services online.</p>
+          <p>Find out more at www.realme.govt.nz.</p>
+          <span class='front'></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityDescriptor entityID="https://www.ite.logon.realme.govt.nz/saml2" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    <IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+MIIGRjCCBS6gAwIBAgIQAhEpyqr1gOoy6yc/l6KsajANBgkqhkiG9w0BAQsFADBe
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
+d3cuZGlnaWNlcnQuY29tMR0wGwYDVQQDExRSYXBpZFNTTCBSU0EgQ0EgMjAxODAe
+Fw0xOTAxMjMwMDAwMDBaFw0yMTA0MjMxMjAwMDBaMCsxKTAnBgNVBAMTIGl0ZS5z
+aWduaW5nLmxvZ29uLnJlYWxtZS5nb3Z0Lm56MIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAgUadr7tJp975lCOcWCXwTiDrTdv2N88TywM474SQShKXL13N
+Yzrn/+EnuowlBc/QWCWL3KGLQBBSpDGCnojKK9/p+lopZsHfrZFWfKIVpATMbSdB
+/ABnYbsjjDyasAtAsJGPO8MC7TyJxw58Gf7T1VDLDNIN0BnW8gbpE+YG2wmxQmMo
+DH+DSss1gOO3MN0ebR00WrGrgnUHMcI726C0zAC3VW/IrgWvKuNHUll3QX0C6+Vj
+A2iTVaagGApQRn9JZPSBxMyTP/yq7lwgCSWzef0/dNPOyJgw6WLBQDELVu/+bXiN
+0oC08UmtarvJbjxOKyOMhSt1TXM2fY7so7rumQIDAQABo4IDMTCCAy0wHwYDVR0j
+BBgwFoAUU8oXWfxrwAMhLxqu5KqoHIJW2nUwHQYDVR0OBBYEFEYwEPMIxD1Uej7e
+erHASA2HfTdvMCsGA1UdEQQkMCKCIGl0ZS5zaWduaW5nLmxvZ29uLnJlYWxtZS5n
+b3Z0Lm56MA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYB
+BQUHAwIwPgYDVR0fBDcwNTAzoDGgL4YtaHR0cDovL2NkcC5yYXBpZHNzbC5jb20v
+UmFwaWRTU0xSU0FDQTIwMTguY3JsMEwGA1UdIARFMEMwNwYJYIZIAYb9bAECMCow
+KAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9DUFMwCAYGZ4EM
+AQIBMHUGCCsGAQUFBwEBBGkwZzAmBggrBgEFBQcwAYYaaHR0cDovL3N0YXR1cy5y
+YXBpZHNzbC5jb20wPQYIKwYBBQUHMAKGMWh0dHA6Ly9jYWNlcnRzLnJhcGlkc3Ns
+LmNvbS9SYXBpZFNTTFJTQUNBMjAxOC5jcnQwCQYDVR0TBAIwADCCAX0GCisGAQQB
+1nkCBAIEggFtBIIBaQFnAHYAu9nfvB+KcbWTlCOXqpJ7RzhXlQqrUugakJZkNo4e
+0YUAAAFoeJ52/AAABAMARzBFAiEAm8PwxOn21iybuiBw3vdymwJXkps0gb3x5OuI
+aZVN2xsCIEsouyP5+3fmWiJP9dpdzzJ6ICswBe5G2F9o5HJyPmE/AHUAh3W/51l8
++IxDmV+9827/Vo1HVjb/SrVgwbTq/16ggw8AAAFoeJ53qQAABAMARjBEAiBhuYYI
+RfRm9Jmm5JqC/X1ZWO2jT0Bc74rBlnhJnJIAsgIgSiUdTgrorGAjOrYsMNIBfZ2T
+KT0cnmd9bM6sD7QWBdUAdgBvU3asMfAxGdiZAKRRFf93FRwR2QLBACkGjbIImjfZ
+EwAAAWh4nnhSAAAEAwBHMEUCIQDlQ0DW/6k+RxcUUXWaL0DAjj/2DATBilMFq4p5
+ok9RRwIgEZAnu4+SXY4DccDadsiKIgPsza2lVUAY8NwjnEJmpgUwDQYJKoZIhvcN
+AQELBQADggEBAMeGKUx9JSFCuohYy3ELiFDzS5v4lIvGW+q9RGsnl5iK2pommy2I
+WTP92JKXE+VCQT3blgbQVCh4UZnuyF8LdVXg47qLIUs5iJ0VCNV7RCEgL1eVsanl
+j9/ZCGawxd+QtTey/+gyVZ9yaKDi2Pu8mxjDfbQz7GzUzKlGZFrojcwBl7LHJFmF
+pmAkpieOainckmuELvpm99sV8jdJYSwHi1fP+7Y7oMncmzu++cZlxTIltVhS3Byz
+SakEu/+PyVfTZMpQ65ksI91xltgXYbWabqGOxATQ6J4tqJpQPm3ur9Pq0h3SY8F8
+g99tXGEl1CE27jRsxCw0EdDXA6XD6NiF56g=
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <ArtifactResolutionService index="0" isDefault="true" Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://ws.ite.realme.govt.nz/login/sso/ArtifactResolver/metaAlias/logon/logonidp"/>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+		<NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://www.ite.logon.realme.govt.nz/sso/logon/metaAlias/logon/logonidp"/>
+    </IDPSSODescriptor>
+</EntityDescriptor>

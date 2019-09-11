@@ -4,7 +4,7 @@
 Rails.application.routes.draw do
   resources :organisations, only: [:index]
 
-  devise_for :users, path: 'user'
+  devise_for :users, path: 'user', controllers: { omniauth_callbacks: 'user/omniauth_callbacks' }
 
   namespace :user do
     resources :dashboard, only: %i[index]
