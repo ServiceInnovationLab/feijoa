@@ -7,7 +7,7 @@
 </div>
 <div class="card mb-4 p-4 birth-record" data-id="<%= @birth_record.to_param %>">
   <div class="card-body">
-    <div class="d-flex justify-content-between mb-4">
+    <div class="d-flex flex-wrap justify-content-between mb-4">
       <h1 class="card-title">Request for a document to be shared with <%= @organisation.name %></h1>
       <% if @request.can_cancel? %>
         <%= form_with(url: cancel_organisation_member_request_path(@organisation, @request), method: "post", local: true) do %>

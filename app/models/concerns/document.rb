@@ -14,7 +14,10 @@ module Document
     has_many :shares, -> { merge(Share.kept) }, as: :document, dependent: :nullify,
                                                 inverse_of: :document, foreign_key: 'document_id'
 
-    delegate :share_audit_comment, :remove_audit_comment, :add_audit_comment, :view_audit_comment, to: :class
+    delegate :share_audit_comment, :remove_audit_comment, :add_audit_comment,
+             :view_audit_comment, :update_audit_comment, to: :class
+
+    audited
 
     def immunisation_record?
       document_type == IMMUNISATION_RECORD
@@ -58,6 +61,17 @@ module Document
     def to_partial_path
       "shared/documents/#{self.class.to_s.underscore}"
     end
+
+    def shared_with?(user)
+      recipients = shares.map(&:recipient)
+      return true if recipients.include?(user)
+
+      recipients.each do |recipient|
+        return true if user.member_of?(recipient)
+      end
+
+      false
+    end
   end
 
   class_methods do
@@ -79,6 +93,10 @@ module Document
 
     def view_audit_comment
       Audit::VIEW_SHARED_DOCUMENT
+    end
+
+    def update_audit_comment
+      Audit::UPDATE_DOCUMENT
     end
   end
 end

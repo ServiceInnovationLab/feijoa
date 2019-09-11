@@ -80,4 +80,14 @@ class AuditedOperationsService
     # official birth record would be returned here
     share.document
   end
+
+  def self.update_immunisation_data(user:, immunisation_record:, new_data:)
+    Audit.as_user(user) do
+      immunisation_record.update!(
+        audit_comment: immunisation_record.update_audit_comment,
+        data: new_data
+      )
+    end
+    immunisation_record
+  end
 end

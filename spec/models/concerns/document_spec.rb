@@ -35,5 +35,39 @@ RSpec.describe Document, type: :concern do
       expect(immunisation_record.users).to include(immunisation_record_user_document.user)
       expect(birth_record.users).to include(birth_record_user_document.user)
     end
+
+    context 'shared_with?' do
+      let(:organisation) { FactoryBot.create(:organisation) }
+      let!(:share_of_immunisation_record) do
+        FactoryBot.create(:share, document: immunisation_record, recipient: organisation)
+      end
+      let(:organisation_user) do
+        user = FactoryBot.create(:user)
+        organisation.add_staff(user)
+        user
+      end
+      let(:staff_of_other_organisation) do
+        user = FactoryBot.create(:user)
+        FactoryBot.create(:organisation).add_staff(user)
+        user
+      end
+      let(:user_with_document) do
+        u = FactoryBot.create(:user)
+        immunisation_record.add_to(u)
+        u
+      end
+
+      it 'is shared with someone who is a member of an organisation the doc has been shared with' do
+        expect(immunisation_record.shared_with?(organisation_user)).to eq true
+      end
+
+      it 'is not shared with someone just because they have it on their record' do
+        expect(immunisation_record.shared_with?(user_with_document)).to eq false
+      end
+
+      it 'is not shared with someone who is staff of an organisation the doc has not been shared with' do
+        expect(immunisation_record.shared_with?(staff_of_other_organisation)).to eq false
+      end
+    end
   end
 end
