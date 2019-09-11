@@ -13,7 +13,10 @@
   "buildpacks": [
   ],
   "env": {
-    "IMMS_DATA_SERVER": "https://fake-immunisation-data-server.herokuapp.com/"
+    "IMMS_DATA_SERVER": {
+       "required": true,
+       "value": "https://fake-immunisation-data-server.herokuapp.com/"
+     }
   },
   "formation": {
     "web": {
