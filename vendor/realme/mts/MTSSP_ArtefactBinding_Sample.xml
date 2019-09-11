@@ -1,0 +1,47 @@
+<md:EntityDescriptor ID="MTS SP" entityID="https://sample-service-provider.org.nz/mts2/sp" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:query="urn:oasis:names:tc:SAML:metadata:ext:query" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">
+	<md:SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+		<md:KeyDescriptor use="signing">
+			<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+				<ds:X509Data>
+					<ds:X509Certificate>MIIDjzCCAnegAwIBAgIESkJQmjANBgkqhkiG9w0BAQsFADB4MQswCQYDVQQGEwJO
+WjETMBEGA1UECBMKV2VsbGluZ3RvbjETMBEGA1UEBxMKV2VsbGluZ3RvbjEQMA4G
+A1UEChMHRGF0YWNvbTEQMA4GA1UECxMHRGF0YWNvbTEbMBkGA1UEAxMSbXRzLmNs
+aWVudC5zaWduaW5nMB4XDTE5MDMyMDIxMzIwNloXDTIyMDMxOTIxMzIwNloweDEL
+MAkGA1UEBhMCTloxEzARBgNVBAgTCldlbGxpbmd0b24xEzARBgNVBAcTCldlbGxp
+bmd0b24xEDAOBgNVBAoTB0RhdGFjb20xEDAOBgNVBAsTB0RhdGFjb20xGzAZBgNV
+BAMTEm10cy5jbGllbnQuc2lnbmluZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+AQoCggEBAIJpHZJ8QkQHN3F90jcC2jpU7S8o8Tvg2tN98BCn6YNJxGeLBR+cUL2f
+iYqHK94/OBf7WDpCsY9dG/F5G5SFrG0pIR3cuwXqJ6ga+yR1u5U0J+CJCl75/iB/
++w6RNXRj+HqpjGrROj3fKTFwMKHND0/WBCZVBxYJJTwasn6Cb+RcV6w1Z61LwmgB
+X8JpHQql2fxr60bnwuEbK8Dqk4ufBFj7acqh1iZMVvvTKUjlQNF5rBNtqgXoHl7c
+oDVG600NhHe779arb/fvx97Czcjbif6HondIoliONJ8IBo9jVYiy/2mCxjao793Z
+6tHAJ7a5XBXpSnn5jJ7UJu+U3TMS55cCAwEAAaMhMB8wHQYDVR0OBBYEFGL0u2yt
+Yy9Jg3/mXA14CpjIjaBrMA0GCSqGSIb3DQEBCwUAA4IBAQAmgy9B6fS7wJ+7GEVC
+5g0SEAYLg37FtnqpJhLFGmQJ5uw2nNtVE2r9l6LGHVyTgg2xcqmAg7i0KzofNOwW
+7L4Q7/B6o72Dga70X99AjOj4fBuxEnHRxEkZIR8IQOTyusUpq7t0aR+s600edcKh
+qZh0gBfoxQR5kgT+TBhrlyDe8JlueaUE7na9mE25PW9kULcr7JpOPCxBf6a7mvzZ
+0zDPvIK6xvu+m6P4s6CiYTyeC2TzPdGEuf62+RI2qU3hCfx4nNTSUEGug6Vw6bOf
+ysY0MksTlQNGo2VNlA1xseUVkupHm/R65fCYBU3h9+W+jcQYw5NGLq4qjacZ9KHE
+eBz/</ds:X509Certificate>
+				</ds:X509Data>
+			</ds:KeyInfo>
+		</md:KeyDescriptor>
+		<md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://sample-service-provider.org.nz/sso/ACS" index="0" isDefault="true" />
+	</md:SPSSODescriptor>
+	<md:Organization>
+		<md:OrganizationName xml:lang="en-us">
+			Sample Service Provider
+		</md:OrganizationName>
+		<md:OrganizationDisplayName xml:lang="en-us">
+			Sample Service Provider
+		</md:OrganizationDisplayName>
+		<md:OrganizationURL xml:lang="en-us">
+			https://sample-service-provider.org.nz
+		</md:OrganizationURL>
+	</md:Organization>
+	<md:ContactPerson contactType="technical">
+		<md:Company></md:Company>
+		<md:GivenName></md:GivenName>
+		<md:SurName></md:SurName>
+	</md:ContactPerson>
+</md:EntityDescriptor>

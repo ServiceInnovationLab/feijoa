@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :timeoutable, :trackable, :invitable
+  devise :omniauthable, omniauth_providers: %i[realme]
 
   has_many :user_documents, dependent: :nullify
   has_many :birth_records, -> { distinct.merge(UserDocument.kept) },
@@ -28,6 +29,14 @@ class User < ApplicationRecord
     return user if user.present?
 
     invite!(email: email)
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name # assuming the user model has a name
+    end
   end
 
   # Janitor = Global admin
