@@ -8,9 +8,7 @@
         <%= link_to 'Remove', user_document_remove_path(@document.document_type, @document.id), class: 'btn btn-danger', data: { confirm: 'Are you sure? This will remove the record from your documents'}, method: :post %>
       </div>
     </div>
-    <h5>
-      <strong><%= @document.heading %></strong>
-    </h5>
+      <h4><%= @document.heading %></h4>
     <%= render partial: @document %>
   </div>
   <div class="card-footer">    
@@ -22,7 +20,7 @@
   </div>
 </div>
 <% if @shares.size.positive? %>
-  <h4>Shared with</h4>
+  <h2>Shared with</h2>
   <ul class="list-group list-group-flush">
     <%- @shares.each do |share| %>
       <li class="list-group-item">

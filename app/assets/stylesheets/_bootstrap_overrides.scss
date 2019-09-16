@@ -4,12 +4,16 @@
   }
 }
 
-h1, h2, h5 {
-  font-weight: bold;
-}
-
 .modal-header {
   border-bottom: 0;
+}
+
+.modal-content {
+  margin-top: 6.5rem;
+}
+
+h4.modal-title {
+  font-weight: bold;
 }
 
 @include media-breakpoint-down(sm) {
@@ -35,4 +39,9 @@ label.required:after {
   &--resolved {
     @extend .badge-success;
   }
+}
+
+.alert {
+  padding: 0.5rem 1.25rem;
+  margin: 0;
 }

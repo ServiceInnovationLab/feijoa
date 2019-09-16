@@ -8,9 +8,9 @@
     <% @results&.each do |record| %>
       <div class="card card--with-fancy-footer birth-record" data-id="<%= record.to_param %>">
         <div class="card-body">
-          <h5 class="card-title">
+          <h4 class="card-title">
             <%= record.family_name %>, <%= record.first_and_middle_names %>
-          </h5>
+          </h4>
           <%= render partial: 'shared/birth_records/additional_details', object: record %>
         </div>
         <div class="card-footer">

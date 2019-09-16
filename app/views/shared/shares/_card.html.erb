@@ -1,10 +1,10 @@
 <div class="card share" data-id="<%= record.to_param %>" %>">
   <div class="card-body">
-    <h5 class="card-title">
+    <h4 class="card-title">
       <%= link_to user_share_path(card) do %>
         <%= card.recipient %>
       <% end %>
-    </h5>
+    </h4>
     <%= render partial: 'shared/shares/summary', object: card %>
   </div>
 </div>

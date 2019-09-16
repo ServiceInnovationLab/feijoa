@@ -1,8 +1,8 @@
 <div class="card audit" data-id="<%= audit.id %>">
   <div class="card-body">
-    <h5 class="card-title">
+    <h4 class="card-title">
       <%= audit.action %> <%= audit.auditable_type %>
-    </h5>
+    </h4>
     <div>Created at: <%= audit.created_at %></div>
     <div>Action by: <%= audit.user&.email %></div>
     <div>Action type: <%= audit.auditable_type %></div>

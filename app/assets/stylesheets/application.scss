@@ -25,7 +25,7 @@
   flex: none;
   flex-wrap: wrap;
   .card {
-    width: 300px;
+    width: 245px;
     margin: 1em;
   }
 }
@@ -47,10 +47,33 @@
 }
 
 .navbar-skinny {
-  min-height: 1.5em;
+  min-height: 2.5em;
 }
 
 .add-doc {
-  width: 3em;
+  width: 1.5em;
+  height: 1.5em;
+  padding-right: .5rem;
   display: inline-block;
+}
+
+.btn-secondary {
+  color: $white;
+}
+
+.shifted-right-btn {
+  margin-left: .75rem;
+}
+
+.shifted-left-btn {
+  margin-right: .75rem;
+}
+
+.single-view-btn {
+  margin-top: 1rem;
+  position: relative;
+}
+
+.form-control {
+  font-size: .75rem;
 }
