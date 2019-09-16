@@ -3,7 +3,7 @@
 
 <div class="card audit" data-id="<%= audit.id %>">
   <div class="card-body">
-    <h5 class="card-title">
+    <h4 class="card-title">
       <% if audit.action == 'create'%>
         <strong>Add</strong> birth record of <strong><%= audit.auditable.document.full_name %></strong>
         <div class="text-muted">
@@ -15,7 +15,7 @@
           From Your Documents
         </div>
       <% end%>
-    </h5>
+    </h4>
     <div>Created at: <%= audit.created_at %></div>
     <div>Action by: <%= audit.user&.email %></div>
     <div>Action type: <%= audit.auditable_type %></div>
