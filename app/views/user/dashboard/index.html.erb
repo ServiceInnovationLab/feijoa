@@ -1,11 +1,3 @@
-<% if @requests.any? %>
-  <h2>New share requests</h2>
-  <% @requests.each do |request| %>
-    <div class="mb-4">
-      <%= render partial: 'user/requests/request', locals: { request: request } %>
-    </div>
-  <% end %>
-<% end %>
 <h1 class="pt-3 pb-2">Your documents dashboard</h1>
 <h3>This is where your documents are stored. Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity</strong> but are a legal representation of the data of your ID which is held within the New Zealand government.</h3>
 <div class="row">
@@ -39,3 +31,14 @@
     <% end %>Add an immunisation record</h2>
   </div>
 </div>
+
+<hr />
+
+<% if @requests.any? %>
+  <h2>New share requests</h2>
+  <% @requests.each do |request| %>
+    <div class="mb-4">
+      <%= render partial: 'user/requests/request', locals: { request: request } %>
+    </div>
+  <% end %>
+<% end %>
