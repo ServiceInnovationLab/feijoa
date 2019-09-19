@@ -16,4 +16,9 @@
 //= require popper
 //= require bootstrap
 //= require twitter/typeahead.min
+//= require multistep_modal
 //= require_tree .
+
+$(document).ready(function(){
+  initializeModals('.modal.js-multi-step');
+})
