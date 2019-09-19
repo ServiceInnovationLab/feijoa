@@ -4,6 +4,6 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@percy/agent": "^0.7.0"
+    "@percy/agent": "^0.14.0"
   }
 }
