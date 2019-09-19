@@ -33,3 +33,7 @@ function initializeModals(selector){
     initialize();
   })
 }
+
+$(document).ready(function(){
+  initializeModals('.modal.js-multi-step');
+})
