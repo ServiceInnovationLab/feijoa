@@ -49,7 +49,8 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
           # Test marked as pending due to flakiness
           xit 'is found and can be added and removed' do
             visit user_birth_records_path
-            click_link 'Search for Birth Record'
+            find('#add-record').click
+            click_button('Birth record')
             fill_in 'birth_record_first_and_middle_names', with: 'Timmy'
             fill_in 'birth_record_family_name', with: 'Target-Person'
             fill_in 'birth_record_date_of_birth', with: '01/01/1979'
@@ -89,6 +90,7 @@ RSpec.describe 'user/BirthRecordsController', type: :feature do
           it 'no records are found' do
             visit user_birth_records_path
             find('#add-record').click
+            click_button('Birth record')
             fill_in 'birth_record_first_and_middle_names', with: target_record.first_and_middle_names
             fill_in 'birth_record_date_of_birth', with: target_record.date_of_birth
 
