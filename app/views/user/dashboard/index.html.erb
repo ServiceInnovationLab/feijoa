@@ -9,9 +9,15 @@
 <h1 class="pt-3 pb-2">Your documents dashboard</h1>
 <h3>This is where your documents are stored. Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity</strong> but are a legal representation of the data of your ID which is held within the New Zealand government.</h3>
 <div class="row">
-  <div class="col-10">
-    <%= render 'user/birth_records/modal_form' %>
+  <div class="col">
+    <a href="#" id="add-record" data-toggle="modal" data-target="#modalDocumentSelect" class="pr-2">
+      <h2 class="mt-5">
+        <%= image_tag("plus.svg", alt: 'Add a new document', class: 'add-doc') %>
+        Add a document
+      </h2>
+    </a>
   </div>
+  <%= render 'user/documents/selection_modal' %>
 </div>
 
 <% if @documents.any? %>
@@ -29,13 +35,3 @@
     </div>
   </section>
 <% end %>
-
-<hr />
-
-<div class="row">
-  <div class="col-10">
-    <h2 class="mt-3"><%= link_to new_user_immunisation_record_path, class: 'add-doc' do %>
-      <%= image_tag("plus.svg", alt: 'Add a new document', class: 'add-doc') %>
-    <% end %>Add an immunisation record</h2>
-  </div>
-</div>

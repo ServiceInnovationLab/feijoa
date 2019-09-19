@@ -2,9 +2,12 @@
 <h3>This is where your documents are stored. This is where you can request documents, view them, or remove your access to them.</h3>
 
 <section class="mt-5">
-  <h2 class="mt-5"><%= link_to new_organisation_member_request_path(@organisation), class: 'add-doc' do %>
-      <%= image_tag("plus.svg", alt: 'Add a new request', class: "add-doc") %>
-    <% end %>Request a document</h2>
+  <%= link_to new_organisation_member_request_path(@organisation) do %>
+    <h2 class="mt-5">
+    <%= image_tag("plus.svg", alt: 'Add a new request', class: "add-doc") %>
+    Request a document
+    </h2>
+  <% end %>
   <div class="index-cards">
     <% @requests.each do |request| %>
         <%= render partial: 'organisation_member/requests/request', locals: { request: request } %>
@@ -12,13 +15,13 @@
   </div>
 </section>
 <section class="shares mt-5">
-  <h2>Received documents</2>
+  <h2>Received documents</h2>
   <div class="index-cards">
     <% @shares.each do |share| %>
         <%= render partial: 'shared/documents/preview', locals: { document: share.document,
           shared_by: share.user.email,
           actions: [
-            link_to('View', organisation_member_share_path(@organisation, share), class: 'btn btn-secondary single-view-btn')
+            link_to('View', organisation_member_share_path(@organisation, share), class: 'btn btn-secondary')
           ]}
         %>
     <% end %>
