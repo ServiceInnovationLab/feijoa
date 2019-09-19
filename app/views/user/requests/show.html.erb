@@ -8,7 +8,7 @@
         <span class="badge badge--<%= @request.state %>"><%= @request.state %></span>
       </h3>
       <% if @request.can_decline? %>
-        <div class="">
+        <div>
           <%= form_with(url: decline_user_request_path(@request), method: "post", local: true) do %>
             <%= submit_tag("Decline", class: 'btn btn-danger', data: { confirm: 'Are you sure you want to decline this request?' }) %>
           <% end %>
