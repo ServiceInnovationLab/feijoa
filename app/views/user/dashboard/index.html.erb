@@ -19,9 +19,15 @@
 </div>
 
 <div class="row">
-  <div class="col-10">
-    <%= render 'user/birth_records/modal_form' %>
+  <div class="col">
+    <a href="#" id="add-record" data-toggle="modal" data-target="#modalDocumentSelect" class="pr-2">
+      <h2 class="mt-5">
+        <%= image_tag("plus.svg", alt: 'Add a new document', class: 'add-doc') %>
+        Add a document
+      </h2>
+    </a>
   </div>
+  <%= render 'user/documents/selection_modal' %>
 </div>
 
 <% if @documents.any? %>
