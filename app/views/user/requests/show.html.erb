@@ -3,9 +3,9 @@
 <div class="card mb-4 p-4 birth-record" data-id="<%= @birth_record.to_param %>">
   <div class="card-body">
     <div class="d-flex flex-wrap justify-content-between mb-4">
-      <h1 class="card-title w-75">
+      <h3 class="card-title w-75">
         Request to share with <%= @request.requester.name %>
-      </h1>
+      </h3>
         <% if @request.can_decline? %>
           <div class="">
             <%= form_with(url: decline_user_request_path(@request), method: "post", local: true) do %>
