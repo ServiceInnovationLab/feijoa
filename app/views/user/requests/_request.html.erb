@@ -5,9 +5,9 @@
       <%= request.requester.name %> sent this request for a <%= t("documents.types.#{request.document_type}").downcase %> <%= time_ago_in_words(request.created_at) %> ago.
     </h5>
     <% if request.note %>
-      <blockquote class="blockquote ">
+      <h5>
         <%= request.note %>
-      </blockquote>
+      </h5>
       <% end %>
   </div>
 
