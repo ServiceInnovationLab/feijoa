@@ -16,12 +16,6 @@ h4.modal-title {
   font-weight: bold;
 }
 
-@include media-breakpoint-down(sm) {
-  .navbar {
-    font-size: 0.8em;
-  }
-}
-
 label.required:after {
   content:" *";
 }
