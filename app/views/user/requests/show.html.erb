@@ -3,7 +3,7 @@
 <div class="card mb-4 p-4 birth-record" data-id="<%= @birth_record.to_param %>">
   <div class="card-body">
     <div class="d-flex flex-wrap justify-content-between mb-4">
-      <h3 class="card-title w-75">
+      <h3 class="card-title">
         Request to share with <%= @request.requester.name %>
       </h3>
         <% if @request.can_decline? %>
