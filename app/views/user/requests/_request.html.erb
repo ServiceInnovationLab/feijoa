@@ -1,20 +1,18 @@
-<div class="card">
-  <div class="card-header">
-    <h3>Request for <%= t("documents.types.#{request.document_type}") %></h3>
-  </div>
+<div class="card card--with-fancy-footer birth-record card--">
   <div class="card-body">
-    <p>
+    <h5 class="card-title">Request for <%= t("documents.types.#{request.document_type}") %></h5>
+    <h5 class="card-heading">
       <%= request.requester.name %> sent this request for a <%= t("documents.types.#{request.document_type}").downcase %> <%= time_ago_in_words(request.created_at) %> ago.
-    </p>
+    </h5>
     <% if request.note %>
       <blockquote class="blockquote ">
         <%= request.note %>
       </blockquote>
       <% end %>
-    <hr>
   </div>
+
   <div class="card-footer">
-    <div class="d-flex justify-content-between align-content-center">
+    <div class="card-footer__inner d-flex flex-wrap justify-content-around">
       <% if request.can_decline? %>
         <%= form_with(url: decline_user_request_path(request), method: "post", local: true) do %>
           <%= submit_tag("Decline", class: 'btn btn-danger', data: { confirm: 'Are you sure you want to decline this request?' }) %>
