@@ -1,7 +1,7 @@
 // adapted from https://github.com/ngzhian/multi-step-modal
 'use strict';
 
-var initializeModals = function(selector){
+function initializeModals(selector){
   var modals = $(selector);
   modals.each(function(idx, modal) {
     var $modal = $(modal);
