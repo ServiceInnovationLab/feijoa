@@ -15,7 +15,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body class="<%= action_in_bem_format %> <%= devise_flag %> min-vh-100 d-flex flex-column">
+  <body class="<%= action_in_bem_format %> <%= devise_flag %> min-vh-100">
     <%= render "shared/header" %>
     <%= yield :subhead %>
     <%= render "shared/flash_messages" %>
