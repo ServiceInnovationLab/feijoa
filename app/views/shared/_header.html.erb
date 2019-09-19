@@ -26,21 +26,15 @@
                 Your personal data
               </a>
               <div class="dropdown-menu" aria-labelledby="userDropdown">
-                <%= link_to 'My Documents', user_dashboard_index_path, class: 'dropdown-item' %>
+                <%= link_to 'My Dashboard', user_dashboard_index_path, class: 'dropdown-item' %>
                 <%= link_to 'My Shares', user_shares_path, class: 'dropdown-item' %>
                 <%= link_to 'Requests', user_requests_path, class: 'dropdown-item' %>
                 <%= link_to 'History', user_audits_path, class: 'dropdown-item' %>
               </div>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
             </li>
           <% elsif user_signed_in? %>
             <li class="nav-item">
-              <%= link_to 'My Documents', user_birth_records_path, class: 'nav-link' %>
+              <%= link_to 'My Dashboard', user_dashboard_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to user_requests_path, class: 'nav-link' do %>
