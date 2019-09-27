@@ -17,11 +17,12 @@ h4.modal-title {
 }
 
 label.required:after {
-  content:" *";
+  content: " *";
 }
 
 .badge {
-  &--cancelled, &--declined {
+  &--cancelled,
+  &--declined {
     @extend .badge-danger;
   }
   &--initiated {
