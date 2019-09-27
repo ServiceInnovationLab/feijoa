@@ -9,8 +9,10 @@ RSpec.describe OrganisationImporterService do
     let(:query_response_body) { { 'result' => { 'records' => [record] } } }
 
     let(:record) do
-      { 'Name' => 'Super Kewl Kindy', 'Telephone' => '321',
-        'Address' => 'main road', 'Email' => 'me@example.com', 'key' => '99' }
+      { 
+        'Name' => 'Super Kewl Kindy', 'Telephone' => '321',
+        'Address' => 'main road', 'Email' => 'me@example.com', 'key' => '99' 
+      }
     end
     let(:response) { double('response') }
     before(:each) do
