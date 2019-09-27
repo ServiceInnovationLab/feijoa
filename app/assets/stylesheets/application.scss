@@ -11,14 +11,14 @@
  * It is generally better to create a new file per style scope.
  */
 
-@import 'variables';
-@import 'bootstrap';
-@import 'rails_bootstrap_forms';
-@import 'bootstrap_overrides';
-@import 'card';
+@import "variables";
+@import "bootstrap";
+@import "rails_bootstrap_forms";
+@import "bootstrap_overrides";
+@import "card";
 
-@import 'autocomplete';
-@import 'body';
+@import "autocomplete";
+@import "body";
 
 .index-cards {
   display: flex;
@@ -53,7 +53,7 @@
 .add-doc {
   width: 1.5em;
   height: 1.5em;
-  padding-right: .5rem;
+  padding-right: 0.5rem;
   display: inline-block;
 }
 
@@ -62,11 +62,11 @@
 }
 
 .shifted-right-btn {
-  margin-left: .75rem;
+  margin-left: 0.75rem;
 }
 
 .shifted-left-btn {
-  margin-right: .75rem;
+  margin-right: 0.75rem;
 }
 
 .single-view-btn {
@@ -75,5 +75,5 @@
 }
 
 .form-control {
-  font-size: .75rem;
+  font-size: 0.75rem;
 }

@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   height: 100%;
 }
 
@@ -22,13 +23,19 @@ body, html {
 .organisation-member__shares--show,
 .user__requests--show,
 .user__documents--show {
-  background-image: linear-gradient(to bottom, $grey 0%, $grey 47%, #ffffff 47%, #ffffff 100%);
+  background-image: linear-gradient(
+    to bottom,
+    $grey 0%,
+    $grey 47%,
+    #ffffff 47%,
+    #ffffff 100%
+  );
   background-repeat: no-repeat;
 }
 
 .alert-dismissible .close {
   position: relative;
-  padding: 0 .5rem 0 0;
+  padding: 0 0.5rem 0 0;
 }
 
 h1 {
@@ -55,19 +62,19 @@ h4 {
 }
 
 h5 {
-  font-size: .75rem;
+  font-size: 0.75rem;
   color: $navy;
   margin-bottom: 0;
 }
 
 dt {
-  padding-top: .5rem;
-  font-size: .75rem;
+  padding-top: 0.5rem;
+  font-size: 0.75rem;
   color: $navy;
 }
 
 dd {
-  font-size: .75rem;
+  font-size: 0.75rem;
   color: $navy;
   border-bottom: 1px solid $grey;
 }
