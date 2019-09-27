@@ -6,8 +6,10 @@ class OrganisationImporterService
   def initialize(dataset_id:, data_source_name:, fields: {})
     @dataset_id = dataset_id
     @data_source_name = data_source_name
-    @fields = { name: 'Name', email: 'Email', contact_number: 'Telephone',
-                address: 'Address', key: 'key' }.merge(fields)
+    @fields = { 
+      name: 'Name', email: 'Email', contact_number: 'Telephone',
+      address: 'Address', key: 'key' 
+    }.merge(fields)
   end
 
   def import!
