@@ -3,28 +3,28 @@
 <div class="card mb-4 p-4 birth-record" data-id="<%= @birth_record.to_param %>">
   <div class="card-body">
     <div class="d-flex flex-wrap justify-content-between mb-4">
-      <h1 class="card-title w-75">
+      <h3 class="card-title">
         Request to share with <%= @request.requester.name %>
-      </h1>
-        <% if @request.can_decline? %>
-          <div class="">
-            <%= form_with(url: decline_user_request_path(@request), method: "post", local: true) do %>
-              <%= submit_tag("Decline", class: 'btn btn-danger', data: { confirm: 'Are you sure you want to decline this request?' }) %>
-            <% end %>
-          </div>
-        <% end %>
-        <% if @request.can_respond? %>
-          <div>
-            <a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="btn btn-primary">
-              Respond
-            </a>
-            <%= render partial: 'user/requests/response_modal', locals: { request: @request } %>
-          </div>
-        <% end %>
+        <span class="badge badge--<%= @request.state %>"><%= @request.state %></span>
+      </h3>
+      <% if @request.can_decline? %>
+        <div>
+          <%= form_with(url: decline_user_request_path(@request), method: "post", local: true) do %>
+            <%= submit_tag("Decline", class: 'btn btn-danger', data: { confirm: 'Are you sure you want to decline this request?' }) %>
+          <% end %>
+        </div>
+      <% end %>
+      <% if @request.can_respond? %>
+        <div>
+          <a href="#" id="add-record" data-toggle="modal" data-target="#modalBirthRecordForm" class="btn btn-primary">
+            Respond
+          </a>
+          <%= render partial: 'user/requests/response_modal', locals: { request: @request } %>
+        </div>
+      <% end %>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <span class="badge badge--<%= @request.state %>"><%= @request.state %></span>
         <dt>Requester</dt>
         <dd>
           <%= @request.requester.name %>
