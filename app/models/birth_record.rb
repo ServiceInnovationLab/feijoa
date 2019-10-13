@@ -49,9 +49,8 @@ class BirthRecord < ApplicationRecord
     key_attributes.join(' ').parameterize
   end
 
-  # To abstract into a document class when there are multiple types of document
   def heading
-    "#{family_name}, #{first_and_middle_names}"
+    full_name
   end
 
   def share_with(user:, recipient:)
