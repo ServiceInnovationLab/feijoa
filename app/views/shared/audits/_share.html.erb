@@ -5,17 +5,17 @@
 <tr>
   <td>
     <% if audit.comment == BirthRecord.share_audit_comment || audit.comment == ImmunisationRecord.share_audit_comment %>
-      <strong>Share</strong> <%= t('document.type.' + document.document_type) %> of <%= document.heading %>
+      <strong>Share</strong> <%= t('documents.types.' + document.document_type).downcase %> of <%= document.heading %>
       <div class="text-muted">
         with <strong><%= audit.auditable.recipient.name %></strong>
       </div>
     <% elsif audit.comment == Audit::REVOKE_SHARE %>
-      <strong>Revoke access to</strong> <%= t('document.type.' + document.document_type) %> of <%= document.heading %>
+      <strong>Revoke access to</strong> <%= t('documents.types.' + document.document_type).downcase %> of <%= document.heading %>
       <div class="text-muted">
-        with <strong><%= audit.auditable.recipient.name %></strong>
+        from <strong><%= audit.auditable.recipient.name %></strong>
       </div>
     <% elsif audit.comment == BirthRecord.view_audit_comment || ImmunisationRecord.view_audit_comment %>
-      <strong>View</strong> birth record of <strong><%= audit.auditable.document.full_name %></strong>
+      <strong>View</strong> <%= t('documents.types.' + document.document_type).downcase %> of <%= audit.auditable.document.full_name %>
       <div class="text-muted">
         by <strong><%= audit.auditable.recipient.name %></strong>
       </div>

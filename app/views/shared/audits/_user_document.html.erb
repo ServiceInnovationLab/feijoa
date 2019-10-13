@@ -4,9 +4,9 @@
 <tr>
   <td>
     <% if audit.action == 'create' %>
-      <strong>Add</strong> <%= t('documents.types.' + audit.auditable.document.document_type) %> of <strong><%= audit.auditable.document.heading %></strong> to your documents
+      <strong>Add</strong> <%= t('documents.types.' + audit.auditable.document.document_type).downcase %> of <%= audit.auditable.document.heading %>< to your documents
     <% else %>
-      <strong>Remove</strong> <%= t('documents.types.' + audit.auditable.document.document_type) %> of <strong><%= audit.auditable.document.heading %></strong>
+      <strong>Remove</strong> <%= t('documents.types.' + audit.auditable.document.document_type).downcase %> of <%= audit.auditable.document.heading %>
       <div class="text-muted">
         from your documents
       </div>
