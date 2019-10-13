@@ -1,3 +1,5 @@
+<h1 class="pt-3 pb-2">Your documents dashboard</h1>
+<h3>This is where your documents are stored. Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity</strong> but are a legal representation of the data of your ID which is held within the New Zealand government.</h3>
 <% if @requests.any? %>
   <h2>New share requests</h2>
   <% @requests.each do |request| %>
@@ -6,8 +8,6 @@
     </div>
   <% end %>
 <% end %>
-<h1 class="pt-3 pb-2">Your documents dashboard</h1>
-<h3>This is where your documents are stored. Documents shown here can be for yourself, your whānau, or others. <strong>These are not proof of identity</strong> but are a legal representation of the data of your ID which is held within the New Zealand government.</h3>
 <div class="row">
   <div class="col">
     <a href="#" id="add-record" data-toggle="modal" data-target="#modalDocumentSelect" class="pr-2">
