@@ -16,3 +16,5 @@ en:
     shares:
       create:
         notice: "You have successfully shared %{resource_name}."
+      revoke:
+        notice: "You have revoked access to %{resource_name}."
