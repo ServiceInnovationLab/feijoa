@@ -33,5 +33,5 @@ en:
   hello: "Hello world"
   documents:
     types:
-      BirthRecord: "birth record"
-      ImmunisationRecord: "immunisation record"
+      BirthRecord: "Birth record"
+      ImmunisationRecord: "Immunisation record"
