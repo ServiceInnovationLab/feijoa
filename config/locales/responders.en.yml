@@ -13,3 +13,6 @@ en:
       revoke:
         notice: '%{resource_name} was successfully revoked.'
         alert: '%{resource_name} could not be revoked.'
+    shares:
+      create:
+        notice: "You have successfully shared %{resource_name}."
