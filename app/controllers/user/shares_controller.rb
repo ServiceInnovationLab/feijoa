@@ -78,4 +78,8 @@ class User::SharesController < ApplicationController
   def user_shares
     policy_scope(current_user.shares).kept
   end
+
+  def flash_interpolation_options
+    { resource_name: "#{t('documents.types.' + @share.document.document_type).downcase} of #{@share.document.heading}" }
+  end
 end
