@@ -1,10 +1,11 @@
 en:
   flash:
-    shares:
-      create:
-        notice: "You have successfully shared %{resource_name}."
-      revoke:
-        notice: "You have revoked access to %{resource_name}."
+    user:
+      shares:
+        create:
+          notice: "You have successfully shared the %{resource_name}."
+        revoke:
+          notice: "You have revoked access to the %{resource_name}."
     actions:
       create:
         notice: '%{resource_name} was successfully created.'

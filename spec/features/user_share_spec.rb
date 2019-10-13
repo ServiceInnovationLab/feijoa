@@ -86,7 +86,7 @@ RSpec.describe 'sharing a document', type: :feature do
       click_button id: 'share-button'
     end
     it 'creates a share' do
-      expect(page).to have_text 'You have successfully shared Birth record of Timmy Target-Person.'
+      expect(page).to have_text 'You have successfully shared the birth record of Timmy Target-Person.'
       Percy.snapshot(page, name: 'Shared birth record')
     end
     it { expect(page).to have_text 'Shared with' }
@@ -97,7 +97,7 @@ RSpec.describe 'sharing a document', type: :feature do
       before do
         accept_confirm { click_link 'Revoke' }
       end
-      it { expect(page).to have_text 'You have revoked access to Birth record of Timmy Target-Person.' }
+      it { expect(page).to have_text 'You have revoked access to the birth record of Timmy Target-Person.' }
       it { expect(page).not_to have_text 'Shared with' }
       it { expect(page).not_to have_text 'Plunket' }
       it { expect(page).not_to have_link 'Revoke' }
