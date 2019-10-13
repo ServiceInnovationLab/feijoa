@@ -99,7 +99,7 @@ RSpec.feature 'Auditing' do
 
             it 'shows a "revoked..." audit message' do
               visit user_audits_path
-              expect(page).to have_text("Revoke sharing of birth record of #{target_record.full_name}")
+              expect(page).to have_text("Revoke access to Birth Record of #{target_record.full_name}")
               expect(page).to have_text("with #{organisation.name}")
             end
           end

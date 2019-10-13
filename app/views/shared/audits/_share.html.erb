@@ -1,30 +1,28 @@
 <% # Normalise auto-assigned variable %>
 <% audit ||= share %>
+<% document = audit.auditable.document %>
 
-<div class="card audit" data-id="<%= audit.id %>">
-  <div class="card-body">
-    <h4 class="card-title">
-      <% if audit.comment == Audit::SHARE_BIRTH_RECORD%>
-        <strong>Share</strong> birth record of <strong><%= audit.auditable.document.full_name %></strong>
-        <div class="text-muted">
-          with <strong><%= audit.auditable.recipient.name %></strong>
-        </div>
-      <% elsif audit.comment == Audit::REVOKE_SHARE %>
-        <strong>Revoke</strong> sharing of birth record of <strong><%= audit.auditable.document.full_name %></strong>
-        <div class="text-muted">
-          with <strong><%= audit.auditable.recipient.name %></strong>
-        </div>
-      <% elsif audit.comment == Audit::VIEW_SHARED_BIRTH_RECORD %>
-        <strong>View</strong> birth record of <strong><%= audit.auditable.document.full_name %></strong>
-        <div class="text-muted">
-          by <strong><%= audit.auditable.recipient.name %></strong>
-        </div>
-      <% end%>
-    </h4>
-    <div>Created at: <%= audit.created_at %></div>
-    <div>Action by: <%= audit.user&.email %></div>
-    <div>Action type: <%= audit.auditable_type %></div>
-    <div>Action: <%= audit.action %></div>
-    <div>Comment: <%= audit.comment %></div>
-  </div>
-</div>
+<tr>
+  <td>
+    <% if audit.comment == BirthRecord.share_audit_comment || audit.comment == ImmunisationRecord.share_audit_comment %>
+      <strong>Share</strong> <%= t('document.type.' + document.document_type) %> of <%= document.heading %>
+      <div class="text-muted">
+        with <strong><%= audit.auditable.recipient.name %></strong>
+      </div>
+    <% elsif audit.comment == Audit::REVOKE_SHARE %>
+      <strong>Revoke access to</strong> <%= t('document.type.' + document.document_type) %> of <%= document.heading %>
+      <div class="text-muted">
+        with <strong><%= audit.auditable.recipient.name %></strong>
+      </div>
+    <% elsif audit.comment == BirthRecord.view_audit_comment || ImmunisationRecord.view_audit_comment %>
+      <strong>View</strong> birth record of <strong><%= audit.auditable.document.full_name %></strong>
+      <div class="text-muted">
+        by <strong><%= audit.auditable.recipient.name %></strong>
+      </div>
+    <% end %>
+  </td>
+  <td><%= audit.user&.email %></td>
+  <td><%= audit.created_at %></td>
+  <td><%= audit.action %></td>
+  <td><%= audit.comment %></td>
+</tr>
