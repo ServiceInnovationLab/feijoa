@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @audits.sort_by(&:created_at).reverse! %>
+        <%= render @audits.order(created_at: :desc) %>
       </tbody>
     </table>
   <% else %>
