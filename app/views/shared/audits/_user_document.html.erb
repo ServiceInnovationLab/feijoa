@@ -13,7 +13,7 @@
     <% end %>
   </td>
   <td><%= audit.user&.email %></td>
-  <td><%= audit.created_at %></td>
+  <td><%= I18n.l audit.created_at %></td>
   <td><%= audit.action %></td>
   <td><%= audit.comment %></td>
 </tr>
