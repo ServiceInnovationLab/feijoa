@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-namespace :import do
+namespace :import do # rubocop:disable Metrics/BlockLength
   desc 'Import ECE from data.govt.nz'
   # usage: rake import:ece
   task ece: :environment do

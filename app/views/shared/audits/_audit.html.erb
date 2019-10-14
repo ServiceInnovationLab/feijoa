@@ -1,12 +1,7 @@
-<div class="card audit" data-id="<%= audit.id %>">
-  <div class="card-body">
-    <h4 class="card-title">
-      <%= audit.action %> <%= audit.auditable_type %>
-    </h4>
-    <div>Created at: <%= audit.created_at %></div>
-    <div>Action by: <%= audit.user&.email %></div>
-    <div>Action type: <%= audit.auditable_type %></div>
-    <div>Action: <%= audit.action %></div>
-    <div>Comment: <%= audit.comment %></div>
-  </div>
-</div>
+<tr>
+  <td><%= audit.auditable_type %></td>
+  <td><%= audit.user&.email %></td>
+  <td><%= audit.created_at %></td>
+  <td><%= audit.action %></td>
+  <td><%= audit.comment %></td>
+</tr>

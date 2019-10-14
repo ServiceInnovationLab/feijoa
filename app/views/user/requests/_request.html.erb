@@ -1,32 +1,29 @@
-<div class="card">
-  <div class="card-header">
-    <h3>Request for <%= t("documents.types.#{request.document_type}") %></h3>
-  </div>
-  <div class="card-body">
-    <p>
-      <%= request.requester.name %> sent this request for a <%= t("documents.types.#{request.document_type}").downcase %> <%= time_ago_in_words(request.created_at) %> ago.
+<div class="mb-4">
+  <h3 class="font-weight-bold">
+    <%= link_to "Request for #{t("documents.types.#{request.document_type}").titleize}", user_request_path(request) %>
+  </h3>
+  <p class="small">
+     Requested <%= time_ago_in_words(request.created_at) %> ago
+  </p>
+  <p class="font-weight-bold">From: <%= request.requester.name %>
+  <% if request.note %>
+    <p class="blockquote ">
+      <%= simple_format(request.note) %>
     </p>
-    <% if request.note %>
-      <blockquote class="blockquote ">
-        <%= request.note %>
-      </blockquote>
+  <% end %>
+</div>
+<div>
+  <div class="d-flex justify-content-between align-content-center">
+    <% if request.can_decline? %>
+      <%= form_with(url: decline_user_request_path(request), method: "post", local: true) do %>
+        <%= submit_tag("Decline", class: 'btn btn-danger', data: { confirm: 'Are you sure you want to decline this request?' }) %>
       <% end %>
-    <hr>
-  </div>
-  <div class="card-footer">
-    <div class="d-flex justify-content-between align-content-center">
-      <% if request.can_decline? %>
-        <%= form_with(url: decline_user_request_path(request), method: "post", local: true) do %>
-          <%= submit_tag("Decline", class: 'btn btn-danger', data: { confirm: 'Are you sure you want to decline this request?' }) %>
-        <% end %>
-      <% end %>
-      <%= link_to "View", user_request_path(request), class: 'btn btn-secondary' %>
-      <% if request.can_respond? %>
-        <a href="#" id="add-record" data-toggle="modal" data-target="#modalRequestResponseForm" class="btn btn-primary">
-          Respond
-        </a>
-        <%= render partial: 'user/requests/response_modal', locals: { request: request } %>
-      <% end %>
-    </div>
+    <% end %>
+    <% if request.can_respond? %>
+      <a href="#" id="add-record" data-toggle="modal" data-target="#modalRequestResponseForm" class="btn btn-primary">
+        Respond
+      </a>
+      <%= render partial: 'user/requests/response_modal', locals: { request: request } %>
+    <% end %>
   </div>
 </div>

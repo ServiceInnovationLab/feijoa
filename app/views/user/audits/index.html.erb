@@ -3,9 +3,20 @@
   <p>This shows when you have searched for and shared documents, and also when your documents have been viewed by people you shared them with.</p>
 
   <% if @audits.any? %>
-    <div class="index-cards">
-      <%= render @audits.sort_by(&:created_at).reverse! %>
-    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>User</th>
+          <th>Time</th>
+          <th>Action</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @audits.sort_by(&:created_at).reverse! %>
+      </tbody>
+    </table>
   <% else %>
     <p class="text-muted font-italic">There are currently no events recorded for <%= current_user.email %>.</p>
   <% end %>

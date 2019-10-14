@@ -1,10 +1,10 @@
 <% actions = local_assigns[:actions] || [] %>
 <div class="card card--with-fancy-footer birth-record card--<%= local_assigns[:card_modifier] %>" data-id="<%= document.to_param %>">
     <div class="card-body">
-      <h5 class="card-title"><%= t("documents.types.#{document.document_type}") %></h5>
-      <h5 class="card-heading"><%= document.heading %></h5>
+      <h4 class="card-title"><%= t("documents.types.#{document.document_type}".titleize) %></h4>
+      <p class="card-heading"><%= document.heading %></p>
       <% if local_assigns[:shared_by] %>
-        <h5 class="pb-3">Shared by <%= shared_by %></h5>
+        <p class="pb-3">Shared by <%= shared_by %></p>
       <% end %>
     </div>
   <div class="card-footer">

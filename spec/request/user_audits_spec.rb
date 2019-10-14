@@ -22,7 +22,7 @@ RSpec.describe 'user/AuditsController', type: :request do
 
           expect(response).to be_successful
           expect(response.body)
-            .to include("<strong>Add</strong> birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
+            .to include("<strong>Add</strong> birth record of #{CGI.escapeHTML(birth_record.full_name)}")
         end
 
         context 'and they share it' do
@@ -37,7 +37,7 @@ RSpec.describe 'user/AuditsController', type: :request do
 
             expect(response).to be_successful
             expect(response.body)
-              .to include("<strong>Share</strong> birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
+              .to include("<strong>Share</strong> birth record of #{CGI.escapeHTML(birth_record.full_name)}")
           end
 
           context 'then they revoke the share' do
@@ -51,7 +51,7 @@ RSpec.describe 'user/AuditsController', type: :request do
               expect(response).to be_successful
               expect(response.body)
                 .to include(
-                  "Revoke</strong> sharing of birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}"
+                  "Revoke access to</strong> birth record of #{CGI.escapeHTML(birth_record.full_name)}"
                 )
             end
           end
@@ -67,7 +67,7 @@ RSpec.describe 'user/AuditsController', type: :request do
 
             expect(response).to be_successful
             expect(response.body)
-              .to include("<strong>Remove</strong> birth record of <strong>#{CGI.escapeHTML(birth_record.full_name)}")
+              .to include("<strong>Remove</strong> birth record of #{CGI.escapeHTML(birth_record.full_name)}")
           end
         end
       end

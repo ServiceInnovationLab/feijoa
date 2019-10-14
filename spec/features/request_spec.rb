@@ -73,12 +73,12 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
       Percy.snapshot(page, name: 'user request index')
       expect(page).to have_content('Example Org')
       expect(page).to have_content('A note')
-      expect(page).to have_content('Birth record')
+      expect(page).to have_content('Birth Record')
     end
 
     it 'marks the request as received when the recipient views it' do
       visit user_requests_path
-      click_link 'View'
+      click_link 'Request for Birth Record'
       expect(page).to have_content('received')
       Percy.snapshot(page, name: 'user request show')
     end
@@ -91,7 +91,7 @@ RSpec.describe 'sending a request from an organisation', type: :feature do
       end
       it 'marks the request as received when the recipient views it' do
         visit user_requests_path
-        click_link 'View'
+        click_link 'Request for Birth Record'
         expect(page).to have_content('received')
         Percy.snapshot(page, name: 'user request show')
       end
