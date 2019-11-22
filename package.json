@@ -3,6 +3,6 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-    "@percy/agent": "^0.20.1"
+    "@percy/agent": "^0.20.2"
   }
 }
