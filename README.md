@@ -1,17 +1,19 @@
 [![Build Status](https://travis-ci.org/ServiceInnovationLab/feijoa.svg?branch=master)](https://travis-ci.org/ServiceInnovationLab/feijoa)
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/8f2b6efc2000ad726fd2/maintainability)](https://codeclimate.com/github/ServiceInnovationLab/feijoa/maintainability)
 
 # Feijoa
 
 ## Overview
+
 A Rails web app to demonstrate consent management
 
 ## Environments
+
 **Environment** | **URL**  | **Git Branch**
 ---    | ---                                | ---    |
 production | https://feijoa.herokuapp.com/ | master |
 staging | https://feijoa-staging.herokuapp.com/ | staging |
-
 
 ## Project Resources
 
@@ -30,71 +32,88 @@ Scrum Master | [@merridy](https://github.com/merridy)
 Product Owner | [@workbygrant](https://github.com/workbygrant)
 
 ## Comms
+
 Slack: LabPlus-team #feijoa
 
 ## Setup
 
+### Prerequisites
+
+- Postgres
+- Java
+
 ### Development
+
 In the application directory:
 
 **1. Make a copy of the example environment file containing some important settings**
 
-```
-> cp example.env .env
+```bash
+cp example.env .env
 ```
 
 **2. Install Rails dependencies and create local databases**
-```
-> bin/setup
+
+```bash
+bin/setup
 ```
 
-**3. [Install and run Elastic search](https://www.elastic.co/downloads/elasticsearch).**
+**3. [Install and run Elastic search](https://www.elastic.co/downloads/elasticsearch)**
+
 By default this is expected to run on localhost:9200 - if you have ElasticSearch running on a different port, you can change `ELASTICSEARCH_URL` in your `.env` file.
 
 On Ubuntu you can use the same script as Travis CI:
-```
+
+```bash
 ELASTIC_SEARCH_VERSION="6.2.3" ./bin/install_elasticsearch.sh
 ```
 
 On Mac you may want to use Homebrew:
-```
+
+```bash
 brew install elasticsearch
 brew services start elasticsearch
 ```
 
+**To check whether Elastic Search is running (or not)**
+`sudo service elasticsearch status`
+
 **4. Create a search index in Elastic Search**
-```
+
+You will need to build an ElasticSearch index for the new organisations:
+
+```bash
 bundle exec rake search:index
 ```
 
 **5. Start a local server**
-```
-> bundle exec rails server
+
+```bash
+bundle exec rails server
 ```
 
 ## Local data
 
 You can import organisations
 
-```
+```bash
 bundle exec rake import:ece
 bundle exec rake import:schools
 bundle exec rake import:tkkm
 ```
 
-You will need to build an ElasticSearch index for the new organisations:
-`bundle exec rake search:index`
-
 ## Testing
 
 ### Rubocop
-```
-> rubocop
+
+```bash
+bundle exec rubocop
 ```
 
 ### Rspec
-```
-> bundle exec rspec
+
+```bash
+bundle exec rspec
 ```
 
 Test coverage is reported to `coverage/index.html`
