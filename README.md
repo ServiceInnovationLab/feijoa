@@ -117,3 +117,20 @@ bundle exec rspec
 ```
 
 Test coverage is reported to `coverage/index.html`
+
+---
+
+### Creating users/organisations, etc...in **rails console:**
+
+**To create a user to login:**
+
+`user = FactoryBot.create :user, email: '<emailAddress>', password: '<password>'`
+
+**To create an organisation:**
+
+`organisation = FactoryBot.create :organisation`
+
+**To add user to an organisation:** (**add_role(organisation, role)** method from `user.rb`)
+
+Eg.
+`user.add_role(organisation, OrganisationMember::ADMIN_ROLE)`
