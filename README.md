@@ -41,6 +41,7 @@ Slack: LabPlus-team #feijoa
 
 - Postgres
 - Java
+- Selenium & ChromeDriver
 
 ### Development
 
@@ -120,7 +121,11 @@ Test coverage is reported to `coverage/index.html`
 
 ---
 
-### Creating users/organisations, etc...in **rails console:**
+## Script to create users/organisations, etc...in **rails console:**
+
+`rails runner bin/runner`
+
+### Manually creating users/organisations, etc...in **rails console:**
 
 **To create a user to login:**
 
