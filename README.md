@@ -139,3 +139,23 @@ Test coverage is reported to `coverage/index.html`
 
 Eg.
 `user.add_role(organisation, OrganisationMember::ADMIN_ROLE)`
+
+---
+
+## Adding Birth Records & Immunisation Records
+
+Login using email: `123@123.nz`, password: `P@ssw0rd`
+
+Add the Birth Records & Immunisation Records to the user (as many as you want from the 10 generated) by *clicking on* **Add a document**.
+
+---
+
+## Requesting & Sharing documents
+
+*Click on* the **Your organisations** dropdown & *select* the organisation from the list. From there, *click on* **Request a document**, *enter* the appropriate information (for testing purposes, you can just enter `123@123.nz` for the Recipient's email) then *click* **Create Request**.
+
+*Click on* the **Your personal data** dropdown & *select* either **My Dashboard** OR **Requests** from the list to see the requested document (from the organisation).
+
+*Click* either **Respond** OR **Decline**.
+
+If you had *clicked* on **Respond**, *select* the birth record that you want to share by *clicking on* the **Share** button. To confirm that the share was successful, *navigate back* to the organisation & you should see the shared document in the **Received documents** area.
