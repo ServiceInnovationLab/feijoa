@@ -36,8 +36,6 @@ install:
 - bundle install
 - yarn install
 before_script:
-- bundle install
-- yarn install
 - RAILS_ENV=test bundle exec rake db:create db:migrate
 - bundle exec rails assets:precompile
 - bundle exec rails search:index
