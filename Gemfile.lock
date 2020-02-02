@@ -159,7 +159,7 @@ GEM
       nokogiri (>= 1.10.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    hashie (4.0.0)
+    hashie (4.1.0)
     highline (2.0.3)
     http-accept (1.7.0)
     http-cookie (1.0.3)
@@ -343,7 +343,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (4.2.0)
+    searchkick (4.2.1)
       activemodel (>= 5)
       elasticsearch (>= 6)
       hashie
