@@ -30,6 +30,11 @@ before_install:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64  > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - export PATH=$PWD/geckodriver:$PATH
+install:
+- nvm install 10
+- npm i -g yarn
+- bundle install
+- yarn install
 before_script:
 - bundle install
 - yarn install
