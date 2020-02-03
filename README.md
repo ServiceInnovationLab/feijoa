@@ -121,7 +121,7 @@ Test coverage is reported to `coverage/index.html`
 
 ---
 
-## Script to create users/organisations, etc...in **rails console:**
+## Script to create users/organisations, etc...in **terminal:**
 
 `rails runner bin/user_seed`
 
