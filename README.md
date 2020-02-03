@@ -77,7 +77,7 @@ brew services start elasticsearch
 ```
 
 **To check whether Elastic Search is running (or not)**
-`sudo service elasticsearch status`
+`service elasticsearch status`
 
 **4. Create a search index in Elastic Search**
 
@@ -123,7 +123,7 @@ Test coverage is reported to `coverage/index.html`
 
 ## Script to create users/organisations, etc...in **rails console:**
 
-`rails runner bin/runner`
+`rails runner bin/user_seed`
 
 ### Manually creating users/organisations, etc...in **rails console:**
 
