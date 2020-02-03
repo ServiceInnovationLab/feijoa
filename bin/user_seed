@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+user = FactoryBot.create :user, email: '123@123.nz', password: 'P@ssw0rd'
+
+organisation = FactoryBot.create :organisation
+
+user.add_role(organisation, OrganisationMember::ADMIN_ROLE)
+
+FactoryBot.create_list :birth_record, 10
+
+FactoryBot.create_list :immunisation_record, 10
