@@ -87,7 +87,7 @@ GEM
       capybara
       selenium-webdriver
     childprocess (3.0.0)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crass (1.0.6)
     date_time_precision (0.8.1)
     devise (4.7.1)
@@ -343,7 +343,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (4.2.1)
+    searchkick (4.3.0)
       activemodel (>= 5)
       elasticsearch (>= 6)
       hashie
