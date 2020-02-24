@@ -218,7 +218,7 @@ GEM
     netrc (0.11.0)
     nhi-validator (0.1.1)
     nio4r (2.5.2)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     oauth2 (1.4.2)
       faraday (>= 0.8, < 2.0)
