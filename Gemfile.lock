@@ -169,7 +169,7 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.30)
+    i18n-tasks (0.9.31)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -228,7 +228,7 @@ GEM
       rack (>= 1.2, < 3)
     orm_adapter (0.5.0)
     parallel (1.17.0)
-    parser (2.7.0.2)
+    parser (2.7.0.4)
       ast (~> 2.4.0)
     percy-capybara (4.0.2)
     pg (1.2.2)
@@ -390,7 +390,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
-    unicode-display_width (1.6.0)
+    unicode-display_width (1.6.1)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
